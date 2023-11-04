@@ -24,5 +24,11 @@ public class UserReviewServiceImpl implements UserReviewService{
 	 
 		userReviewDAO.insertUserReview(vo);
 	}
+
+	@Override
+	public void deleteUserReview(UserReviewVO vo) {
+		userReviewDAO.deleteUserReview(vo);
+		
+	}
 	
 }

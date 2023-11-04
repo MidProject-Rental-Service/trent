@@ -12,7 +12,7 @@
     <meta name="keywords" content="Fashi, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Fashi | Template</title>
+    <title>마이페이지MY PAGE</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -78,7 +78,7 @@
                     <div class="mypage-table">
                         <h2>마이페이지</h2>        
                         <div class="mypage-menu">
-                            <a href="#"><i class="fa fa-file-text"></i>
+                            <a href="./applicationList.do"><i class="fa fa-file-text"></i>
                                 <p>신청목록</p>
                             </a>
                             <a href="./reviewManagement.do"><i class="fa fa-star"></i>
@@ -87,7 +87,7 @@
                             <a href="./inquiryList.do"><i class="fa fa-commenting"></i> 
                                 <p>1:1문의</p>
                             </a>
-                            <a href="#"><i class="fa fa-pencil-square"></i> 
+                            <a href="./edit_info"><i class="fa fa-pencil-square"></i> 
                                 <p>회원정보수정</p>
                             </a>
                         </div>

@@ -1,6 +1,7 @@
 package com.mid.mvc.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -13,4 +14,5 @@ public class UserReviewVO {
 	private String r_img;
 	private String id;
 	private String g_id;
+	private String g_name;
 }

@@ -18,42 +18,56 @@
 	rel="stylesheet" />
 
 <!-- Css Styles -->
-<link rel="stylesheet"
-	href="../css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet"
-	href="../css/font-awesome.min.css" type="text/css" />
-<link rel="stylesheet"
-	href="../css/themify-icons.css" type="text/css" />
-<link rel="stylesheet"
-	href="../css/elegant-icons.css" type="text/css" />
-<link rel="stylesheet"
-	href="../css/owl.carousel.min.css" type="text/css" />
-<link rel="stylesheet" href="../css/nice-select.css"
+<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="../css/font-awesome.min.css"
 	type="text/css" />
-<link rel="stylesheet"
-	href="../css/jquery-ui.min.css" type="text/css" />
-<link rel="stylesheet" href="../css/slicknav.min.css"
+<link rel="stylesheet" href="../css/themify-icons.css" type="text/css" />
+<link rel="stylesheet" href="../css/elegant-icons.css" type="text/css" />
+<link rel="stylesheet" href="../css/owl.carousel.min.css"
 	type="text/css" />
-<link rel="stylesheet" href="../css/style.css"
+<link rel="stylesheet" href="../css/nice-select.css" type="text/css" />
+<link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css" />
+<link rel="stylesheet" href="../css/slicknav.min.css" type="text/css" />
+<link rel="stylesheet" href="../css/style.css" type="text/css" />
+<link rel="stylesheet" href="../css/rent-reviewManage-style.css"
 	type="text/css" />
-<link rel="stylesheet"
-	href="../css/rent-reviewManage-style.css"
-	type="text/css" />
+
+
+<!-- Js Plugins -->
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/jquery.countdown.min.js"></script>
+<script src="../js/jquery.nice-select.min.js"></script>
+<script src="../js/jquery.zoom.min.js"></script>
+<script src="../js/jquery.dd.min.js"></script>
+<script src="../js/jquery.slicknav.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/main.js"></script>
+<script type="text/javascript">
+	function reviewWrite() {
+		window.location.href = 'reviewWrite.do';
+	}
+
+	
+</script>
 </head>
 
 <body>
 
 	<%-- 세션에서 로그인 정보 가져오기 --%>
-	<% UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser"); %>
-	
+	<%
+		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+	%>
+
 	<%-- 로그인 상태에 따라 다른 헤더 포함 --%>
-	<c:if test="<%= loggedInUser != null %>">
-	    <%@ include file="header_after.jsp" %>
+	<c:if test="<%=loggedInUser != null%>">
+		<%@ include file="header_after.jsp"%>
 	</c:if>
-	<c:if test="<%= loggedInUser == null %>">
-	    <%@ include file="header_before.jsp" %>
+	<c:if test="<%=loggedInUser == null%>">
+		<%@ include file="header_before.jsp"%>
 	</c:if>
-	
+
 	<!-- Breadcrumb Section Begin -->
 	<div class="breacrumb-section">
 		<div class="container">
@@ -82,16 +96,16 @@
 								<th>마이페이지</th>
 							</tr>
 							<tr>
-								<td><a href="productManagement.do">신청목록</a></td>
+								<td><a href="./applicationList.do">신청목록</a></td>
 							</tr>
 							<tr>
-								<td><a href="reviewManagement.do">리뷰관리</a></td>
+								<td><a href="./reviewManagement.do">리뷰관리</a></td>
 							</tr>
 							<tr>
-								<td><a href="inquiryList.do">1:1문의</a></td>
+								<td><a href="./inquiryList.do">1:1문의</a></td>
 							</tr>
 							<tr>
-								<td><a href="#">회원정보수정</a></td>
+								<td><a href="./edit_info.do">회원정보수정</a></td>
 							</tr>
 						</table>
 					</div>
@@ -113,32 +127,24 @@
 									<th>구매확정일자</th>
 									<th>상태</th>
 								</tr>
-								<tr>
-									<td><input type="checkbox"></td>
-									<td>제품번호</td>
-									<td>제품명/공급사</td>
-									<td>구매확정일자</td>
-									<td>
-									<a href="./reviewWrite.do">
-										<input type="button"
-										class="btn btn-warning correct-btn" value="작성하기"></a>
-									</td>
-									
-								</tr>
-								<c:forEach items="${userReviewList }" var="review">
+								
+								<c:forEach items="${reviewList }" var="review">
 									<tr>
-										<td><input type="checkbox"></td>
-										<td>${userBoard.g_id }</td>
-										<td>${userBoard.g_name} </td>
-										<td>${userBoard.r_regdate} </td>
+										<td><input type="checkbox" value="${review.r_id }" onclick="toggleCheckbox(this)"></td>
+										<td>${review.g_id }</td>
+										<td>${review.g_name}</td>
+										<c:set var="formattedDate" value="${review.r_regdate}" />
+											<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
+												var="formattedDateString" />
+											<td>${formattedDateString}</td>
 										<td><input type="button"
-											class="btn btn-warning correct-btn" value="수정"></td>
+											class="btn btn-warning correct-btn" value="작성하기"></td>
 									</tr>
 								</c:forEach>
 							</table>
 							<div class="delete-div">
 								<br /> <input type="button" class="btn btn-warning delete-btn "
-									value="삭제">
+									value="삭제" onclick="reviewUserDelete()">
 							</div>
 
 						</form>
@@ -148,20 +154,9 @@
 		</div>
 	</section>
 	<!-- Product Shop Section End -->
-	
-	<jsp:include page="./footer.jsp"/>
-	
-	
-	<!-- Js Plugins -->
-	<script src="../js/jquery-3.3.1.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/jquery-ui.min.js"></script>
-	<script src="../js/jquery.countdown.min.js"></script>
-	<script src="../js/jquery.nice-select.min.js"></script>
-	<script src="../js/jquery.zoom.min.js"></script>
-	<script src="../js/jquery.dd.min.js"></script>
-	<script src="../js/jquery.slicknav.js"></script>
-	<script src="../js/owl.carousel.min.js"></script>
-	<script src="../js/main.js"></script>
+
+	<jsp:include page="./footer.jsp" />
+
+
 </body>
 </html>

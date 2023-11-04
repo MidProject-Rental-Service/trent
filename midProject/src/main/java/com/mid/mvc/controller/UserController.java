@@ -2,6 +2,7 @@ package com.mid.mvc.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mid.mvc.domain.UserBoardVO;
@@ -90,14 +92,14 @@ public class UserController {
 
     	userReviewService.getUserReviewList(map);
     	List<UserReviewVO>result = userReviewService.getUserReviewList(map);
-    	m.addAttribute("userboard",result);
+    	m.addAttribute("reviewList",result);
         
     }
     
     @RequestMapping("/reviewWrite.do")
     public String reviewWrite() {
     	
-        return "reviewWrite";
+        return "user/reviewWrite";
     }
     
     @RequestMapping("/saveUserReview.do")
@@ -108,6 +110,12 @@ public class UserController {
     }
     // user review end
     
+    @RequestMapping("/reviewUserDelete.do")
+    public String reviewUserDelete(UserReviewVO vo,@RequestParam List<Integer> selectedIds) {
+    	System.out.println("=> reviewUserDelete 호출");
+    
+        return "reviewUserDelete";
+    }
 
     // user board start
     @RequestMapping("/shopping-cart.do")
@@ -138,7 +146,7 @@ public class UserController {
     @RequestMapping("/inquiryWrite.do")
     public String inquiryWrite() {
     	
-        return "inquiryWrite";
+        return "user/inquiryWrite";
     }
     
     @RequestMapping("/inquiry.do")

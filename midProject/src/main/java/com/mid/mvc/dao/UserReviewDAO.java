@@ -7,6 +7,7 @@ import com.mid.mvc.domain.UserReviewVO;
 
 public interface UserReviewDAO {
 	public void insertUserReview(UserReviewVO vo);
+	public void deleteUserReview(UserReviewVO vo);
 	public List<UserReviewVO> getUserReviewList(HashMap map) ;
 
 }
