@@ -17,28 +17,28 @@
 	rel="stylesheet" />
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
-<link rel="stylesheet" href="css/themify-icons.css" type="text/css" />
-<link rel="stylesheet" href="css/elegant-icons.css" type="text/css" />
-<link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css" />
-<link rel="stylesheet" href="css/nice-select.css" type="text/css" />
-<link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" />
-<link rel="stylesheet" href="css/slicknav.min.css" type="text/css" />
-<link rel="stylesheet" href="css/style.css" type="text/css" />
-<link rel="stylesheet" href="css/rent-inquiryWrite-style.css"
+<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="../css/themify-icons.css" type="text/css" />
+<link rel="stylesheet" href="../css/elegant-icons.css" type="text/css" />
+<link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css" />
+<link rel="stylesheet" href="../css/nice-select.css" type="text/css" />
+<link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css" />
+<link rel="stylesheet" href="../css/slicknav.min.css" type="text/css" />
+<link rel="stylesheet" href="../css/style.css" type="text/css" />
+<link rel="stylesheet" href="../css/rent-inquiryWrite-style.css"
 	type="text/css" />
 <!-- Js Plugins -->
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery-ui.min.js"></script>
-<script src="js/jquery.countdown.min.js"></script>
-<script src="js/jquery.nice-select.min.js"></script>
-<script src="js/jquery.zoom.min.js"></script>
-<script src="js/jquery.dd.min.js"></script>
-<script src="js/jquery.slicknav.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/main.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/jquery.countdown.min.js"></script>
+<script src="../js/jquery.nice-select.min.js"></script>
+<script src="../js/jquery.zoom.min.js"></script>
+<script src="../js/jquery.dd.min.js"></script>
+<script src="../js/jquery.slicknav.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/main.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
@@ -86,20 +86,20 @@
 					class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
 					<div class="mypage-menu-tab">
 						<table class="mypage-tab">
-							<tr>
+								<tr>
 								<th>마이페이지</th>
 							</tr>
 							<tr>
-								<td><a href="productManagement.do">신청목록</a></td>
+								<td><a href="./applicationList.do">신청목록</a></td>
 							</tr>
 							<tr>
-								<td><a href="reviewManagement.do">리뷰관리</a></td>
+								<td><a href="./reviewManagement.do">리뷰관리</a></td>
 							</tr>
 							<tr>
-								<td><a href="inquiryList.do">1:1문의</a></td>
+								<td><a href="./inquiryList.do">1:1문의</a></td>
 							</tr>
 							<tr>
-								<td><a href="#">회원정보수정</a></td>
+								<td><a href="./edit_info.do">회원정보수정</a></td>
 							</tr>
 						</table>
 					</div>
@@ -129,18 +129,24 @@
 
 									<div class="form-group">
 										<label for="name">이름</label> <input id="name" name="ub_name"
-											class="form-control" type="text" value="이름" disabled>
+											class="form-control" type="text"
+											 value="<%= ((UserVO) session.getAttribute("loggedInUser")).getName() %>" disabled>
 									</div>
 									<div class="form-group">
 										<label for="title">제목</label> <input id="title"
 											name="ub_title" class="form-control" type="text" value="">
+									</div>
+									<div class="hidden-group">
+										<input id="p_u_id" name="p_u_id" type="hidden" value="admin" >
+										<input id="id" name="id" type="hidden" 
+										value="<%= ((UserVO) session.getAttribute("loggedInUser")).getId() %>" >
 									</div>
 								</div>
 							</div>
 							<div id="answer" class="form-group">
 								<label for="answer-content">답변</label>
 								<textarea id="answer-content" name="ub_answer"
-									class="form-control" rows="4" cols="50"></textarea>
+									class="form-control" rows="4" cols="50">NN</textarea>
 							</div>
 							<div class="form-group">
 

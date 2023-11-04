@@ -5,32 +5,28 @@
 
 	<insert id="insertUserReview" parameterType="UserReviewVO">
 		INSERT INTO
-		USERBOARD( UB_HEAD,UB_TITLE,UB_CONTENT, UB_REGDATE, UB_CNT)
-		VALUES(#{ub_head}, #{ub_title}, #{ub_content},now(), 0)
+		REVIEW(
+		R_POINT, R_CONTENT , R_REGDATE, ID , G_ID )
+		VALUES(#{r_point},
+		#{r_content}, now(), #{id},#{g_id})
 	</insert>
 
+	<delete id="deleteUserReview" parameterType="UserReviewVO">
+		DELETE
+		FROM REVIEW
+		WHERE R_ID = #{r_id}
+	</delete>
 
-	<select id="getUserReviewList" resultType="UserReviewVO">
+	<select id="getUserReviewList" parameterType="UserReviewVO"
+		resultType="UserReviewVO">
 
-		SELECT *
-		FROM USERBOARD
-		ORDER BY UB_ID DESC
+		SELECT REVIEW.*,GOODS.G_ID,GOODS.G_NAME
+        FROM REVIEW
+        INNER JOIN GOODS
+        ON REVIEW.G_ID = GOODS.G_ID 
+        ORDER BY R_ID DESC
 
-	</select> 
-
-<!-- 	<select id="getUserBoardList" parameterType="hashmap"
-		resultType="UserBoardVO">
-
-		SELECT *
-		FROM USERBOARD
-		<where>
-			<if test="searchCondition != null">
-				${searchCondition} LIKE '%${searchKeyword}%'
-			</if>
-		</where>
-		ORDER BY UB_ID DESC
-
-	</select> -->
+	</select>
 
 
 </mapper>

@@ -117,16 +117,16 @@
 								<th>마이페이지</th>
 							</tr>
 							<tr>
-								<td><a href="productManagement.do">신청목록</a></td>
+								<td><a href="./applicationList.do">신청목록</a></td>
 							</tr>
 							<tr>
-								<td><a href="reviewManagement.do">리뷰관리</a></td>
+								<td><a href="./reviewManagement.do">리뷰관리</a></td>
 							</tr>
 							<tr>
-								<td><a href="inquiryList.do">1:1문의</a></td>
+								<td><a href="./inquiryList.do">1:1문의</a></td>
 							</tr>
 							<tr>
-								<td><a href="#">회원정보수정</a></td>
+								<td><a href="./edit_info.do">회원정보수정</a></td>
 							</tr>
 						</table>
 					</div>

@@ -63,6 +63,7 @@
 .mypage-tab tr:nth-child(5) td {
   padding-bottom: 100px;
 }
+
 /* 각 요소의 크기를 조정합니다 */
 .search-date, .search-date-bar input[type="text"], .search-date-bar .btn, .search-date-bar select {
   height: 30px;

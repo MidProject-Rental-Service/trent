@@ -18,20 +18,20 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 	public void insertUserBoard(UserBoardVO vo) {
 		System.out.println("===> sqlSession insertUserBoard() 호출");
 		System.out.println("=>" + vo.toString());
-		int result = sqlSession.insert("UserBoardDAO.insertUserBoard", vo); 
+		int result = sqlSession.insert("UserBoardMapper.insertUserBoard", vo); 
 		System.out.println("입력결과 : " + result);
 	}
 	
 	public UserBoardVO getUserBoard(UserBoardVO vo) {
 		System.out.println("===> sqlSession getUserBoard() 호출");
-		return sqlSession.selectOne("UserBoardDAO.getUserBoard", vo);
+		return sqlSession.selectOne("UserBoardMapper.getUserBoard", vo);
 		
 	}
 	
 	public List<UserBoardVO> getUserBoardList(HashMap map) {
 		System.out.println("===> sqlSession getUserBoardList() 호출");
 		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
-		return sqlSession.selectList("UserBoardDAO.getUserBoardList",map);
+		return sqlSession.selectList("UserBoardMapper.getUserBoardList",map);
 	}
 	
 	
