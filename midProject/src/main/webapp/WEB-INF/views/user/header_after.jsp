@@ -36,7 +36,7 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-lg-2 col-md-2">
                             <div class="logo">
-                                <a href="./index.html">
+                                <a href="./main.do">
                                     <img src="../img/logo.png" alt="">
                                 </a>
                             </div>
