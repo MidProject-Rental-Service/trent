@@ -3,8 +3,7 @@
     pageEncoding="UTF-8"%>
     
 <% 
-  UserVO user = (UserVO) session.getAttribute("loggedInUser"); 
-  String username = user.getId(); 
+  UserVO user = (UserVO) session.getAttribute("loggedInUser");
 %>
  
     <body>
@@ -54,7 +53,7 @@
                             <ul class="nav-right">
 
                                 <li class="login-icon">
-                                    <a href="mypage.do" class="login-panel"><i class="fa fa-user"></i>  <%= username %>님</a>                  
+                                    <a href="mypage.do" class="login-panel"><i class="fa fa-user"></i>  <%= user.getName() %>님</a>                  
                                 </li>
                                 <li class="login-icon">
                                 	<a href="logout.do" class="logout-panel"><i class="fa fa-sign-out custom-icon"></i></a>
@@ -119,36 +118,33 @@
                             <span>All departments</span>
                             <ul class="depart-hover">
                                 <li class="active"><a href="#">공기청정기</a></li>
-                                <li><a href="#">가습기</a></li>
-                                <li><a href="#">냉난방기</a></li>
-                                <li><a href="#">제습기</a></li>
-                                <li><a href="#">에어컨</a></li>
+	                            <li><a href="./shop.do">가습기</a></li>
+	                            <li><a href="./shop.do">냉난방기</a></li>
+	                            <li><a href="./shop.do">제습기</a></li>
+	                            <li><a href="./shop.do">에어컨</a></li>
                             </ul>
                         </div>
                     </div>
                     <nav class="nav-menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./shop.html">전체렌탈상품</a></li>
-                            <li><a href="#">BEST 상품</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">Men's</a></li>
-                                    <li><a href="#">Women's</a></li>
-                                    <li><a href="#">Kid's</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./blog.html">할인카드</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                    <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                    <li><a href="./check-out.html">Checkout</a></li>
-                                    <li><a href="./faq.html">Faq</a></li>
-                                    <li><a href="./register.html">Register</a></li>
-                                    <li><a href="./login.html">Login</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+	                        <li class="active"><a href="./main.do">Home</a></li>
+	                        <li><a href="./shop.do">전체렌탈상품</a></li>
+	                        <li><a href="#">BEST 상품</a>
+	                            <ul class="dropdown">
+	                                <li><a href="./shop.do">공기청정기</a></li>
+	                                <li><a href="./shop.do">가습기</a></li>
+	                                <li><a href="./shop.do">제습기</a></li>
+	                            </ul>
+	                        </li>
+	                        <li><a href="./blog.html">할인카드</a></li>
+	                        <li><a href="#">Pages</a>
+	                            <ul class="dropdown">
+	                                <li><a href="./mypage.do">마이페이지</a></li>
+	                                <li><a href="./shopping_cart.do">장바구니</a></li>
+	                                <li><a href="./rental.do">주문목록</a></li>
+	                            </ul>
+	                        </li>
+	                    </ul>
                     </nav>
                     <div id="mobile-menu-wrap"></div>
                 </div>
