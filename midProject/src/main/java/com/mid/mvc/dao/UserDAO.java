@@ -12,6 +12,8 @@ public interface UserDAO {
 	
 	public UserVO loginCheck(UserVO vo);
 	
+	public void updateUser(UserVO vo);
+	
 	public List<UserVO> getUserList(UserVO vo);	
 	
 	public List<UserVO> getSupplyList(UserVO vo);	

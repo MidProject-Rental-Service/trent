@@ -3867,6 +3867,7 @@ table.good_list_wrap {
 -----------------------*/
 
 /*가입 정보 폼 관련 설정*/
+.edit-form .group-input span.error,
 .register-form .group-input span.error {
 	color: #A4A4A4;
 }

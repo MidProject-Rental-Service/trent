@@ -45,8 +45,9 @@ public class UserController {
 	}
 	
     @RequestMapping("/insertUser.do") // 회원가입
-    public String insertUser(UserVO vo) {
+    public String insertUser(UserVO vo, Model m) {
     	userServiceImpl.insertUser(vo);
+    	
         return "redirect:login.do";
     }
     
@@ -80,7 +81,13 @@ public class UserController {
         session.invalidate();
         
         // 로그아웃 후 리다이렉트
-        return "redirect:/user/main.do";  // 바꿔주세여 !!!
+        return "redirect:/user/main.do";
+    }
+    
+    @RequestMapping("/updateUser.do") // 회원정보 수정
+    public String updateUser(UserVO vo) {
+    	userServiceImpl.updateUser(vo);
+        return "redirect:login.do";
     }
     
     // user review start

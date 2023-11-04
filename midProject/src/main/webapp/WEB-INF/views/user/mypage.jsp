@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -25,12 +28,32 @@
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     
+	<!-- Js Plugins -->
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script src="../js/jquery.countdown.min.js"></script>
+    <script src="../js/jquery.nice-select.min.js"></script>
+    <script src="../js/jquery.zoom.min.js"></script>
+    <script src="../js/jquery.dd.min.js"></script>
+    <script src="../js/jquery.slicknav.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/main.js"></script>
 
 </head>
 
     <body>
     
-<jsp:include page="./header_before.jsp"/>
+	<%-- 세션에서 로그인 정보 가져오기 --%>
+	<% UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser"); %>
+	
+	<%-- 로그인 상태에 따라 다른 헤더 포함 --%>
+	<c:if test="<%= loggedInUser != null %>">
+	    <%@ include file="header_after.jsp" %>
+	</c:if>
+	<c:if test="<%= loggedInUser == null %>">
+	    <%@ include file="header_before.jsp" %>
+	</c:if>
 
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
@@ -64,7 +87,7 @@
                             <a href="./inquiryList.do"><i class="fa fa-commenting"></i> 
                                 <p>1:1문의</p>
                             </a>
-                            <a href="#"><i class="fa fa-pencil-square"></i> 
+                            <a href="./edit_info.do"><i class="fa fa-pencil-square"></i> 
                                 <p>회원정보수정</p>
                             </a>
                         </div>
@@ -141,18 +164,6 @@
     </section>
     <!-- mypage Section End -->
 
-    
-        <!-- Js Plugins -->
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/jquery.countdown.min.js"></script>
-    <script src="../js/jquery.nice-select.min.js"></script>
-    <script src="../js/jquery.zoom.min.js"></script>
-    <script src="../js/jquery.dd.min.js"></script>
-    <script src="../js/jquery.slicknav.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/main.js"></script>
     
     <jsp:include page="./footer.jsp"/>
 

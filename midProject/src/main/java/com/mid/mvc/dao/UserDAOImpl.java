@@ -39,6 +39,12 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 	
+	@Override
+	public void updateUser(UserVO vo) {
+		sqlSession.update("UserMapper.updateUser", vo);
+		
+	}
+	
 	public List<UserVO> getUserList(UserVO vo){
 		System.out.println("UserDAOImpl");
 		return sqlSession.selectList("UserMapper.getUserList", vo);
