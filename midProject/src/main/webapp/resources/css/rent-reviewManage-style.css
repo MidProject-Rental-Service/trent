@@ -1,0 +1,136 @@
+.review-management-spad {
+  padding-top: 10px;
+  padding-bottom: 50px;
+}
+
+/* 리뷰관리 타이틀*/
+.menu-title h4 {
+  font-weight: bolder;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+/* 좌측 탭매뉴 테이블 */
+.mypage-tab a {
+  color: #252525;
+}
+/*탭메뉴 높이*/
+.mypage-menu-tab {
+  padding-top: 60px;
+}
+
+.mypage-tab {
+  color: #252525;
+  font-size: 20px;
+}
+
+.mypage-tab th {
+  background-color: #ccc;
+  padding: 20px;
+}
+
+.mypage-tab table {
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+.mypage-tab th {
+  padding-top: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 15px;
+  border: 1px solid #ccc;
+}
+.mypage-tab td {
+  border: 1px solid #ccc;
+  border-top: none;
+  text-align: left;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 80px;
+  padding-bottom: 20px;
+}
+
+/* 마이페이지 탭 테이블 가로선만 제거*/
+.mypage-tab tr:nth-child(2) td,
+.mypage-tab tr:nth-child(3) td,
+.mypage-tab tr:nth-child(4) td {
+  border-bottom: none;
+}
+
+.mypage-tab tr:nth-child(5) td {
+  padding-bottom: 100px;
+}
+
+/* 리뷰목록 테이블 */
+.review-list table {
+  border-collapse: collapse; /* 테두리를 합쳐서 간격을 없앰 */
+}
+
+.review-list th {
+  background-color: #ccc;
+}
+
+.review-list tr,
+.review-list th {
+  border-bottom: 1px solid #ccc; /* 가로줄 스타일 지정 */
+  padding: 20px;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+}
+
+/* 첫 번째 행의 가로줄을 숨김 */
+.review-list tr:first-child {
+  border-bottom: none;
+}
+
+.review-list input {
+  padding-left: 1 0px;
+  padding-right: 10px;
+  margin: 10px;
+}
+
+.correct-btn {
+  height: 40px;
+  width: 100px;
+  padding: 5px;
+  color: #fff;
+  background-color: #e7ab3c;
+  border: #e7ab3c;
+  &:hover {
+    background: #e7ab3c;
+    color: #fff;
+  }
+}
+.write-btn {
+  height: 40px;
+  width: 100px;
+  padding: 5px;
+  color: #fff;
+  background-color: #e7ab3c;
+  border: #e7ab3c;
+  &:hover {
+    background: #e7ab3c;
+    color: #fff;
+  }
+}
+
+.delete-btn {
+  height: 40px;
+  width: 100px;
+
+  color: #fff;
+  background-color: #e7ab3c;
+  border: #e7ab3c;
+  &:hover {
+    background: #e7ab3c;
+    color: #fff;
+  }
+}
+
+.delete-div {
+  float: right;
+  padding-right: 3.55%;
+}

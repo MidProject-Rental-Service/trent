@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+
+	<!-- 회원정보 입력 -->
+	<insert id='insertUser' parameterType="UserVO">
+		INSERT INTO user(id, pwd, name, phone, addr, email)
+		VALUES(#{id}, #{pwd}, #{name}, #{phone}, #{addr}, #{email})
+	</insert>
+
+
+	<!-- 아이디 중복 체크 -->
+	<select id='idCheck' parameterType="string" resultType="int">
+        SELECT COUNT(*)  cnt FROM user WHERE id = #{id}
+    </select>
+    
+    <!-- 사용자 로그인 검증 -->
+	<select id='loginCheck' parameterType="UserVO" resultType="UserVO">
+   		SELECT id, pwd FROM user WHERE id = #{id} AND pwd = #{pwd} AND role IS NULL
+	</select>
+    
+    <!--  회원정보 리스트 출력 -->
+    <select id="getUserList" resultType="UserVO">
+		<![CDATA[
+		SELECT * FROM user WHERE role is null ORDER BY id DESC
+		]]>
+	</select>
+	
+	<!--  공급사 추가 -->
+	<insert id="insertSupply" parameterType="UserVO">	
+		INSERT INTO user (id , pwd, name, phone, addr, email, role) 
+		VALUES(#{id}, #{pwd}, #{name}, #{phone}, #{addr}, #{email}, 'supplier')
+	</insert>
+	
+	<!--  공급사 리스트 출력 -->
+	<select id="getSupplyList" resultType="UserVO">
+		<![CDATA[
+		SELECT * FROM user WHERE role = "supplier" ORDER BY id DESC;
+		]]>
+	</select>
+	
+
+    
+
+	
+</mapper>

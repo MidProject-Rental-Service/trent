@@ -1,0 +1,161 @@
+.review-management-spad {
+  padding-top: 10px;
+  padding-bottom: 50px;
+}
+
+/* 좌측 탭매뉴 테이블 */
+.mypage-tab a {
+  color: #252525;
+}
+/*탭메뉴 높이*/
+.mypage-menu-tab {
+  padding-top: 60px;
+  margin-bottom: 20%;
+}
+
+.mypage-tab {
+  color: #252525;
+  font-size: 20px;
+}
+
+.mypage-tab th {
+  background-color: #ccc;
+  padding: 20px;
+}
+
+.mypage-tab table {
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+.mypage-tab th {
+  padding-top: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 15px;
+  border: 1px solid #ccc;
+}
+.mypage-tab td {
+  border: 1px solid #ccc;
+  border-top: none;
+  text-align: left;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 80px;
+  padding-bottom: 20px;
+}
+
+/* 마이페이지 탭 테이블 가로선만 제거*/
+.mypage-tab tr:nth-child(2) td,
+.mypage-tab tr:nth-child(3) td,
+.mypage-tab tr:nth-child(4) td {
+  border-bottom: none;
+}
+
+.mypage-tab tr:nth-child(5) td {
+  padding-bottom: 100px;
+}
+
+/* 리스트 수직정렬 */
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 필요한 경우에 따라 조절할 수 있습니다 */
+}
+.title-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px; /* 요소들 사이의 간격을 조절합니다 */
+}
+
+.title-form .page-title {
+  font-size: 25px;
+  font-weight: bolder;
+  margin-right: auto; /* page-title을 왼쪽으로 이동시킵니다 */
+}
+
+#heder-list {
+  margin-right: 10px; /* heder-list와 search-bar 사이의 간격을 조절합니다 */
+  height: 40px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 300px; /* 너비를 조절합니다 */
+}
+
+.search-bar input[type="text"] {
+  width: 70%; /* 너비를 조절합니다 */
+  height: 40px;
+  padding: 1%; /* 입력 필드와 검색 버튼 사이의 간격을 조절합니다 */
+  margin-left: 2%;
+}
+
+.search-btn {
+  height: 100%;
+  margin: 1%;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+/* 상품관리 테이블 */
+.product-manage-list table {
+  border-collapse: collapse; /* 테두리를 합쳐서 간격을 없앰 */
+}
+
+.product-manage-list th {
+  background-color: #ccc;
+}
+
+.product-manage-list tr,
+.product-manage-list th {
+  border-bottom: 1px solid #ccc; /* 가로줄 스타일 지정 */
+  padding: 20px;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+}
+
+/* 첫 번째 행의 가로줄을 숨김 */
+.product-manage-list tr:first-child {
+  border-bottom: none;
+}
+
+.product-manage-list input {
+  padding-left: 1 0px;
+  padding-right: 10px;
+  margin: 10px;
+}
+
+.search-btn {
+  height: 3%;
+  width: 21%;
+  color: #fff;
+  background-color: #e7ab3c;
+  border: #e7ab3c;
+  &:hover {
+    background: #e7ab3c;
+    color: #fff;
+  }
+}
+.regit-btn {
+  height: 40px;
+  width: 100px;
+  padding: 5px;
+  color: #fff;
+  background-color: #e7ab3c;
+  border: #e7ab3c;
+  &:hover {
+    background: #e7ab3c;
+    color: #fff;
+  }
+}
+
+.regit-div {
+  float: right;
+  padding-right: 0%;
+}

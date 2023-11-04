@@ -1,0 +1,170 @@
+.application-list-spad {
+  padding-top: 10px;
+  padding-bottom: 50px;
+}
+
+/* 1:1문의  타이틀*/
+.menu-title h4 {
+  font-weight: bolder;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+/* 좌측 탭매뉴 테이블 */
+.mypage-tab a {
+  color: #252525;
+}
+/*탭메뉴 높이*/
+.mypage-menu-tab {
+  padding-top: 60px;
+  margin-bottom: 20%;
+}
+
+.mypage-tab {
+  color: #252525;
+  font-size: 20px;
+}
+
+.mypage-tab th {
+  background-color: #ccc;
+  padding: 20px;
+}
+
+.mypage-tab table {
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+.mypage-tab th {
+  padding-top: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 15px;
+  border: 1px solid #ccc;
+}
+.mypage-tab td {
+  border: 1px solid #ccc;
+  border-top: none;
+  text-align: left;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 80px;
+  padding-bottom: 20px;
+}
+
+/* 마이페이지 탭 테이블 가로선만 제거*/
+.mypage-tab tr:nth-child(2) td,
+.mypage-tab tr:nth-child(3) td,
+.mypage-tab tr:nth-child(4) td {
+  border-bottom: none;
+}
+
+.mypage-tab tr:nth-child(5) td {
+  padding-bottom: 100px;
+}
+
+/* 리스트 수직정렬 */
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 필요한 경우에 따라 조절할 수 있습니다 */
+}
+
+/* 전체 폼을 가로 정렬하고, 요소들을 가운데 정렬합니다 */
+.search-date-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+/* 각 요소 사이의 간격을 조절합니다 */
+.search-date,
+.search-date-bar {
+  padding: 7px;
+  margin-left: 1px;
+}
+
+.search-date {
+  text-align: center;
+  margin-left: 10px;
+}
+
+.search-date #text {
+  font-size: 5px;
+}
+
+/* 검색 버튼의 스타일을 추가합니다 */
+.search-btn {
+  height: 5%;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.search-date input[type="text"] {
+  width: 80%;
+  height: 3%;
+}
+/* 검색어 입력 필드의 스타일을 추가합니다 */
+.search-date-bar input[type="text"] {
+  width: calc(70% - 10px); /* 검색어 입력 필드의 너비를 조절합니다 */
+  height: 100%; /* 검색어 입력 필드의 높이를 조절합니다 */
+  padding: 1%;
+}
+
+/* 검색어 입력 필드와 버튼을 수평으로 정렬합니다 */
+.search-date-bar input[type="text"],
+.search-date-bar .search-btn {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* 문의목록 테이블 */
+.application-list table {
+  border-collapse: collapse; /* 테두리를 합쳐서 간격을 없앰 */
+}
+
+.application-list th {
+  background-color: #ccc;
+}
+
+.application-list tr,
+.application-list th {
+  border-bottom: 1px solid #ccc; /* 가로줄 스타일 지정 */
+  padding: 20px;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+}
+
+.application-list tr td {
+  padding: 10px;
+}
+
+/* 첫 번째 행의 가로줄을 숨김 */
+.application-list tr:first-child {
+  border-bottom: none;
+}
+
+.application-list input {
+  padding-left: 1 0px;
+  padding-right: 10px;
+  margin: 10px;
+}
+
+.search-btn {
+  height: 3%;
+  width: 21%;
+  color: #fff;
+  background-color: #e7ab3c;
+  border: #e7ab3c;
+  &:hover {
+    background: #e7ab3c;
+    color: #fff;
+  }
+}

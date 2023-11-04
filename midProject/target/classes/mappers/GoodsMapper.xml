@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GoodsMapper">
+	
+<insert id="productRegister1" parameterType="GoodsVO">
+
+	INSERT INTO goods ( g_id, g_name, g_content, m_id, c_id) 
+	VALUES(#{g_id}, #{g_name}, #{g_content}, #{m_id}, #{ c_id})
+</insert>
+
+<insert id="productRegister2" parameterType="GoodsVO">
+	INSERT INTO img( g_img1, g_rimg1, g_img2, g_rimg2 , g_img3, g_rimg3, g_img4, g_rimg4) 
+	VALUES(#{g_img1}, #{g_rimg1}, #{g_img2}, #{g_rimg2}, #{g_img3}, #{ g_rimg3}, #{g_img4}, #{ g_rimg4})
+</insert>
+
+</mapper>

@@ -1,0 +1,173 @@
+/*---------------------
+  rent form
+
+  rent-table : 전체 테이블 
+  rent1 : 신청정보   div
+  rent-info : 신청정보 테이블
+  rent-form : 신청정보 아래 input 있는 테이블
+  addr-input : 주소  input
+  addr-btn : 우편번호검색버튼
+
+  rent2 : 신청내역  div
+  rent-order-info : 신청내역 테이블
+  rent-order-form : 신청내역 아래 테이블
+
+  rent-checkout : 월 청구요금,렌탈신청하기 div
+  rent-total : 월 청구요금 li
+  rent-btn : 렌탈신청하기 button
+  
+-----------------------*/
+.row {
+}
+
+.rent {
+  padding-top: 80px;
+  padding-bottom: 60px;
+}
+
+/* 테이블  가로 정렬 및 설정 */
+.rent-table {
+  padding-top: 40px;
+  margin-bottom: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.rent1 tr > td:nth-child(1) {
+  font-size: 16px;
+}
+.rent1 input {
+  width: 90%;
+  font-size: 16px;
+  border: 1px solid #ccc;
+}
+.rent-order {
+  margin-bottom: 40px;
+}
+
+.rent2 {
+  padding-left: 40px;
+}
+.addr-input {
+  width: 150px;
+}
+
+.addr-btn {
+  width: 120px;
+}
+
+/* 신청정보 , 신청내역 크기 */
+.rent-table table tr th {
+  font-size: 16px; /* 기본 크기 설정 */
+  color: #ffffff; /* 기본 텍스트 색상 설정 */
+  font-weight: 0; /* 폰트 두께 설정 */
+  border-bottom: 1px solid #ebebeb;
+  text-align: center;
+  padding: 18px 0 19px;
+  text-transform: uppercase;
+  background-color: #001F5F;
+}
+
+.rent-table table {
+  width: 100%;
+  min-width: 550px;
+  border: 1px solid #ebebeb;
+}
+
+.rent-form tr td:nth-child(1) {
+  text-align: center;
+}
+
+/* 폼 사이 간격 */
+.rent-form tr {
+  padding-top: 100px;
+}
+
+.rent-table table tr td {
+  padding-bottom: 34px;
+}
+
+/* 신청정보 input Padding*/
+.rent-form tr :nth-child(1) {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.rent-form tr :nth-child(2) {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.rent-order-form tr :nth-child(1) {
+  padding-top: 20px;
+}
+
+.rent-order-form {
+  text-align: center;
+}
+
+/* 월 청구요금 부분 */
+
+.rent-checkout ul {
+  border: 2px solid #ebebeb;
+  height: 70px;
+  text-align: left;
+  background: #f3f3f3;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 0px;
+  padding-bottom: 30px;
+}
+
+.rent-checkout ul li {
+  list-style: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: #252525;
+  overflow: hidden;
+}
+
+.rent-checkout ul li.rent-total {
+  padding: 20px;
+}
+
+.rent-checkout ul li.rent-total span {
+  color: #001F5F;
+  text-align: right;
+}
+
+.rent-checkout ul li span {
+  float: right;
+}
+
+/* 렌탈신청버튼 */
+.rent-btn-tr,
+.rent-btn {
+  background-color: black;
+  color: white;
+}
+.rent-btn-tr {
+  text-align: center;
+}
+.rent-price-tr {
+  background-color: #ebebeb;
+  text-align: center;
+}
+.rent-price-tr td {
+  padding-top: 20px;
+}
+
+.rent-checkout .rent-btn {
+  font-size: 14px;
+  height: 70px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #252525;
+  text-transform: uppercase;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  display: block;
+  text-align: center;
+}

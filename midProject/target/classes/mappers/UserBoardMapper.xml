@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserBoardMapper">
+
+	<insert id="insertUserBoard" parameterType="UserBoardVO">
+		INSERT INTO
+		USERBOARD( UB_HEAD,UB_TITLE,UB_CONTENT, UB_REGDATE, UB_CNT)
+		VALUES(#{ub_head}, #{ub_title}, #{ub_content},now(), 0)
+	</insert>
+
+
+	<select id="getUserBoard" parameterType="UserBoardVO"
+		resultType="UserBoardVO">
+		SELECT USERBOARD.*,USER.NAME
+		FROM USERBOARD INNER JOIN USER 
+		ON USERBOARD.ID = USER.ID
+		WHERE UB_ID = #{ub_id}
+
+	</select>
+
+
+<!-- 	<select id="getUserBoardList" resultType="UserBoardVO">
+
+		SELECT *
+		FROM USERBOARD
+		ORDER BY UB_ID DESC
+
+	</select>  -->
+
+	<select id="getUserBoardList" parameterType="hashmap"
+		resultType="UserBoardVO">
+
+		SELECT *
+		FROM USERBOARD
+		<where>
+			<if test="searchCondition != null">
+				${searchCondition} LIKE '%${searchKeyword}%'
+			</if>
+			  <if test="startDate != null and endDate != null">
+          AND DATE(UB_REGDATE) BETWEEN #{startDate} AND #{endDate}
+        </if>
+		</where>
+		ORDER BY UB_ID DESC
+
+	</select> 
+
+
+</mapper>

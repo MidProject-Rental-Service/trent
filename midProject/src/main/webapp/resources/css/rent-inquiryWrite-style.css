@@ -1,0 +1,135 @@
+.review-write-spad {
+  padding-top: 10px;
+  padding-bottom: 50px;
+}
+
+/* 문의작성 타이틀*/
+.menu-title h4 {
+  font-weight: bolder;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+/* 좌측 탭매뉴 테이블 */
+
+.mypage-tab a {
+  color: #252525;
+}
+
+/*탭메뉴 높이*/
+.mypage-menu-tab {
+  padding-top: 60px;
+}
+
+.mypage-tab {
+  color: #252525;
+  font-size: 20px;
+}
+
+.mypage-tab th {
+  background-color: #ccc;
+  padding: 20px;
+}
+
+.mypage-tab table {
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+.mypage-tab th {
+  padding-top: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 15px;
+  border: 1px solid #ccc;
+}
+.mypage-tab td {
+  border: 1px solid #ccc;
+  border-top: none;
+  text-align: left;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 80px;
+  padding-bottom: 20px;
+}
+
+/* 마이페이지 탭 테이블 가로선만 제거*/
+.mypage-tab tr:nth-child(2) td,
+.mypage-tab tr:nth-child(3) td,
+.mypage-tab tr:nth-child(4) td {
+  border-bottom: none;
+}
+
+.mypage-tab tr:nth-child(5) td {
+  padding-bottom: 100px;
+}
+
+/* 메인 폼*/
+
+.inquiry-write-form {
+  border: 1px solid #ccc;
+  padding: 30px;
+}
+
+.form-group textarea {
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.form-group.row {
+  display: flex;
+  flex-direction: row; /* 수정된 부분 */
+  justify-content: space-between; /* 요소들을 좌우로 정렬 */
+}
+
+.form-group.row > .col-md-6 {
+  flex: 0 0 48%; /* 너비를 48%로 설정하고 너무 작게 늘어나지 않도록 설정 */
+}
+
+#answer {
+  display: none;
+}
+
+.cancle-btn,
+.complete-btn {
+  height: 40px;
+  width: 100px;
+  padding: 5px;
+  background-color: #e7ab3c;
+  border: #e7ab3c;
+  &:hover {
+    background: #e7ab3c;
+    color: #fff;
+  }
+}
+
+input[type="file"]::file-selector-button {
+  width: 100px;
+  height: 40px;
+  color: #fff;
+  background: #e7ab3c;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background: rgb(77, 77, 77);
+    color: #fff;
+  }
+}
