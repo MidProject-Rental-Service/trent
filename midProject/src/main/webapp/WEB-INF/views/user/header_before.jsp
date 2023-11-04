@@ -127,9 +127,6 @@
                         <li><a href="./blog.html">할인카드</a></li>
                         <li><a href="#">Pages</a>
                             <ul class="dropdown">
-                                <li><a href="./mypage.do">마이페이지</a></li>
-                                <li><a href="./shopping_cart.do">장바구니</a></li>
-                                <li><a href="./rental.do">주문목록</a></li>
                                 <li><a href="./join.do">회원가입</a></li>
                                 <li><a href="./login.do">로그인</a></li>
                             </ul>

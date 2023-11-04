@@ -87,7 +87,7 @@
                             <a href="./inquiryList.do"><i class="fa fa-commenting"></i> 
                                 <p>1:1문의</p>
                             </a>
-                            <a href="#"><i class="fa fa-pencil-square"></i> 
+                            <a href="./edit_info.do"><i class="fa fa-pencil-square"></i> 
                                 <p>회원정보수정</p>
                             </a>
                         </div>

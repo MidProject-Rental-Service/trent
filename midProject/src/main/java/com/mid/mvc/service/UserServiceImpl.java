@@ -30,6 +30,11 @@ public class UserServiceImpl implements UserService {
 		return userDAOImpl.loginCheck(vo);
 	}
 	
+	@Override
+	public void updateUser(UserVO vo) {
+		userDAOImpl.updateUser(vo);
+	}
+	
 	public List<UserVO> getUserList(UserVO vo){
 		System.out.println("UserServiceImpl");
 		return userDAOImpl.getUserList(vo);

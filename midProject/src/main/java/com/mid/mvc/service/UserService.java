@@ -12,6 +12,8 @@ public interface UserService {
 	
 	public UserVO loginCheck(UserVO vo);
 	
+	public void updateUser(UserVO vo);
+	
 	List<UserVO> getUserList(UserVO vo);
 	
 	List<UserVO> getSupplyList(UserVO vo);
