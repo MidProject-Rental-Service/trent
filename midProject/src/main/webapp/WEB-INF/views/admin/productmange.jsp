@@ -143,15 +143,14 @@
 						</thead>
 
 						<c:forEach items="${goodsList}" var="list">
-							<tr>
-								<td><c:out value="${list.g_img}" /></td>
-								<td><a href="productmangemodify.do?g_id=${list.g_id}"><c:out value="${list.g_name}" /></a></td>		
-								<td><a href="productmangemodify.do?g_id=${list.g_id}"><c:out value="${list.g_id}" /></a></td>	
-								<!--  제품 분류라는데 몬지 모르겠음 -->
-								<td><c:out value="${list.c_id}" /></td>
+							<tr>	
+
+								<td><img src="<c:url value='/resources/img/products/${list.g_rimg1}' />" width="100" /></td> 
+								<td><c:out value="${list.g_name}" /></td>
+								<td><c:out value="${list.g_id}" /></td>
+								<td><c:out value="${list.c_name}" /></td> 
 								<td><c:out value="${list.g_content}" /></td>
-								<!-- 답변을 추가하면 btn 생성하게 하는법?? -->
-									</tr>
+							</tr>
 						</c:forEach>
 
 					</table>

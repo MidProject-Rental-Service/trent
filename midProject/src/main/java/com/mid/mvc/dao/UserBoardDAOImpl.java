@@ -33,6 +33,11 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
 		return sqlSession.selectList("UserBoardMapper.getUserBoardList",map);
 	}
+
+	
+	public List<UserBoardVO> dashboardUserBoardList(UserBoardVO vo) {
+		return sqlSession.selectList("UserBoardMapper.dashboardUserBoardList", vo);
+	}
 	
 	
 }

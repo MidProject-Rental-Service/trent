@@ -176,7 +176,8 @@
 											<c:set var="formattedDate" value="${userboard.ub_regdate}" />
 											<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
 												var="formattedDateString" />
-											<td>${formattedDateString}</td>
+											<td>${formatt
+											edDateString}</td>
 											<td>${userboard.ub_head }</td>
 											<td><a href="inquiry.do?ub_id=${userboard.ub_id }">${userboard.ub_title }</a></td>
 											<td class="status">답변대기</td>

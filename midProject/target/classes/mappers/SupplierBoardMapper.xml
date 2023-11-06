@@ -3,7 +3,11 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="SupplierBoardDAO">
 
-
+	<select id="dashboardSupplierBoardList" resultType="SupplierBoardVO">
+		SELECT SB_ID  , SB_TITLE  , id 
+		FROM SUPPLIERBOARD  
+		ORDER BY SB_REGDATE  DESC  LIMIT 5 ;
+	</select>
 	
 	
 	

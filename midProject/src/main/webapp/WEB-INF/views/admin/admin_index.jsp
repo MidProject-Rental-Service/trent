@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
+<%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html lang="en">
 
 <head>
@@ -9,7 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Modernize Free</title>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="../src/assets/css/styles.min.css" />
 </head>
 
@@ -24,9 +27,11 @@
 			<div>
 				<div
 					class="brand-logo d-flex align-items-center justify-content-between">
-					<a href="./supplier_index.do" class="text-nowrap logo-img"> <img
+
+					<a href="./admin_index.do" class="text-nowrap logo-img"> <img
 						src="../src/assets/images/logos/dark-logo.svg"
 						width="180" alt="" />
+
 					</a>
 					<div
 						class="close-btn d-xl-none d-block sidebartoggler cursor-pointer"
@@ -37,7 +42,7 @@
 				<!-- 사이드바 네비게이션-->
 				<nav class="sidebar-nav scroll-sidebar" data-simplebar="">
 					<ul id="sidebarnav">
-					
+
 
 						<li class="sidebar-item"><a class="sidebar-link"
 							href="admin_index.do" aria-expanded="false"
@@ -221,31 +226,13 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
+										<c:forEach items="${userBoardList }" var="list">
+											<tr>
+												<td><c:out value="${list.ub_id}" /></td>
+												<td><c:out value="${list.ub_title}" /></td>
+												<td><c:out value="${list.id}" /></td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 								<div class="text-right">
@@ -269,31 +256,13 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
+										<c:forEach items="${supplierBoardList }" var="list">
+											<tr>
+												<td><c:out value="${list.sb_id}" /></td>
+												<td><c:out value="${list.sb_title}" /></td>
+												<td><c:out value="${list.id}" /></td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 								<div class="text-right">
@@ -308,12 +277,13 @@
 			</div>
 		</div>
 	</div>
-	<script	src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
-	<script	src="../src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
+	<script
+		src="../src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="../src/assets/js/sidebarmenu.js"></script>
 	<script src="../src/assets/js/app.min.js"></script>
-	<script	src="../src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-	<script	src="../src/assets/libs/simplebar/dist/simplebar.js"></script>
+	<script src="../src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+	<script src="../src/assets/libs/simplebar/dist/simplebar.js"></script>
 	<script src="../src/assets/js/dashboard.js"></script>
 </body>
 
