@@ -3,29 +3,47 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UserReviewMapper">
 
-	<insert id="insertUserReview" parameterType="UserReviewVO">
-		INSERT INTO
+	<update id="insertUserReview" parameterType="UserReviewVO">
+		UPDATE INTO
 		REVIEW(
 		R_POINT, R_CONTENT , R_REGDATE, ID , G_ID )
 		VALUES(#{r_point},
 		#{r_content}, now(), #{id},#{g_id})
-	</insert>
+	</update>
 
 	<delete id="deleteUserReview" parameterType="UserReviewVO">
 		DELETE
 		FROM REVIEW
 		WHERE R_ID = #{r_id}
 	</delete>
+	
+	<select id="getUserReview" parameterType="UserReviewVO"
+		resultType="UserReviewVO">
+		SELECT REVIEW.*,GOODS.G_NAME,MAKER.M_NAME
+        FROM REVIEW
+        INNER JOIN GOODS
+        ON REVIEW.G_ID = GOODS.G_ID 
+        INNER JOIN MAKER
+        ON GOODS.M_ID = MAKER.M_ID 
+        INNER JOIN USER
+        ON REVIEW.ID = USER.ID   
+		WHERE R_ID = #{r_id}
+
+	</select>
 
 	<select id="getUserReviewList" parameterType="UserReviewVO"
 		resultType="UserReviewVO">
 
-		SELECT REVIEW.*,GOODS.G_ID,GOODS.G_NAME
+		SELECT REVIEW.*,GOODS.G_NAME,MAKER.M_NAME
         FROM REVIEW
         INNER JOIN GOODS
         ON REVIEW.G_ID = GOODS.G_ID 
-        ORDER BY R_ID DESC
-
+        INNER JOIN MAKER
+        ON GOODS.M_ID = MAKER.M_ID 
+        INNER JOIN USER
+        ON REVIEW.ID = USER.ID   
+        ORDER BY R_ID DESC;
+        
 	</select>
 
 

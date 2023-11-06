@@ -14,5 +14,7 @@ public interface UserReviewService {
 	void insertUserReview(UserReviewVO vo);
 
 	void deleteUserReview(UserReviewVO vo);
+
+	UserReviewVO getUserReview(UserReviewVO vo);
 	
 }

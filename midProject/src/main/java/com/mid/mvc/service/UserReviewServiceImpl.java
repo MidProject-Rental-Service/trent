@@ -30,5 +30,11 @@ public class UserReviewServiceImpl implements UserReviewService{
 		userReviewDAO.deleteUserReview(vo);
 		
 	}
+
+	@Override
+	public UserReviewVO getUserReview(UserReviewVO vo) {
+		return	userReviewDAO.getUserReview(vo);
+		
+	}
 	
 }

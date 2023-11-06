@@ -45,11 +45,12 @@
 <script src="../js/owl.carousel.min.js"></script>
 <script src="../js/main.js"></script>
 <script type="text/javascript">
-	function reviewWrite() {
-		window.location.href = 'reviewWrite.do';
-	}
-
-	
+    function reviewWrite(rId, gId, gName) {
+        sessionStorage.setItem('reviewId', rId);
+        sessionStorage.setItem('gId', gId);
+        sessionStorage.setItem('gName', gName);
+        window.location.href = 'reviewWrite.do?rId=' + rId;
+    }
 </script>
 </head>
 
@@ -58,6 +59,7 @@
 	<%-- 세션에서 로그인 정보 가져오기 --%>
 	<%
 		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+	
 	%>
 
 	<%-- 로그인 상태에 따라 다른 헤더 포함 --%>
@@ -123,7 +125,7 @@
 								<tr>
 									<th></th>
 									<th>모델번호</th>
-									<th>제품명/공급사</th>
+									<th>제조사/제품명</th>
 									<th>구매확정일자</th>
 									<th>상태</th>
 								</tr>
@@ -132,14 +134,15 @@
 									<tr>
 										<td><input type="checkbox" value="${review.r_id }" onclick="toggleCheckbox(this)"></td>
 										<td>${review.g_id }</td>
-										<td>${review.g_name}</td>
+										<td>${review.m_name} / ${review.g_name}</td>
 										<c:set var="formattedDate" value="${review.r_regdate}" />
 											<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
 												var="formattedDateString" />
 											<td>${formattedDateString}</td>
 										<td><input type="button"
-											class="btn btn-warning correct-btn" value="작성하기"></td>
+											class="btn btn-warning correct-btn" value="작성하기" onclick="reviewWrite('${review.r_id}', '${review.g_id}', '${review.g_name}')"></td>
 									</tr>
+									
 								</c:forEach>
 							</table>
 							<div class="delete-div">

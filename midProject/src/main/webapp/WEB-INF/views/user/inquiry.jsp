@@ -132,7 +132,7 @@
 							<div class="form-group">
 
 								<textarea id="content" name="ub_content" class="form-control"
-									rows="4" cols="50">${userBoard.ub_content }</textarea>
+									rows="4" cols="50" readonly="true" style="background-color:#FFF">${userBoard.ub_content }</textarea>
 							</div>
 							<div class="form-group row">
 								<div class="col-md-6 text-left">

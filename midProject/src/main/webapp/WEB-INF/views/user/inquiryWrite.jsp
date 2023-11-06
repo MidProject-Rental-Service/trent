@@ -137,7 +137,6 @@
 											name="ub_title" class="form-control" type="text" value="">
 									</div>
 									<div class="hidden-group">
-										<input id="p_u_id" name="p_u_id" type="hidden" value="admin" >
 										<input id="id" name="id" type="hidden" 
 										value="<%= ((UserVO) session.getAttribute("loggedInUser")).getId() %>" >
 									</div>

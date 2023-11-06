@@ -2,7 +2,6 @@ package com.mid.mvc.controller;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,149 +26,156 @@ import com.mid.mvc.service.UserService;
 @Controller
 @RequestMapping("user")
 public class UserController {
-	
+
 	@Autowired
 	private UserService userServiceImpl;
-	
+
 	@Autowired
 	@Qualifier("userReviewServiceImpl")
 	private UserReviewService userReviewService;
-	
+
 	@Autowired
 	@Qualifier("userBoardServiceImpl")
 	private UserBoardService userBoardService;
-	
-	
 
 	@RequestMapping("/{step}.do")
 	public String viewPage(@PathVariable String step) {
-		return "user/"+step;
+		return "user/" + step;
 	}
-	
-    @RequestMapping("/insertUser.do") // 회원가입
-    public String insertUser(UserVO vo, Model m) {
-    	userServiceImpl.insertUser(vo);
-    	
-        return "redirect:login.do";
-    }
-    
-    @RequestMapping("/idCheck.do") // id 중복체크
-    @ResponseBody
-    public String idCheck(String id) {
-    	int result = userServiceImpl.idCheck(id);
-    	return ""+result;
-    }
-    
-    @RequestMapping("/loginCheck.do") // 로그인
-    public String loginCheck(UserVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-        // 서비스를 사용하여 로그인 검증
-    	vo = userServiceImpl.loginCheck(vo);
-    	
-        if (vo != null) { // 로그인 성공
-            // 사용자 정보를 세션에 저장
-            session.setAttribute("loggedInUser", vo);
 
-            // 로그인 성공 시
-            return "redirect:login_main.do";
-        } else {
-        	// 로그인 실패 시
-            return "user/login_failed";
-        }
-    }
-    
-    @RequestMapping("/logout.do")
-    public String logout(HttpSession session) {
-        // 세션을 제거하여 로그아웃 처리
-        session.invalidate();
-        
-        // 로그아웃 후 리다이렉트
-        return "redirect:/user/main.do";
-    }
-    
-    @RequestMapping("/updateUser.do") // 회원정보 수정
-    public String updateUser(UserVO vo) {
-    	userServiceImpl.updateUser(vo);
-        return "redirect:login.do";
-    }
-    
-    // user review start
-    @RequestMapping("/reviewManagement.do")
-    public void reviewManagement(Model m) {
-    	HashMap map = new HashMap();
+	@RequestMapping("/insertUser.do") // 회원가입
+	public String insertUser(UserVO vo, Model m) {
+		userServiceImpl.insertUser(vo);
 
-    	userReviewService.getUserReviewList(map);
-    	List<UserReviewVO>result = userReviewService.getUserReviewList(map);
-    	m.addAttribute("reviewList",result);
-        
-    }
-    
-    @RequestMapping("/reviewWrite.do")
-    public String reviewWrite() {
-    	
-        return "user/reviewWrite";
-    }
-    
-    @RequestMapping("/saveUserReview.do")
-    public String saveUserReview(UserReviewVO vo) {
-    	System.out.println(" saveUserBoard:" + vo );
-    	userReviewService.insertUserReview(vo);
-        return "redirect:inquiryList.do";
-    }
-    // user review end
-    
-    @RequestMapping("/reviewUserDelete.do")
-    public String reviewUserDelete(UserReviewVO vo,@RequestParam List<Integer> selectedIds) {
-    	System.out.println("=> reviewUserDelete 호출");
-    
-        return "reviewUserDelete";
-    }
+		return "redirect:login.do";
+	}
 
-    // user board start
-    @RequestMapping("/shopping-cart.do")
-    public String shoppingCart() {
-        return "shopping-cart";
-    }
-	
-    @RequestMapping("/productManagement.do")
-    public String productManagement() {
-        return "productManagement";
-    }
-    
-    
-    @RequestMapping("/inquiryList.do")
-    public void inquiryList(Model m,String searchCondition,String searchKeyword,
-    										String datepicker1, String datepicker2) {
-    	HashMap map = new HashMap();
-		map.put("searchCondition",searchCondition);
+	@RequestMapping("/idCheck.do") // id 중복체크
+	@ResponseBody
+	public String idCheck(String id) {
+		int result = userServiceImpl.idCheck(id);
+		return "" + result;
+	}
+
+	@RequestMapping("/loginCheck.do") // 로그인
+	public String loginCheck(UserVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		// 서비스를 사용하여 로그인 검증
+		vo = userServiceImpl.loginCheck(vo);
+
+		if (vo != null) { // 로그인 성공
+			// 사용자 정보를 세션에 저장
+			session.setAttribute("loggedInUser", vo);
+
+			// 로그인 성공 시
+			return "redirect:login_main.do";
+		} else {
+			// 로그인 실패 시
+			return "user/login_failed";
+		}
+	}
+
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
+		// 세션을 제거하여 로그아웃 처리
+		session.invalidate();
+
+		// 로그아웃 후 리다이렉트
+		return "redirect:/user/main.do";
+	}
+
+	@RequestMapping("/updateUser.do") // 회원정보 수정
+	public String updateUser(UserVO vo) {
+		userServiceImpl.updateUser(vo);
+		return "redirect:login.do";
+	}
+
+	// user review start
+	@RequestMapping("/reviewManagement.do")
+	public void reviewManagement(Model m,HttpSession session) {
+		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+		String loggedInUserId = loggedInUser.getId();
+		
+		HashMap map = new HashMap();
+		map.put("id", loggedInUserId);
+
+		userReviewService.getUserReviewList(map);
+		List<UserReviewVO> result = userReviewService.getUserReviewList(map);
+		m.addAttribute("reviewList", result);
+
+	}
+
+	@RequestMapping("/reviewWrite.do")
+	public String reviewWrite(Model m,UserReviewVO vo,@RequestParam("rId") String reviewId, HttpSession session) {
+		 session.setAttribute("selectedReviewId", reviewId);
+			UserReviewVO result = userReviewService.getUserReview(vo);
+			m.addAttribute("userReview", result);
+		return "user/reviewWrite";
+	}
+
+	@RequestMapping("/saveUserReview.do")
+	public String saveUserReview(UserReviewVO vo) {
+		System.out.println(" saveUserBoard:" + vo);
+		userReviewService.insertUserReview(vo);
+		return "redirect:inquiryList.do";
+	}
+	// user review end
+
+	@RequestMapping("/reviewUserDelete.do")
+	public String reviewUserDelete(UserReviewVO vo, @RequestParam List<Integer> selectedIds) {
+		System.out.println("=> reviewUserDelete 호출");
+
+		return "reviewUserDelete";
+	}
+
+	// user board start
+	@RequestMapping("/shopping-cart.do")
+	public String shoppingCart() {
+		return "shopping-cart";
+	}
+
+	@RequestMapping("/productManagement.do")
+	public String productManagement() {
+		return "productManagement";
+	}
+
+	@RequestMapping("/inquiryList.do")
+	public void inquiryList(Model m, HttpSession session, String searchCondition, String searchKeyword,
+			String datepicker1, String datepicker2) {
+		
+		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+		String loggedInUserId = loggedInUser.getId();
+		
+		HashMap map = new HashMap();
+		map.put("id", loggedInUserId);
+		map.put("searchCondition", searchCondition);
 		map.put("searchKeyword", searchKeyword);
 		map.put("startDate", datepicker1);
 		map.put("endDate", datepicker2);
-		
-    	userBoardService.getUserBoardList(map);
-    	List<UserBoardVO>result = userBoardService.getUserBoardList(map);
-    	m.addAttribute("userBoardList",result);
-    }
-    
-    @RequestMapping("/inquiryWrite.do")
-    public String inquiryWrite() {
-    	
-        return "user/inquiryWrite";
-    }
-    
-    @RequestMapping("/inquiry.do")
+
+		userBoardService.getUserBoardList(map);
+		List<UserBoardVO> result = userBoardService.getUserBoardList(map);
+		m.addAttribute("userBoardList", result);
+	}
+
+	@RequestMapping("/inquiryWrite.do")
+	public String inquiryWrite() {
+
+		return "user/inquiryWrite";
+	}
+
+	@RequestMapping("/inquiry.do")
 	public void getUserBoard(UserBoardVO vo, Model m) {
 		UserBoardVO result = userBoardService.getUserBoard(vo);
 		m.addAttribute("userBoard", result);
 
 	} // end of getBoard
 
-    
-    @RequestMapping("/saveUserBoard.do")
-    public String saveUserBoard(UserBoardVO vo) {
-    	System.out.println(" saveUserBoard:" + vo );
-    	userBoardService.insertUserBoard(vo);
-        return "redirect:inquiryList.do";
-    }
-    // user board end
+	@RequestMapping("/saveUserBoard.do")
+	public String saveUserBoard(UserBoardVO vo) {
+		System.out.println(" saveUserBoard:" + vo);
+		userBoardService.insertUserBoard(vo);
+		return "redirect:inquiryList.do";
+	}
+	// user board end
 
 }
