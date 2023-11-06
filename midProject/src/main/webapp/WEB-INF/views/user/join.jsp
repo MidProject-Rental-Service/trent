@@ -149,10 +149,10 @@
 			// AJAX를 사용하여 서버로 중복 체크 요청 보내기
 		    $.ajax({
 		        type: "POST",
-		        url: "/trent/user/idCheck.do", // 서버의 중복 체크 컨트롤러 주소
+		        url: "/midProject/user/idCheck.do", // 서버의 중복 체크 컨트롤러 주소
 		        data: { id: id }, // 아이디를 서버로 보내기
 		        success: function(response) {
-		        	console.log(id);
+		        	//console.log(id);
 		            if (response === "1") {
 		                alert("이미 존재하는 아이디입니다.");
 		                $("#submitBtn").prop('disabled', true);
