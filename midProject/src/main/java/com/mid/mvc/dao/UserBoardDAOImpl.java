@@ -24,6 +24,7 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 	
 	public UserBoardVO getUserBoard(UserBoardVO vo) {
 		System.out.println("===> sqlSession getUserBoard() 호출");
+		System.out.println("===> " + vo.toString());
 		return sqlSession.selectOne("UserBoardMapper.getUserBoard", vo);
 		
 	}

@@ -111,13 +111,13 @@
 				<!-- 좌측 메뉴 끝-->
 
 				<!--리뷰 목록 -->
-				<input name="ub_id" type="hidden" value="${userReview.r_id}" />
 				<div class="col-lg-9 order-1 order-lg-2">
 					<div class="menu-title">
 						<h4>리뷰작성</h4>
 					</div>
 					<div class="review-write">
 						<form class="review-write-form" action="saveUserReview.do">
+				<input name="r_id" type="hidden" value="${userReview.r_id}" />
 							<div id="form-group" class="form-group row">
 								<div class="col-md-3">
 									<img src="img/products/product-1.jpg" alt="">
@@ -148,7 +148,7 @@
 							</div>
 
 							<div class="form-group">
-								<textarea class="form-control" name="r_content" rows="4" cols="50" ></textarea>
+								<textarea class="form-control" name="r_content" rows="4" cols="50" >${userReview.r_content }</textarea>
 							</div>
 							<div class="form-group row">
 								<div class="col-md-6 text-left">

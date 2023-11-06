@@ -116,18 +116,18 @@ public class UserController {
 	}
 
 	@RequestMapping("/reviewWrite.do")
-	public String reviewWrite(Model m,UserReviewVO vo,@RequestParam("rId") String reviewId, HttpSession session) {
+	public void reviewWrite(Model m,UserReviewVO vo,@RequestParam("r_id") String reviewId, HttpSession session) {
 		 session.setAttribute("selectedReviewId", reviewId);
 			UserReviewVO result = userReviewService.getUserReview(vo);
 			m.addAttribute("userReview", result);
-		return "user/reviewWrite";
+		
 	}
 
 	@RequestMapping("/saveUserReview.do")
 	public String saveUserReview(UserReviewVO vo) {
-		System.out.println(" saveUserBoard:" + vo);
-		userReviewService.insertUserReview(vo);
-		return "redirect:inquiryList.do";
+		System.out.println(" saveUserReview:" + vo);
+		userReviewService.saveUserReview(vo);
+		return "redirect:reviewManagement.do";
 	}
 	// user review end
 

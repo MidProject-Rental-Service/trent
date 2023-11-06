@@ -49,7 +49,7 @@
         sessionStorage.setItem('reviewId', rId);
         sessionStorage.setItem('gId', gId);
         sessionStorage.setItem('gName', gName);
-        window.location.href = 'reviewWrite.do?rId=' + rId;
+        window.location.href = 'reviewWrite.do?r_id=' + rId;
     }
 </script>
 </head>

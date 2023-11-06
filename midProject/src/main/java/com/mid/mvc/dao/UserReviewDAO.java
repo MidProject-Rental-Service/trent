@@ -6,7 +6,7 @@ import java.util.List;
 import com.mid.mvc.domain.UserReviewVO;
 
 public interface UserReviewDAO {
-	public void insertUserReview(UserReviewVO vo);
+	public void saveUserReview(UserReviewVO vo);
 	public void deleteUserReview(UserReviewVO vo);
 	public List<UserReviewVO> getUserReviewList(HashMap map) ;
 	public UserReviewVO getUserReview(UserReviewVO vo);
