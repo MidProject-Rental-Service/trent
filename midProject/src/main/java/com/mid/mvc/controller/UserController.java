@@ -43,6 +43,7 @@ public class UserController {
 
 	@RequestMapping("/{step}.do")
 	public String viewPage(@PathVariable String step) {
+		System.out.println("User_controller호출");
 		return "user/"+step;
 	}
 	
@@ -64,17 +65,27 @@ public class UserController {
     public String loginCheck(UserVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         // 서비스를 사용하여 로그인 검증
     	vo = userServiceImpl.loginCheck(vo);
+    	System.out.println("loginCheck호출 =====> vo: " + vo);
     	
         if (vo != null) { // 로그인 성공
             // 사용자 정보를 세션에 저장
             session.setAttribute("loggedInUser", vo);
 
             // 로그인 성공 시
-            return "redirect:login_main.do";
-        } else {
-        	// 로그인 실패 시
-            return "user/login_failed";
+            String role = vo.getRole();
+            if ("user".equals(role)) {
+                // 사용자 역할(role)이 null 또는 비어 있으면 일반 사용자로 간주
+                return "redirect:/user/main.do"; // 일반 사용자 페이지로 리디렉션
+            } else if ("admin".equals(role)) {
+                // 사용자 역할이 "admin"인 경우, 관리자로 간주
+                return "redirect:/admin/admin_index.do"; // 관리자 페이지로 리디렉션
+            } else if ("supplier".equals(role)) {
+                // 사용자 역할이 "supplier"인 경우, 공급사로 간주
+                return "redirect:/supplier/supplier_index.do"; // 공급사 페이지로 리디렉션
+            }
         }
+        // 로그인 실패 시
+        return "user/login_failed";
     }
     
     @RequestMapping("/logout.do")

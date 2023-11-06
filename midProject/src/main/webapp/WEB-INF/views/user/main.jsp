@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -29,8 +30,16 @@
 </head>
 
     <body>
-    
-<jsp:include page="./header_before.jsp"/>
+<%-- 세션에서 로그인 정보 가져오기 --%>
+	<% UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser"); %>
+	
+	<%-- 로그인 상태에 따라 다른 헤더 포함 --%>
+	<c:if test="<%= loggedInUser != null %>">
+	    <%@ include file="header_after.jsp" %>
+	</c:if>
+	<c:if test="<%= loggedInUser == null %>">
+	    <%@ include file="header_before.jsp" %>
+	</c:if>
 
         <!-- Hero Section Begin -->
     <section class="hero-section">

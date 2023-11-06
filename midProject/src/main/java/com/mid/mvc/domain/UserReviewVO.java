@@ -12,7 +12,8 @@ public class UserReviewVO {
 	private String r_content;
 	private Date r_regdate;
 	private String r_img;
+	private String r_rimg;
 	private String id;
 	private String g_id;
-	private String g_name;
+	private String b_id;
 }

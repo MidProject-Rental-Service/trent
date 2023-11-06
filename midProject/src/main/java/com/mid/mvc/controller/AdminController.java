@@ -4,6 +4,8 @@ package com.mid.mvc.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,6 +59,15 @@ public class AdminController {
 		goodsService.productRegister(vo);
 		return "redirect:productmange.do";
 	}
+	
+    @RequestMapping("/logout.do")
+    public String logout(HttpSession session) {
+        // 세션을 제거하여 로그아웃 처리
+        session.invalidate();
+        
+        // 로그아웃 후 리다이렉트
+        return "redirect:/user/main.do";
+    }
 	
 	
 }
