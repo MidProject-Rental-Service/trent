@@ -16,5 +16,9 @@
 		]]>
 	</select>
 
+	<select id="getGoodsById" parameterType="String">
+		SELECT * FROM goods
+		WHERE g_id = #{g_id}
+	</select>
 
 </mapper>

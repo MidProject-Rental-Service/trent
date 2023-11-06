@@ -10,4 +10,5 @@ public interface GoodsDAO {
 	
 	public List<GoodsVO> getGoodsList(GoodsVO vo);	
 
+	public GoodsVO getGoodsById(GoodsVO vo);
 }

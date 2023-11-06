@@ -10,4 +10,6 @@ public interface GoodsService {
 	
 	List<GoodsVO> getGoodsList(GoodsVO vo);
 
+	GoodsVO getGoodsById(String gId);
+
 }

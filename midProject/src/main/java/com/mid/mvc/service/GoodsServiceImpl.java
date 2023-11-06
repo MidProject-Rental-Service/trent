@@ -20,7 +20,11 @@ public class GoodsServiceImpl implements GoodsService{
 	
 	public List<GoodsVO> getGoodsList(GoodsVO vo) {
 		return goodsDAO.getGoodsList(vo);
-	
-
 	}
+
+	public GoodsVO getGoodsById(String gId) {
+		return goodsDAO.getGoodsById(gId);
+	}
+
+
 }

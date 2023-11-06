@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mid.mvc.domain.GoodsVO;
 import com.mid.mvc.domain.SupplierBoardVO;
@@ -45,9 +46,6 @@ public class AdminController {
 		return  "admin/" + step;
 	}
 
-
-
-
 	//사용자 전체 검색
 	@RequestMapping("/usermange.do")
 	public void userList(UserVO vo, Model model) {
@@ -73,13 +71,23 @@ public class AdminController {
 	}
 
 	//상품 전체 검색
-
 	@RequestMapping("/productmange.do")
 	public void GoodsList(GoodsVO vo, Model model) { 
 		System.out.println("GoodsList-controller호출"); 
 		List<GoodsVO> result = goodsService.getGoodsList(vo); 
 		model.addAttribute("goodsList",result); 
 		System.out.println("result :" + result);}	
+	
+	//상품 상세페이지 (내용 띄우기)
+	@RequestMapping("/productmangemodify.do")
+	public void getGoodsById(@RequestParam("g_id") String gId, Model model) {
+	    // gId를 사용하여 데이터베이스에서 해당 제품의 정보를 가져오는 서비스 호출
+	    GoodsVO product = goodsService.getGoodsById(gId);
+
+	    model.addAttribute("product", product);
+	}
+	
+	
 	
     @RequestMapping("/logout.do")
     public String logout(HttpSession session) {

@@ -29,6 +29,9 @@
 
 	<jsp:include page="./admin_header.jsp"/>
 
+<!-- 	<!--  Main wrapper -->
+		<div class="body-wrapper"> -->
+			
 		<!-- 메인 페이지  -->
 		<div class="container">
 
@@ -134,6 +137,7 @@
 					</div>
 				</form>
 			</section>
+		</div>
 		</div>
 	</div>
 	<script

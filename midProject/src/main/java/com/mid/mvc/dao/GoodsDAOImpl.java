@@ -22,5 +22,11 @@ public class GoodsDAOImpl {
 	public List<GoodsVO> getGoodsList(GoodsVO vo){
 		System.out.println("GoodsDAOImpl");
 		return SqlSession.selectList("GoodsMapper.getGoodsList", vo);
-	}	
+	}
+
+	public GoodsVO getGoodsById(String gId) {
+		return SqlSession.selectOne("GoodsMapper.getGoodsById", gId);
+	}
+
+
 }

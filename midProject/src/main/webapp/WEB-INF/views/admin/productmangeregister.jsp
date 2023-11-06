@@ -55,7 +55,7 @@
 
 								<div class="row">
 									<div class="col-sm-4">
-										<label for="file1" class="form-label">메인썸내일</label>
+										<label for="file1" class="form-label">메인썸네일</label>
 										<div class="input-group">
 											<input type="file" class="form-control" name="file1" readonly>
 										</div>
