@@ -3915,7 +3915,7 @@ table.good_list_wrap {
 .login-form form .group-input input,
 .edit-form form .group-input input,
 .register-form form .group-input select,
-.edit-form form .group-input select,
+.login-form form .group-input select,
 .register-form form .group-input input#id_chk {
 	border: 1px solid #ebebeb;
 	height: 50px;
@@ -3923,6 +3923,8 @@ table.good_list_wrap {
 	padding-left: 20px;
 	padding-right: 15px;
 }
+
+/* 체크박스 폼 칸 사이즈와 위치 */
 
 /*아이디 폼 칸 사이즈*/
 .register-form form .group-input input#id {
@@ -3944,7 +3946,7 @@ table.good_list_wrap {
 
 /* 이메일, 우편번호, 이메일 도메인 폼 크기 조절 */
 .group-input input.postcode[type="text"],
-.edit-form form .group-input select {
+.login-form form .group-input select#role {
     width: 200px; 
 }
 

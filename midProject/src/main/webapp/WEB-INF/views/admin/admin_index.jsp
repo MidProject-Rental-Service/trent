@@ -24,7 +24,7 @@
 			<div>
 				<div
 					class="brand-logo d-flex align-items-center justify-content-between">
-					<a href="http://localhost:8080/midProject/index.jsp" class="text-nowrap logo-img"> <img
+					<a href="./supplier_index.do" class="text-nowrap logo-img"> <img
 						src="../src/assets/images/logos/dark-logo.svg"
 						width="180" alt="" />
 					</a>

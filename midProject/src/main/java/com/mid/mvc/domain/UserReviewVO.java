@@ -7,6 +7,7 @@ import lombok.Data;
 
 @Data
 public class UserReviewVO {
+
 	private int r_id;						// 리뷰번호
 	private int r_point;				// 평점
 	private String r_content;		// 리뷰내용
@@ -19,4 +20,5 @@ public class UserReviewVO {
 	private int b_id;						// 주문번호
 	private String m_name;		// 제조사명 
 	private String p_name;		// 공급사명
+
 }

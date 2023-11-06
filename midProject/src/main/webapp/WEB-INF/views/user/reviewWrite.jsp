@@ -72,7 +72,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="breadcrumb-text">
-						<a href="#"><i class="fa fa-home"></i> Home</a> <span>My
+						<a href="./main.do"><i class="fa fa-home"></i> Home</a> <span>My
 							Page</span>
 					</div>
 				</div>

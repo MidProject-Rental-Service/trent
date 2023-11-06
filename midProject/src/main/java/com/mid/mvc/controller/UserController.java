@@ -42,52 +42,63 @@ public class UserController {
 	public String viewPage(@PathVariable String step) {
 		return "user/" + step;
 	}
+	
+    @RequestMapping("/insertUser.do") // 회원가입
+    public String insertUser(UserVO vo, Model m) {
+    	userServiceImpl.insertUser(vo);
+    	
+        return "redirect:login.do";
+    }
+    
+    @RequestMapping("/idCheck.do") // id 중복체크
+    @ResponseBody
+    public String idCheck(String id) {
+    	int result = userServiceImpl.idCheck(id);
+    	return ""+result;
+    }
+    
+    @RequestMapping("/loginCheck.do") // 로그인
+    public String loginCheck(UserVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        // 서비스를 사용하여 로그인 검증
+    	vo = userServiceImpl.loginCheck(vo);
+    	System.out.println("loginCheck호출 =====> vo: " + vo);
+    	
+        if (vo != null) { // 로그인 성공
+            // 사용자 정보를 세션에 저장
+            session.setAttribute("loggedInUser", vo);
 
-	@RequestMapping("/insertUser.do") // 회원가입
-	public String insertUser(UserVO vo, Model m) {
-		userServiceImpl.insertUser(vo);
-
-		return "redirect:login.do";
-	}
-
-	@RequestMapping("/idCheck.do") // id 중복체크
-	@ResponseBody
-	public String idCheck(String id) {
-		int result = userServiceImpl.idCheck(id);
-		return "" + result;
-	}
-
-	@RequestMapping("/loginCheck.do") // 로그인
-	public String loginCheck(UserVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-		// 서비스를 사용하여 로그인 검증
-		vo = userServiceImpl.loginCheck(vo);
-
-		if (vo != null) { // 로그인 성공
-			// 사용자 정보를 세션에 저장
-			session.setAttribute("loggedInUser", vo);
-
-			// 로그인 성공 시
-			return "redirect:login_main.do";
-		} else {
-			// 로그인 실패 시
-			return "user/login_failed";
-		}
-	}
-
-	@RequestMapping("/logout.do")
-	public String logout(HttpSession session) {
-		// 세션을 제거하여 로그아웃 처리
-		session.invalidate();
-
-		// 로그아웃 후 리다이렉트
-		return "redirect:/user/main.do";
-	}
-
-	@RequestMapping("/updateUser.do") // 회원정보 수정
-	public String updateUser(UserVO vo) {
-		userServiceImpl.updateUser(vo);
-		return "redirect:login.do";
-	}
+            // 로그인 성공 시
+            String role = vo.getRole();
+            if ("user".equals(role)) {
+                // 사용자 역할(role)이 null 또는 비어 있으면 일반 사용자로 간주
+                return "redirect:/user/main.do"; // 일반 사용자 페이지로 리디렉션
+            } else if ("admin".equals(role)) {
+                // 사용자 역할이 "admin"인 경우, 관리자로 간주
+                return "redirect:/admin/admin_index.do"; // 관리자 페이지로 리디렉션
+            } else if ("supplier".equals(role)) {
+                // 사용자 역할이 "supplier"인 경우, 공급사로 간주
+                return "redirect:/supplier/supplier_index.do"; // 공급사 페이지로 리디렉션
+            }
+        }
+        // 로그인 실패 시
+        return "user/login_failed";
+    }
+    
+    @RequestMapping("/logout.do")
+    public String logout(HttpSession session) {
+        // 세션을 제거하여 로그아웃 처리
+        session.invalidate();
+        
+        // 로그아웃 후 리다이렉트
+        return "redirect:/user/main.do";
+    }
+    
+    @RequestMapping("/updateUser.do") // 회원정보 수정
+    public String updateUser(UserVO vo) {
+    	userServiceImpl.updateUser(vo);
+        return "redirect:login.do";
+    }
+    
 
 	// user review start
 	@RequestMapping("/reviewManagement.do")

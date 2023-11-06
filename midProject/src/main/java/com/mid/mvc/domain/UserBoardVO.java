@@ -15,5 +15,5 @@ public class UserBoardVO {
 	private int 			ub_cnt;			// 조회수
 	private String 	id;					// 회원아이디
 	private String 	name;				// 회원이름
-	
+
 }
