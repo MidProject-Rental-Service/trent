@@ -120,10 +120,10 @@
 										<label for="heder-list">말머리목록</label> <select name="ub_head"
 											id="heder-list" class="form-control">
 											<option value="">말머리목록</option>
-											<option value="memberInfo">회원/정보관리</option>
-											<option value="delivery">배송</option>
-											<option value="event">상품/이벤트</option>
-											<option value="acc">기타</option>
+											<option value="회원/정보관리">회원/정보관리</option>
+											<option value="배송">배송</option>
+											<option value="상품/이벤트">상품/이벤트</option>
+											<option value="기타">기타</option>
 										</select>
 									</div>
 

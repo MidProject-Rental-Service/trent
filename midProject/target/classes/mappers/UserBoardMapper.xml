@@ -5,8 +5,8 @@
 
 	<insert id="insertUserBoard" parameterType="UserBoardVO">
 		INSERT INTO
-		USERBOARD( UB_HEAD,UB_TITLE,UB_CONTENT, UB_REGDATE, UB_CNT)
-		VALUES(#{ub_head}, #{ub_title}, #{ub_content},now(), 0)
+		USERBOARD( UB_HEAD,UB_TITLE,UB_CONTENT, UB_REGDATE, UB_CNT,ID)
+		VALUES(#{ub_head}, #{ub_title}, #{ub_content},now(), 0,#{id})
 	</insert>
 
 
@@ -27,23 +27,31 @@
 		ORDER BY UB_ID DESC
 
 	</select>  -->
+	
+<select id="getUserBoardList" parameterType="hashmap" resultType="UserBoardVO">
+  
+    SELECT *
+    FROM USERBOARD
+    WHERE ID = #{id}
+    <if test="searchCondition != null and searchKeyword != null">
+      <choose>
+        <when test="searchCondition == 'UB_TITLE'">
+          AND UB_TITLE LIKE '%' || #{searchKeyword} || '%'
+        </when>
+        <when test="searchCondition == 'UB_CONTENT'">
+          AND UB_CONTENT LIKE '%' || #{searchKeyword} || '%'
+        </when>
+      </choose>
+    </if>
+    <if test="startDate != null and endDate != null">
+      AND DATE(UB_REGDATE) BETWEEN #{startDate} AND #{endDate}
+    </if>
+    ORDER BY UB_ID DESC
+  
+</select>
 
-	<select id="getUserBoardList" parameterType="hashmap"
-		resultType="UserBoardVO">
 
-		SELECT *
-		FROM USERBOARD
-		<where>
-			<if test="searchCondition != null">
-				${searchCondition} LIKE '%${searchKeyword}%'
-			</if>
-			  <if test="startDate != null and endDate != null">
-          AND DATE(UB_REGDATE) BETWEEN #{startDate} AND #{endDate}
-        </if>
-		</where>
-		ORDER BY UB_ID DESC
 
-	</select> 
 
 
 </mapper>
