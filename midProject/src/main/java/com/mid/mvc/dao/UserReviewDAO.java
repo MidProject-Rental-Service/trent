@@ -7,8 +7,9 @@ import com.mid.mvc.domain.UserReviewVO;
 
 public interface UserReviewDAO {
 	public void saveUserReview(UserReviewVO vo);
-	public void deleteUserReview(UserReviewVO vo);
+	public void deleteUserReview(List<Integer> selectedIds);
 	public List<UserReviewVO> getUserReviewList(HashMap map) ;
 	public UserReviewVO getUserReview(UserReviewVO vo);
+	
 
 }

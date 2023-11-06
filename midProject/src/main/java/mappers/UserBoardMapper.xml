@@ -12,45 +12,71 @@
 
 	<select id="getUserBoard" parameterType="UserBoardVO"
 		resultType="UserBoardVO">
-		SELECT USERBOARD.*,USER.NAME
-		FROM USERBOARD INNER JOIN USER 
+		
+		SELECT USERBOARD.*,USER.NAME,USER.PHONE
+		FROM USERBOARD INNER JOIN USER
 		ON USERBOARD.ID = USER.ID
 		WHERE USERBOARD.UB_ID = #{ub_id}
 
 	</select>
 
 
-<!-- 	<select id="getUserBoardList" resultType="UserBoardVO">
+	<!-- <select id="getUserBoardList" resultType="UserBoardVO"> SELECT * FROM 
+		USERBOARD ORDER BY UB_ID DESC </select> -->
+
+	<select id="getUserBoardList" parameterType="hashmap"
+		resultType="UserBoardVO">
 
 		SELECT *
 		FROM USERBOARD
+		WHERE ID = #{id}
+		<if test="searchCondition != null and searchKeyword != null">
+			<choose>
+				<when test="searchCondition == 'UB_TITLE'">
+					AND UB_TITLE LIKE '%' || #{searchKeyword} || '%'
+				</when>
+				<when test="searchCondition == 'UB_CONTENT'">
+					AND UB_CONTENT LIKE '%' || #{searchKeyword} || '%'
+				</when>
+			</choose>
+		</if>
+		<if test="startDate != null and endDate != null">
+			AND DATE(UB_REGDATE) BETWEEN #{startDate} AND #{endDate}
+		</if>
 		ORDER BY UB_ID DESC
 
-	</select>  -->
-	
-<select id="getUserBoardList" parameterType="hashmap" resultType="UserBoardVO">
-  
-    SELECT *
-    FROM USERBOARD
-    WHERE ID = #{id}
-    <if test="searchCondition != null and searchKeyword != null">
-      <choose>
-        <when test="searchCondition == 'UB_TITLE'">
-          AND UB_TITLE LIKE '%' || #{searchKeyword} || '%'
-        </when>
-        <when test="searchCondition == 'UB_CONTENT'">
-          AND UB_CONTENT LIKE '%' || #{searchKeyword} || '%'
-        </when>
-      </choose>
-    </if>
-    <if test="startDate != null and endDate != null">
-      AND DATE(UB_REGDATE) BETWEEN #{startDate} AND #{endDate}
-    </if>
-    ORDER BY UB_ID DESC
-  
-</select>
+	</select>
 
+	<select id="getUserRentalList" parameterType="hashmap"
+		resultType="UserRentalVO">
 
+		SELECT BUY.*,GOODS.G_NAME,GOODS.G_IMG1
+        FROM BUY
+        INNER JOIN GOODS
+        ON BUY.G_ID = GOODS.G_ID 
+		WHERE ID = #{id}
+		<if test="searchCondition != null and searchKeyword != null">
+			<choose>
+				<when test="searchCondition == 'G.NAME'">
+					AND UB_TITLE LIKE '%' || #{searchKeyword} || '%'
+				</when>
+				<when test="searchCondition == 'P_NAME'">
+					AND UB_CONTENT LIKE '%' || #{searchKeyword} || '%'
+				</when>
+				<when test="searchCondition == 'B_RENT'">
+					AND UB_TITLE LIKE '%' || #{searchKeyword} || '%'
+				</when>
+				<when test="searchCondition == 'B_SIGNDATE'">
+					AND UB_CONTENT LIKE '%' || #{searchKeyword} || '%'
+				</when>
+			</choose>
+		</if>
+		<if test="startDate != null and endDate != null">
+			AND DATE(UB_REGDATE) BETWEEN #{startDate} AND #{endDate}
+		</if>
+		ORDER BY BUY.B_ID DESC
+
+	</select>
 
 
 

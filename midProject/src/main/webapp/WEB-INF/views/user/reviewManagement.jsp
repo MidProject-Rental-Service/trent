@@ -45,12 +45,36 @@
 <script src="../js/owl.carousel.min.js"></script>
 <script src="../js/main.js"></script>
 <script type="text/javascript">
-    function reviewWrite(rId, gId, gName) {
-        sessionStorage.setItem('reviewId', rId);
-        sessionStorage.setItem('gId', gId);
-        sessionStorage.setItem('gName', gName);
-        window.location.href = 'reviewWrite.do?r_id=' + rId;
-    }
+	function reviewWrite(r_id) {
+	
+		window.location.href = 'reviewWrite.do?r_id=' + r_id;
+	}
+
+	function toggleCheckbox(checkbox) {
+	    checkbox.checked = !checkbox.checked;
+	}
+
+	function reviewUserDelete() {
+		 var selectedReviews = $('input[type="checkbox"]:checked');
+		    var r_id= selectedReviews.map(function() {
+		        return $(this).val();
+		    }).get();
+
+		    console.log(r_id);
+		$.ajax({
+			type:"POST",
+			url:"reviewUserDelete.do",
+			data:{r_id:r_id},
+			success:function(result){
+				alert(result);
+				 console.log(result);
+			},
+			 error: function (err) {
+			        alert("error");
+			        console.log(err);
+			      }
+		});
+	}
 </script>
 </head>
 
@@ -59,7 +83,6 @@
 	<%-- 세션에서 로그인 정보 가져오기 --%>
 	<%
 		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
-	
 	%>
 
 	<%-- 로그인 상태에 따라 다른 헤더 포함 --%>
@@ -120,7 +143,7 @@
 						<h4>리뷰관리</h4>
 					</div>
 					<div class="review-list">
-						<form class="review-form" action="">
+						<form class="review-form" action="reviewUserDelete.do">
 							<table class="review-list">
 								<tr>
 									<th></th>
@@ -129,20 +152,31 @@
 									<th>구매확정일자</th>
 									<th>상태</th>
 								</tr>
-								
+
 								<c:forEach items="${reviewList }" var="review">
 									<tr>
-										<td><input type="checkbox" value="${review.r_id }" onclick="toggleCheckbox(this)"></td>
+										<td><input type="checkbox" value="${review.r_id }">${review.r_id }</td>
 										<td>${review.g_id }</td>
-										<td>${review.m_name} / ${review.g_name}</td>
+										<td style="font-size: 12px">${review.m_name}/
+											${review.g_name}</td>
 										<c:set var="formattedDate" value="${review.r_regdate}" />
-											<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
-												var="formattedDateString" />
-											<td>${formattedDateString}</td>
-										<td><input type="button"
-											class="btn btn-warning correct-btn" value="작성하기" onclick="reviewWrite('${review.r_id}', '${review.g_id}', '${review.g_name}')"></td>
+										<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
+											var="formattedDateString" />
+										<td>${formattedDateString}</td>
+										<td><c:choose>
+												<c:when test="${not empty review.r_content}">
+													<input type="button" class="btn btn-warning correct-btn"
+														value="수정"
+														onclick="reviewWrite('${review.r_id}')">
+												</c:when>
+												<c:otherwise>
+													<input type="button" class="btn btn-warning correct-btn"
+														value="작성하기"
+														onclick="reviewWrite('${review.r_id}}')">
+												</c:otherwise>
+											</c:choose></td>
 									</tr>
-									
+
 								</c:forEach>
 							</table>
 							<div class="delete-div">

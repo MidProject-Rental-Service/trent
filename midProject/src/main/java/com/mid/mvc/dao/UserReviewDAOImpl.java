@@ -27,12 +27,12 @@ public class UserReviewDAOImpl implements UserReviewDAO{
 		return sqlSession.selectList("UserReviewMapper.getUserReviewList",map);
 	}
 	
-	public void deleteUserReview(UserReviewVO vo) {
+	public void deleteUserReview(List<Integer> selectedIds) {
 		System.out.println("===> sqlSession deleteUserReview() 호출");
-		int result = sqlSession.delete("UserReviewMapper.deleteUserReview", vo); 
+		int result = sqlSession.delete("UserReviewMapper.deleteUserReview", selectedIds); 
 		System.out.println("입력결과 : " + result);
 	}
-	@Override
+
 	public UserReviewVO getUserReview(UserReviewVO vo) {
 		System.out.println("===> sqlSession getUserReview() 호출");
 		System.out.println("===> " + vo.toString());

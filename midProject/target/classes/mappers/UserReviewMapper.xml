@@ -10,11 +10,14 @@
 		R_ID = #{r_id}
 	</update>
 
-	<delete id="deleteUserReview" parameterType="UserReviewVO">
-		DELETE
-		FROM REVIEW
-		WHERE R_ID = #{r_id}
-	</delete>
+	<delete id="deleteUserReview" parameterType="List">
+    DELETE 
+    FROM REVIEW 
+    WHERE R_ID IN
+    <foreach collection="list" item="r_id" open="(" separator="," close=")">
+        #{r_id}
+    </foreach>
+</delete>
 
 	<select id="getUserReview" parameterType="UserReviewVO"
 		resultType="UserReviewVO">
