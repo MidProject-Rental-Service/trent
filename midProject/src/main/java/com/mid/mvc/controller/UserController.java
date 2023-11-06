@@ -2,7 +2,6 @@ package com.mid.mvc.controller;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mid.mvc.domain.GoodsVO;
 import com.mid.mvc.domain.UserBoardVO;
 import com.mid.mvc.domain.UserReviewVO;
 import com.mid.mvc.domain.UserVO;
+import com.mid.mvc.service.GoodsService;
 import com.mid.mvc.service.UserBoardService;
 import com.mid.mvc.service.UserReviewService;
 import com.mid.mvc.service.UserService;
@@ -30,6 +31,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userServiceImpl;
+	
+	@Autowired
+	private GoodsService goodsServiceImpl;
 	
 	@Autowired
 	@Qualifier("userReviewServiceImpl")
@@ -138,7 +142,7 @@ public class UserController {
     // user board start
     @RequestMapping("/shopping-cart.do")
     public String shoppingCart() {
-        return "shopping-cart";
+        return "shopping_cart";
     }
 	
     @RequestMapping("/productManagement.do")
@@ -182,5 +186,12 @@ public class UserController {
         return "redirect:inquiryList.do";
     }
     // user board end
-
+    
+    //상품 전체 검색
+    @RequestMapping("/shop.do")
+	public void GoodsList(GoodsVO vo, Model m) {
+		List<GoodsVO> result = goodsServiceImpl.getGoodsList(vo);
+		m.addAttribute("goodsList", result);
+		System.out.println("result :" + result);
+	}
 }
