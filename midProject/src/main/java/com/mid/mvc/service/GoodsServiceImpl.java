@@ -1,5 +1,7 @@
 package com.mid.mvc.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,11 @@ public class GoodsServiceImpl implements GoodsService{
 	
 	public void productRegister(GoodsVO vo){
 		goodsDAO.productRegister(vo);
+	}
+	
+	public List<GoodsVO> getGoodsList(GoodsVO vo) {
+		return goodsDAO.getGoodsList(vo);
+	
+
 	}
 }

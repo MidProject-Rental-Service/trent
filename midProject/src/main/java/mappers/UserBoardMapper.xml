@@ -44,6 +44,12 @@
 		ORDER BY UB_ID DESC
 
 	</select> 
+	
+	<select id="dashboardUserBoardList" resultType="UserBoardVO">
+		SELECT UB_ID , UB_TITLE , id 
+		FROM USERBOARD U 
+		ORDER BY UB_REGDATE DESC  LIMIT 5 ;
+	</select>
 
 
 </mapper>

@@ -1,5 +1,11 @@
 package com.mid.mvc.service;
 
-public class SupplierBoardService {
+import java.util.List;
+
+import com.mid.mvc.domain.SupplierBoardVO;
+
+public interface SupplierBoardService {
+	
+	List<SupplierBoardVO> dashboardSupplierBoardList(SupplierBoardVO vo);
 
 }
