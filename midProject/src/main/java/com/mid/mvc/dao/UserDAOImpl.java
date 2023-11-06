@@ -29,11 +29,11 @@ public class UserDAOImpl implements UserDAO {
 	public UserVO loginCheck(UserVO vo) {
 		UserVO  user = sqlSession.selectOne("UserMapper.loginCheck", vo);
 
-		/* System.out.println("========>"+user); */
 		// 사용자 정보가 맞는 경우 UserVO 객체에 설정한 뒤 반환
 	    if (user != null) {
 	        vo.setId(user.getId());
 	        vo.setPwd(user.getPwd());
+	        vo.setRole(user.getRole());
 	    }
 		
 		return user;

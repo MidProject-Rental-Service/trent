@@ -5,8 +5,8 @@
 
 	<!-- 회원정보 입력 -->
 	<insert id='insertUser' parameterType="UserVO">
-		INSERT INTO user(id, pwd, name, phone, addr, email)
-		VALUES(#{id}, #{pwd}, #{name}, #{phone}, #{addr}, #{email})
+		INSERT INTO user(id, pwd, name, phone, addr, email, role)
+		VALUES(#{id}, #{pwd}, #{name}, #{phone}, #{addr}, #{email}, 'user')
 	</insert>
 
 
@@ -17,7 +17,7 @@
     
     <!-- 사용자 로그인 검증 -->
 	<select id='loginCheck' parameterType="UserVO" resultType="UserVO">
-   		SELECT id, pwd, name, phone, addr, email FROM user WHERE id = #{id} AND pwd = #{pwd} AND role IS NULL
+   		SELECT id, pwd, name, phone, addr, email, role FROM user WHERE id = #{id} AND pwd = #{pwd} AND role = #{role}
 	</select>
 	
 	<!-- 회원 정보 수정 -->
