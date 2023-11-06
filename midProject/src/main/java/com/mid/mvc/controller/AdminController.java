@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,6 +80,15 @@ public class AdminController {
 		List<GoodsVO> result = goodsService.getGoodsList(vo); 
 		model.addAttribute("goodsList",result); 
 		System.out.println("result :" + result);}	
+	
+    @RequestMapping("/logout.do")
+    public String logout(HttpSession session) {
+        // 세션을 제거하여 로그아웃 처리
+        session.invalidate();
+        
+        // 로그아웃 후 리다이렉트
+        return "redirect:/user/main.do";
+    }
 	
 	
 	  //관리자 페이지 대시보드 사용자 공급사 문의 전체 검색
