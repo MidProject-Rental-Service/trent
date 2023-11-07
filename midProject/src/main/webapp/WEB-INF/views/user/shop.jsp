@@ -151,8 +151,8 @@
 								<div class="col-lg-4 col-sm-6">
 									<div class="product-item">
 										<div class="pi-pic">
-											<a href="getBoard.do?b_id=${list.g_id }"> <img
-												src="../img/products/${list.g_rimg1}" alt="">
+											<a href="product.do?b_id=${list.g_id }">
+											<img src="../img/products/${list.g_rimg1}" alt="">
 												<div class="sale pp-sale">Sale</div>
 												<div class="icon">
 													<i class="icon_heart_alt"></i>
