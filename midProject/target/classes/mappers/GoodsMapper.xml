@@ -9,16 +9,30 @@
 		VALUES(#{g_id}, #{g_name}, #{g_content}, #{m_id}, #{ c_id}, #{g_img1}, #{g_rimg1}, #{g_img2}, #{g_rimg2}, #{g_img3}, #{ g_rimg3}, #{g_img4}, #{ g_rimg4})
 	</insert>
 
-	<select id="getGoodsList" resultType="GoodsVO">
-		<![CDATA[
+	<select id="getGoodsList" parameterType='GoodsVO' resultType="GoodsVO">
+		
 		SELECT  *  FROM GOODS G
-		INNER JOIN CATEGORY C ON C.C_ID = G.C_ID ;
-		]]>
+		INNER JOIN CATEGORY C ON C.C_ID = G.C_ID 
+		<if test="c_name != null">
+			where c.c_name=#{c_name}
+		</if>
 	</select>
 
 	<select id="getGoodsById" parameterType="String">
 		SELECT * FROM goods
 		WHERE g_id = #{g_id}
 	</select>
+
+	   <select id="getCategoryGoodsList" parameterType="String" resultType="GoodsVO">
+        SELECT GOODS.*,CATEGORY.C_NAME,MAKER.M_NAME 
+	    FROM GOODS
+	    INNER JOIN CATEGORY
+	    ON GOODS.C_ID = CATEGORY.C_ID 
+	    INNER JOIN MAKER
+	    ON GOODS.M_ID = MAKER.M_ID 
+	    
+        WHERE CATEGORY.C_NAME = #{c_name}
+    </select>
+
 
 </mapper>

@@ -27,4 +27,10 @@ public class GoodsServiceImpl implements GoodsService{
 	}
 
 
+	public List<GoodsVO> getCategoryGoodsList(String c_name) {
+		return goodsDAO.getCategoryGoodsList(c_name);
+	}
+
+
+
 }

@@ -20,13 +20,19 @@ public class GoodsDAOImpl {
 
 	// 상품 전체 검색
 	public List<GoodsVO> getGoodsList(GoodsVO vo){
-		System.out.println("===> Mybatis getBoardList() 호출");
+		System.out.println("===> SqlSession getBoardList() 호출");
 		System.out.println(vo.toString());
 		return SqlSession.selectList("GoodsMapper.getGoodsList", vo);
 	}
 
 	public GoodsVO getGoodsById(String gId) {
 		return SqlSession.selectOne("GoodsMapper.getGoodsById", gId);
+	}
+
+	public List<GoodsVO> getCategoryGoodsList(String c_name) {
+		System.out.println("===> SqlSession getCategoryGoodsList() 호출");
+		System.out.println("===>"+ c_name);
+		return SqlSession.selectList("GoodsMapper.getCategoryGoodsList", c_name);
 	}
 
 

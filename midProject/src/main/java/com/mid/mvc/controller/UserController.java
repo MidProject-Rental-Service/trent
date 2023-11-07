@@ -1,7 +1,5 @@
 package com.mid.mvc.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -234,9 +232,21 @@ public class UserController {
     //상품 전체 검색
     @RequestMapping("/shop.do")
 	public void GoodsList(GoodsVO vo, Model m) {
+    	System.out.println("화면에서 넘겨오는 값:" + vo.toString());
 		List<GoodsVO> result = goodsServiceImpl.getGoodsList(vo);
 		m.addAttribute("goodsList", result);
 		System.out.println("result :" + result);
 	}
+    
+    // 제품군 검색 (좌측패널)
+    @RequestMapping(value="/searchByCategory",method=RequestMethod.POST)
+    @ResponseBody
+    public List<GoodsVO> searchByCategory(@RequestParam String c_name) {
+    	System.out.println("===> " + c_name);
+        return goodsServiceImpl.getCategoryGoodsList(c_name);
 
+    }
+    
+    
+    
 }
