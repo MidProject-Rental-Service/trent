@@ -167,7 +167,7 @@
 										<option value="g_name">제품명</option>
 										<option value="name">공급사명</option>
 										<option value="b_rent">약정기간</option>
-										<option value="b_signdate">신청일자</option>
+										<option value=b_signdate>신청일자</option>
 									</select> <input type="text" name="searchKeyword"> <input
 										type="submit" class="btn btn-warning search-btn " value="검색">
 								</div>
@@ -189,7 +189,7 @@
 								<!-- 아래로 추가되는 부분-->
 								<c:forEach items="${userRentalList }" var="userRental">
 									<tr>
-										<td><img src="../img/cart-page/${userRental.g_img1}"
+										<td><img src="../img/products/${userRental.g_rimg2}"
 											alt=""></td>
 										<td>${userRental.g_name}<br/>${userRental.p_name}</td>
 										<td>${userRental.b_rent }</td>

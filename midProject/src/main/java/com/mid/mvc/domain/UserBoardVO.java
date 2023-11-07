@@ -16,5 +16,6 @@ public class UserBoardVO {
 	private String 	id;					// 회원아이디
 	private String 	name;				// 회원이름
 	private String 	phone;		    // 회원전화번호
-
+	private Date 		startDate;
+	private Date 		endDate;
 }

@@ -33,6 +33,8 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 	public List<UserBoardVO> getUserBoardList(HashMap map) {
 		System.out.println("===> sqlSession getUserBoardList() 호출");
 		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
+		System.out.println("===> " + map.get("startDate") +" / " +map.get("endDate"));
+		System.out.println("===> " + map.get("id"));
 		return sqlSession.selectList("UserBoardMapper.getUserBoardList",map);
 	}
 
@@ -44,6 +46,7 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 	public List<UserRentalVO> getUserRentalList(HashMap map) {
 		System.out.println("===> sqlSession getUserRentalList() 호출");
 		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
+		System.out.println("===> " + map.get("startDate") +" / " +map.get("endDate"));
 		return sqlSession.selectList("UserBoardMapper.getUserRentalList",map);
 	}
 
