@@ -5,45 +5,85 @@
 
 	<insert id="insertUserBoard" parameterType="UserBoardVO">
 		INSERT INTO
-		USERBOARD( UB_HEAD,UB_TITLE,UB_CONTENT, UB_REGDATE, UB_CNT)
-		VALUES(#{ub_head}, #{ub_title}, #{ub_content},now(), 0)
+		USERBOARD( UB_HEAD,UB_TITLE,UB_CONTENT, UB_REGDATE, UB_CNT,ID)
+		VALUES(#{ub_head}, #{ub_title}, #{ub_content},now(), 0,#{id})
 	</insert>
 
 
 	<select id="getUserBoard" parameterType="UserBoardVO"
 		resultType="UserBoardVO">
-		SELECT USERBOARD.*,USER.NAME
-		FROM USERBOARD INNER JOIN USER 
+		SELECT USERBOARD.*,USER.NAME,USER.PHONE
+		FROM USERBOARD INNER JOIN USER
 		ON USERBOARD.ID = USER.ID
-		WHERE UB_ID = #{ub_id}
-
+		WHERE UB_ID = #{ub_id};
 	</select>
 
-
-<!-- 	<select id="getUserBoardList" resultType="UserBoardVO">
-
-		SELECT *
-		FROM USERBOARD
-		ORDER BY UB_ID DESC
-
-	</select>  -->
+	<!-- <select id="getUserBoardList" resultType="UserBoardVO"> SELECT * FROM 
+		USERBOARD ORDER BY UB_ID DESC </select> -->
 
 	<select id="getUserBoardList" parameterType="hashmap"
 		resultType="UserBoardVO">
 
 		SELECT *
 		FROM USERBOARD
-		<where>
-			<if test="searchCondition != null">
-				${searchCondition} LIKE '%${searchKeyword}%'
-			</if>
-			  <if test="startDate != null and endDate != null">
-          AND DATE(UB_REGDATE) BETWEEN #{startDate} AND #{endDate}
-        </if>
-		</where>
+		WHERE ID = #{id}
+		<if test="searchCondition != null and searchKeyword != null">
+			<choose>
+				<when test="searchCondition == 'UB_TITLE'">
+					AND UB_TITLE LIKE '%' || #{searchKeyword} || '%'
+				</when>
+				<when test="searchCondition == 'UB_CONTENT'">
+					AND UB_CONTENT LIKE '%' || #{searchKeyword} || '%'
+				</when>
+			</choose>
+		</if>
+		<if test="startDate != null and endDate != null">
+			AND DATE(UB_REGDATE) BETWEEN #{startDate} AND #{endDate}
+		</if>
 		ORDER BY UB_ID DESC
-
 	</select> 
+	
+	
+	<select id="dashboardUserBoardList" resultType="UserBoardVO">
+		SELECT UB_ID , UB_TITLE , id 
+		FROM USERBOARD U 
+		ORDER BY UB_REGDATE DESC  LIMIT 5 ;
+	</select>
+	
+	<update id="insertAnswer" parameterType="UserBoardVO">
+		UPDATE USERBOARD SET ub_answer = '${ub_answer }' WHERE ub_id = #{ub_id};
+	</update>
+
+	<select id="getUserRentalList" parameterType="hashmap"
+		resultType="UserRentalVO">
+
+		SELECT BUY.*,GOODS.G_NAME,GOODS.G_IMG1
+        FROM BUY
+        INNER JOIN GOODS
+        ON BUY.G_ID = GOODS.G_ID 
+		WHERE ID = #{id}
+		<if test="searchCondition != null and searchKeyword != null">
+			<choose>
+				<when test="searchCondition == 'G.NAME'">
+					AND UB_TITLE LIKE '%' || #{searchKeyword} || '%'
+				</when>
+				<when test="searchCondition == 'P_NAME'">
+					AND UB_CONTENT LIKE '%' || #{searchKeyword} || '%'
+				</when>
+				<when test="searchCondition == 'B_RENT'">
+					AND UB_TITLE LIKE '%' || #{searchKeyword} || '%'
+				</when>
+				<when test="searchCondition == 'B_SIGNDATE'">
+					AND UB_CONTENT LIKE '%' || #{searchKeyword} || '%'
+				</when>
+			</choose>
+		</if>
+		<if test="startDate != null and endDate != null">
+			AND DATE(UB_REGDATE) BETWEEN #{startDate} AND #{endDate}
+		</if>
+		ORDER BY BUY.B_ID DESC
+	</select>
+
 
 
 </mapper>

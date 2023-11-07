@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.mid.mvc.domain.UserBoardVO;
+import com.mid.mvc.domain.UserRentalVO;
 
 public interface UserBoardService {
 	
@@ -13,4 +14,9 @@ public interface UserBoardService {
 
 	void insertUserBoard(UserBoardVO vo);
 	
+	List<UserBoardVO> dashboardUserBoardList(UserBoardVO vo);
+	
+	List<UserRentalVO> getUserRentalList(HashMap map);
+
+	void insertAnswer(UserBoardVO vo);
 }

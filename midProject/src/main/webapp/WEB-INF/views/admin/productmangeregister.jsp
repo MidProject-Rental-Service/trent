@@ -24,9 +24,26 @@
 		data-sidebar-position="fixed" data-header-position="fixed">
 		
 		<jsp:include page="./admin_header.jsp"/>
+		
+		<!--  Main wrapper -->
+		<div class="body-wrapper">
+			<!--  Header Start -->
+			<header class="app-header">
+				<nav class="navbar navbar-expand-lg navbar-light">
+					<ul class="navbar-nav">
+						<li class="nav-item d-block d-xl-none"><a
+							class="nav-link sidebartoggler nav-icon-hover"
+							id="headerCollapse" href="javascript:void(0)"> <i
+								class="ti ti-menu-2"></i>
+						</a></li>
+						<li class="nav-item"></li>
+					</ul>
+					<div class="navbar-collapse justify-content-end px-0"
+						id="navbarNav"></div>
+				</nav>
+			</header>
 
 		<!--  메인 페이지 -->
-
 		<div class="container">
 			<main>
 				<div class="py-5 text-left">
@@ -55,7 +72,7 @@
 
 								<div class="row">
 									<div class="col-sm-4">
-										<label for="file1" class="form-label">메인썸내일</label>
+										<label for="file1" class="form-label">메인썸네일</label>
 										<div class="input-group">
 											<input type="file" class="form-control" name="file1" readonly>
 										</div>
@@ -142,7 +159,7 @@
 
 		</div>
 
-
+	</div>
 
 	</div>
 	<!-- div 끝  -->

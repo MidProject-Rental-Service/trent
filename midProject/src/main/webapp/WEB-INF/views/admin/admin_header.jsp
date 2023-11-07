@@ -8,6 +8,22 @@
 </head>
 <body>
 
+	<!--  Header Start -->
+			<header class="app-header">
+				<nav class="navbar navbar-expand-lg navbar-light">
+					<ul class="navbar-nav">
+						<li class="nav-item d-block d-xl-none"><a
+							class="nav-link sidebartoggler nav-icon-hover"
+							id="headerCollapse" href="javascript:void(0)"> <i
+								class="ti ti-menu-2"></i>
+						</a></li>
+						<li class="nav-item"></li>
+					</ul>
+					<div class="navbar-collapse justify-content-end px-0"
+						id="navbarNav"></div>
+				</nav>
+			</header>
+	<!--  Header End -->
 	<!-- Sidebar Start -->
 		<aside class="left-sidebar">
 			<!-- Sidebar scroll-->
@@ -15,7 +31,7 @@
 				<div
 					class="brand-logo d-flex align-items-center justify-content-between"
 					style="padding: 50px 24px 0px;">
-					<a href="http://localhost:8080/midProject/index.jsp" class="text-nowrap logo-img"> <img
+					<a href="./index.do" class="text-nowrap logo-img"> <img
 						src="../img/logo.png"
 						width="180" alt="" />
 					</a>
@@ -62,6 +78,13 @@
 							style="font-size: 25px;"> <span> <i
 									class="ti ti-presentation"></i>
 							</span> <span class="hide-menu">통계</span>
+						</a></li>
+						
+						<li class="sidebar-item"><a class="sidebar-link"
+							href="logout.do" aria-expanded="false"
+							style="font-size: 25px;"> <span> <i
+									 class="ti ti-logout"></i>
+							</span> <span class="hide-menu">로그아웃</span>
 						</a></li>
 
 						<li class="sidebar-item"></li>

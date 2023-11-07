@@ -6,14 +6,15 @@ import lombok.Data;
 
 @Data
 public class UserBoardVO {
-	private int 			ub_id;
-	private String 	ub_head;
-	private String 	ub_title;
-	private String 	ub_content;
-	private String 	ub_answer;
-	private Date 		ub_regdate;
-	private int 			ub_cnt;
-	private String 	id;
-	private String 	name;
-	
+	private int 			ub_id;				// 사용자글게시번호
+	private String 	ub_head;		// 말머리
+	private String 	ub_title;			// 제목
+	private String 	ub_content;	// 문의내용
+	private String 	ub_answer;	// 답변내용
+	private Date 		ub_regdate;	// 게시일자
+	private int 			ub_cnt;			// 조회수
+	private String 	id;					// 회원아이디
+	private String 	name;				// 회원이름
+	private String 	phone;		    // 회원전화번호
+
 }

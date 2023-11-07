@@ -3,15 +3,22 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="GoodsMapper">
 	
-<insert id="productRegister1" parameterType="GoodsVO">
+	<insert id="productRegister1" parameterType="GoodsVO">
+	
+		INSERT INTO goods ( g_id, g_name, g_content, m_id, c_id,  g_img1, g_rimg1, g_img2, g_rimg2 , g_img3, g_rimg3, g_img4, g_rimg4 ) 
+		VALUES(#{g_id}, #{g_name}, #{g_content}, #{m_id}, #{ c_id}, #{g_img1}, #{g_rimg1}, #{g_img2}, #{g_rimg2}, #{g_img3}, #{ g_rimg3}, #{g_img4}, #{ g_rimg4})
+	</insert>
 
-	INSERT INTO goods ( g_id, g_name, g_content, m_id, c_id) 
-	VALUES(#{g_id}, #{g_name}, #{g_content}, #{m_id}, #{ c_id})
-</insert>
+	<select id="getGoodsList" resultType="GoodsVO">
+		<![CDATA[
+		SELECT  *  FROM GOODS G
+		INNER JOIN CATEGORY C ON C.C_ID = G.C_ID ;
+		]]>
+	</select>
 
-<insert id="productRegister2" parameterType="GoodsVO">
-	INSERT INTO img( g_img1, g_rimg1, g_img2, g_rimg2 , g_img3, g_rimg3, g_img4, g_rimg4) 
-	VALUES(#{g_img1}, #{g_rimg1}, #{g_img2}, #{g_rimg2}, #{g_img3}, #{ g_rimg3}, #{g_img4}, #{ g_rimg4})
-</insert>
+	<select id="getGoodsById" parameterType="String">
+		SELECT * FROM goods
+		WHERE g_id = #{g_id}
+	</select>
 
 </mapper>

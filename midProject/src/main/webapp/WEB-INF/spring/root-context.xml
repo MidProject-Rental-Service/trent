@@ -23,6 +23,7 @@
   		<value>com.mid.mvc.domain.UserVO</value> <!-- UserVO 별칭 -->
   		<value>com.mid.mvc.domain.UserReviewVO</value>
   		<value>com.mid.mvc.domain.UserBoardVO</value>
+  		<value>com.mid.mvc.domain.UserRentalVO</value>
   		<value>com.mid.mvc.domain.SupplierBoardVO</value>
   		<value>com.mid.mvc.domain.GoodsVO</value>
   	</list>

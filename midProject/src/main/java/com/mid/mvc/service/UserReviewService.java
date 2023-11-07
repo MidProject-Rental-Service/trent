@@ -11,8 +11,8 @@ public interface UserReviewService {
 
 	List<UserReviewVO> getUserReviewList(HashMap map);
 
-	void insertUserReview(UserReviewVO vo);
+	void saveUserReview(UserReviewVO vo);
 
-	void deleteUserReview(UserReviewVO vo);
+	UserReviewVO getUserReview(UserReviewVO vo);
 	
 }

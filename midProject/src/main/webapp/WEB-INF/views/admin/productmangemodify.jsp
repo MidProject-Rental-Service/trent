@@ -36,84 +36,92 @@
 
 				<div class="row g-5">
 					<div class="col-md-12">
-						<form class="needs-validation" novalidate>
+						<form class="needs-validation" action="productModify.do" method="post" enctype="multipart/form-data" novalidate>
 							<div class="row g-3">
 								<div class="row">
 									<div class="col-sm-4">
-										<label for="g_id" class="form-label">모델명</label> <input
-											type="text" class="form-control" id="g_id">
+										<label for="g_name" class="form-label">모델명</label> <input
+											type="text" class="form-control" id="g_name" value="${product.g_name}">
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-4">
 										<label for="g_id" class="form-label">제품명</label> <input
-											type="text" class="form-control" id="g_id">
+											type="text" class="form-control" id="g_id" value="${product.g_id}">
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-4">
-										<label for="g_id" class="form-label">썸네일사진</label>
+										<label for="file1" class="form-label">메인썸네일</label>
 										<div class="input-group">
-											<input type="text" class="form-control" id="g_id" readonly>
-											<button class="btn btn-primary" type="button">등록하기</button>
+											<input type="file" class="form-control" name="file1" value="${product.file1}" readonly>
 										</div>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-4">
-										<label for="g_id" class="form-label">대표사진</label>
+										<label for="file2" class="form-label">리스트썸네일</label>
 										<div class="input-group">
-											<input type="text" class="form-control" id="g_id" readonly>
-											<button class="btn btn-primary" type="button">등록하기</button>
+											<input type="file" class="form-control" name="file2" value="${product.file2}" readonly>
 										</div>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-4">
-										<label for="g_id" class="form-label">상세설명사진</label>
+										<label for="file3" class="form-label">대표사진</label>
 										<div class="input-group">
-											<input type="text" class="form-control" id="g_id" readonly>
-											<button class="btn btn-primary" type="button">등록하기</button>
+											<input type="file" class="form-control" name="file3" value="${product.file3}" readonly>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="file4" class="form-label">상세설명사진</label>
+										<div class="input-group">
+											<input type="file" class="form-control" name="file4" value="${product.file4}" readonly>
 										</div>
 									</div>
 								</div>
 
 
 								<div class="row">
-									<div class="col-sm-4">
-										<label for="g_id" class="form-label">제품분류</label> <input
-											type="text" class="form-control" id="g_id">
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-sm-2">
-										<label for="manufacturer" class="form-label">제조사</label> 
-										<select class="form-select" id="manufacturer" >
-											<option value="">제조사선택 </option>
-											<option value="manufacturer1">엘지전자</option>
-											<option value="manufacturer2">삼성전자</option>
-											<option value="manufacturer3">대우전자</option>
-											<option value="manufacturer4">한일전자</option>
-											<option value="manufacturer5">코웨이</option>
+									<div class="col-sm-3">
+										<label for="c_id" class="form-label">제품분류</label> <select
+											class="form-select" name="c_id">
+											<option value="">제조사선택</option>
+											<option value="1">공기청정기</option>
+											<option value="2">가습기</option>
+											<option value="3">제습기</option>
 										</select>
 									</div>
 								</div>
-								
-
 
 								<div class="row">
-									<div class="col-sm-9">
-										<label for="g_id" class="form-label">제품특징</label>
-										<textarea class="form-control" id="g_id" rows="5"></textarea>
+									<div class="col-sm-3">
+										<label for="m_id" class="form-label">제조사</label>
+										<select class="form-select" name="m_id">
+											<option value="">제조사선택</option>
+											<option value="1">엘지전자</option>
+											<option value="2">삼성전자</option>
+											<option value="3">다이슨</option>
+											<option value="4">위닉스</option>
+											<option value="5">듀플렉스</option>
+											<option value="6">에어메이드</option>
+										</select>
 									</div>
 								</div>
 
-
+								<div class="row">
+									<div class="col-sm-9">
+										<label for="g_content" class="form-label">제품특징</label>
+										<textarea class="form-control" name="g_content" rows="5"></textarea>
+									</div>
+								</div>
 
 								<div class="row text-left">
 									<div class="col-sm-12">

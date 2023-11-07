@@ -20,14 +20,14 @@ public class UserReviewServiceImpl implements UserReviewService{
 		return userReviewDAO.getUserReviewList(map);
 	}
 
-	public void insertUserReview(UserReviewVO vo) {
+	public void saveUserReview(UserReviewVO vo) {
 	 
-		userReviewDAO.insertUserReview(vo);
+		userReviewDAO.saveUserReview(vo);
 	}
 
 	@Override
-	public void deleteUserReview(UserReviewVO vo) {
-		userReviewDAO.deleteUserReview(vo);
+	public UserReviewVO getUserReview(UserReviewVO vo) {
+		return	userReviewDAO.getUserReview(vo);
 		
 	}
 	

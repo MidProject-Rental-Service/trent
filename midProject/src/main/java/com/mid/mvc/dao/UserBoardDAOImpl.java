@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mid.mvc.domain.UserBoardVO;
+import com.mid.mvc.domain.UserRentalVO;
 
 @Repository
 public class UserBoardDAOImpl implements UserBoardDAO{
@@ -24,6 +25,7 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 	
 	public UserBoardVO getUserBoard(UserBoardVO vo) {
 		System.out.println("===> sqlSession getUserBoard() 호출");
+		System.out.println("===> " + vo.toString());
 		return sqlSession.selectOne("UserBoardMapper.getUserBoard", vo);
 		
 	}
@@ -33,6 +35,22 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
 		return sqlSession.selectList("UserBoardMapper.getUserBoardList",map);
 	}
+
 	
+	public List<UserBoardVO> dashboardUserBoardList(UserBoardVO vo) {
+		return sqlSession.selectList("UserBoardMapper.dashboardUserBoardList", vo);
+	}
+
+	public List<UserRentalVO> getUserRentalList(HashMap map) {
+		System.out.println("===> sqlSession getUserRentalList() 호출");
+		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
+		return sqlSession.selectList("UserBoardMapper.getUserRentalList",map);
+	}
+
+	@Override
+	public void insertAnswer(UserBoardVO vo) {
+		int result = sqlSession.update("UserBoardMapper.insertAnswer", vo);
+		System.out.println("입력결과 : " + result);
+	}
 	
 }
