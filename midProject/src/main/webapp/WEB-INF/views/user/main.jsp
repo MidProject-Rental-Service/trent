@@ -49,9 +49,11 @@
                     <div class="row">
                         <div class="col-lg-5">
                             <span>공기청정기</span>
-                            <h1>Black friday</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore</p>
+                            <h1>LG 퓨리케어 360˚</h1>
+                            <p>23년형 360˚ 공기청정기 플러스는 UP 가전으로 더 새로워집니다.
+									휴대폰의 앱이 스스로 업데이트하듯 23년형 360˚공기청정기 플러스는
+									새로운 기능을 더하고 내게 맞춰 변화하는 업그레이드를 제공합니다.
+							</p>
                             <a href="./product.do" class="primary-btn">렌탈 신청하기</a>
                         </div>
                     </div>
@@ -64,10 +66,10 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Bag,kids</span>
-                            <h1>Black friday</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore</p>
+                            <span>가습기</span>
+                            <h1>올바른 가습기 스테인리스 4.0L</h1>
+                            <p>쉽고 위생적인 관리가 가능한 올케어 시스템
+                                </p>
                             <a href="./product.do" class="primary-btn">렌탈 신청하기</a>
                         </div>
                     </div>
@@ -121,7 +123,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="product-large set-bg" data-setbg="../img/products/women-large.jpg">
+                    <div class="product-large set-bg" data-setbg="../img/Air-Cleaner-large.jpg">
                         <h2>Air Cleaner</h2>
                         <a href="./shop.do">더보기</a>
                     </div>
@@ -360,7 +362,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 offset-lg-1">
-                    <div class="product-large set-bg m-large" data-setbg="../img/products/man-large.jpg">
+                    <div class="product-large set-bg m-large" data-setbg="../img/Humidifier-large.jpg">
                         <h2>Humidifier</h2>
                         <a href="#">더보기</a>
                     </div>
