@@ -12,14 +12,11 @@
 
 	<select id="getUserBoard" parameterType="UserBoardVO"
 		resultType="UserBoardVO">
-		
 		SELECT USERBOARD.*,USER.NAME,USER.PHONE
 		FROM USERBOARD INNER JOIN USER
 		ON USERBOARD.ID = USER.ID
-		WHERE USERBOARD.UB_ID = #{ub_id}
-
+		WHERE UB_ID = #{ub_id};
 	</select>
-
 
 	<!-- <select id="getUserBoardList" resultType="UserBoardVO"> SELECT * FROM 
 		USERBOARD ORDER BY UB_ID DESC </select> -->
@@ -46,11 +43,16 @@
 		ORDER BY UB_ID DESC
 	</select> 
 	
+	
 	<select id="dashboardUserBoardList" resultType="UserBoardVO">
 		SELECT UB_ID , UB_TITLE , id 
 		FROM USERBOARD U 
 		ORDER BY UB_REGDATE DESC  LIMIT 5 ;
 	</select>
+	
+	<update id="insertAnswer" parameterType="UserBoardVO">
+		UPDATE USERBOARD SET ub_answer = '${ub_answer }' WHERE ub_id = #{ub_id};
+	</update>
 
 	<select id="getUserRentalList" parameterType="hashmap"
 		resultType="UserRentalVO">
@@ -80,7 +82,6 @@
 			AND DATE(UB_REGDATE) BETWEEN #{startDate} AND #{endDate}
 		</if>
 		ORDER BY BUY.B_ID DESC
-
 	</select>
 
 

@@ -46,6 +46,11 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
 		return sqlSession.selectList("UserBoardMapper.getUserRentalList",map);
 	}
-	
+
+	@Override
+	public void insertAnswer(UserBoardVO vo) {
+		int result = sqlSession.update("UserBoardMapper.insertAnswer", vo);
+		System.out.println("입력결과 : " + result);
+	}
 	
 }

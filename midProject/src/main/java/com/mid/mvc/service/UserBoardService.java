@@ -18,4 +18,5 @@ public interface UserBoardService {
 	
 	List<UserRentalVO> getUserRentalList(HashMap map);
 
+	void insertAnswer(UserBoardVO vo);
 }

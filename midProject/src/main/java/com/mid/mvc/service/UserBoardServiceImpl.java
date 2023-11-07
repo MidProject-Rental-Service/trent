@@ -36,10 +36,14 @@ public class UserBoardServiceImpl implements UserBoardService{
 		return userboardDAO.dashboardUserBoardList(vo);
 	}
 
+
 	@Override
 	public List<UserRentalVO> getUserRentalList(HashMap map) {
-		
 		return userboardDAO.getUserRentalList(map);
+	}
+
+	public void insertAnswer(UserBoardVO vo) {
+		userboardDAO.insertAnswer(vo);
 	}
 
 }

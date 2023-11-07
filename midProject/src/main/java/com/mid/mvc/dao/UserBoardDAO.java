@@ -15,4 +15,5 @@ public interface UserBoardDAO {
 
 	public List<UserRentalVO> getUserRentalList(HashMap map) ;
 
+	public void insertAnswer(UserBoardVO vo);
 }

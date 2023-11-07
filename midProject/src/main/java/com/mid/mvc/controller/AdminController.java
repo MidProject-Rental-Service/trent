@@ -98,8 +98,9 @@ public class AdminController {
     }
 	
 	
-	  //관리자 페이지 대시보드 사용자 공급사 문의 전체 검색
-	  @RequestMapping("/admin_index.do") public void boardList(UserBoardVO vo, SupplierBoardVO vo2, Model model) { 
+	  //관리자 페이지 대시보드 사용자 공급사 문의 5개만 검색
+	  @RequestMapping("/admin_index.do") 
+	  public void boardList(UserBoardVO vo, SupplierBoardVO vo2, Model model) { 
 	  List<UserBoardVO>result = userBoardService.dashboardUserBoardList(vo);
 	  List<SupplierBoardVO>result2 = supplierBoardServcie.dashboardSupplierBoardList(vo2);
 	  System.out.println(result);
@@ -107,6 +108,35 @@ public class AdminController {
 	  model.addAttribute("userBoardList",result);
 	  model.addAttribute("supplierBoardList",result2); }
 	 
+	  //관리자 페이지에서 더보기 누르면 사용자 공급사 문의 전체 검색
+	  @RequestMapping("/userinquiry.do")
+	  public void boardList(Model m) {
+		  HashMap map = new HashMap();
+	      userBoardService.getUserBoardList(map);
+	      List<UserBoardVO>result = userBoardService.getUserBoardList(map);
+	      System.out.println(result);
+	      m.addAttribute("userBoardList",result);		  
+		  
+	  }
+	  //사용자 문의 상세보기
+	  @RequestMapping("/userinquiryanswer.do")
+	  public void getUserBoard(UserBoardVO vo, Model m) {
+		  UserBoardVO result = userBoardService.getUserBoard(vo);
+		  m.addAttribute("userBoard", result);
+		  System.out.println(m.toString());
 
+	  }	  
+	  
+	  //사용자 문의 답변하기 Insert
+	  @RequestMapping("/userinquiryanswering.do")
+	  public String insertAnswer(UserBoardVO vo, Model m) {
+		  userBoardService.insertAnswer(vo);
+		  System.out.println("ub_answer : " + vo.getUb_answer());
+		  System.out.println("ub_id : "+ vo.getUb_id() );
+		  return "redirect:userinquiry.do";
+		  
+
+	  }	 	
+	  
 
 }
