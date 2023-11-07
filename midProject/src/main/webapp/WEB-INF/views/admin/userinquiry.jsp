@@ -16,8 +16,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-<link rel="stylesheet"
-	href="../src/assets/css/styles.min.css" />
+<link rel="stylesheet" href="../src/assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -32,8 +31,7 @@
 				<div
 					class="brand-logo d-flex align-items-center justify-content-between">
 					<a href="./admin_index.do" class="text-nowrap logo-img"> <img
-						src="../src/assets/images/logos/dark-logo.svg"
-						width="180" alt="" />
+						src="../src/assets/images/logos/dark-logo.svg" width="180" alt="" />
 					</a>
 					<div
 						class="close-btn d-xl-none d-block sidebartoggler cursor-pointer"
@@ -46,8 +44,9 @@
 					<ul id="sidebarnav">
 
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="admin_index.do" aria-expanded="false" style="font-size: 25px;">
-								<span> <i class="ti ti-layout-dashboard"></i>
+							href="admin_index.do" aria-expanded="false"
+							style="font-size: 25px;"> <span> <i
+									class="ti ti-layout-dashboard"></i>
 							</span> <span class="hide-menu">대시보드</span>
 						</a></li>
 
@@ -71,8 +70,9 @@
 						</a></li>
 
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="statistics.do" aria-expanded="false" style="font-size: 25px;">
-								<span> <i class="ti ti-presentation"></i>
+							href="statistics.do" aria-expanded="false"
+							style="font-size: 25px;"> <span> <i
+									class="ti ti-presentation"></i>
 							</span> <span class="hide-menu">통계</span>
 						</a></li>
 
@@ -129,11 +129,12 @@
 			</div>
 
 			<section id="container">
-				<form role="form" method="get">
+				<form role="form"  method="get">
 					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th>번호</th>
+								<th>문의유형</th>
 								<th>문의제목</th>
 								<th>아이디</th>
 								<th>등록일</th>
@@ -141,17 +142,18 @@
 							</tr>
 						</thead>
 
-						<c:forEach items="${list}" var="list">
+						<c:forEach items="${userBoardList}" var="list">
 							<tr>
 								<td><c:out value="${list.ub_id}" /></td>
-								<td><a
-									href="/board/readView?bno=${list.ub_id}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out
-											value="${list.title}" /></a></td>
+								<td><c:out value="${list.ub_head}" /></td>
+								<td><c:out value="${list.ub_title}" /></td>
 								<td><c:out value="${list.id}" /></td>
-								<td><fmt:formatDate value="${list.ub_regdate}"
-										pattern="yyyy-MM-dd" /></td>
-								<td><a class="btn btn-primary"
-									href="http://localhost:8000/midProject/userinquiryanswer.jsp">답변하기</a></td>
+								<c:set var="formattedDate" value="${list.ub_regdate}" />
+								<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
+									var="formattedDateString" />
+								<td>${formattedDateString}</td>
+								<!-- 답변하기 하면 답변 완료 만들어주기 -->
+								<td><a class="btn btn-primary" href="userinquiryanswer.do?ub_id=${list.ub_id }">답변하기</a></td>
 							</tr>
 						</c:forEach>
 
@@ -226,16 +228,13 @@
 
 
 	</div>
-	<script
-		src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
+	<script src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script
 		src="../src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="../src/assets/js/sidebarmenu.js"></script>
 	<script src="../src/assets/js/app.min.js"></script>
-	<script
-		src="../src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-	<script
-		src="../src/assets/libs/simplebar/dist/simplebar.js"></script>
+	<script src="../src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+	<script src="../src/assets/libs/simplebar/dist/simplebar.js"></script>
 	<script src="../src/assets/js/dashboard.js"></script>
 </body>
 

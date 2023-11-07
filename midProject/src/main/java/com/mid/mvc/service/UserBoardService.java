@@ -15,4 +15,5 @@ public interface UserBoardService {
 	
 	List<UserBoardVO> dashboardUserBoardList(UserBoardVO vo);
 	
+	void insertAnswer(UserBoardVO vo);
 }

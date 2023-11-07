@@ -10,4 +10,5 @@ public interface UserBoardDAO {
 	public List<UserBoardVO> getUserBoardList(HashMap map) ;
 	public UserBoardVO getUserBoard(UserBoardVO vo);
 	public List<UserBoardVO> dashboardUserBoardList(UserBoardVO vo) ;
+	public void insertAnswer(UserBoardVO vo);
 }

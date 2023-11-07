@@ -38,6 +38,13 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 	public List<UserBoardVO> dashboardUserBoardList(UserBoardVO vo) {
 		return sqlSession.selectList("UserBoardMapper.dashboardUserBoardList", vo);
 	}
+
+	@Override
+	public void insertAnswer(UserBoardVO vo) {
+		int result = sqlSession.update("UserBoardMapper.insertAnswer", vo);
+		System.out.println("입력결과 : " + result);
+	}
+	
 	
 	
 }

@@ -35,4 +35,9 @@ public class UserBoardServiceImpl implements UserBoardService{
 		return userboardDAO.dashboardUserBoardList(vo);
 	}
 
+	public void insertAnswer(UserBoardVO vo) {
+		userboardDAO.insertAnswer(vo);
+		
+	}
+
 }
