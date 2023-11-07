@@ -1,5 +1,6 @@
 package com.mid.mvc.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -42,11 +43,26 @@ public class GoodsDAOImpl {
 		
 	}
 
-	public List<GoodsVO> getCategoryGoodsList(String c_name) {
-		System.out.println("===> SqlSession getCategoryGoodsList() 호출");
-		System.out.println("===>"+ c_name);
-		return SqlSession.selectList("GoodsMapper.getCategoryGoodsList", c_name);
-	}
+//	public List<GoodsVO> getCategoryGoodsList(String c_name) {
+//		System.out.println("===> SqlSession getCategoryGoodsList() 호출");
+//		System.out.println("===>"+ c_name);
+//		return SqlSession.selectList("GoodsMapper.getCategoryGoodsList", c_name);
+//	}
 
 
+	public List<GoodsVO> getCategoryGoodsList(String c_name, List<String> selectedBrands, Integer minPrice, Integer maxPrice) {
+        HashMap<String, Object> map = new HashMap<>();
+        System.out.println("===> SqlSession getCategoryGoodsList() 호출" );
+        map.put("c_name", c_name);
+        System.out.println("===>"+ c_name);
+        map.put("selectedBrands", selectedBrands);
+        System.out.println("===>"+ selectedBrands);
+        map.put("minPrice", minPrice);
+        System.out.println("===>"+ minPrice);
+        map.put("maxPrice", maxPrice);
+        System.out.println("===>"+ maxPrice);
+        return SqlSession.selectList("GoodsMapper.getCategoryGoodsList", map);
+    }
+	
+	
 }

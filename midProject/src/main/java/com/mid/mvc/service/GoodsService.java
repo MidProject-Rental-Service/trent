@@ -16,6 +16,5 @@ public interface GoodsService {
 
 	void deleteGoods(GoodsVO vo);
 	
-	List<GoodsVO> getCategoryGoodsList(String c_name);
-	
+	List<GoodsVO> getCategoryGoodsList(String c_name, List<String> selectedBrands, Integer minPrice, Integer maxPrice);
 }

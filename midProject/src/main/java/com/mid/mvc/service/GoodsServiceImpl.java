@@ -41,10 +41,8 @@ public class GoodsServiceImpl implements GoodsService{
 	}
 
 
-
-
-	public List<GoodsVO> getCategoryGoodsList(String c_name) {
-		return goodsDAO.getCategoryGoodsList(c_name);
+	public List<GoodsVO> getCategoryGoodsList(String c_name, List<String> selectedBrands, Integer minPrice, Integer maxPrice) {
+		return goodsDAO.getCategoryGoodsList(c_name,selectedBrands,minPrice,maxPrice);
 	}
 
 

@@ -1,12 +1,31 @@
 function searchCategory(category) {
+var selectedBrands = []; // 선택된 브랜드를 담을 배열
+$('input[type=checkbox]:checked').each(function() {
+  selectedBrands.push($(this).attr('id'));
+});
+
+  var minPrice = $("#minamount").val().replace('₩', ''); // 최소 가격에서 ₩ 기호 제거
+  var maxPrice = $("#maxamount").val().replace('₩', ''); // 최대 가격에서 ₩ 기호 제거
+  var sendData = {
+    c_name: category
+  };
+
+  if (selectedBrands.length > 0) {
+    sendData.selectedBrands = selectedBrands;
+  }
+
+  if (minPrice && maxPrice) {
+    sendData.minPrice = minPrice;
+    sendData.maxPrice = maxPrice;
+  }
+
   $.ajax({
-    type: "POST",									// POST방식
-    url: "searchByCategory.do",			// searchByCategory.do 로 전송
-    data: { c_name: category },				// 컨트롤러에서 c_name으로 , 서버에서 category로
-    dataType : "JSON",							// 돌려받을 데이터타입 JSON
+    type: "POST",
+    url: "searchByCategory.do",
+    data: sendData,
+    dataType: "JSON",
     success: function(response) {
-		console.log(response);
-    	
+       	
 	  // 서버에서 받은 제품 리스트
       var goodsList = response
       ;
@@ -50,7 +69,6 @@ function searchCategory(category) {
       });
     },
     error: function() {
-     
       console.error("출력Error");
     }
   });
