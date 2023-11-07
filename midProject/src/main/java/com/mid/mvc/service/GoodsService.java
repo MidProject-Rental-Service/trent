@@ -10,6 +10,11 @@ public interface GoodsService {
 	
 	List<GoodsVO> getGoodsList(GoodsVO vo);
 
-	GoodsVO getGoodsById(String gId);
+	GoodsVO getGoodsById(GoodsVO vo);
+
+	void updateGoods(GoodsVO vo);
+
+	void deleteGoods(GoodsVO vo);
+
 
 }

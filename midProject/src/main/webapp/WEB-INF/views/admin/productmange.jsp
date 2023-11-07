@@ -35,7 +35,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="py-5 text-start">
-						<h1>제품관리</h1>
+						<h1>제품 관리</h1>
 						<p class="lead"></p>
 					</div>
 					<a href="productmangeregister.do" class="btn btn-primary float-end">등록하기</a>
@@ -59,7 +59,7 @@
 						<c:forEach items="${goodsList}" var="list">
 							<tr>	
 								<td><img src="<c:url value='../resources/img/products/${list.g_rimg1}' />" width="100" /></td> 
-								<td><a href="<c:url value='/productmangemodify.do?g_id=${list.g_id}'/>"><c:out value="${list.g_name}" /></a></td>
+								<td><a href="<c:url value='/admin/productmangemodify.do?g_id=${list.g_id}'/>"><c:out value="${list.g_name}" /></a></td>
 								<td><c:out value="${list.g_id}" /></td>
 								<td><c:out value="${list.c_name}" /></td> 
 								<td><c:out value="${list.g_content}" /></td>

@@ -24,19 +24,7 @@
     <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
-    
-    <!-- Js Plugins -->
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/jquery.countdown.min.js"></script>
-    <script src="../js/jquery.nice-select.min.js"></script>
-    <script src="../js/jquery.zoom.min.js"></script>
-    <script src="../js/jquery.dd.min.js"></script>
-    <script src="../js/jquery.slicknav.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/main.js"></script>
-    
+
 </head>
 
 <body>
@@ -136,31 +124,12 @@
                     </div>
                     
                 </div>
-                <div class="col-lg-9 order-1 order-lg-2">
-                    <div class="product-show-option">
-                        <div class="row">
-                            <div class="col-lg-7 col-md-7">
-                                <div class="select-option">
-                                    <select class="sorting">
-                                        <option value="">정렬</option>
-                                    </select>
-                                    <select class="p-show">
-                                        <option value="">모아보기:</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 col-md-5 text-right">
-                                <p>Show 01- 09 Of 36 Product</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- 제품 상세 시작 -->
                 <div class="col-lg-9">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
-                                <img class="product-big-img" src="../img/product-single/product-1.jpg" alt="">
+                                <img class="product-big-img" src="/midProject/resources/img/products/7d791a1d-f1ae-434f-a2b9-57f6e3fa76a3_lg-air-3.jpg" alt="">
                                 <div class="zoom-icon">
                                     <i class="fa fa-search-plus"></i>
                                 </div>
@@ -168,13 +137,13 @@
                             <div class="product-thumbs">
                                 <div class="product-thumbs-track ps-slider owl-carousel">
                                     <div class="pt active" data-imgbigurl="../img/product-single/product-1.jpg"><img
-                                            src="../img/product-single/product-1.jpg" alt=""></div>
+                                            src="/midProject/resources/img/products/8f058b4b-4aed-4a11-854d-891db638f4ce_lg-air-1.jpg" alt=""></div>
                                     <div class="pt" data-imgbigurl="../img/product-single/product-2.jpg"><img
-                                            src="../img/product-single/product-2.jpg" alt=""></div>
+                                            src="/midProject/resources/img/products/8f058b4b-4aed-4a11-854d-891db638f4ce_lg-air-1.jpg" alt=""></div>
                                     <div class="pt" data-imgbigurl="../img/product-single/product-3.jpg"><img
-                                            src="../img/product-single/product-3.jpg" alt=""></div>
+                                            src="/midProject/resources/img/products/8f058b4b-4aed-4a11-854d-891db638f4ce_lg-air-1.jpg" alt=""></div>
                                     <div class="pt" data-imgbigurl="../img/product-single/product-3.jpg"><img
-                                            src="../img/product-single/product-3.jpg" alt=""></div>
+                                            src="/midProject/resources/img/products/8f058b4b-4aed-4a11-854d-891db638f4ce_lg-air-1.jpg" alt=""></div>
                                 </div>
                             </div>
                         </div>
@@ -511,6 +480,18 @@
         </div>
     </div>
     <!-- Related Products Section End -->
+    
+<!-- Js Plugins -->
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/jquery.countdown.min.js"></script>
+<script src="../js/jquery.nice-select.min.js"></script>
+<script src="../js/jquery.zoom.min.js"></script>
+<script src="../js/jquery.dd.min.js"></script>
+<script src="../js/jquery.slicknav.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/main.js"></script>
 
 <jsp:include page="footer.jsp" />
 </body>

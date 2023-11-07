@@ -1160,7 +1160,7 @@ progress {
 		-webkit-box-flex: 0;
 		-ms-flex: 0 0 auto;
 		flex: 0 0 auto;
-		width: 33.33333333%
+		width: 60%
 	}
 	.col-sm-5 {
 		-webkit-box-flex: 0;
@@ -3250,6 +3250,18 @@ textarea.form-control-lg {
 .form-floating>.form-control:disabled ~label {
 	color: #2A3547
 }
+
+/* 이미지 토글 css */
+.image-container p {
+	cursor: pointer; 
+	color: blue;
+}
+
+.image-container img {
+	display:none;
+	width: 200px;
+}
+
 
 .input-group {
 	position: relative;
