@@ -45,8 +45,13 @@
 <script src="../js/owl.carousel.min.js"></script>
 <script src="../js/main.js"></script>
 <script type="text/javascript">
-	function reviewWrite() {
-		window.location.href = 'reviewWrite.do';
+	function reviewWrite(r_id) {
+	
+		window.location.href = 'reviewWrite.do?r_id=' + r_id;
+	}
+
+	function toggleCheckbox(checkbox) {
+	    checkbox.checked = !checkbox.checked;
 	}
 
 	
@@ -118,28 +123,40 @@
 						<h4>리뷰관리</h4>
 					</div>
 					<div class="review-list">
-						<form class="review-form" action="">
+						<form class="review-form" action="reviewUserDelete.do">
 							<table class="review-list">
 								<tr>
 									<th></th>
 									<th>모델번호</th>
-									<th>제품명/공급사</th>
+									<th>제조사/제품명</th>
 									<th>구매확정일자</th>
 									<th>상태</th>
 								</tr>
-								
+
 								<c:forEach items="${reviewList }" var="review">
 									<tr>
-										<td><input type="checkbox" value="${review.r_id }" onclick="toggleCheckbox(this)"></td>
+										<td><input type="checkbox" value="${review.r_id }">${review.r_id }</td>
 										<td>${review.g_id }</td>
-										<td>${review.g_name}</td>
+										<td style="font-size: 12px">${review.m_name}/
+											${review.g_name}</td>
 										<c:set var="formattedDate" value="${review.r_regdate}" />
-											<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
-												var="formattedDateString" />
-											<td>${formattedDateString}</td>
-										<td><input type="button"
-											class="btn btn-warning correct-btn" value="작성하기"></td>
+										<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
+											var="formattedDateString" />
+										<td>${formattedDateString}</td>
+										<td><c:choose>
+												<c:when test="${not empty review.r_content}">
+													<input type="button" class="btn btn-warning correct-btn"
+														value="수정"
+														onclick="reviewWrite('${review.r_id}')">
+												</c:when>
+												<c:otherwise>
+													<input type="button" class="btn btn-warning correct-btn"
+														value="작성하기"
+														onclick="reviewWrite('${review.r_id}}')">
+												</c:otherwise>
+											</c:choose></td>
 									</tr>
+
 								</c:forEach>
 							</table>
 							<div class="delete-div">

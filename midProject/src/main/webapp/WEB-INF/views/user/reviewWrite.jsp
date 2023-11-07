@@ -42,6 +42,12 @@
 	<script src="../js/jquery.slicknav.js"></script>
 	<script src="../js/owl.carousel.min.js"></script>
 	<script src="../js/main.js"></script>
+	<script type="text/javascript">
+	function backToList() {
+		window.location.href = 'reviewManagement.do';
+	}
+
+	</script>
 	
 </head>
 
@@ -49,6 +55,7 @@
 	<%-- 세션에서 로그인 정보 가져오기 --%>
 	<%
 		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+		
 	%>
 
 	<%-- 로그인 상태에 따라 다른 헤더 포함 --%>
@@ -109,13 +116,14 @@
 						<h4>리뷰작성</h4>
 					</div>
 					<div class="review-write">
-						<form class="review-write-form" action="">
+						<form class="review-write-form" action="saveUserReview.do">
+				<input name="r_id" type="hidden" value="${userReview.r_id}" />
 							<div id="form-group" class="form-group row">
 								<div class="col-md-3">
 									<img src="img/products/product-1.jpg" alt="">
 								</div>
 								<div class="col-md-3">
-									<select name="grade" id="grade" class="form-control">
+									<select name="r_point" id="r_point" class="form-control">
 										<option value="">평점선택</option>
 										<option value="5">5</option>
 										<option value="4">4</option>
@@ -126,29 +134,29 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<input class="form-control" type="text" value="작성자아이디"
+										<input class="form-control" name="id" type="text" value="<%= ((UserVO) session.getAttribute("loggedInUser")).getId() %>" 
 											disabled>
 									</div>
 									<div class="form-group">
-										<input class="form-control" type="text" value="제조사/제품명"
+										<input class="form-control" name="m_name" type="text" value="${userReview.m_name} / ${userReview.g_name}"
 											disabled>
 									</div>
 									<div class="form-group">
-										<input class="form-control" type="text" value="공급사명" disabled>
+										<input class="form-control" name="p_name" type="text" value="${userReview.p_name }" disabled>
 									</div>
 								</div>
 							</div>
 
 							<div class="form-group">
-								<textarea class="form-control" rows="4" cols="50"></textarea>
+								<textarea class="form-control" name="r_content" rows="4" cols="50" >${userReview.r_content }</textarea>
 							</div>
 							<div class="form-group row">
 								<div class="col-md-6 text-left">
-									<input type="file" name="file" id="file"
+									<input type="file" name="r_img" id="file"
 										accept=".img,.jpg,.png">
 								</div>
 								<div class="col-md-6 text-right">
-									<button type="submit" class="btn btn-primary cancle-btn">취소</button>
+									<button type="button" class="btn btn-primary cancle-btn" onclick="backToList()">취소</button>
 									<button type="submit" class="btn btn-primary complete-btn">완료</button>
 								</div>
 							</div>

@@ -42,9 +42,6 @@
 <script src="../js/owl.carousel.min.js"></script>
 <script src="../js/main.js"></script>
 <script>
-	function InquiryWrite() {
-		window.location.href = 'inquiryWrite.do';
-	}
 
 	$(function() {
 		//input을 datepicker로 선언
@@ -190,27 +187,32 @@
 									<th>신청상태</th>
 								</tr>
 								<!-- 아래로 추가되는 부분-->
-								<tr>
-									<td><img src="../img/cart-page/product-1.jpg" alt=""></td>
-									<td>제품명/공급사</td>
-									<td>약정기간</td>
-									<td>신청일자</td>
-									<td>신청상태</td>
-								</tr>
-								<tr>
-									<td><img src="../img/cart-page/product-2.jpg" alt=""></td>
-									<td>제품명/공급사</td>
-									<td>약정기간</td>
-									<td>신청일자</td>
-									<td>신청상태</td>
-								</tr>
-								<tr>
-									<td><img src="../img/cart-page/product-3.jpg" alt=""></td>
-									<td>제품명/공급사</td>
-									<td>약정기간</td>
-									<td>신청일자</td>
-									<td>신청상태</td>
-								</tr>
+								<c:forEach items="${userRentalList }" var="userRental">
+									<tr>
+										<td><img src="../img/cart-page/${userRental.g_img1}"
+											alt=""></td>
+										<td>${userRental.g_name}<br/>${userRental.p_name}</td>
+										<td>${userRental.b_rent }</td>
+										<c:set var="formattedDate" value="${userRental.b_signdate}" />
+										<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
+											var="formattedDateString" />
+										<td>${formattedDateString}</td>
+										<c:choose>
+											<c:when test="${userRental.b_stat == 0}">
+												<td>상담신청</td>
+											</c:when>
+											<c:when test="${userRental.b_stat == 1}">
+												<td>렌탈신청</td>
+											</c:when>
+											<c:when test="${userRental.b_stat == 2}">
+												<td>배송대기</td>
+											</c:when>
+											<c:otherwise>
+												<td>기타</td>
+											</c:otherwise>
+										</c:choose>
+									</tr>
+								</c:forEach> 
 							</table>
 						</form>
 					</div>

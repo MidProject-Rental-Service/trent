@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mid.mvc.dao.UserBoardDAO;
 import com.mid.mvc.domain.UserBoardVO;
+import com.mid.mvc.domain.UserRentalVO;
 
 @Service
 public class UserBoardServiceImpl implements UserBoardService{
@@ -33,6 +34,12 @@ public class UserBoardServiceImpl implements UserBoardService{
 	
 	public List<UserBoardVO> dashboardUserBoardList(UserBoardVO vo) {
 		return userboardDAO.dashboardUserBoardList(vo);
+	}
+
+	@Override
+	public List<UserRentalVO> getUserRentalList(HashMap map) {
+		
+		return userboardDAO.getUserRentalList(map);
 	}
 
 }
