@@ -54,27 +54,7 @@
 	    checkbox.checked = !checkbox.checked;
 	}
 
-	function reviewUserDelete() {
-		 var selectedReviews = $('input[type="checkbox"]:checked');
-		    var r_id= selectedReviews.map(function() {
-		        return $(this).val();
-		    }).get();
-
-		    console.log(r_id);
-		$.ajax({
-			type:"POST",
-			url:"reviewUserDelete.do",
-			data:{r_id:r_id},
-			success:function(result){
-				alert(result);
-				 console.log(result);
-			},
-			 error: function (err) {
-			        alert("error");
-			        console.log(err);
-			      }
-		});
-	}
+	
 </script>
 </head>
 

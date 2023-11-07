@@ -26,12 +26,6 @@ public class UserReviewServiceImpl implements UserReviewService{
 	}
 
 	@Override
-	public void deleteUserReview(List<Integer> selectedIds) {
-		userReviewDAO.deleteUserReview(selectedIds);
-		
-	}
-
-	@Override
 	public UserReviewVO getUserReview(UserReviewVO vo) {
 		return	userReviewDAO.getUserReview(vo);
 		

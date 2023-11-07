@@ -137,24 +137,9 @@ public class UserController {
 	// user review end
 
 	@RequestMapping(value="reviewUserDelete.do" ,method=RequestMethod.POST)
-	public String reviewUserDelete(UserReviewVO vo, HttpServletRequest request) {
+	public String reviewUserDelete() {
 		System.out.println("===> reviewUserDelete 호출");
-	    String[] rIdsArray = request.getParameterValues("rIds");
-	    System.out.println("===> " + request.getParameterValues("rIds"));
-	    List<Integer> rIds = new ArrayList<>();
-
-	    if (rIdsArray != null) {
-	        rIds = Arrays.stream(rIdsArray)
-	                     .map(Integer::parseInt)
-	                     .collect(Collectors.toList());
-	    }
-
-	    // UserReviewVO 객체에 rIds 값을 설정
-	    
-
-	    // 나머지 로직...
-
-	    return "redirect:reviewManagement.do";
+	  return null;
 	}
 
 

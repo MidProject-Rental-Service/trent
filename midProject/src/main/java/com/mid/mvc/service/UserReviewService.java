@@ -13,8 +13,6 @@ public interface UserReviewService {
 
 	void saveUserReview(UserReviewVO vo);
 
-	void deleteUserReview(List<Integer> selectedIds);
-
 	UserReviewVO getUserReview(UserReviewVO vo);
 	
 }
