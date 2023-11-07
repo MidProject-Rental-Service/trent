@@ -88,7 +88,6 @@ public class AdminController {
 	}
 	
 	
-	
     @RequestMapping("/logout.do")
     public String logout(HttpSession session) {
         // 세션을 제거하여 로그아웃 처리
