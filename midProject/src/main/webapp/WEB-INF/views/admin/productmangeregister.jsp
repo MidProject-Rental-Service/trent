@@ -109,8 +109,8 @@
 
 								<div class="row">
 									<div class="col-sm-3">
-										<label for="c_id" class="form-label">제품분류</label> <select
-											class="form-select" name="c_id">
+										<label for="c_id" class="form-label">제품분류</label>
+										<select class="form-select" name="c_id">
 											<option value="">제조사선택</option>
 											<option value="1">공기청정기</option>
 											<option value="2">가습기</option>
@@ -134,16 +134,12 @@
 									</div>
 								</div>
 
-
-
 								<div class="row">
 									<div class="col-sm-9">
 										<label for="g_content" class="form-label">제품특징</label>
 										<textarea class="form-control" name="g_content" rows="5"></textarea>
 									</div>
 								</div>
-
-
 
 								<div class="row text-left">
 									<div class="col-sm-12">

@@ -7,14 +7,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize Free</title>
+<title>할인카드 등록</title>
 
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 
-<link rel="stylesheet"
-	href="../src/assets/css/styles.min.css" />
+<link rel="stylesheet" href="../src/assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -23,32 +21,50 @@
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed">
 		
-		<jsp:include page="./admin_header.jsp"/>
+		<jsp:include page="./supplier_header.jsp"/>
 		
-		<!--  메인 페이지 -->
+		<!--  Main wrapper -->
+		<div class="body-wrapper">
+			<!--  Header Start -->
+			<header class="app-header">
+				<nav class="navbar navbar-expand-lg navbar-light">
+					<ul class="navbar-nav">
+						<li class="nav-item d-block d-xl-none"><a
+							class="nav-link sidebartoggler nav-icon-hover"
+							id="headerCollapse" href="javascript:void(0)"> <i
+								class="ti ti-menu-2"></i>
+						</a></li>
+						<li class="nav-item"></li>
+					</ul>
+					<div class="navbar-collapse justify-content-end px-0"
+						id="navbarNav"></div>
+				</nav>
+			</header>
 
+		<!--  메인 페이지 -->
 		<div class="container">
 			<main>
 				<div class="py-5 text-left">
-					<h1>제품 수정</h1>
+					<h1>할인카드 등록</h1>
 					<p class="lead"></p>
 				</div>
 
 				<div class="row g-5">
 					<div class="col-md-12">
-						<form class="needs-validation" action="productModify.do" method="post" enctype="multipart/form-data" novalidate>
+						<form action="productregister.do" method='post'
+							enctype="multipart/form-data">
 							<div class="row g-3">
 								<div class="row">
 									<div class="col-sm-4">
-										<label for="g_name" class="form-label">모델명</label>
-										<input type="text" class="form-control" id="g_name" value="${product.g_name}">
+										<label for="g_id" class="form-label">모델명</label> <input
+											type="text" class="form-control" name="g_id">
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-4">
-										<label for="g_id" class="form-label">제품명</label> <input
-											type="text" class="form-control" id="g_id" value="${product.g_id}">
+										<label for="g_name" class="form-label">제품명</label> <input
+											type="text" class="form-control" name="g_name">
 									</div>
 								</div>
 
@@ -56,7 +72,7 @@
 									<div class="col-sm-4">
 										<label for="file1" class="form-label">메인썸네일</label>
 										<div class="input-group">
-											<input type="file" class="form-control" name="file1" value="${product.file1}" readonly>
+											<input type="file" class="form-control" name="file1" readonly>
 										</div>
 									</div>
 								</div>
@@ -65,7 +81,7 @@
 									<div class="col-sm-4">
 										<label for="file2" class="form-label">리스트썸네일</label>
 										<div class="input-group">
-											<input type="file" class="form-control" name="file2" value="${product.file2}" readonly>
+											<input type="file" class="form-control" name="file2" readonly>
 										</div>
 									</div>
 								</div>
@@ -74,7 +90,7 @@
 									<div class="col-sm-4">
 										<label for="file3" class="form-label">대표사진</label>
 										<div class="input-group">
-											<input type="file" class="form-control" name="file3" value="${product.file3}" readonly>
+											<input type="file" class="form-control" name="file3" readonly>
 										</div>
 									</div>
 								</div>
@@ -83,7 +99,7 @@
 									<div class="col-sm-4">
 										<label for="file4" class="form-label">상세설명사진</label>
 										<div class="input-group">
-											<input type="file" class="form-control" name="file4" value="${product.file4}" readonly>
+											<input type="file" class="form-control" name="file4" readonly>
 										</div>
 									</div>
 								</div>
@@ -91,8 +107,8 @@
 
 								<div class="row">
 									<div class="col-sm-3">
-										<label for="c_id" class="form-label">제품분류</label> <select
-											class="form-select" name="c_id">
+										<label for="c_id" class="form-label">제품분류</label>
+										<select class="form-select" name="c_id">
 											<option value="">제조사선택</option>
 											<option value="1">공기청정기</option>
 											<option value="2">가습기</option>
@@ -103,8 +119,8 @@
 
 								<div class="row">
 									<div class="col-sm-3">
-										<label for="m_id" class="form-label">제조사</label>
-										<select class="form-select" name="m_id">
+										<label for="m_id" class="form-label">제조사</label> <select
+											class="form-select" name="m_id">
 											<option value="">제조사선택</option>
 											<option value="1">엘지전자</option>
 											<option value="2">삼성전자</option>
@@ -125,8 +141,8 @@
 
 								<div class="row text-left">
 									<div class="col-sm-12">
-										<a class="btn btn-primary mx-2" type="submit">수정하기</a> <a
-											class="btn btn-danger mx-2" href="productmange.do">취소하기</a>
+										<input class="btn btn-primary" type="submit" value="등록하기" />
+										<a class="btn btn-danger mx-2" href="productmange.do">취소하기</a>
 									</div>
 								</div>
 							</div>
@@ -137,7 +153,7 @@
 
 		</div>
 
-
+	</div>
 
 	</div>
 	<!-- div 끝  -->

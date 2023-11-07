@@ -138,13 +138,14 @@ public class UserController {
 		userReviewService.saveUserReview(vo);
 		return "redirect:reviewManagement.do";
 	}
-	// user review end
+	
 
 	@RequestMapping(value="reviewUserDelete.do" ,method=RequestMethod.POST)
 	public String reviewUserDelete() {
 		System.out.println("===> reviewUserDelete 호출");
 	  return null;
 	}
+	// user review end
 
 
 	// user board start
@@ -219,7 +220,6 @@ public class UserController {
 	public void GoodsList(GoodsVO vo, Model m) {
 		List<GoodsVO> result = goodsServiceImpl.getGoodsList(vo);
 		m.addAttribute("goodsList", result);
-		System.out.println("result :" + result);
 	}
 
 }

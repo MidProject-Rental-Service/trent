@@ -4,7 +4,6 @@
 <mapper namespace="GoodsMapper">
 	
 	<insert id="productRegister1" parameterType="GoodsVO">
-	
 		INSERT INTO goods ( g_id, g_name, g_content, m_id, c_id,  g_img1, g_rimg1, g_img2, g_rimg2 , g_img3, g_rimg3, g_img4, g_rimg4 ) 
 		VALUES(#{g_id}, #{g_name}, #{g_content}, #{m_id}, #{ c_id}, #{g_img1}, #{g_rimg1}, #{g_img2}, #{g_rimg2}, #{g_img3}, #{ g_rimg3}, #{g_img4}, #{ g_rimg4})
 	</insert>
@@ -16,9 +15,38 @@
 		]]>
 	</select>
 
-	<select id="getGoodsById" parameterType="String">
+	<select id="getGoodsById" parameterType="GoodsVO" resultType="GoodsVO">
 		SELECT * FROM goods
 		WHERE g_id = #{g_id}
 	</select>
+	
+	
+	<update id="saveUserReview" parameterType="UserReviewVO">
+		UPDATE REVIEW SET
+		R_POINT = #{r_point}, R_CONTENT= #{r_content}, R_REGDATE = now()
+		WHERE
+		R_ID = #{r_id}
+	</update>
+	
+	<insert id="insertPrice" parameterType="PriceVO">
+		INSERT INTO price ( p_id, s_name, p_rent, p_price, p_card,  p_gift, p_text, g_id, id ) 
+		VALUES(#{p_id}, #{s_name}, #{p_rent}, #{p_price}, #{ p_card}, #{p_gift}, #{p_text}, #{g_id}, #{id} )
+	</insert>
+	
+	<update id="modifyPrice" parameterType="PriceVO">
+		UPDATE price SET
+		p_id = #{p_id}, s_name = #{s_name}, p_rent = #{p_rent}, p_price = #{p_price}, p_card = #{ p_card}, p_gift = #{p_gift}, p_text = #{p_text}, g_id = #{g_id}, id = #{id}
+		WHERE
+		P_ID = #{p_id}
+	</update>
+	
+	<select id="getPriceList" resultType="PriceVO">
+		<![CDATA[
+		SELECT  *  FROM PRICE P
+		INNER JOIN GOODS G ON P.G_ID = G.G_ID ;
+		]]>
+	</select>
+	
+	
 
 </mapper>

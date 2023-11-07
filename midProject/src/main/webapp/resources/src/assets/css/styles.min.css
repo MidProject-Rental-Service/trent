@@ -439,7 +439,9 @@ img, svg {
 
 table {
 	caption-side: bottom;
-	border-collapse: collapse
+	border-collapse: collapse;
+	text-align: center;
+	vertical-align: middle;
 }
 
 caption {
@@ -17995,7 +17997,7 @@ to {
 }
 
 .page-wrapper {
-	position: relative
+	position: relative;
 }
 
 .body-wrapper {

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mid.mvc.dao.GoodsDAOImpl;
 import com.mid.mvc.domain.GoodsVO;
+import com.mid.mvc.domain.PriceVO;
 
 @Service("goodsService")
 public class GoodsServiceImpl implements GoodsService{
@@ -24,6 +25,18 @@ public class GoodsServiceImpl implements GoodsService{
 
 	public GoodsVO getGoodsById(String gId) {
 		return goodsDAO.getGoodsById(gId);
+	}
+	
+	public void insertPrice(PriceVO vo){
+		goodsDAO.insertPrice(vo);
+	}
+	
+	public void modifyPrice(PriceVO vo){
+		goodsDAO.modifyPrice(vo);
+	}
+	
+	public List<PriceVO> getPriceList(PriceVO vo) {
+		return goodsDAO.getPriceList(vo);
 	}
 
 

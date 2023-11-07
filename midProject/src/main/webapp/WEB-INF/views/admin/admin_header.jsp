@@ -31,7 +31,7 @@
 				<div
 					class="brand-logo d-flex align-items-center justify-content-between"
 					style="padding: 50px 24px 0px;">
-					<a href="./index.do" class="text-nowrap logo-img"> <img
+					<a href="./admin_index.do" class="text-nowrap logo-img"> <img
 						src="../img/logo.png"
 						width="180" alt="" />
 					</a>

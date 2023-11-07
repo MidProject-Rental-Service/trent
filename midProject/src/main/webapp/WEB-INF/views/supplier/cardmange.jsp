@@ -11,13 +11,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize Free</title>
+<title>할인카드관리</title>
 
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-<link rel="stylesheet"
-	href="../src/assets/css/styles.min.css" />
+<link rel="stylesheet" href="../src/assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -26,8 +24,7 @@
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed">
 		
-		<jsp:include page="./admin_header.jsp"/>
-		
+		<jsp:include page="./supplier_header.jsp"/>
 		
 		<!--  메인페이지 -->
 		
@@ -36,10 +33,10 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="py-5 text-start">
-						<h1>제품관리</h1>
+						<h1>할인카드관리</h1>
 						<p class="lead"></p>
 					</div>
-					<a href="productmangeregister.do" class="btn btn-primary float-end">등록하기</a>
+				<a href="cardregister.do" class="btn btn-primary float-end">등록하기</a>
 				</div>
 			</div>
 
@@ -49,22 +46,22 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>제품사진</th>
-								<th>제품명</th>
 								<th>모델명</th>
-								<th>분류</th>
-								<th>제품 특징</th>
+								<th>공급사명</th>
+								<th>약정기간</th>
+								<th>렌탈비용</th>
+								<th>카드할인</th>
+								<th>사은품혜택</th>
+								<th>가입조건</th>
 							</tr>
 						</thead>
 
-						<c:forEach items="${goodsList}" var="list">
-							<tr>	
-								<td><img src="<c:url value='../resources/img/products/${list.g_rimg1}' />" width="100" /></td> 
-								<td><a href="<c:url value='/productmangemodify.do?g_id=${list.g_id}'/>"><c:out value="${list.g_name}" /></a></td>
-								<td><c:out value="${list.g_id}" /></td>
-								<td><c:out value="${list.c_name}" /></td> 
-								<td><c:out value="${list.g_content}" /></td>
-							</tr>
+						<c:forEach items="${priceList}" var="list">
+							<tr>
+								<td ><img src="<c:url value='../resources/img/products/${list.c_rimg1}' />" width="100" /></td>
+								<td ><img src="<c:url value='../resources/img/products/${list.g_rimg1}' />" width="100" /></td>
+								
+									</tr>
 						</c:forEach>
 
 					</table>
