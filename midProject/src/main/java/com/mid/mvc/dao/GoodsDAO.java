@@ -11,4 +11,6 @@ public interface GoodsDAO {
 	public List<GoodsVO> getGoodsList(GoodsVO vo);	
 
 	public GoodsVO getGoodsById(GoodsVO vo);
+	
+	public List<GoodsVO> getGoodsList(String c_name);
 }

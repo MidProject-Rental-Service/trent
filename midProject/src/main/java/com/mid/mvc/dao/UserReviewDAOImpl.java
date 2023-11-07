@@ -15,24 +15,33 @@ public class UserReviewDAOImpl implements UserReviewDAO{
 	@Autowired
 	private SqlSessionTemplate sqlSession;	
 	
+	// 리뷰 목록 
+	public List<UserReviewVO> getUserReviewList(HashMap map) {
+		System.out.println("===> sqlSession getUserReviewList() 호출");
+		System.out.println("===> " + map);
+		return sqlSession.selectList("UserReviewMapper.getUserReviewList",map);
+	}
+	// 리뷰 저장
 	public void saveUserReview(UserReviewVO vo) {
 		System.out.println("===> sqlSession saveUserReview() 호출");
 		System.out.println("==>" + vo.toString());
 		int result = sqlSession.insert("UserReviewMapper.saveUserReview", vo); 
 		System.out.println("입력결과 : " + result);
 	}
-	public List<UserReviewVO> getUserReviewList(HashMap map) {
-		System.out.println("===> sqlSession getUserReviewList() 호출");
-		System.out.println("===> " + map);
-		return sqlSession.selectList("UserReviewMapper.getUserReviewList",map);
-	}
 	
-
+	// 리뷰 내용 가져오기 
 	public UserReviewVO getUserReview(UserReviewVO vo) {
 		System.out.println("===> sqlSession getUserReview() 호출");
 		System.out.println("===> " + vo.toString());
 		return sqlSession.selectOne("UserReviewMapper.getUserReview", vo);
 		
+	}
+	
+	// 리뷰 삭제
+	public int deleteUserReview(UserReviewVO vo) {
+		System.out.println("===> sqlSession deleteUserReview() 호출");
+		System.out.println("===> " + vo.toString());
+		return sqlSession.delete("UserReviewMapper.deleteUserReview",vo);
 	}
 
 

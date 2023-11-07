@@ -53,7 +53,28 @@
 	function toggleCheckbox(checkbox) {
 	    checkbox.checked = !checkbox.checked;
 	}
+	function reviewUserDelete() {
+		  var selectedReviews = $('input[type="checkbox"]:checked').map(function() {
+		    return $(this).val();
+		  }).get();
 
+		  if (selectedReviews.length > 0) {
+		    $.ajax({
+		      type: "POST",
+		      url: "reviewUserDelete.do",
+		      data: { reviewIds: selectedReviews },
+		      success: function(response) {
+		        // 서버로부터 성공적인 응답을 처리합니다. (필요한 경우)
+		        console.log("리뷰가 성공적으로 삭제되었습니다.");
+		        location.reload();
+		      },
+		      error: function() {
+		        // 서버로부터 에러 응답을 처리합니다. (필요한 경우)
+		        console.error("리뷰 삭제 중 오류가 발생했습니다.");
+		      }
+		    });
+		  }
+		}
 	
 </script>
 </head>

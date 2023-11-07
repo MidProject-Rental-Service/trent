@@ -15,19 +15,24 @@ public class UserReviewServiceImpl implements UserReviewService{
 	@Autowired
 	private UserReviewDAO userReviewDAO;
 	
-	
+	// 리뷰 목록 
 	public List<UserReviewVO> getUserReviewList(HashMap map) {
 		return userReviewDAO.getUserReviewList(map);
 	}
-
+	// 리뷰 저장
 	public void saveUserReview(UserReviewVO vo) {
-	 
 		userReviewDAO.saveUserReview(vo);
 	}
 
-	@Override
+	// 리뷰 내용 가져오기 
 	public UserReviewVO getUserReview(UserReviewVO vo) {
 		return	userReviewDAO.getUserReview(vo);
+		
+	}
+
+	// 리뷰 삭제
+	public int deleteUserReview(UserReviewVO vo) {
+		return	userReviewDAO.deleteUserReview(vo);
 		
 	}
 	

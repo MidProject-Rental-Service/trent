@@ -3,37 +3,37 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UserBoardMapper">
 
+	<!-- 문의글 작성 -->
 	<insert id="insertUserBoard" parameterType="UserBoardVO">
 		INSERT INTO
 		USERBOARD( UB_HEAD,UB_TITLE,UB_CONTENT, UB_REGDATE, UB_CNT,ID)
 		VALUES(#{ub_head}, #{ub_title}, #{ub_content},now(), 0,#{id})
 	</insert>
 
-
+	<!-- 문의글 불러오기 -->
 	<select id="getUserBoard" parameterType="UserBoardVO"
 		resultType="UserBoardVO">
 		SELECT USERBOARD.*,USER.NAME,USER.PHONE
-		FROM USERBOARD INNER JOIN USER
+		FROM USERBOARD INNER
+		JOIN USER
 		ON USERBOARD.ID = USER.ID
 		WHERE UB_ID = #{ub_id};
 	</select>
 
-	<!-- <select id="getUserBoardList" resultType="UserBoardVO"> SELECT * FROM 
-		USERBOARD ORDER BY UB_ID DESC </select> -->
-
+	<!-- 문의 목록 불러오기 -->
 	<select id="getUserBoardList" parameterType="hashmap"
 		resultType="UserBoardVO">
-
 		SELECT *
 		FROM USERBOARD
 		WHERE ID = #{id}
 		<if test="searchCondition != null and searchKeyword != null">
+			AND
 			<choose>
-				<when test="searchCondition == 'UB_TITLE'">
-					AND UB_TITLE LIKE '%' || #{searchKeyword} || '%'
+				<when test="searchCondition == 'ub_title'">
+					UB_TITLE LIKE '%${searchKeyword}%'
 				</when>
-				<when test="searchCondition == 'UB_CONTENT'">
-					AND UB_CONTENT LIKE '%' || #{searchKeyword} || '%'
+				<when test="searchCondition == 'ub_content'">
+					UB_CONTENT LIKE '%${searchKeyword}%'
 				</when>
 			</choose>
 		</if>
@@ -41,45 +41,50 @@
 			AND DATE(UB_REGDATE) BETWEEN #{startDate} AND #{endDate}
 		</if>
 		ORDER BY UB_ID DESC
-	</select> 
-	
-	
-	<select id="dashboardUserBoardList" resultType="UserBoardVO">
-		SELECT UB_ID , UB_TITLE , id 
-		FROM USERBOARD U 
-		ORDER BY UB_REGDATE DESC  LIMIT 5 ;
 	</select>
-	
+
+	<!-- 사용자 문의목록 불러오기 (관리자) -->
+	<select id="dashboardUserBoardList" resultType="UserBoardVO">
+		SELECT UB_ID ,
+		UB_TITLE , id
+		FROM USERBOARD U
+		ORDER BY UB_REGDATE DESC LIMIT 5 ;
+	</select>
+
+	<!-- 사용자 문의 답변하기 (관리자) -->
 	<update id="insertAnswer" parameterType="UserBoardVO">
-		UPDATE USERBOARD SET ub_answer = '${ub_answer }' WHERE ub_id = #{ub_id};
+		UPDATE USERBOARD SET
+		ub_answer = '${ub_answer }' WHERE ub_id = #{ub_id};
 	</update>
 
+	<!-- 렌탈신청목록 불러오기 -->
 	<select id="getUserRentalList" parameterType="hashmap"
 		resultType="UserRentalVO">
 
-		SELECT BUY.*,GOODS.G_NAME,GOODS.G_IMG1
-        FROM BUY
-        INNER JOIN GOODS
-        ON BUY.G_ID = GOODS.G_ID 
+		SELECT BUY.*,GOODS.G_NAME,GOODS.G_RIMG2
+		FROM BUY
+		INNER JOIN GOODS
+		ON
+		BUY.G_ID = GOODS.G_ID
 		WHERE ID = #{id}
 		<if test="searchCondition != null and searchKeyword != null">
 			<choose>
-				<when test="searchCondition == 'G.NAME'">
-					AND UB_TITLE LIKE '%' || #{searchKeyword} || '%'
+				<when test="searchCondition == 'g_name'">
+					AND GOODS.G_NAME LIKE '%${searchKeyword}%'
 				</when>
-				<when test="searchCondition == 'P_NAME'">
-					AND UB_CONTENT LIKE '%' || #{searchKeyword} || '%'
+				<when test="searchCondition == 'p_name'">
+					AND P_NAME LIKE '%${searchKeyword}%'
 				</when>
-				<when test="searchCondition == 'B_RENT'">
-					AND UB_TITLE LIKE '%' || #{searchKeyword} || '%'
+				<when test="searchCondition == 'b_rent'">
+					AND B_RENT LIKE '%${searchKeyword}%'
 				</when>
-				<when test="searchCondition == 'B_SIGNDATE'">
-					AND UB_CONTENT LIKE '%' || #{searchKeyword} || '%'
+					<when test="searchCondition == 'b_signdate'">
+					AND B_SIGNDATE LIKE '%${searchKeyword}%'
 				</when>
 			</choose>
 		</if>
 		<if test="startDate != null and endDate != null">
-			AND DATE(UB_REGDATE) BETWEEN #{startDate} AND #{endDate}
+			AND DATE(B_SIGNDATE) BETWEEN #{startDate} AND #{endDate}
 		</if>
 		ORDER BY BUY.B_ID DESC
 	</select>

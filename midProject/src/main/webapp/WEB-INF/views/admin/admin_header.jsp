@@ -7,7 +7,6 @@
 <title>admin_header</title>
 </head>
 <body>
-
 	<!--  Header Start -->
 			<header class="app-header">
 				<nav class="navbar navbar-expand-lg navbar-light">
@@ -31,7 +30,7 @@
 				<div
 					class="brand-logo d-flex align-items-center justify-content-between"
 					style="padding: 50px 24px 0px;">
-					<a href="./index.do" class="text-nowrap logo-img"> <img
+					<a href="./admin_index.do" class="text-nowrap logo-img"> <img
 						src="../img/logo.png"
 						width="180" alt="" />
 					</a>

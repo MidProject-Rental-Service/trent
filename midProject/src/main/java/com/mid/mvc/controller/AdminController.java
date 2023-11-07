@@ -65,7 +65,7 @@ public class AdminController {
 	//상품등록
 	@RequestMapping("/productregister.do")
 	public String productRegister(GoodsVO vo) throws IOException{
-		System.out.println(vo.toString());
+		/* System.out.println(vo.toString()); */
 		goodsService.productRegister(vo);
 		return "redirect:productmange.do";
 	}
@@ -76,17 +76,35 @@ public class AdminController {
 		System.out.println("GoodsList-controller호출"); 
 		List<GoodsVO> result = goodsService.getGoodsList(vo); 
 		model.addAttribute("goodsList",result); 
-		System.out.println("result :" + result);}	
+//		System.out.println("result :" + result);
+	}	
 	
 	//상품 상세페이지 (내용 띄우기)
 	@RequestMapping("/productmangemodify.do")
-	public void getGoodsById(@RequestParam("g_id") String gId, Model model) {
-	    // gId를 사용하여 데이터베이스에서 해당 제품의 정보를 가져오는 서비스 호출
-	    GoodsVO product = goodsService.getGoodsById(gId);
+	public void getGoodsById(GoodsVO vo, Model model) {
+	    // gId를 사용하여 해당 제품의 정보를 가져옴
+	    GoodsVO product = goodsService.getGoodsById(vo);
 
 	    model.addAttribute("product", product);
 	}
 	
+	// 상품 수정하기
+	@RequestMapping("/productModify.do")
+	public String updateGoods(GoodsVO vo, Model model) {
+		System.out.println("=====> productModify.do 요청");
+		System.out.println(vo.toString());
+		goodsService.updateGoods(vo);
+		
+		return "redirect:productmangemodify.do?g_id="+vo.getG_id();
+	}
+	
+	// 상품 삭제하기
+	@RequestMapping("/productDelete.do")
+	public String deleteGoods(GoodsVO vo, Model m) {
+		goodsService.deleteGoods(vo);
+		
+		return "redirect:productmange.do";
+	}
 	
     @RequestMapping("/logout.do")
     public String logout(HttpSession session) {
@@ -115,9 +133,9 @@ public class AdminController {
 	      userBoardService.getUserBoardList(map);
 	      List<UserBoardVO>result = userBoardService.getUserBoardList(map);
 	      System.out.println(result);
-	      m.addAttribute("userBoardList",result);		  
-		  
+	      m.addAttribute("userBoardList",result);
 	  }
+	  
 	  //사용자 문의 상세보기
 	  @RequestMapping("/userinquiryanswer.do")
 	  public void getUserBoard(UserBoardVO vo, Model m) {

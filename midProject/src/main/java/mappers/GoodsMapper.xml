@@ -3,22 +3,71 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="GoodsMapper">
 	
+	<!--  제품 등록 -->
 	<insert id="productRegister1" parameterType="GoodsVO">
-	
 		INSERT INTO goods ( g_id, g_name, g_content, m_id, c_id,  g_img1, g_rimg1, g_img2, g_rimg2 , g_img3, g_rimg3, g_img4, g_rimg4 ) 
 		VALUES(#{g_id}, #{g_name}, #{g_content}, #{m_id}, #{ c_id}, #{g_img1}, #{g_rimg1}, #{g_img2}, #{g_rimg2}, #{g_img3}, #{ g_rimg3}, #{g_img4}, #{ g_rimg4})
 	</insert>
 
-	<select id="getGoodsList" resultType="GoodsVO">
-		<![CDATA[
-		SELECT  *  FROM GOODS G
-		INNER JOIN CATEGORY C ON C.C_ID = G.C_ID ;
-		]]>
-	</select>
 
-	<select id="getGoodsById" parameterType="String">
+	<!-- 제품 목록 띄우기 -->
+	<select id="getGoodsList" resultType="GoodsVO">
+		SELECT  *  FROM GOODS G
+		INNER JOIN CATEGORY C ON C.C_ID = G.C_ID
+	</select>
+	
+	<!-- 제품 상세 보기 -->
+	<select id="getGoodsById" parameterType="GoodsVO" resultType="GoodsVO">
 		SELECT * FROM goods
 		WHERE g_id = #{g_id}
 	</select>
+
+
+	<!-- 제품 수정 -->
+	<update id="updateGoods" parameterType="GoodsVO">
+	    UPDATE goods SET
+	    g_name = #{g_name},
+	    g_content = #{g_content},
+	    m_id = #{m_id},
+	    c_id = #{c_id}
+	    
+	        <if test="g_img1 != null">
+	            , g_img1 = #{g_img1}
+	            , g_rimg1 = #{g_rimg1}
+	        </if>
+   			<if test="g_img2 != null">
+	            , g_img2 = #{g_img2}
+	            , g_rimg2 = #{g_rimg2}
+	        </if>
+	           <if test="g_rimg3 != null">
+	            , g_img3 = #{g_img3}
+	            , g_rimg3 = #{g_rimg3}
+	        </if>       
+	    
+	        <if test="g_img4 != null">
+	            , g_img4 = #{g_img4}
+	            , g_rimg4 = #{g_rimg4}
+	        </if>
+	    
+	    WHERE g_id = #{g_id}
+	</update>
+	
+	<!-- 제품 삭제 -->
+	<delete id="deleteGoods" parameterType="GoodsVO">
+		DELETE FROM goods
+		WHERE g_id = #{g_id}
+	</delete>
+
+	<select id="getCategoryGoodsList" parameterType="String" resultType="GoodsVO">
+        SELECT GOODS.*,CATEGORY.C_NAME,MAKER.M_NAME 
+	    FROM GOODS
+	    INNER JOIN CATEGORY
+	    ON GOODS.C_ID = CATEGORY.C_ID 
+	    INNER JOIN MAKER
+	    ON GOODS.M_ID = MAKER.M_ID 
+	    
+        WHERE CATEGORY.C_NAME = #{c_name}
+    </select>
+
 
 </mapper>

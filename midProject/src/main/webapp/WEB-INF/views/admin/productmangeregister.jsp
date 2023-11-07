@@ -111,7 +111,7 @@
 									<div class="col-sm-3">
 										<label for="c_id" class="form-label">제품분류</label> <select
 											class="form-select" name="c_id">
-											<option value="">제조사선택</option>
+											<option value="">--제품분류 선택--</option>
 											<option value="1">공기청정기</option>
 											<option value="2">가습기</option>
 											<option value="3">제습기</option>
@@ -123,7 +123,7 @@
 									<div class="col-sm-3">
 										<label for="m_id" class="form-label">제조사</label> <select
 											class="form-select" name="m_id">
-											<option value="">제조사선택</option>
+											<option value="">--제조사 선택--</option>
 											<option value="1">엘지전자</option>
 											<option value="2">삼성전자</option>
 											<option value="3">다이슨</option>
@@ -148,7 +148,7 @@
 								<div class="row text-left">
 									<div class="col-sm-12">
 										<input class="btn btn-primary" type="submit" value="등록하기" />
-										<a class="btn btn-danger mx-2" href="productmange.do">취소하기</a>
+										<a class="btn btn-secondary mx-2" href="productmange.do">취소하기</a>
 									</div>
 								</div>
 							</div>

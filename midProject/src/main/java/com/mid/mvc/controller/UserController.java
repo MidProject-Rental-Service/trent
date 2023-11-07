@@ -1,7 +1,5 @@
 package com.mid.mvc.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -108,7 +106,7 @@ public class UserController {
 		return "redirect:login.do";
 	}
 
-	// user review start
+	// 리뷰관리
 	@RequestMapping("/reviewManagement.do")
 	public void reviewManagement(Model m, HttpSession session) {
 		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
@@ -122,7 +120,8 @@ public class UserController {
 		m.addAttribute("reviewList", result);
 
 	}
-
+	
+	// 리뷰 작성
 	@RequestMapping("/reviewWrite.do")
 	public void reviewWrite(Model m, UserReviewVO vo, @RequestParam("r_id") String reviewId, HttpSession session) {
 		session.setAttribute("selectedReviewId", reviewId);
@@ -131,48 +130,42 @@ public class UserController {
 		m.addAttribute("userReview", result);
 
 	}
-
+	
+	// 리뷰 저장
 	@RequestMapping("/saveUserReview.do")
 	public String saveUserReview(UserReviewVO vo) {
 		System.out.println(" saveUserReview:" + vo);
 		userReviewService.saveUserReview(vo);
 		return "redirect:reviewManagement.do";
 	}
-	// user review end
+	
 
+	
+	// 리뷰 삭제
 	@RequestMapping(value="reviewUserDelete.do" ,method=RequestMethod.POST)
-	public String reviewUserDelete() {
+	@ResponseBody 
+	public  String reviewUserDelete(@RequestParam(value = "reviewIds[]") List<Integer> reviewIds) {
 		System.out.println("===> reviewUserDelete 호출");
-	  return null;
+		System.out.println("===>" + reviewIds);
+		 for (Integer r_id : reviewIds) {
+		        UserReviewVO vo = new UserReviewVO();
+		        vo.setR_id(r_id);
+		        userReviewService.deleteUserReview(vo);
+		 }
+	  return "success";
 	}
 
 
-	// user board start
+
+	// 장바구니
 	@RequestMapping("/shopping-cart.do")
 	public String shoppingCart() {
 		return "shopping-cart";
 	}
-
-	@RequestMapping("/applicationList.do")
-	public void rentalList(Model m, HttpSession session, String searchCondition, String searchKeyword,
-			String datepicker1, String datepicker2) {
-
-		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
-		String loggedInUserId = loggedInUser.getId();
-
-		HashMap map = new HashMap();
-		map.put("id", loggedInUserId);
-		map.put("searchCondition", searchCondition);
-		map.put("searchKeyword", searchKeyword);
-		map.put("startDate", datepicker1);
-		map.put("endDate", datepicker2);
-
-		userBoardService.getUserRentalList(map);
-		List<UserRentalVO> result = userBoardService.getUserRentalList(map);
-
-		m.addAttribute("userRentalList", result);
-	}
-
+	
+	
+	
+	// 1:1문의 목록
 	@RequestMapping("/inquiryList.do")
 	public void inquiryList(Model m, HttpSession session, String searchCondition, String searchKeyword,
 			String datepicker1, String datepicker2) {
@@ -187,39 +180,73 @@ public class UserController {
 		map.put("startDate", datepicker1);
 		map.put("endDate", datepicker2);
 
-		userBoardService.getUserBoardList(map);
+		
 		List<UserBoardVO> result = userBoardService.getUserBoardList(map);
 		m.addAttribute("userBoardList", result);
 	}
-
+	
+	// 문의 작성화면 
 	@RequestMapping("/inquiryWrite.do")
 	public String inquiryWrite() {
 
 		return "user/inquiryWrite";
 	}
-
+	
+	// 문의 상세보기 
 	@RequestMapping("/inquiry.do")
 	public void getUserBoard(UserBoardVO vo, Model m) {
 		UserBoardVO result = userBoardService.getUserBoard(vo);
 		m.addAttribute("userBoard", result);
 
-	} // end of getBoard
+	} 
 
-    
+    // 문의 작성 저장
     @RequestMapping("/saveUserBoard.do")
     public String saveUserBoard(UserBoardVO vo) {
     	System.out.println(" saveUserBoard:" + vo );
     	userBoardService.insertUserBoard(vo);
         return "redirect:inquiryList.do";
     }
-    // user board end
+    
+ // 신청목록 
+ 	@RequestMapping("/applicationList.do")
+ 	public void rentalList(Model m, HttpSession session, String searchCondition, String searchKeyword,
+ 		String datepicker1, String datepicker2) {
+
+ 		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+ 		String loggedInUserId = loggedInUser.getId();
+
+ 		HashMap map = new HashMap();
+ 		map.put("id", loggedInUserId);
+ 		map.put("searchCondition", searchCondition);
+ 		map.put("searchKeyword", searchKeyword);
+ 		map.put("startDate", datepicker1);
+ 		map.put("endDate", datepicker2);
+
+ 		//userBoardService.getUserRentalList(map);
+ 		List<UserRentalVO> result = userBoardService.getUserRentalList(map);
+
+ 		m.addAttribute("userRentalList", result);
+ 	}
     
     //상품 전체 검색
     @RequestMapping("/shop.do")
 	public void GoodsList(GoodsVO vo, Model m) {
+    	System.out.println("화면에서 넘겨오는 값:" + vo.toString());
 		List<GoodsVO> result = goodsServiceImpl.getGoodsList(vo);
 		m.addAttribute("goodsList", result);
 		System.out.println("result :" + result);
 	}
+    
+    // 제품군 검색 (좌측패널)
+    @RequestMapping(value="/searchByCategory",method=RequestMethod.POST)
+    @ResponseBody
+    public List<GoodsVO> searchByCategory(@RequestParam String c_name) {
+    	System.out.println("===> " + c_name);
+        return goodsServiceImpl.getCategoryGoodsList(c_name);
 
+    }
+    
+    
+    
 }

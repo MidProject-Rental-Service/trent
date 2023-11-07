@@ -45,7 +45,7 @@
                                 <button type="button" class="category-btn">모두</button>
                                 <div class="input-group">
                                     <input type="text" placeholder="검색어를 입력해주세요">
-                                    <button type="button"><i class="ti-search"></i></button>
+                                    <button type="button" name="search-btn"><i class="ti-search"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                 </li>
                                 
                                 <li class="cart-icon">
-                                    <a href="./check-out.html">
+                                    <a href="./shopping_cart.do">
                                         <i class="icon_bag_alt"></i>
                                         <span>3</span>
                                     </a>
