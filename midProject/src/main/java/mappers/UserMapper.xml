@@ -27,12 +27,38 @@
 		WHERE id = #{id}
 	</update>
     
+    
     <!--  회원정보 리스트 출력 -->
-    <select id="getUserList" resultType="UserVO">
-		<![CDATA[
-		SELECT * FROM user WHERE role ="USER" ORDER BY id DESC
-		]]>
+    <select id="getUserList" parameterType="hashmap" resultType="UserVO">
+
+		SELECT *
+		FROM USER
+		WHERE ROLE = "USER"
+		<if test="searchCondition != null and searchKeyword != null">
+			AND
+			<choose>
+				<when test="searchCondition == 'name'">
+					NAME LIKE '%${searchKeyword}%'
+				</when>
+				<when test="searchCondition == 'phone'">
+					PHONE LIKE '%${searchKeyword}%'
+				</when>
+				<when test="searchCondition == 'id'">
+					ID LIKE '%${searchKeyword}%'
+				</when>
+				<when test="searchCondition == 'addr'">
+					ADDR LIKE '%${searchKeyword}%'
+				</when>
+				<when test="searchCondition == 'email'">
+					EMAIL LIKE '%${searchKeyword}%'
+				</when>
+			</choose>
+		</if>
+		ORDER BY ID DESC
+		
 	</select>
+	
+	
 	
     <!-- 게시물 총 개숫 -->
     <select id="getTotal" resultType="int">

@@ -11,7 +11,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize Free</title>
+<title>사용자 관리 usermanage</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -71,17 +71,27 @@
 									<td><a></a></td>
 								</tr>
 							</c:forEach>
-
 						</table>
-						<!-- 검색버튼 만드세요 -->
-						<div class="search row">
-
-						</div>
 						<!-- page 이전 1 2 3 4 5 다음 만드세요  -->
 						<div>
-
 						</div>
 					</form>
+					
+						<!-- 검색폼 시작 (name값이랑 value값은 변경금지!!) -->
+						<form action="usermange.do">
+						<div class="search row">
+							<select name="searchCondition" id="searchCondition"
+										class="search-date-bar">
+										<option value="name">이름</option>
+										<option value="phone">휴대폰번호</option>
+										<option value="id">아이디</option>
+										<option value="addr">주소</option>
+										<option value="email">이메일</option>
+									</select> <input type="text" name="searchKeyword"> 
+									<input type="submit" class="btn btn-primary search-btn " value="검색">
+						</div>
+						</form>
+						<!-- 검색 폼 끝 -->
 				</section>
 			</div>
 		</div>

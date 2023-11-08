@@ -1,5 +1,6 @@
 package com.mid.mvc.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.mid.mvc.domain.UserVO;
@@ -14,9 +15,9 @@ public interface UserService {
 	
 	public void updateUser(UserVO vo);
 	
-	List<UserVO> getUserList(UserVO vo);
+	List<UserVO> getUserList(HashMap map);
 	
-	List<UserVO> getSupplyList(UserVO vo);
+	List<UserVO> getSupplyList(HashMap map);
 	
 	void insertSupply(UserVO vo);
 	

@@ -1,5 +1,6 @@
 package com.mid.mvc.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -45,14 +46,16 @@ public class UserDAOImpl implements UserDAO {
 		
 	}
 	
-	public List<UserVO> getUserList(UserVO vo){
-		System.out.println("UserDAOImpl");
-		return sqlSession.selectList("UserMapper.getUserList", vo);
+	public List<UserVO> getUserList(HashMap map){
+		System.out.println("===> sqlSession getUserList ");
+		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
+		return sqlSession.selectList("UserMapper.getUserList", map);
 	}
 	
-	public List<UserVO> getSupplyList(UserVO vo){
-		System.out.println("UserDAOImpl");
-		return sqlSession.selectList("UserMapper.getSupplyList", vo);
+	public List<UserVO> getSupplyList(HashMap map){
+		System.out.println("===> sqlSession getSupplyList");
+		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
+		return sqlSession.selectList("UserMapper.getSupplyList", map);
 	}
 	
 	public void insertSupply(UserVO vo) {

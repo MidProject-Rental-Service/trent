@@ -19,8 +19,8 @@ public class GoodsServiceImpl implements GoodsService{
 	
 	
 	// 제품 목록 띄우기
-	public List<GoodsVO> getGoodsList(GoodsVO vo) {
-		return goodsDAO.getGoodsList(vo);
+	public List<GoodsVO> getGoodsList(HashMap map) {
+		return goodsDAO.getGoodsList(map);
 	}
 	
 	// 제품 상세보기

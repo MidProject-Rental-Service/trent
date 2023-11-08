@@ -22,8 +22,10 @@ public class GoodsDAOImpl {
 	}
 
 	// 상품 전체 검색
-	public List<GoodsVO> getGoodsList(GoodsVO vo){
-		return SqlSession.selectList("GoodsMapper.getGoodsList", vo);
+	public List<GoodsVO> getGoodsList(HashMap map){
+		System.out.println("====>  sqlSession getGoodsList ");
+		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
+		return SqlSession.selectList("GoodsMapper.getGoodsList", map);
 	}
 
 	public GoodsVO getGoodsById(GoodsVO vo) {

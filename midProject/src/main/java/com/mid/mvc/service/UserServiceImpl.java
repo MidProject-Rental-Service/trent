@@ -1,5 +1,6 @@
 package com.mid.mvc.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,14 +36,14 @@ public class UserServiceImpl implements UserService {
 		userDAOImpl.updateUser(vo);
 	}
 	
-	public List<UserVO> getUserList(UserVO vo){
+	public List<UserVO> getUserList(HashMap map){
 		System.out.println("UserServiceImpl");
-		return userDAOImpl.getUserList(vo);
+		return userDAOImpl.getUserList(map);
 	}
 	
-	public List<UserVO> getSupplyList(UserVO vo){
+	public List<UserVO> getSupplyList(HashMap map){
 		System.out.println("UserServiceImpl");
-		return userDAOImpl.getSupplyList(vo);
+		return userDAOImpl.getSupplyList(map);
 	}
 	
 	public void insertSupply(UserVO vo) {

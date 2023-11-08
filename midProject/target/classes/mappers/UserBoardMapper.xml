@@ -35,6 +35,9 @@
 				<when test="searchCondition == 'ub_content'">
 					UB_CONTENT LIKE '%${searchKeyword}%'
 				</when>
+				<when test="searchCondition == 'ub_head'">
+					UB_HEAD LIKE '%${searchKeyword}%'
+				</when>
 			</choose>
 		</if>
 		<if test="startDate != null and endDate != null">

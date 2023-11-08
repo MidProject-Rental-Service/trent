@@ -11,7 +11,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize Free</title>
+<title>공급사관리</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -136,6 +136,10 @@
 							</c:if>
 						</ul>
 					</div>
+				</form>
+				<!-- 검색부분 -->
+				<form action="">
+				
 				</form>
 			</section>
 		</div>
