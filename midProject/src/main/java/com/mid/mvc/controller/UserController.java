@@ -134,6 +134,7 @@ public class UserController {
 	// 리뷰 저장
 	@RequestMapping("/saveUserReview.do")
 	public String saveUserReview(UserReviewVO vo) {
+		System.out.println("===> Controller saveUserReview 호출" );
 		System.out.println(" saveUserReview:" + vo);
 		userReviewService.saveUserReview(vo);
 		return "redirect:reviewManagement.do";
@@ -155,13 +156,13 @@ public class UserController {
 	  return "success";
 	}
 	// user review end
-
+	
 
 
 	// 장바구니
-	@RequestMapping("/shopping-cart.do")
+	@RequestMapping("/shopping_cart.do")
 	public String shoppingCart() {
-		return "shopping-cart";
+		return "user/shopping_cart";
 	}
 	
 	

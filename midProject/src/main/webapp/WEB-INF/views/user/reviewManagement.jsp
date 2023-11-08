@@ -48,6 +48,7 @@
 	function reviewWrite(r_id) {
 	
 		window.location.href = 'reviewWrite.do?r_id=' + r_id;
+		
 	}
 
 	function toggleCheckbox(checkbox) {
@@ -173,7 +174,7 @@
 												<c:otherwise>
 													<input type="button" class="btn btn-warning correct-btn"
 														value="작성하기"
-														onclick="reviewWrite('${review.r_id}}')">
+														onclick="reviewWrite('${review.r_id}')">
 												</c:otherwise>
 											</c:choose></td>
 									</tr>

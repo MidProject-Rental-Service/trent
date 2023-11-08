@@ -46,6 +46,10 @@
 	function backToList() {
 		window.location.href = 'reviewManagement.do';
 	}
+	
+	function saveReview() {
+		window.location.href = 'reviewManagement.do';
+	}
 
 	</script>
 	
@@ -116,11 +120,11 @@
 						<h4>리뷰작성</h4>
 					</div>
 					<div class="review-write">
-						<form class="review-write-form" action="saveUserReview.do">
+						<form class="review-write-form" action="saveUserReview.do" method="post" enctype="multipart/form-data" >
 						<input name="r_id" type="hidden" value="${userReview.r_id}" />
 							<div id="form-group" class="form-group row">
 								<div class="col-md-3">
-									<img src="img/products/product-1.jpg" alt="">
+									<img src="../img/cart-page/product-1.jpg" alt="">
 								</div>
 								<div class="col-md-3">
 									<select name="r_point" id="r_point" class="form-control">
@@ -150,14 +154,16 @@
 							<div class="form-group">
 								<textarea class="form-control" name="r_content" rows="4" cols="50" >${userReview.r_content }</textarea>
 							</div>
+							
 							<div class="form-group row">
 								<div class="col-md-6 text-left">
-									<input type="file" name="r_img" id="file"
+									<input type="file" name="file1" id="file1"
 										accept=".img,.jpg,.png">
 								</div>
+								
 								<div class="col-md-6 text-right">
 									<button type="button" class="btn btn-primary cancle-btn" onclick="backToList()">취소</button>
-									<button type="submit" class="btn btn-primary complete-btn">완료</button>
+									<button type="submit" class="btn btn-primary complete-btn" >완료</button>
 								</div>
 							</div>
 						</form>

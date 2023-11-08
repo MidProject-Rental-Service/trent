@@ -5,7 +5,7 @@
 
 	<update id="saveUserReview" parameterType="UserReviewVO">
 		UPDATE REVIEW SET
-		R_POINT = #{r_point}, R_CONTENT= #{r_content}, R_REGDATE = now()
+		R_POINT = #{r_point}, R_CONTENT= #{r_content}, R_REGDATE = now(),R_IMG = #{r_img}
 		WHERE
 		R_ID = #{r_id}
 	</update>
