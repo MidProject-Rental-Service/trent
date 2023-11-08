@@ -53,4 +53,7 @@ public interface GoodsService {
 	// 제품검색 헤더 
 	List<GoodsVO>getSearchGoodsList(HashMap map);
 
+	List<PriceVO> getPriceInfo(String g_id, int selectedMonths);
+
+
 }

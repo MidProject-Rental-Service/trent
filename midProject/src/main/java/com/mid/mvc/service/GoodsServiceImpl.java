@@ -119,4 +119,9 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsDAO.getSearchGoodsList(map);
 	}
 
+	// 공급사별 가격 정보
+	public List<PriceVO> getPriceInfo(String g_id, int selectedMonths) {
+		return goodsDAO.getPriceInfo(g_id, selectedMonths);
+	}
+
 }

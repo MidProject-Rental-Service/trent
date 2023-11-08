@@ -129,6 +129,17 @@ public class GoodsDAOImpl {
 		   System.out.println("===> " + map );
 		return SqlSession.selectList("GoodsMapper.getSearchGoodsList", map);
 	}
+
+	// 공급사 제품 가격 정보 
+	public List<PriceVO> getPriceInfo(String g_id, int selectedMonths) {
+		System.out.println("=====> getPriceInfo() 호출");
+		System.out.println("======> g_id: "+ g_id +"// p_rent: "+ selectedMonths);
+		HashMap map = new HashMap();
+		map.put("g_id", g_id);
+		map.put("selectedMonths", selectedMonths);
+		
+		return SqlSession.selectList("GoodsMapper.getPriceInfo", map);
+	}
 	
 	
 }

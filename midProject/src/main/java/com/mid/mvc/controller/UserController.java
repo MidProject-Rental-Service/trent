@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -249,7 +250,6 @@ public class UserController {
         GoodsVO productInfo = goodsServiceImpl.getProductDetail(g_id);
         List<PriceVO> priceInfoList = goodsServiceImpl.getProductPrice(g_id);
         PriceVO minPrice = goodsServiceImpl.getMinPrice(g_id);
-       
         
         if (productInfo != null) {
             model.addAttribute("productInfo", productInfo);
@@ -260,6 +260,19 @@ public class UserController {
         } else {
             return "errorPage"; // 오류 페이지로 리다이렉트 또는 표시
         }
+    }
+    
+    // Ajax 엔드포인트를 통해 가격 정보를 업데이트하는 메서드를 추가
+    @RequestMapping(value = "/updatePrice.do", method = RequestMethod.POST)
+    @ResponseBody
+    public List<PriceVO> updatePrice(@RequestBody PriceVO vo) {
+        // 클라이언트에서 전송한 PriceVO 객체 사용
+        String g_id = vo.getG_id();
+        int selectedMonths = vo.getP_rent();
+        
+        // 나머지 로직
+        List<PriceVO> updatedPriceInfo = goodsServiceImpl.getPriceInfo(g_id, selectedMonths);
+        return updatedPriceInfo;
     }
 
     //상품 검색 (Header) 검색창

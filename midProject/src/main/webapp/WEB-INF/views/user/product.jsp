@@ -258,9 +258,9 @@
 																				<table summary="요약" class="info_box">
 																					<tbody>
 																						<tr style="padding: 0px; border: none; margin: 0;">
-																							<td class="sub_info_box1">월렌탈요금</td>
-																							<td class="sub_info_box2">카드할인가</td>
-																							<td class="sub_info_box3">사은품 혜택</td>
+																							<td class="sub_info_box1">월렌탈요금<br/><a>월<span class="formatted-number">000</span>원</a></td>
+																							<td class="sub_info_box2">카드할인가<br/><a>월<span class="formatted-number">000</span>원</a></td>
+																							<td class="sub_info_box3">사은품 혜택<br/><a>월<span class="formatted-number">000</span>P</a></td>
 																						</tr>
 																					</tbody>
 																				</table>
@@ -517,6 +517,59 @@
             
             // 클릭한 버튼에 on 클래스 추가
             $(this).addClass("on");
+        });
+        
+        // ********************************************
+        
+     	// 개월 수 버튼을 클릭했을 때
+        $('.rentalPeriod').on('click', function() {
+            var selectedMonths = $(this).data('rentalperiod');
+            
+            // PriceVO 객체 생성
+            var priceVO = {
+                g_id: "${productInfo.g_id}", // 상품 ID를 서버에서 받은 값을 사용
+                p_rent: selectedMonths
+            };
+            
+            $.ajax({
+                type: 'POST',
+                url: '/midProject/user/updatePrice.do', // Spring MVC 엔드포인트 URL로 변경
+                data: JSON.stringify(priceVO), // PriceVO 객체를 JSON 문자열로 변환하여 전송
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                 	// 서버로부터 받은 데이터(data)를 처리
+                    var subPriceView = $('.sub_price_view');
+                    subPriceView.empty();
+
+                    // 데이터를 테이블로 변환
+                    data.forEach(function(item) {
+                        var table = $('<table>').addClass('sub_price_Table');
+                        var tbody = $('<tbody>');
+
+                        // 각 데이터 항목에 대한 처리
+                        var tr = $('<tr>');
+                        tr.append($('<td>').addClass('sub_Title').html('<div class="sub_logo_img"><img src="' + item.image + '"></div><p>' + item.s_name + '</p>'));
+
+                        // 숫자 포맷팅 적용
+                        var formattedPrice = item.p_price.toLocaleString('en');
+                        var formattedCardPrice = item.p_card.toLocaleString('en');
+                        var formattedGift = item.p_gift.toLocaleString('en');
+
+                        tr.append($('<td>').addClass('sub_Info').html('<div class="join_condition"><textarea id="join_condition" name="join_condition" rows="2" cols="30" readonly>' + item.p_text + '</textarea></div><div class="btn_choice_box_con"><button type="button">제휴카드보기&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/></svg></button></div>'));
+
+                        tr.append($('<td>').addClass('sub_Info2').html('<div class="sub_info_box_rental"><table summary="요약" class="info_box"><tbody><tr style="padding: 0px; border: none; margin: 0;"><td class="sub_info_box1">월렌탈요금<br/><a style="color: red;">월<span style="font-weight: bold;" class="formatted-number">' + formattedPrice + '</span>원</a></td><td class="sub_info_box2">카드할인가<br/><a>월<span class="formatted-number">'+ formattedCardPrice +'</span>원</a></td><td class="sub_info_box3">사은품 혜택<br/><a>월<span class="formatted-number">'+ formattedGift +'</span>P</a></td></tr></tbody></table></div><div class="btn_choice_box2"><button type="button" class="btn-cart">장바구니</button><button type="button" class="btn-rental">렌탈신청</button></div>'));
+
+                        tbody.append(tr);
+                        table.append(tbody);
+                        subPriceView.append(table);
+                    });
+                },
+                error: function(error) {
+                    // 에러 처리
+                }
+            });
         });
         
     });
