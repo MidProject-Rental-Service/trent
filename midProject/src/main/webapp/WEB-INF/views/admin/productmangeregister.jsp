@@ -130,6 +130,7 @@
 											<option value="4">위닉스</option>
 											<option value="5">듀플렉스</option>
 											<option value="6">에어메이드</option>
+											<option value="7">샤오미</option>
 										</select>
 									</div>
 								</div>
