@@ -65,7 +65,7 @@
 	<section class="product-shop spad">
 		<div class="container">
 			<div class="filter-widget">
-				<h6 class="search" style="visibility: hidden">"OOO" 검색결과 00개의
+				<h6 class="search" style="visibility: hidden">"OOO" 검색결과 ${cnt} 개의 
 					제품이 있습니다</h6>
 			</div>
 			<div class="row">
@@ -151,7 +151,7 @@
 								<div class="col-lg-4 col-sm-6">
 									<div class="product-item">
 										<div class="pi-pic">
-											<a href="product.do?b_id=${list.g_id }">
+											<a href="product.do?g_id=${list.g_id }">
 											<img src="../img/products/${list.g_rimg1}" alt="">
 												<div class="sale pp-sale">Sale</div>
 												<div class="icon">
@@ -179,9 +179,6 @@
 								</div>
 							</c:forEach>
 
-							<div class="loading-more">
-								<i class="icon_loading"></i> <a href="#"> Loading More </a>
-							</div>
 						</div>
 					</div>
 				</div>

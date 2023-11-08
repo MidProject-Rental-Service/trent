@@ -46,26 +46,18 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>모델명</th>
-								<th>공급사명</th>
-								<th>약정기간</th>
-								<th>렌탈비용</th>
-								<th>카드할인</th>
-								<th>사은품혜택</th>
-								<th>가입조건</th>
+								<th >카드리스트</th>
 							</tr>
 						</thead>
 
-						<c:forEach items="${priceList}" var="list">
+						<c:forEach items="${cardList}" var="list">
 							<tr>
-								<td ><img src="<c:url value='../resources/img/products/${list.c_rimg1}' />" width="100" /></td>
-								<td ><img src="<c:url value='../resources/img/products/${list.g_rimg1}' />" width="100" /></td>
-								
-									</tr>
+								<td><a href="cardmodify.do?c_num=${list.c_num}"><img src="<c:url value='../resources/img/cards/${list.c_rimg1}' />" width="1000" /></a></td>				
+							</tr>
 						</c:forEach>
 
 					</table>
-					<div class="search row">
+					<div class="search row"> 
 						<div class="col-xs-2 col-sm-2">
 							<select name="searchType" class="form-control">
 								<option value="n"

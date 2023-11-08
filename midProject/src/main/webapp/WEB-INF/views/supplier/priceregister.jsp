@@ -83,7 +83,6 @@
 									</div>
 								</div>
 
-								<hr>
 
 								<div class="row">
 									<div class="col-sm-2">
@@ -121,15 +120,8 @@
 
 								<hr>
 
-								<div class="row">
-									<div class="col-sm-7">
-										<label for="g_id" class="form-label">제휴카드등록 </label>
-										<!-- <table id='replyList' border='2'/> -->
-									</div>
-								</div>
-
-								<div class="row text-center">
-									<div class="col-sm-12">
+								<div class="row text-right">
+									<div class="col-sm-4">
 										<input class="btn btn-primary mx-2" type="submit" value="등록하기" />
 										<a class="btn btn-danger mx-2"	 href="productmange.do">뒤로가기</a>
 									</div>

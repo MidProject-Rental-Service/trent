@@ -74,7 +74,7 @@
 									<div class="col-sm-4">
 										<label for="file1" class="form-label">메인썸네일</label>
 										<div class="input-group">
-											<input type="file" class="form-control" name="file1" readonly>
+											<input type="file" class="form-control" name="file1" readonly >
 										</div>
 									</div>
 								</div>
@@ -137,13 +137,13 @@
 								<div class="row">
 									<div class="col-sm-9">
 										<label for="g_content" class="form-label">제품특징</label>
-										<textarea class="form-control" name="g_content" rows="5"></textarea>
+										<textarea class="form-control" name="g_content" rows="6"></textarea>
 									</div>
 								</div>
 
 								<div class="row text-left">
 									<div class="col-sm-12">
-										<input class="btn btn-primary" type="submit" value="등록하기" />
+										<input class="btn btn-primary" type="submit" value="등록하기" id="productregister"/>
 										<a class="btn btn-secondary mx-2" href="productmange.do">취소하기</a>
 									</div>
 								</div>
@@ -159,6 +159,8 @@
 
 	</div>
 	<!-- div 끝  -->
+	<script
+		src="../src/assets/libs/jquery/dist/jquery.max.js"></script>	
 	<script
 		src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script

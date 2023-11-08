@@ -1,0 +1,98 @@
+
+/* 메인 중앙정렬 */
+.main-contents {
+	margin-top:20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; 
+    padding-right: 140px
+}
+
+.main-banner-img img {
+    max-width: 1000px; 
+    height: auto; 
+    width: 100%; 
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.card-containe{
+	border: 1px solid #bdbdbd;
+	border-radius: 10px;
+	 margin-bottom:50px;
+}
+
+/* 제휴카드목록 */
+.sponsor_card_box{
+	width:1000px;
+	padding:10px;
+	padding-bottom:15px;
+}
+
+.sponsor_card_box .sponsor_card {
+    max-width: 1000px; /* 원하는 최대 너비로 설정해보세요 */
+    margin: 10px; /* 카드 간격을 조정해보세요 */
+    width: 100%; /* 가로 길이를 100%로 유지하고 싶다면 추가 */
+    text-align: left; /* 텍스트 좌측 정렬 */
+}
+
+.rental_title hr{
+	margin-right:20px	
+}
+
+
+.rental_title span {
+    font-weight: bold;
+}
+
+
+.rental_title img {
+    max-width: 100%; /* 이미지를 부모 요소에 맞게 조정 */
+    display: inline-block; /* 인라인 블록 요소로 설정 */
+    float: right; /* 우측으로 정렬 */
+    margin-right:30px
+}
+
+.rental_title h2 {
+    font-size: 24px;
+    margin-top: 10px; /* 제목과 이미지 사이 간격 추가 */
+    text-align: left; /* 텍스트 좌측 정렬 */
+}
+
+.rental_title p {
+    font-size: 14px;
+    text-align: left; /* 텍스트 좌측 정렬 */
+}
+
+
+
+.card_box {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1000px; /* 최대 너비 설정 */
+    margin: 0 auto;
+}
+
+.card_box li {
+    display: flex;
+    align-items: center;
+}
+
+.card_box img {
+    max-width: 100%; /* 이미지 크기 조정 */
+    width: 100%;
+    height: auto;
+    margin-right: 10px; /* 이미지와 텍스트 간격 조정 */
+}
+
+.card_box a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #333;
+    margin-left: auto; /* a태그를 오른쪽으로 정렬 */
+}

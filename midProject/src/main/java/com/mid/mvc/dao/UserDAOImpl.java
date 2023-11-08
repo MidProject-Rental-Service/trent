@@ -68,4 +68,11 @@ public class UserDAOImpl implements UserDAO {
 		int result = sqlSession.update("UserMapper.userModify", vo);
 		System.out.println("1나오면 성공 : " + result);
 	}
+
+	public int getTotal() {
+	    int result = sqlSession.selectOne("UserMapper.getTotal");
+	    return result;
+	}
+
+
 }

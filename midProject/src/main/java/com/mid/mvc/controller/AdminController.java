@@ -12,7 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import com.mid.mvc.domain.GoodsVO;
 import com.mid.mvc.domain.SupplierBoardVO;
@@ -38,7 +39,9 @@ public class AdminController {
 	
 	@Autowired
 	private SupplierBoardService supplierBoardServcie;
-	
+
+	@Autowired
+	private UserService userServiceImpl;	
 
 	@RequestMapping("/{step}.do")
 	public String viewPage(@PathVariable String step) {
@@ -52,7 +55,15 @@ public class AdminController {
 		System.out.println(vo.toString());
 		userService.insertSupply(vo);
 		return "redirect:supplymange.do";
-	}		
+	}	
+	
+	//공급사 등록에서 아이디중복확인
+	@RequestMapping("/idCheck.do") // id 중복체크
+	@ResponseBody
+	public String idCheck(String id) {
+		int result = userServiceImpl.idCheck(id);
+		return "" + result;
+	}
 	
 	//사용자 전체 검색
 	@RequestMapping("/usermange.do")

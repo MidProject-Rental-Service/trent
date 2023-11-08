@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mid.mvc.domain.GoodsVO;
+import com.mid.mvc.domain.PriceVO;
 import com.mid.mvc.domain.UserBoardVO;
 import com.mid.mvc.domain.UserRentalVO;
 import com.mid.mvc.domain.UserReviewVO;
@@ -134,6 +135,7 @@ public class UserController {
 	// 리뷰 저장
 	@RequestMapping("/saveUserReview.do")
 	public String saveUserReview(UserReviewVO vo) {
+		System.out.println("===> Controller saveUserReview 호출" );
 		System.out.println(" saveUserReview:" + vo);
 		userReviewService.saveUserReview(vo);
 		return "redirect:reviewManagement.do";
@@ -155,13 +157,13 @@ public class UserController {
 	  return "success";
 	}
 	// user review end
-
+	
 
 
 	// 장바구니
-	@RequestMapping("/shopping-cart.do")
+	@RequestMapping("/shopping_cart.do")
 	public String shoppingCart() {
-		return "shopping-cart";
+		return "user/shopping_cart";
 	}
 	
 	
@@ -209,7 +211,7 @@ public class UserController {
         return "redirect:inquiryList.do";
     }
     
- // 신청목록 
+    // 신청목록 
  	@RequestMapping("/applicationList.do")
  	public void rentalList(Model m, HttpSession session, String searchCondition, String searchKeyword,
  		String datepicker1, String datepicker2) {
@@ -235,13 +237,53 @@ public class UserController {
 	public void GoodsList(GoodsVO vo, Model m) {
     	System.out.println("화면에서 넘겨오는 값:" + vo.toString());
 		List<GoodsVO> result = goodsServiceImpl.getGoodsList(vo);
+		int cnt = result.size();
 		m.addAttribute("goodsList", result);
+		
 	}
+    
+    // 상품 상세 페이지로 이동
+    @RequestMapping("/product.do")
+    public String showProductDetail(@RequestParam("g_id") String g_id, Model model) {
+        // 제품 ID를 사용하여 상세 정보를 검색
+        GoodsVO productInfo = goodsServiceImpl.getProductDetail(g_id);
+        List<PriceVO> priceInfoList = goodsServiceImpl.getProductPrice(g_id);
+        PriceVO minPrice = goodsServiceImpl.getMinPrice(g_id);
+       
+        
+        if (productInfo != null) {
+            model.addAttribute("productInfo", productInfo);
+            model.addAttribute("priceInfoList", priceInfoList);
+            model.addAttribute("minPrice", minPrice);
+            
+            return "user/product";
+        } else {
+            return "errorPage"; // 오류 페이지로 리다이렉트 또는 표시
+        }
+    }
+
+    //상품 검색 (Header) 검색창
+    @RequestMapping("/shop_search.do")
+	public void searchGoodsList(GoodsVO vo, Model m,String searchCondition, String searchKeyword) {
+    	
+    	HashMap map = new HashMap();
+ 		map.put("searchCondition", searchCondition);
+ 		map.put("searchKeyword", searchKeyword);
+    	
+
+		List<GoodsVO> result = goodsServiceImpl.getSearchGoodsList(map);
+		int cnt = result.size();
+		m.addAttribute("searchKeyword", searchKeyword);
+		m.addAttribute("cnt",cnt);
+		m.addAttribute("goodsList", result);
+		
+	}
+
     
     // 제품군 검색 (좌측패널)
     @RequestMapping(value="/searchCategory",method=RequestMethod.POST)
     @ResponseBody
-    public List<GoodsVO> searchByCategory(
+    public List<GoodsVO> searchCategory(
     		// 요소들이 전부다 전송되지 않아도 에러나지않게 처리 
             @RequestParam(required = false) String c_name,
             @RequestParam(value = "selectedBrands[]", required = false) List<String> selectedBrands,

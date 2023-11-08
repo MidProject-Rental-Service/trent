@@ -60,10 +60,10 @@
 						<c:forEach items="${goodsList}" var="list">
 							<tr>	
 								<td><img src="<c:url value='../resources/img/products/${list.g_rimg1}' />" width="100" /></td> 
-								<td><a href="<c:url value='/admin/productmangemodify.do?g_id=${list.g_id}'/>"><c:out value="${list.g_name}" /></a></td>
-								<td><c:out value="${list.g_id}" /></td>
-								<td><c:out value="${list.c_name}" /></td> 
-								<td><c:out value="${list.g_content}" /></td>
+								<td style="vertical-align:middle"><a href="<c:url value='/admin/productmangemodify.do?g_id=${list.g_id}'/>"><c:out value="${list.g_name}" /></a></td>
+								<td style="vertical-align:middle"><c:out value="${list.g_id}" /></td>
+								<td style="vertical-align:middle"><c:out value="${list.c_name}" /></td> 
+								<td style="vertical-align:middle"><c:out value="${list.g_content}" /></td>
 							</tr>
 						</c:forEach>
 

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.mid.mvc.domain.UserVO"%>
+
+<% 
+  UserVO user = (UserVO) session.getAttribute("loggedInUser");
+%>
+	
 <!DOCTYPE html>
 
 <html lang="en">
@@ -31,8 +37,8 @@
 					<ul class="navbar-nav">
 						<li class="nav-item d-block d-xl-none"><a
 							class="nav-link sidebartoggler nav-icon-hover"
-							id="headerCollapse" href="javascript:void(0)"> <i
-								class="ti ti-menu-2"></i>
+							id="headerCollapse" href="javascript:void(0)">
+							<i	class="ti ti-menu-2"></i>
 						</a></li>
 						<li class="nav-item"></li>
 					</ul>
@@ -51,96 +57,21 @@
 
 				<div class="row g-5">
 					<div class="col-md-12">
-						<form action="productregister.do" method='post'
-							enctype="multipart/form-data">
+						<form action="insertCard.do" method='post' enctype="multipart/form-data">
+						<input name="id" type="hidden" value="<%= user.getId() %>" />
 							<div class="row g-3">
-								<div class="row">
-									<div class="col-sm-4">
-										<label for="g_id" class="form-label">모델명</label> <input
-											type="text" class="form-control" name="g_id">
-									</div>
-								</div>
 
 								<div class="row">
 									<div class="col-sm-4">
-										<label for="g_name" class="form-label">제품명</label> <input
-											type="text" class="form-control" name="g_name">
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-sm-4">
-										<label for="file1" class="form-label">메인썸네일</label>
+										<label for="cardImg1" class="form-label">할인카드1</label>
 										<div class="input-group">
-											<input type="file" class="form-control" name="file1" readonly>
+											<input type="file" class="form-control" name="cardImg1" readonly>
 										</div>
 									</div>
 								</div>
 
-								<div class="row">
+								<div class="row text-right">
 									<div class="col-sm-4">
-										<label for="file2" class="form-label">리스트썸네일</label>
-										<div class="input-group">
-											<input type="file" class="form-control" name="file2" readonly>
-										</div>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-sm-4">
-										<label for="file3" class="form-label">대표사진</label>
-										<div class="input-group">
-											<input type="file" class="form-control" name="file3" readonly>
-										</div>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-sm-4">
-										<label for="file4" class="form-label">상세설명사진</label>
-										<div class="input-group">
-											<input type="file" class="form-control" name="file4" readonly>
-										</div>
-									</div>
-								</div>
-
-
-								<div class="row">
-									<div class="col-sm-3">
-										<label for="c_id" class="form-label">제품분류</label>
-										<select class="form-select" name="c_id">
-											<option value="">제조사선택</option>
-											<option value="1">공기청정기</option>
-											<option value="2">가습기</option>
-											<option value="3">제습기</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-sm-3">
-										<label for="m_id" class="form-label">제조사</label> <select
-											class="form-select" name="m_id">
-											<option value="">제조사선택</option>
-											<option value="1">엘지전자</option>
-											<option value="2">삼성전자</option>
-											<option value="3">다이슨</option>
-											<option value="4">위닉스</option>
-											<option value="5">듀플렉스</option>
-											<option value="6">에어메이드</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-sm-9">
-										<label for="g_content" class="form-label">제품특징</label>
-										<textarea class="form-control" name="g_content" rows="5"></textarea>
-									</div>
-								</div>
-
-								<div class="row text-left">
-									<div class="col-sm-12">
 										<input class="btn btn-primary" type="submit" value="등록하기" />
 										<a class="btn btn-danger mx-2" href="productmange.do">취소하기</a>
 									</div>

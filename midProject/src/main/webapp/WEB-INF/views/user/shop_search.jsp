@@ -30,10 +30,10 @@
 <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="../css/style.css" type="text/css">
 
-
 </head>
 
 <body>
+
 	<%-- 세션에서 로그인 정보 가져오기 --%>
 	<%
 		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
@@ -65,7 +65,8 @@
 	<section class="product-shop spad">
 		<div class="container">
 			<div class="filter-widget">
-				<h6 class="search">"OOO" 검색결과 00개의 제품이 있습니다</h6>
+				<h5 class="search" >"${searchKeyword }" 검색결과 ${cnt} 개의 
+					제품이 있습니다</h5>
 			</div>
 			<div class="row">
 				<div
@@ -73,32 +74,32 @@
 					<div class="filter-widget">
 						<h4 class="fw-title">Categories</h4>
 						<ul class="filter-catagories">
-							<li><a href="shop_search.do?c_name=공기청정기">공기청정기</a></li>
-							<li><a href="shop_search.do?c_name=가습기">가습기</a></li>
-							<li><a href="shop_search.do?c_name=제습기">제습기</a></li>
+							<li><a href="#" onclick="searchCategory('공기청정기')">공기청정기</a></li>
+							<li><a href="#" onclick="searchCategory('가습기')">가습기</a></li>
+							<li><a href="#" onclick="searchCategory('제습기')">제습기</a></li>
 						</ul>
 					</div>
 					<div class="filter-widget">
 						<h4 class="fw-title">Brand</h4>
 						<div class="fw-brand-check">
 							<div class="bc-item">
-								<label for="bc-lg"> LG <input type="checkbox"
-									id="bc-lg" value="엘지"> <span class="checkmark"></span>
+								<label for="엘지"> LG <input type="checkbox"
+									id="엘지"> <span class="checkmark"></span>
 								</label>
 							</div>
 							<div class="bc-item">
-								<label for="bc-samsung"> SAMSUNG <input type="checkbox"
-									id="bc-samsung" value="삼성"> <span class="checkmark"></span>
+								<label for="삼성"> SAMSUNG <input type="checkbox"
+									id="삼성"> <span class="checkmark"></span>
 								</label>
 							</div>
 							<div class="bc-item">
-								<label for="bc-xiomi"> XIOMI <input type="checkbox"
-									id="bc-xiomi" value="샤오미"> <span class="checkmark"></span>
+								<label for="샤오미"> XIOMI <input type="checkbox"
+									id="샤오미"> <span class="checkmark"></span>
 								</label>
 							</div>
 							<div class="bc-item">
-								<label for="bc-dyson"> DYSON <input type="checkbox"
-									id="bc-dyson" value="다이슨"> <span class="checkmark"></span>
+								<label for="다이슨"> DYSON <input type="checkbox"
+									id="다이슨"> <span class="checkmark"></span>
 								</label>
 							</div>
 						</div>
@@ -114,7 +115,7 @@
 							</div>
 							<div
 								class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-								data-min="0" data-max="50000">
+								data-min="5000" data-max="100000">
 								<div class="ui-slider-range ui-corner-all ui-widget-header"></div>
 								<span tabindex="1000"
 									class="ui-slider-handle ui-corner-all ui-state-default"></span>
@@ -143,15 +144,14 @@
 							</div>
 						</div>
 					</div>
-					
-					<div class="product-list"  >
+					<div class="product-list">
 						<div class="row">
-						
+
 							<c:forEach items="${goodsList}" var="list">
 								<div class="col-lg-4 col-sm-6">
 									<div class="product-item">
 										<div class="pi-pic">
-											<a href="getBoard.do?b_id=${list.g_id }"> <img
+											<a href="product.do?g_id=${list.g_id }"> <img
 												src="../img/products/${list.g_rimg1}" alt="">
 												<div class="sale pp-sale">Sale</div>
 												<div class="icon">
@@ -172,17 +172,16 @@
 											</a>
 											<div class="product-price">
 												<span>$35.00</span> $14.00
+
 											</div>
 										</div>
 									</div>
 								</div>
 							</c:forEach>
-						
-	
-							
+
+		
 						</div>
 					</div>
-					
 				</div>
 	</section>
 	<!-- Product Shop Section End -->
@@ -198,27 +197,9 @@
 	<script src="../js/jquery.slicknav.js"></script>
 	<script src="../js/owl.carousel.min.js"></script>
 	<script src="../js/main.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-		  $(".filter-btn").click(function(e) {
-		    e.preventDefault(); // 기본 동작을 막습니다.
+	<script src="../js/shopSearch.js"></script>
 
-		    var selectedBrands = []; // 선택된 브랜드를 저장할 배열
 
-		    // 체크된 체크박스를 찾아서 selectedBrands 배열에 추가합니다.
-		    $(".bc-item input[type='checkbox']:checked").each(function() {
-		      selectedBrands.push($(this).val());
-		    });
-
-		    // 선택된 브랜드가 있는 경우에만 동작합니다.
-		    if (selectedBrands.length > 0) {
-		      var m_name = selectedBrands.join(","); // 선택된 브랜드를 쉼표로 구분하여 문자열로 만듭니다.
-		      window.location.href = "shop_search.do?m_name=" + m_name;
-		    }
-		  });
-		});
-	
-	</script>
 	<jsp:include page="./footer.jsp" />
 
 </body>

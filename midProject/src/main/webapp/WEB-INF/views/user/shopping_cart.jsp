@@ -39,6 +39,10 @@
     <script src="../js/jquery.slicknav.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
     <script src="../js/main.js"></script>
+    <script type="text/javascript">
+    
+    history.back();
+    </script>
     
   </head>
   
@@ -152,18 +156,11 @@
             <div class="row">
               <div class="col-lg-4">
                 <div class="cart-buttons">
-                  <!-- <a href="#" class="primary-btn continue-shop"
-                    >Continue shopping</a
-                  > -->
-                  <a href="tindex.do" class="primary-btn up-cart">뒤로가기</a>
+
+                  <a href="" id="back-btn"  class="primary-btn up-cart">뒤로가기</a>
                 </div>
                 <div class="discount-coupon">
-                  <!-- <form action="#" class="coupon-form">
-                    <input type="text" placeholder="Enter your codes" />
-                    <button type="submit" class="site-btn coupon-btn">
-                      Apply
-                    </button>
-                  </form> -->
+
                 </div>
               </div>
               <div class="col-lg-4 offset-lg-4">
