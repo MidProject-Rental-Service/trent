@@ -68,8 +68,7 @@
 								<td><c:out value="${list.addr}" /></td>
 								<td><c:out value="${list.email}" /></td>
 								<!-- 답변을 추가하면 btn 생성하게 하는법?? -->
-								<td><a class="btn btn-primary"
-									href="http://localhost:8080/midProject/usermangemodify.jsp">수정하기</a></td>
+								<td><a class= "btn btn-primary" href ="supplymangemodify.do?id=${list.id}">수정하기</a></td>
 							</tr>
 						</c:forEach>
 

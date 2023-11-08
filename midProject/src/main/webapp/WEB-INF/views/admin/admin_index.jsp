@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize Free</title>
+<title>플랫폼관리자 페이지</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -153,7 +153,7 @@
 									<thead>
 										<tr>
 											<th scope="col">No</th>
-											<th scope="col">문의 제목</th>
+											<th scope="col">문의 유형</th>
 											<th scope="col">사용자</th>
 										</tr>
 									</thead>
@@ -183,7 +183,7 @@
 									<thead>
 										<tr>
 											<th scope="col">No</th>
-											<th scope="col">문의 제목</th>
+											<th scope="col">문의 유형</th>
 											<th scope="col">공급사</th>
 										</tr>
 									</thead>
@@ -191,8 +191,8 @@
 										<c:forEach items="${supplierBoardList }" var="list">
 											<tr>
 												<td><c:out value="${list.sb_id}" /></td>
-												<td><c:out value="${list.sb_title}" /></td>
-												<td><c:out value="${list.id}" /></td>
+												<td><c:out value="${list.sb_head}" /></td>
+												<td><c:out value="${list.name}" /></td>
 											</tr>
 										</c:forEach>
 									</tbody>

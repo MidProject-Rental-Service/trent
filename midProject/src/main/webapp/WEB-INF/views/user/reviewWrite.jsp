@@ -117,7 +117,7 @@
 					</div>
 					<div class="review-write">
 						<form class="review-write-form" action="saveUserReview.do">
-				<input name="r_id" type="hidden" value="${userReview.r_id}" />
+						<input name="r_id" type="hidden" value="${userReview.r_id}" />
 							<div id="form-group" class="form-group row">
 								<div class="col-md-3">
 									<img src="img/products/product-1.jpg" alt="">

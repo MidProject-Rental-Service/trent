@@ -1,5 +1,6 @@
 package com.mid.mvc.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,26 @@ public class SupplierBoardServiceImpl implements SupplierBoardService{
 	private SupplierBoardDAO supplierboardDAO;
 
 
-	@Override
 	public List<SupplierBoardVO> dashboardSupplierBoardList(SupplierBoardVO vo) {
 		return supplierboardDAO.dashboardSupplierBoardList(vo);
 	}
+
+	public List<SupplierBoardVO> admingetSupplierBoardList(HashMap map) {
+		return supplierboardDAO.admingetSupplierBoardList(map);
+	}
+
+
+	public SupplierBoardVO getSupplierBoard(SupplierBoardVO vo) {
+		return supplierboardDAO.getSupplierBoard(vo);
+	}
+
+	//공급사 문의 답변
+	public void insertAnswer(SupplierBoardVO vo) {
+		supplierboardDAO.insertAnswer(vo);
+		
+	}
 	
+
 
 
 }

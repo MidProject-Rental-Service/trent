@@ -27,7 +27,8 @@
 		data-sidebar-position="fixed" data-header-position="fixed">
 		
 		<jsp:include page="./admin_header.jsp"/>
-
+		
+		
 		<!--  메인페이지 -->
 		
 		<div class="container">

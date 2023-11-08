@@ -46,7 +46,6 @@
 
 			<section id="container">
 				<form role="form" method="get">
-
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -66,7 +65,8 @@
 								<td><c:out value="${list.id}" /></td>
 								<td><c:out value="${list.addr}" /></td>
 								<td><c:out value="${list.email}" /></td>
-								<!-- 답변을 추가하면 btn 생성하게 하는법?? -->
+								<td><a class= "btn btn-primary" href ="usermangemodify.do?id=${list.id}">수정하기</a></td>
+					
 								<td><a></a></td>
 							</tr>
 						</c:forEach>

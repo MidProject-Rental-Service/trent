@@ -11,12 +11,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize Free</title>
+<title>가격정보관리</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="../src/assets/css/styles.min.css" />
+<link rel="stylesheet"
+	href="../src/assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -24,17 +25,17 @@
 	<div class="page-wrapper" id="main-wrapper" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed">
-
-		<jsp:include page="./admin_header.jsp" />
-
+		
+		<jsp:include page="./supplier_header.jsp"/>
+		
 		<!--  메인페이지 -->
-
+		
 		<div class="container">
 
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="py-5 text-start">
-						<h1>사용자 문의</h1>
+						<h1>가격정보관리</h1>
 						<p class="lead"></p>
 					</div>
 				</div>
@@ -42,39 +43,30 @@
 
 			<section id="container">
 				<form role="form" method="get">
+
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>번호</th>
-								<th>문의유형</th>
-								<th>문의제목</th>
-								<th>아이디</th>
-								<th>등록일</th>
-								<th>문의답변하기</th>
+								<th>모델명</th>
+								<th>공급사명</th>
+								<th>약정기간</th>
+								<th>렌탈비용</th>
+								<th>카드할인가(최대)</th>
+								<th>사은품혜택</th>
+								<th>가입조건</th>
 							</tr>
 						</thead>
 
-						<c:forEach items="${userBoardList}" var="list">
-							<tr>
-								<td><c:out value="${list.ub_id}" /></td>
-								<td><c:out value="${list.ub_head}" /></td>
-								<td><c:out value="${list.ub_title}" /></td>
-								<td><c:out value="${list.id}" /></td>
-								<c:set var="formattedDate" value="${list.ub_regdate}" />
-								<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
-									var="formattedDateString" />
-								<td>${formattedDateString}</td>
-								<!-- 만약 ub_answer가 null이 아니면 "답변 완료" 버튼을, 그렇지 않으면 "답변하기" 버튼을 표시 -->
-								<c:choose>
-									<c:when test="${not empty list.ub_answer}">
-										<td><a class="btn btn-secondary" href="userinquiryanswerend.do?ub_id=${list.ub_id}" style="color: white; ">답변 완료</a></td>
-									</c:when>
-									<c:otherwise>
-										<td><a class="btn btn-primary"
-											href="userinquiryanswer.do?ub_id=${list.ub_id}">답변하기</a></td>
-									</c:otherwise>
-								</c:choose>
-							</tr>
+						<c:forEach items="${priceList}" var="list">
+							<tr>	
+								<td style="vertical-align:middle"><c:out value="${list.g_id}" /></td>
+								<td style="vertical-align:middle"><c:out value="${list.s_name}" /></td>
+								<td style="vertical-align:middle"><a href="<c:url value='/supplier/pricemodify.do?g_id=${list.g_id}'/>"><c:out value="${list.p_rent}개월" /></a></td>
+								<td style="vertical-align:middle"><c:out value="${list.p_price}원" /></td>
+								<td style="vertical-align:middle"><c:out value="${list.p_card}원" /></td> 
+								<td style="vertical-align:middle"><c:out value="${list.p_gift}원" /></td> 
+								<td style="vertical-align:middle"><c:out value="${list.p_text}" /></td> 
+									</tr>
 						</c:forEach>
 
 					</table>
@@ -84,9 +76,9 @@
 								<option value="n"
 									<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
 								<option value="t"
-									<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>문의제목</option>
+									<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제품명</option>
 								<option value="c"
-									<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>아이디</option>
+									<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>모델명</option>
 							</select>
 						</div>
 
@@ -99,7 +91,7 @@
 								</span>
 							</div>
 						</div>
-
+						<!-- 검색버튼 누르면 js  -->
 						<script>
 							$(function() {
 								$('#searchBtn')
@@ -119,6 +111,7 @@
 							});
 						</script>
 					</div>
+					<!-- page 이전 1 2 3 4 5 다음  -->
 					<div class="col-md-offset-3">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev}">
@@ -140,22 +133,17 @@
 							</c:if>
 						</ul>
 					</div>
+					<!-- page 이전 1 2 3 4 5 다음 끝 -->
 				</form>
 			</section>
 		</div>
-
-
-
-
 	</div>
-	<script src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
-	<script
-		src="../src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script	src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
+	<script	src="../src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="../src/assets/js/sidebarmenu.js"></script>
 	<script src="../src/assets/js/app.min.js"></script>
-	<script src="../src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-	<script src="../src/assets/libs/simplebar/dist/simplebar.js"></script>
+	<script	src="../src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+	<script	src="../src/assets/libs/simplebar/dist/simplebar.js"></script>
 	<script src="../src/assets/js/dashboard.js"></script>
 </body>
-
 </html>

@@ -7,14 +7,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize Free</title>
+<title>할인카드 등록</title>
 
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 
-<link rel="stylesheet"
-	href="../src/assets/css/styles.min.css" />
+<link rel="stylesheet" href="../src/assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -23,7 +21,7 @@
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed">
 		
-		<jsp:include page="./admin_header.jsp"/>
+		<jsp:include page="./supplier_header.jsp"/>
 		
 		<!--  Main wrapper -->
 		<div class="body-wrapper">
@@ -47,7 +45,7 @@
 		<div class="container">
 			<main>
 				<div class="py-5 text-left">
-					<h1>제품 등록</h1>
+					<h1>할인카드 등록</h1>
 					<p class="lead"></p>
 				</div>
 
@@ -109,9 +107,9 @@
 
 								<div class="row">
 									<div class="col-sm-3">
-										<label for="c_id" class="form-label">제품분류</label> <select
-											class="form-select" name="c_id">
-											<option value="">--제품분류 선택--</option>
+										<label for="c_id" class="form-label">제품분류</label>
+										<select class="form-select" name="c_id">
+											<option value="">제조사선택</option>
 											<option value="1">공기청정기</option>
 											<option value="2">가습기</option>
 											<option value="3">제습기</option>
@@ -123,7 +121,7 @@
 									<div class="col-sm-3">
 										<label for="m_id" class="form-label">제조사</label> <select
 											class="form-select" name="m_id">
-											<option value="">--제조사 선택--</option>
+											<option value="">제조사선택</option>
 											<option value="1">엘지전자</option>
 											<option value="2">삼성전자</option>
 											<option value="3">다이슨</option>
@@ -144,7 +142,7 @@
 								<div class="row text-left">
 									<div class="col-sm-12">
 										<input class="btn btn-primary" type="submit" value="등록하기" />
-										<a class="btn btn-secondary mx-2" href="productmange.do">취소하기</a>
+										<a class="btn btn-danger mx-2" href="productmange.do">취소하기</a>
 									</div>
 								</div>
 							</div>
