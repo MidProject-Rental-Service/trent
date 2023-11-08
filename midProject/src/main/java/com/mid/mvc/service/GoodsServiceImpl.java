@@ -29,7 +29,7 @@ public class GoodsServiceImpl implements GoodsService{
 	public GoodsVO getGoodsById(GoodsVO vo) {
 		return goodsDAO.getGoodsById(vo);
 	}
-	
+
 	public void insertPrice(PriceVO vo){
 		goodsDAO.insertPrice(vo);
 	}
@@ -59,6 +59,9 @@ public class GoodsServiceImpl implements GoodsService{
 	public List<GoodsVO> getCategoryGoodsList(String c_name) {
 		return goodsDAO.getCategoryGoodsList(c_name);
 	}
+
+
+
 
 
 

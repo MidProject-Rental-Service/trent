@@ -42,8 +42,8 @@ public class SupController {
 	
 	//해당 상품 가격 정보 등록 (페이지 띄우기)
 	@RequestMapping("/priceregister.do")
-	public void priceregister(@RequestParam("g_id") String gId, Model m) { 
-		 GoodsVO result = goodsService.getGoodsById(gId);
+	public void priceregister(GoodsVO vo, Model m) { 
+		 GoodsVO result = goodsService.getGoodsById(vo);
 		    m.addAttribute("product", result);
 	}
 	

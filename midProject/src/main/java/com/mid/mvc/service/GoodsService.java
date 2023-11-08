@@ -11,8 +11,9 @@ public interface GoodsService {
 	
 	List<GoodsVO> getGoodsList(GoodsVO vo);
 
+	// 관리자 
 	GoodsVO getGoodsById(GoodsVO vo);
-
+	
 	void insertPrice(PriceVO vo);
 	
 	void modifyPrice(PriceVO vo);
@@ -24,5 +25,6 @@ public interface GoodsService {
 	void deleteGoods(GoodsVO vo);
 	
 	List<GoodsVO> getCategoryGoodsList(String c_name);
+
 	
 }
