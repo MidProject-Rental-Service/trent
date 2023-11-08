@@ -47,8 +47,19 @@
 		]]>
 	</select>
 	
+	<!-- 관리자 페이지 사용자 정보 상세보기 -->
+	<select id="userDetail" resultType="UserVO">
+		<![CDATA[
+		SELECT * FROM user 
+		WHERE id = "${id}";
+		]]>
+	</select>    
 
-    
-
+	<!-- 관리자 페이지 사용자 정보 상세보기 -->
+	<update id="userModify" parameterType="UserVO">
+		UPDATE user 
+		SET pwd ='${pwd}', name ='${name}', phone ='${phone}', addr='${addr}', email='${email}'
+		WHERE id = #{id}
+	</update>
 	
 </mapper>

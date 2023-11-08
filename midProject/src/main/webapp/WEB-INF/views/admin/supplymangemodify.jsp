@@ -4,6 +4,8 @@
 
 <html lang="en">
 
+
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,66 +38,63 @@
 
 				<div class="row g-5">
 					<div class="col-md-12">
-						<form class="needs-validation" novalidate>
+						<form action="supplymangemodifing.do" method='post' novalidate>
+							<!-- id 가져오기 -->
+							<input type="hidden" name="id" value="${supply.id }">
+							
 							<div class="row g-3">
 								<div class="row">
 									<div class="col-sm-4 offset-sm-4">
-										<label for="Name" class="form-label">아이디</label> <input
-											type="text" class="form-control" id="User_id" readonly
-											value="${list.id }">
+										<label  class="form-label">아이디</label> <input
+											type="text" class="form-control" readonly value="${supply.id }">
 										<div class="invalid-feedback"></div>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-4 offset-sm-4">
-										<label for="Name" class="form-label">비밀번호</label> <input
-											type="text" class="form-control" id="User_pwd"
-											value="${list.pwd }">
+										<label for="pwd" class="form-label">비밀번호</label> <input
+											type="text" class="form-control" name="pwd" value="${supply.pwd }">
 										<div class="invalid-feedback"></div>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-4 offset-sm-4">
-										<label for="Name" class="form-label">회사명</label> <input
-											type="text" class="form-control" id="User_name"
-											value="${list.name }">
+										<label for="name" class="form-label">회사명</label> <input
+											type="text" class="form-control" name="name" value="${supply.name }">
 										<div class="invalid-feedback"></div>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-4 offset-sm-4">
-										<label for="Name" class="form-label">회사번호</label> <input
-											type="text" class="form-control" id="User_phone"
-											value="${list.phone }">
+										<label for="phone" class="form-label">회사번호</label> <input
+											type="text" class="form-control" name="phone" value="${supply.phone }">
 										<div class="invalid-feedback"></div>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-4 offset-sm-4">
-										<label for="Name" class="form-label">회사주소</label> <input
-											type="text" class="form-control" id="User_addr"
-											value="${list.addr }">
+										<label for="addr" class="form-label">회사주소</label> <input
+											type="text" class="form-control" name="addr" value="${supply.addr }">
 										<div class="invalid-feedback"></div>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-4 offset-sm-4">
-										<label for="Name" class="form-label">이메일</label> <input
-											type="text" class="form-control" id="User_email"
-											value="${list.email }">
+										<label for="email" class="form-label">이메일</label> <input
+											type="text" class="form-control" name="email" value="${supply.email }">
 										<div class="invalid-feedback"></div>
 									</div>
 								</div>
 
 								<div class="row text-center">
 									<div class="col-sm-12">
-										<a class="btn btn-primary mx-2" type="submit">등록하기</a> <a
-											class="btn btn-danger mx-2" href="supplymange.do">취소하기</a>
+										<button type="submit" class="btn btn-primary" >수정하기</button>
+										<a class="btn btn-danger mx-2" href="supplymange.do">뒤로가기</a>
 									</div>
 								</div>
 							</div>
@@ -108,6 +107,8 @@
 
 	</div>
 	<!-- div 끝  -->
+	<script
+		src="../src/assets/libs/jquery/dist/jquery.jel.js"></script>
 	<script
 		src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script

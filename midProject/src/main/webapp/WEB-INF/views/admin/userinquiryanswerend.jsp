@@ -13,8 +13,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 
-<link rel="stylesheet"
-	href="../src/assets/css/styles.min.css" />
+<link rel="stylesheet" href="../src/assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -47,22 +46,22 @@
 		<div class="container">
 			<main>
 				<div class="py-5 text-left">
-					<h1>공급사 문의 답변남기기</h1>
+					<h1>사용자 문의 답변남기기</h1>
 					<p class="lead"></p>
 				</div>
 				
 				
 				<div class="row g-5">
-					<div class="col-md-12">			 
-						<form action="supplyinquiryanswering.do" method='post'
+					<div class="col-md-12">
+						<form action="userinquiryanswering.do" method='post'
 							enctype="multipart/form-data">
 							<!-- hidden 으로 값주기 -->
-							<input type="hidden" name="sb_id" value="${supplierBoard.sb_id}">
+							<input type="hidden" name="ub_id" value="${userBoard.ub_id}">
 							<div class="row g-3">
 								<div class="row">
 									<div class="col-sm-2">
-										<label  class="form-label">회사명</label> <input
-											type="text" class="form-control"  value="${supplierBoard.name }"
+										<label  class="form-label">사용자명</label> <input
+											type="text" class="form-control"  value="${userBoard.name }"
 											readonly>
 									</div>
 								</div>
@@ -70,7 +69,7 @@
 								<div class="row">
 									<div class="col-sm-2">
 										<label  class="form-label">연락처</label> <input
-											type="text" class="form-control" value="${supplierBoard.phone }"
+											type="text" class="form-control" value="${userBoard.phone }"
 											readonly>
 									</div>
 								</div>
@@ -78,7 +77,7 @@
 								<div class="row">
 									<div class="col-sm-2">
 										<label  class="form-label">문의유형</label> <input
-											type="text" class="form-control" name="g_name" value="${supplierBoard.sb_head }"
+											type="text" class="form-control" name="g_name" value="${userBoard.ub_head }"
 											readonly>
 									</div>
 								</div>
@@ -86,7 +85,7 @@
 								<div class="row">
 									<div class="col-sm-2">
 										<label for="g_name" class="form-label">문의제목</label> <input
-											type="text" class="form-control"  value="${supplierBoard.sb_title }" readonly>
+											type="text" class="form-control"  value="${userBoard.ub_title }" readonly>
 									</div>
 								</div>
 
@@ -95,33 +94,25 @@
 								<div class="row">
 								    <div class="col-sm-9">
 								        <label  class="form-label">문의내용</label>
-								        <textarea class="form-control" rows="8" readonly>${supplierBoard.sb_content}</textarea>
+								        <textarea class="form-control" rows="8" readonly>${userBoard.ub_content}</textarea>
 								    </div>
 								</div>
 
 
 								<div class="row">
 									<div class="col-sm-9">
-										<label for="sb_answer" class="form-label">답변내용</label>
-										<textarea class="form-control" name="sb_answer" rows="8" ></textarea>
+										<label  class="form-label">답변내용</label>
+										<textarea class="form-control"rows="8" readonly >${userBoard.ub_answer }</textarea>
 									</div>
 								</div>
 
-
-
-								<div class="row">
-									<div class="col-md-2"></div>
-									<div class="col-md-2"></div>
-									<div class="col-md-2 sb-answerbtn supply-info text-center">
-										<button type="submit" class="btn btn-primary" >답변하기</button>
+								
+								<div class="row text-center">
+									<div class="col-sm-12">
+										<a href="userinquiry.do" class="btn btn-danger">뒤로가기</a>
 									</div>
-									<div class="col-md-2 ub-canclebtn user-info text-center">
-										<a href="supplyinquiry.do"
-											class="btn btn-danger">취소하기</a>
-									</div>
-									<div class="col-md-2"></div>
-									<div class="col-md-2"></div>
 								</div>
+
 							</div>
 						</form>
 					</div>
@@ -130,16 +121,13 @@
 
 		</div>
 	</div>
-		<script
-		src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
+	<script src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script
 		src="../src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="../src/assets/js/sidebarmenu.js"></script>
 	<script src="../src/assets/js/app.min.js"></script>
-	<script
-		src="../src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-	<script
-		src="../src/assets/libs/simplebar/dist/simplebar.js"></script>
+	<script src="../src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+	<script src="../src/assets/libs/simplebar/dist/simplebar.js"></script>
 	<script src="../src/assets/js/dashboard.js"></script>
 </body>
 </html>

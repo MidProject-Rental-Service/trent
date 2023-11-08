@@ -19,4 +19,8 @@ public interface UserDAO {
 	public List<UserVO> getSupplyList(UserVO vo);	
 	
 	public void insertSupply(UserVO vo);
+	
+	public UserVO userDetail(UserVO vo);
+	
+	public void userUpdate(UserVO vo);
 }

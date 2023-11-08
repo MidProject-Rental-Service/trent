@@ -102,25 +102,16 @@
 
 								<div class="row">
 									<div class="col-sm-9">
-										<label for="sb_answer" class="form-label">답변내용</label>
-										<textarea class="form-control" name="sb_answer" rows="8" ></textarea>
+										<label  class="form-label">답변내용</label>
+										<textarea class="form-control"  rows="8" readonly>${supplierBoard.sb_answer}</textarea>
 									</div>
 								</div>
 
-
-
-								<div class="row">
-									<div class="col-md-2"></div>
-									<div class="col-md-2"></div>
-									<div class="col-md-2 sb-answerbtn supply-info text-center">
-										<button type="submit" class="btn btn-primary" >답변하기</button>
+								
+								<div class="row text-center">
+									<div class="col-sm-12">
+										<a href="supplyinquiry.do" class="btn btn-danger">뒤로가기</a>
 									</div>
-									<div class="col-md-2 ub-canclebtn user-info text-center">
-										<a href="supplyinquiry.do"
-											class="btn btn-danger">취소하기</a>
-									</div>
-									<div class="col-md-2"></div>
-									<div class="col-md-2"></div>
 								</div>
 							</div>
 						</form>

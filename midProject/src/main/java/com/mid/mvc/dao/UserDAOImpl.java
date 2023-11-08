@@ -59,4 +59,13 @@ public class UserDAOImpl implements UserDAO {
 		System.out.println("UserDAOImpl 실행");
 		sqlSession.insert("UserMapper.insertSupply",vo);
 	}
+
+	public UserVO userDetail(UserVO vo) {
+		return sqlSession.selectOne("UserMapper.userDetail", vo);
+	}
+
+	public void userUpdate(UserVO vo) {
+		int result = sqlSession.update("UserMapper.userModify", vo);
+		System.out.println("1나오면 성공 : " + result);
+	}
 }

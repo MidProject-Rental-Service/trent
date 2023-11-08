@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="SupplierBoardDAO">
+<mapper namespace="SupplierBoardMapper">
 
+	<!-- 대시보드에서 리스트 5개만 띄우게하기 -->
 	<select id="dashboardSupplierBoardList" resultType="SupplierBoardVO">
-		SELECT SB_ID  , SB_TITLE  , id 
-		FROM SUPPLIERBOARD  
-		ORDER BY SB_REGDATE  DESC  LIMIT 5 ;
+		SELECT s.SB_ID  , s.SB_head  , u2.NAME 
+		FROM SUPPLIERBOARD S 
+		INNER JOIN `user` u2 
+		ON s.ID =u2.ID WHERE u2.`role` ="supplier" 
+		ORDER BY s.SB_ID DESC LIMIT 5;
 	</select>
 	
+	<select id="admingetSupplierBoardList" resultType="SupplierBoardVO">
+		SELECT s.* , u2.NAME 
+		FROM SUPPLIERBOARD S 
+		INNER JOIN `user` u2 
+		ON s.ID =u2.ID WHERE u2.`role` ="supplier"
+		ORDER BY s.SB_ID DESC;
+	</select>		
+
+	<select id="getSupplierBoard" resultType="SupplierBoardVO">
+		SELECT s.*, u.NAME ,u.PHONE 
+		FROM SUPPLIERBOARD S 
+		INNER JOIN `user` u 
+		ON s.ID = u.ID 
+		WHERE s.SB_ID = #{sb_id};
+	</select>
 	
+	<update id="insertAnswer" parameterType="SupplierBoardVO">
+		UPDATE SUPPLIERBOARD 
+		SET sb_answer = '${sb_answer}'
+		WHERE sb_id = #{sb_id};
+	</update>
 	
 </mapper>

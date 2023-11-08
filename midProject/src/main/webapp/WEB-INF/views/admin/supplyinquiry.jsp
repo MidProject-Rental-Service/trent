@@ -48,25 +48,34 @@
 						<thead>
 							<tr>
 								<th>번호</th>
+								<th>문의유형</th>
 								<th>문의제목</th>
-								<th>아이디</th>
+								<th>회사명</th>
 								<th>등록일</th>
 								<th>문의답변하기</th>
 							</tr>
 						</thead>
 
-						<c:forEach items="${supplierBoardList}" var="list">
+						<c:forEach items="${admingetSupplierBoardList}" var="list">
 							<tr>
 								<td><c:out value="${list.sb_id}" /></td>
-								<td><a
-									href="/board/readView?bno=${list.sb_id}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out
-											value="${list.sb_title}" /></a></td>
-								<td><c:out value="${list.id}" /></td>
-								<td><fmt:formatDate value="${list.sb_regdate}"
-										pattern="yyyy-MM-dd" /></td>
-								<!-- 답변을 추가하면 btn 생성하게 하는법?? -->
-								<td><a type="button" class="btn btn-primary"
-									href="http://localhost:8000/midProject/supplyinquiryanswer.jsp">답변하기</a></td>
+								<td><c:out value="${list.sb_head}" /></td>
+								<td><c:out value="${list.sb_title}" /></td> 
+								<td><c:out value="${list.name}" /></td>
+								<c:set var="formattedDate" value="${list.sb_regdate}" />
+								<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
+									var="formattedDateString" />
+								<td>${formattedDateString}</td>  
+								<!-- 만약 ub_answer가 null이 아니면 "답변 완료" 버튼을, 그렇지 않으면 "답변하기" 버튼을 표시 -->
+								<c:choose>
+									<c:when test="${not empty list.sb_answer}">
+										<td><a class="btn btn-secondary" href="supplyinquiryanswerend.do?sb_id=${list.sb_id}" style="color: white; ">답변 완료</a></td>
+									</c:when>
+									<c:otherwise>
+										<td><a class="btn btn-primary"
+											href="supplyinquiryanswer.do?sb_id=${list.sb_id}">답변하기</a></td>
+									</c:otherwise>
+								</c:choose>
 							</tr>
 						</c:forEach>
 
