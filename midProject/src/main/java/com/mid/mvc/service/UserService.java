@@ -19,4 +19,8 @@ public interface UserService {
 	List<UserVO> getSupplyList(UserVO vo);
 	
 	void insertSupply(UserVO vo);
+	
+	public UserVO userDetail(UserVO vo);
+	
+	void userModify(UserVO vo);
 }

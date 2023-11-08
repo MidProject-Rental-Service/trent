@@ -44,15 +44,7 @@
 	</select> 
 	
 	
-	<select id="dashboardUserBoardList" resultType="UserBoardVO">
-		SELECT UB_ID , UB_TITLE , id 
-		FROM USERBOARD U 
-		ORDER BY UB_REGDATE DESC  LIMIT 5 ;
-	</select>
-	
-	<update id="insertAnswer" parameterType="UserBoardVO">
-		UPDATE USERBOARD SET ub_answer = '${ub_answer }' WHERE ub_id = #{ub_id};
-	</update>
+
 
 	<select id="getUserRentalList" parameterType="hashmap"
 		resultType="UserRentalVO">
@@ -83,7 +75,25 @@
 		</if>
 		ORDER BY BUY.B_ID DESC
 	</select>
+	
+	<!-- 관리자페이지-->
 
-
+	<select id="dashboardUserBoardList" resultType="UserBoardVO">
+		SELECT UB_ID , UB_TITLE , id 
+		FROM USERBOARD U 
+		ORDER BY UB_ID DESC  LIMIT 5 ;
+	</select>
+	
+	<update id="insertAnswer" parameterType="UserBoardVO">
+		UPDATE USERBOARD 
+		SET ub_answer = '${ub_answer }' 
+		WHERE ub_id = #{ub_id};
+	</update>
+	
+	<select id="admingetUserBoardList" resultType="UserBoardVO">
+		SELECT *
+		FROM USERBOARD 
+		ORDER BY UB_ID DESC;
+	</select>	
 
 </mapper>

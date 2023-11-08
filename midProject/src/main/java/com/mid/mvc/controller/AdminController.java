@@ -46,6 +46,14 @@ public class AdminController {
 		return  "admin/" + step;
 	}
 
+	//공급사 등록
+	@RequestMapping("/insertSupply.do")
+	public String insertBoard(UserVO vo) throws IOException {
+		System.out.println(vo.toString());
+		userService.insertSupply(vo);
+		return "redirect:supplymange.do";
+	}		
+	
 	//사용자 전체 검색
 	@RequestMapping("/usermange.do")
 	public void userList(UserVO vo, Model model) {
@@ -54,6 +62,8 @@ public class AdminController {
 		model.addAttribute("userList",result);
 	}
 
+	
+	
 	//공급사 전체 검색
 	@RequestMapping("/supplymange.do")
 	public void supplyList(UserVO vo, Model model) {
@@ -110,14 +120,22 @@ public class AdminController {
 	 
 	  //관리자 페이지에서 더보기 누르면 사용자 공급사 문의 전체 검색
 	  @RequestMapping("/userinquiry.do")
-	  public void boardList(Model m) {
+	  public void adminUserBoardList(Model m) {
 		  HashMap map = new HashMap();
-	      userBoardService.getUserBoardList(map);
-	      List<UserBoardVO>result = userBoardService.getUserBoardList(map);
+	      List<UserBoardVO>result = userBoardService.admingetUserBoardList(map);
 	      System.out.println(result);
-	      m.addAttribute("userBoardList",result);		  
-		  
+	      m.addAttribute("userBoardList",result);		  		  
 	  }
+	  
+	  //관리자 페이지에서 공급사문의 더보기 누르면 공급사
+	  @RequestMapping("/supplyinquiry.do")
+	  public void admingetSupplierBoardList(Model m) {
+		  HashMap map = new HashMap();
+	      List<SupplierBoardVO>result = supplierBoardServcie.admingetSupplierBoardList(map);
+	      System.out.println("admingetSupplierBoardList: " + result);
+	      m.addAttribute("admingetSupplierBoardList",result);		  		  
+	  }	  
+	  
 	  //사용자 문의 상세보기
 	  @RequestMapping("/userinquiryanswer.do")
 	  public void getUserBoard(UserBoardVO vo, Model m) {
@@ -125,6 +143,15 @@ public class AdminController {
 		  m.addAttribute("userBoard", result);
 		  System.out.println(m.toString());
 
+	  }	  
+	  
+	  //공급사 문의 상세보기
+	  @RequestMapping("/supplyinquiryanswer.do")
+	  public void getSupplyBoard(SupplierBoardVO vo, Model m) {
+		  SupplierBoardVO result = supplierBoardServcie.getSupplierBoard(vo);
+		  m.addAttribute("supplierBoard", result);
+		  System.out.println("supplyinquiryanswer호출");
+		  System.out.println(m.toString());
 	  }	  
 	  
 	  //사용자 문의 답변하기 Insert
@@ -135,8 +162,60 @@ public class AdminController {
 		  System.out.println("ub_id : "+ vo.getUb_id() );
 		  return "redirect:userinquiry.do";
 		  
-
 	  }	 	
 	  
+	  //공급사 문의 답변하기 Insert
+	  @RequestMapping("/supplyinquiryanswering.do")
+	  public String insertAnswerSupplier(SupplierBoardVO vo, Model m) {
+		  supplierBoardServcie.insertAnswer(vo);;
+		  return "redirect:supplyinquiry.do";
+		  
+	  }	 	
 
+	  //사용자 문의완료 후 상세보기
+	  @RequestMapping("/userinquiryanswerend.do")
+	  public void getUseranswerend(UserBoardVO vo, Model m) {
+		  UserBoardVO result = userBoardService.getUserBoard(vo);
+		  m.addAttribute("userBoard", result);
+
+	  }		  
+
+	  //공급사 문의완료 후 상세보기
+	  @RequestMapping("/supplyinquiryanswerend.do")
+	  public void getSupplyanswerend(SupplierBoardVO vo, Model m) {
+		  SupplierBoardVO result = supplierBoardServcie.getSupplierBoard(vo);
+		  m.addAttribute("supplierBoard", result);
+	  }	  	  
+	  
+	  //사용자 정보 상세보기
+	  @RequestMapping("/usermangemodify.do")
+	  public void userMangeDetail(UserVO vo, Model m) {
+		  UserVO result = userService.userDetail(vo);
+		  m.addAttribute("user", result);
+	  }
+	  
+	  //사용자 정보 수정하기
+	  @RequestMapping("/usermangemodifing.do")
+	  public String userMangeModify(UserVO vo, Model m) {
+		  System.out.println("id : " + vo.getId());
+		  userService.userModify(vo);
+		  System.out.println(vo.toString());
+		  return "redirect:usermangemodify.do?id=" + vo.getId();
+	  }
+	
+	  //공급사 정보 상세보기
+	  @RequestMapping("/supplymangemodify.do")
+	  public void supplyMangeDetail(UserVO vo, Model m) {
+		  UserVO result = userService.userDetail(vo);
+		  m.addAttribute("supply", result);
+	  }
+	  
+	  //공급사 정보 수정하기
+	  @RequestMapping("/supplymangemodifing.do")
+	  public String supplyMangeModify(UserVO vo, Model m) {
+		  userService.userModify(vo);
+		  System.out.println(vo.toString());
+		  return "redirect:supplymangemodify.do?id=" + vo.getId();
+	  }	
+	  
 }

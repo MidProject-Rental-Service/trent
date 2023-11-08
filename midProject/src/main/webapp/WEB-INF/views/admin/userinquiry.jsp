@@ -24,8 +24,8 @@
 	<div class="page-wrapper" id="main-wrapper" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed">
-		
-		<jsp:include page="./admin_header.jsp"/>
+
+		<jsp:include page="./admin_header.jsp" />
 
 		<!--  메인페이지 -->
 
@@ -41,7 +41,7 @@
 			</div>
 
 			<section id="container">
-				<form role="form"  method="get">
+				<form role="form" method="get">
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -64,8 +64,16 @@
 								<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
 									var="formattedDateString" />
 								<td>${formattedDateString}</td>
-								<!-- 답변하기 하면 답변 완료 만들어주기 -->
-								<td><a class="btn btn-primary" href="userinquiryanswer.do?ub_id=${list.ub_id }">답변하기</a></td>
+								<!-- 만약 ub_answer가 null이 아니면 "답변 완료" 버튼을, 그렇지 않으면 "답변하기" 버튼을 표시 -->
+								<c:choose>
+									<c:when test="${not empty list.ub_answer}">
+										<td><a class="btn btn-secondary" href="userinquiryanswerend.do?ub_id=${list.ub_id}" style="color: white; ">답변 완료</a></td>
+									</c:when>
+									<c:otherwise>
+										<td><a class="btn btn-primary"
+											href="userinquiryanswer.do?ub_id=${list.ub_id}">답변하기</a></td>
+									</c:otherwise>
+								</c:choose>
 							</tr>
 						</c:forEach>
 

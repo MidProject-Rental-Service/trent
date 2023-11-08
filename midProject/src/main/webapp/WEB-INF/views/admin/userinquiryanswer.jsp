@@ -53,8 +53,7 @@
 				
 				<div class="row g-5">
 					<div class="col-md-12">
-						<form action="userinquiryanswering.do" method='post'
-							enctype="multipart/form-data">
+						<form action="userinquiryanswering.do" method='post' enctype="multipart/form-data">
 							<!-- hidden 으로 값주기 -->
 							<input type="hidden" name="ub_id" value="${userBoard.ub_id}">
 							<div class="row g-3">
@@ -69,8 +68,7 @@
 								<div class="row">
 									<div class="col-sm-2">
 										<label  class="form-label">연락처</label> <input
-											type="text" class="form-control" value="${userBoard.phone }"
-											readonly>
+											type="text" class="form-control" value="${userBoard.phone }" readonly>
 									</div>
 								</div>
 

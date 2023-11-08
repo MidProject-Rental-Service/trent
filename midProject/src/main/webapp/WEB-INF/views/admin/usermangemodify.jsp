@@ -36,66 +36,61 @@
 
 				<div class="row g-5">
 					<div class="col-md-12">
-						<form class="needs-validation" novalidate>
+						<form action="usermangemodifing.do" method='post' novalidate>
+							<!-- hidden 으로 값주기 -->
+							<input type="hidden" name="id" value="${user.id}">
 							<div class="row g-3">
 								<div class="row">
 									<div class="col-sm-4 offset-sm-4">
-										<label for="Name" class="form-label">아이디</label> <input
-											type="text" class="form-control" id="User_id" readonly
-											value="${list.id }">
+										<label for="id" class="form-label">아이디</label> 
+										<input type="text" class="form-control" readonly value="${user.id }">
 										<div class="invalid-feedback"></div>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-4 offset-sm-4">
-										<label for="Name" class="form-label">비밀번호</label> <input
-											type="text" class="form-control" id="User_pwd"
-											value="${list.pwd }">
+										<label  class="pwd">비밀번호</label> 
+										<input type="text" class="form-control" name="pwd" value="${user.pwd }" >
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-4 offset-sm-4">
+										<label for="name" class="form-label">이름</label> 
+										<input type="text" class="form-control" name="name" value="${user.name }">
 										<div class="invalid-feedback"></div>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-4 offset-sm-4">
-										<label for="Name" class="form-label">이름</label> <input
-											type="text" class="form-control" id="User_name"
-											value="${list.name }">
+										<label for="phone" class="form-label">전화번호</label> 
+										<input type="text" class="form-control" name="phone" value="${user.phone }">
 										<div class="invalid-feedback"></div>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-4 offset-sm-4">
-										<label for="Name" class="form-label">전화번호</label> <input
-											type="text" class="form-control" id="User_phone"
-											value="${list.phone }">
+										<label for="addr" class="form-label">주소</label> 
+										<input type="text" class="form-control" name="addr" value="${user.addr }">
 										<div class="invalid-feedback"></div>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-4 offset-sm-4">
-										<label for="Name" class="form-label">주소</label> <input
-											type="text" class="form-control" id="User_addr"
-											value="${list.addr }">
-										<div class="invalid-feedback"></div>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-sm-4 offset-sm-4">
-										<label for="Name" class="form-label">이메일</label> <input
-											type="text" class="form-control" id="User_email"
-											value="${list.email }">
+										<label for="email" class="form-label">이메일</label> 
+										<input type="text" class="form-control" name="email" value="${user.email }">
 										<div class="invalid-feedback"></div>
 									</div>
 								</div>
 
 								<div class="row text-center">
 									<div class="col-sm-12">
-										<a class="btn btn-primary mx-2" type="submit">수정하기</a> <a
-											class="btn btn-danger mx-2" href="usermange.do">취소하기</a>
+										<button type="submit" class="btn btn-primary" >수정하기</button>
+										<a class="btn btn-danger mx-2" href="usermange.do">뒤로가기</a>
 									</div>
 								</div>
 							</div>

@@ -23,6 +23,7 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 		System.out.println("입력결과 : " + result);
 	}
 	
+	
 	public UserBoardVO getUserBoard(UserBoardVO vo) {
 		System.out.println("===> sqlSession getUserBoard() 호출");
 		System.out.println("===> " + vo.toString());
@@ -30,11 +31,20 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 		
 	}
 	
+	//사용자 페이지에서 문의리스트
 	public List<UserBoardVO> getUserBoardList(HashMap map) {
 		System.out.println("===> sqlSession getUserBoardList() 호출");
 		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
 		return sqlSession.selectList("UserBoardMapper.getUserBoardList",map);
 	}
+	
+	//관리자 페이지에서 사용자 문의리스트
+	public List<UserBoardVO> admingetUserBoardList(HashMap map) {
+		System.out.println("===> sqlSession getUserBoardList() 호출");
+		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
+		return sqlSession.selectList("UserBoardMapper.admingetUserBoardList",map);
+	}
+	
 
 	
 	public List<UserBoardVO> dashboardUserBoardList(UserBoardVO vo) {

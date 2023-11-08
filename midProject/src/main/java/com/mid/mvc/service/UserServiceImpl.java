@@ -49,5 +49,16 @@ public class UserServiceImpl implements UserService {
 		System.out.println("UserService_insertSupply 호출");
 		userDAOImpl.insertSupply(vo);
 	}
+
+	public UserVO userDetail(UserVO vo) {
+		return userDAOImpl.userDetail(vo);
+	}
+
+	@Override
+	public void userModify(UserVO vo) {
+		userDAOImpl.userUpdate(vo);
+	}
+
+	
 	
 }
