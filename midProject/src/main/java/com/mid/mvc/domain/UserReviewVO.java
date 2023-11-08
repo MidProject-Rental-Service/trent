@@ -1,7 +1,11 @@
 package com.mid.mvc.domain;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
-import java.util.List;
+import java.util.UUID;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
@@ -21,4 +25,36 @@ public class UserReviewVO {
 	private String m_name;		// 제조사명 
 	private String p_name;		// 공급사명
 
+	//******************파일 업로드**************************
+	MultipartFile file1;
+	
+	
+	public MultipartFile getFile1() {
+	    return file1;
+	}
+
+	public void setFile1(MultipartFile file1) {
+	    this.file1 = file1;
+	    // 업로드 파일이 있는 경우
+	    if (!file1.isEmpty()) {
+	        this.r_img = file1.getOriginalFilename();
+
+	        // 실제 저장된 파일명 만들기
+	        UUID uuid = UUID.randomUUID();
+	        this.r_rimg = uuid.toString() + "_" + r_img;
+
+	        // 실제 파일 저장
+	        // 나중에 웹서버 경로를 찾아서 수정
+	        File f = new File("C:\\Users\\ict0330\\git\\trent\\midProject\\src\\main\\webapp\\resources\\img\\products\\" + r_rimg);
+
+	        try {
+	            file1.transferTo(f);
+	        } catch (IllegalStateException | IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+	
+
+	
 }

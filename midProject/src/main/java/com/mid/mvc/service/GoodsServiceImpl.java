@@ -1,5 +1,6 @@
 package com.mid.mvc.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,10 +95,11 @@ public class GoodsServiceImpl implements GoodsService{
 		goodsDAO.deleteCard(vo);
 	}
 
+
+	// 제품 상세검색 (좌측)
 	public List<GoodsVO> getCategoryGoodsList(String c_name, List<String> selectedBrands, Integer minPrice, Integer maxPrice) {
 		return goodsDAO.getCategoryGoodsList(c_name,selectedBrands,minPrice,maxPrice);
 	}
-
 	
 	// 사용자 제품 상세 페이지 
 	public GoodsVO getProductDetail(String g_id) {
@@ -112,9 +114,9 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsDAO.getMinPrice(g_id);
 	}
 
-
-
-
-
+	// 제품 검색 (헤더)
+	public List<GoodsVO> getSearchGoodsList(HashMap map) {
+		return goodsDAO.getSearchGoodsList(map);
+	}
 
 }

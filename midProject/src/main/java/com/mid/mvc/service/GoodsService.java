@@ -1,5 +1,6 @@
 package com.mid.mvc.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.mid.mvc.domain.CardVO;
@@ -39,7 +40,7 @@ public interface GoodsService {
 	
 	void deleteCard(CardVO vo);
 	
-	
+	// 상세검색 
 	List<GoodsVO> getCategoryGoodsList(String c_name, List<String> selectedBrands, Integer minPrice, Integer maxPrice);
 
 	// 사용자 제품 상세 페이지
@@ -48,5 +49,8 @@ public interface GoodsService {
 	List<PriceVO> getProductPrice(String g_id);
 
 	PriceVO getMinPrice(String g_id);
+
+	// 제품검색 헤더 
+	List<GoodsVO>getSearchGoodsList(HashMap map);
 
 }

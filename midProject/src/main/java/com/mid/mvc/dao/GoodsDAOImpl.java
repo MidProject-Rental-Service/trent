@@ -92,7 +92,8 @@ public class GoodsDAOImpl {
 	public void deleteCard(CardVO vo) {
 		SqlSession.delete("GoodsMapper.deleteCard", vo);		
 	}
-	
+
+	// 제품 상세검색 (좌측)
 	public List<GoodsVO> getCategoryGoodsList(String c_name, List<String> selectedBrands, Integer minPrice, Integer maxPrice) {
         HashMap<String, Object> map = new HashMap<>();
         System.out.println("===> SqlSession getCategoryGoodsList() 호출" );
@@ -120,6 +121,13 @@ public class GoodsDAOImpl {
 	public PriceVO getMinPrice(String g_id) {
 		System.out.println("=====> getMinPrice() 호출");
 		return SqlSession.selectOne("GoodsMapper.getMinPrice", g_id);
+	}
+	
+	// 제품 검색 (헤더)
+	public List<GoodsVO> getSearchGoodsList(HashMap map) {
+		   System.out.println("===> SqlSession getSearchGoodsList() 호출" );
+		   System.out.println("===> " + map );
+		return SqlSession.selectList("GoodsMapper.getSearchGoodsList", map);
 	}
 	
 	
