@@ -30,7 +30,6 @@
 		SELECT * FROM goods
 		WHERE g_id = #{g_id}
 	</select>
-<<<<<<< HEAD
 	
 	<!-- ============================ -->
 	<!-- user 페이지에서 제품 상세 페이지 보기 -->
