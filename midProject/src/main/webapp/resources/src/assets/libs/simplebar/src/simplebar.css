@@ -57,6 +57,11 @@
   -ms-overflow-style: none;
 }
 
+#sidebarnav li.sidebar-item {
+    margin-bottom: 50px;
+    font-size: 30px;
+}
+
 .simplebar-content-wrapper::-webkit-scrollbar,
 .simplebar-hide-scrollbar::-webkit-scrollbar {
   width: 0;

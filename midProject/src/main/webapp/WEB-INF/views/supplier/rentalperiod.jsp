@@ -25,68 +25,10 @@
 	<div class="page-wrapper" id="main-wrapper" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed">
-		<!-- Sidebar Start -->
-		<aside class="left-sidebar">
-			<!-- 사이드바-->
-			<div>
-				<div
-					class="brand-logo d-flex align-items-center justify-content-between">
-					<a href="./admin_index.do" class="text-nowrap logo-img"> <img
-						src="../src/assets/images/logos/dark-logo.svg"
-						width="180" alt="" />
-					</a>
-					<div
-						class="close-btn d-xl-none d-block sidebartoggler cursor-pointer"
-						id="sidebarCollapse">
-						<i class="ti ti-x fs-8"></i>
-					</div>
-				</div>
-				<!-- 사이드바 네비게이션-->
-				<nav class="sidebar-nav scroll-sidebar" data-simplebar="">
-					<ul id="sidebarnav">
-
-						<li class="sidebar-item"><a class="sidebar-link"
-							href="index.do" aria-expanded="false" style="font-size: 25px;">
-								<span> <i class="ti ti-layout-dashboard"></i>
-							</span> <span class="hide-menu">대시보드</span>
-						</a></li>
-
-
-						<li class="sidebar-item"><a class="sidebar-link"
-							href="productmange.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i class="ti ti-user"></i>
-							</span> <span class="hide-menu">제품관리</span>
-						</a></li>
-
-						<li class="sidebar-item"><a class="sidebar-link"
-							href="rentalmange.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i
-									class="ti ti-file-description"></i>
-							</span> <span class="hide-menu">렌탈상태관리</span>
-						</a></li>
-
-						<li class="sidebar-item"><a class="sidebar-link"
-							href="inquirymange.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i
-									class="ti ti-package"></i>
-							</span> <span class="hide-menu">1:1문의</span>
-						</a></li>
-
-
-
-
-
-						<li class="sidebar-item"></li>
-					</ul>
-
-				</nav>
-				<!-- End Sidebar navigation -->
-			</div>
-			<!-- End Sidebar scroll-->
-		</aside>
-
-
-
+		
+		<jsp:include page="./supplier_header.jsp"/>
+		
+		<!--  Main wrapper -->
 		<div class="body-wrapper">
 			<!--  Header Start -->
 			<header class="app-header">

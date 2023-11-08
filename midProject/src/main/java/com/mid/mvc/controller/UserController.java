@@ -154,6 +154,7 @@ public class UserController {
 		 }
 	  return "success";
 	}
+	// user review end
 
 
 
@@ -235,7 +236,6 @@ public class UserController {
     	System.out.println("화면에서 넘겨오는 값:" + vo.toString());
 		List<GoodsVO> result = goodsServiceImpl.getGoodsList(vo);
 		m.addAttribute("goodsList", result);
-		System.out.println("result :" + result);
 	}
     
     // 제품군 검색 (좌측패널)
