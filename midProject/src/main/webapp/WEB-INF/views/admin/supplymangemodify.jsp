@@ -76,9 +76,13 @@
 								</div>
 
 								<div class="row">
-									<div class="col-sm-4 offset-sm-4">
-										<label for="addr" class="form-label">회사주소</label> <input
-											type="text" class="form-control" name="addr" value="${supply.addr }">
+									<div class="col-sm-3 offset-sm-4">
+										<label for="addr" class="form-label">주소</label> 
+		                                <input type="text" id="sample6_postcode" class="f" name="postcode" size="2" >
+										<input type="button" onclick="sample6_execDaumPostcode()"  value="우편번호검색" onclick="checkPost()">
+										<input type="text" id="sample6_address" class="form-control" name="addr" size="50" placeholder="주소" value="${supply.addr }" ><br/>
+										<input type="text" id="sample6_detailAddress" class="form-control" name="addr" size="50" placeholder="상세주소">
+										<input type="text" id="sample6_extraAddress" class="form-control" style="display:none;">
 										<div class="invalid-feedback"></div>
 									</div>
 								</div>
@@ -93,7 +97,7 @@
 
 								<div class="row text-center">
 									<div class="col-sm-12">
-										<button type="submit" class="btn btn-primary" >수정하기</button>
+										<button type="submit" class="btn btn-primary" id="modify" >수정하기</button>
 										<a class="btn btn-danger mx-2" href="supplymange.do">뒤로가기</a>
 									</div>
 								</div>
@@ -107,8 +111,9 @@
 
 	</div>
 	<!-- div 끝  -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script
-		src="../src/assets/libs/jquery/dist/jquery.jel.js"></script>
+		src="../src/assets/libs/jquery/dist/jquery.max.js"></script>	
 	<script
 		src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script

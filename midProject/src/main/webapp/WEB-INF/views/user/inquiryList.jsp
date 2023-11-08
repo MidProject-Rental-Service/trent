@@ -18,10 +18,12 @@
 
 <!-- Css Styles -->
 <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="../css/font-awesome.min.css"
+	type="text/css" />
 <link rel="stylesheet" href="../css/themify-icons.css" type="text/css" />
 <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css" />
-<link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css" />
+<link rel="stylesheet" href="../css/owl.carousel.min.css"
+	type="text/css" />
 <link rel="stylesheet" href="../css/nice-select.css" type="text/css" />
 <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css" />
 <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css" />
@@ -80,13 +82,13 @@
 <body>
 	<%-- 세션에서 로그인 정보 가져오기 --%>
 	<% UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser"); %>
-	
+
 	<%-- 로그인 상태에 따라 다른 헤더 포함 --%>
 	<c:if test="<%= loggedInUser != null %>">
-	    <%@ include file="header_after.jsp" %>
+		<%@ include file="header_after.jsp"%>
 	</c:if>
 	<c:if test="<%= loggedInUser == null %>">
-	    <%@ include file="header_before.jsp" %>
+		<%@ include file="header_before.jsp"%>
 	</c:if>
 
 	<!-- Breadcrumb Section Begin -->
@@ -132,73 +134,82 @@
 					</div>
 				</div>
 				<!-- 좌측 메뉴 끝-->
- 
+
 				<!--리뷰 목록 -->
 				<div class="col-lg-9 order-1 order-lg-2">
 					<div class="menu-title">
 						<h4>1:1문의</h4>
 					</div>
 					<div class="flex-container">
-						<form action="inquiryList.do" >
-						<div class="search-date-form">
-							<div class="search-date" id="text">조회기간</div>
-							<div class="search-date">
-								<input type="text" name="datepicker1"  id="datepicker1">
-							</div>
-							<div class="search-date">
-								<input type="text" name="datepicker2"  id="datepicker2">
-							</div>
-							<div class="search-date-bar">
-								 <select name="searchCondition"	id="searchCondition" class="search-date-bar">
-									<option value="ub_title">제목</option>
-									<option value="ub_content">내용</option>
-									<option value="ub_head">말머리</option>
-								</select>
-								<input type="text" name="searchKeyword" >
-								 <input  type="submit" class="btn btn-warning search-btn " value="검색">
-							</div>
-							</div>
-							</form>
-						</div>
-
-
-						<div class="inquiry-list">
-							<form class="inquiry-form" action="inquiry.do">
-								<table class="inquiry-list">
-									<tr>
-										<th>문의날짜</th>
-										<th>말머리</th>
-										<th>제목</th>
-										<th>문의상태</th>
-									</tr>
-									<c:forEach items="${userBoardList }" var="userboard">
-										<tr>
-											<c:set var="formattedDate" value="${userboard.ub_regdate}" />
-											<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
-												var="formattedDateString" />
-											<td>${formattedDateString}</td>
-											<td>${userboard.ub_head }</td>
-											<td><a href="inquiry.do?ub_id=${userboard.ub_id }">${userboard.ub_title }</a></td>
-											<td class="status">답변대기</td>
-										</tr>
-									</c:forEach>
-
-								</table>
-								<div class="write-div">
-									<br /> <input type="button" class="btn btn-warning write-btn "
-										value="문의작성" onclick="InquiryWrite()">
+						<form action="inquiryList.do">
+							<div class="search-date-form">
+								<div class="search-date" id="text">조회기간</div>
+								<div class="search-date">
+									<input type="text" name="datepicker1" id="datepicker1">
 								</div>
+								<div class="search-date">
+									<input type="text" name="datepicker2" id="datepicker2">
+								</div>
+								<div class="search-date-bar">
+									<select name="searchCondition" id="searchCondition"
+										class="search-date-bar">
+										<option value="ub_title">제목</option>
+										<option value="ub_content">내용</option>
+										<option value="ub_head">말머리</option>
+									</select> <input type="text" name="searchKeyword"> <input
+										type="submit" class="btn btn-warning search-btn " value="검색">
+								</div>
+							</div>
+						</form>
+					</div>
 
-							</form>
 
-						</div>
+					<div class="inquiry-list">
+						<form class="inquiry-form" action="inquiry.do">
+							<table class="inquiry-list">
+								<tr>
+									<th>문의날짜</th>
+									<th>말머리</th>
+									<th>제목</th>
+									<th>문의상태</th>
+								</tr>
+								<c:forEach items="${userBoardList }" var="userboard">
+									<tr>
+										<c:set var="formattedDate" value="${userboard.ub_regdate}" />
+										<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
+											var="formattedDateString" />
+										<td>${formattedDateString}</td>
+										<td>${userboard.ub_head }</td>
+										<td><a href="inquiry.do?ub_id=${userboard.ub_id }">${userboard.ub_title }</a></td>
+										<c:choose>
+											<c:when test="${not empty userboard.ub_answer}">
+												<td id="answerStat" class="status">답변완료</td>
+											</c:when>
+											<c:otherwise>
+												<td id="answerStat" class="status">답변대기</td>
+											</c:otherwise>
+										</c:choose>
+
+										<td id="answerStat" class="status"></td>
+									</tr>
+								</c:forEach>
+
+							</table>
+							<div class="write-div">
+								<br /> <input type="button" class="btn btn-warning write-btn "
+									value="문의작성" onclick="InquiryWrite()">
+							</div>
+
+						</form>
+
 					</div>
 				</div>
 			</div>
+		</div>
 	</section>
 	<!-- inquiry  Section End -->
 
-	<jsp:include page="./footer.jsp"/>
+	<jsp:include page="./footer.jsp" />
 
 
 </body>

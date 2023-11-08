@@ -27,6 +27,9 @@
   		<value>com.mid.mvc.domain.SupplierBoardVO</value>
   		<value>com.mid.mvc.domain.GoodsVO</value>
   		<value>com.mid.mvc.domain.PriceVO</value>
+  		<value>com.mid.mvc.domain.PageMakerDTO</value>
+  		<value>com.mid.mvc.domain.Criteria</value>
+
   	</list>
   </property>
  </bean>

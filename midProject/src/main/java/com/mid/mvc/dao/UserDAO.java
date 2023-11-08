@@ -23,4 +23,8 @@ public interface UserDAO {
 	public UserVO userDetail(UserVO vo);
 	
 	public void userUpdate(UserVO vo);
+	
+	public int getTotal();
+	  
+
 }
