@@ -1633,7 +1633,7 @@ ol {
 -----------------------*/
 
 .product-shop {
-	padding-top: 80px;
+	padding-top: 50px;
 	padding-bottom: 80px;
 }
 
@@ -1980,7 +1980,7 @@ ol {
 -----------------------*/
 
 .product-shop.page-details {
-	padding-bottom: 60px;
+	padding-bottom: 50px;
 }
 
 .product-pic-zoom {
@@ -2320,6 +2320,23 @@ ol {
 	color: black;
 }
 
+/* 최저 렌탈가, 카드할인가 폰트 스타일 지정 */
+
+.rental-info-details2 table.pd-desc2 td.min_price a {
+	color: #1478FF;
+}
+
+.rental-info-details2 table.pd-desc2 td.max_discount a {
+	color: #B93232;
+}
+
+.rental-info-details2 table.pd-desc2 td.min_sub a,
+.rental-info-details2 table.pd-desc2 td a span {
+	font-weight: bold;
+}
+/* 하림!!!!!! */
+
+
 .product-tab .tab-item .nav {
 	width: 100%;
 	padding: 40px 15px 0px 15px;
@@ -2429,7 +2446,7 @@ ol {
 	border-radius: 6px;
 	background: #fff;
     border: 1.25px #ccc solid;
-    color: #666666 !important;
+    color: #666666;
     font-size: 15px;
     font-weight: bold;
     width: 140px; /* 버튼 너비를 지정 */
@@ -2438,7 +2455,22 @@ ol {
     float: left;
     margin-right: 10px;
     padding: 0; /* 기존 버튼의 패딩을 제거 */
-    
+}
+
+/* 하림 !!!!! */
+/* 클릭했을 때 버튼 스타일 지정 */
+.price_detail .btn_choice_box1 .rentalPeriod.on {
+    background-color: #001F5F !important;
+    color: #fff !important;
+}
+
+.price_detail .btn_choice_box1 .rentalPeriod.on a {
+	color: #fff !important; 
+	background-color: #001F5F !important;
+}
+
+.price_detail .btn_choice_box1 .rentalPeriod.on p {
+	color: #fff !important;
 }
 
 .price_detail .btn_choice_box1 button {
@@ -2449,7 +2481,7 @@ ol {
 }
 
 .price_detail .btn_choice_box1 button a {
-color: #333;
+	color: #333;
     font-size: 16px;
     background-color: #eeeeee;
     border-radius: 6px 6px 0px 0px; /* 상단의 둥근 모서리를 버튼과 동일하게 설정합니다. */
@@ -2472,10 +2504,10 @@ color: #333;
 	padding-bottom: 10px;
 }
 
-
+/* 하림 !!!!!!!!!! */
 .price_detail .btn_choice_box1 .rentalPeriod {border-radius: 6px; animation-name: fadeIn; animation-duration: 1.5s;}
-.price_detail .btn_choice_box1 .rentalPeriod:hover {border-color:#0074d7 !important; background-color:#0074d7 !important;opacity: .8;transition: all .3s;color: #fff !important}
-.price_detail .btn_choice_box1 .rentalPeriod:hover a {color: #fff !important;}
+.price_detail .btn_choice_box1 .rentalPeriod:hover {border-color: #96C7ED !important; background-color: #96C7ED !important;opacity: .8;color: #fff !important}
+.price_detail .btn_choice_box1 .rentalPeriod:hover a {color: #fff !important; background-color: #96C7ED !important;}
 .price_detail .btn_choice_box1 .rentalPeriod:hover p {color: #fff !important;}
 
 /* 가격비교 탭 내용*/

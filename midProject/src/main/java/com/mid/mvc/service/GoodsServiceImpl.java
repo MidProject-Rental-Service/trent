@@ -52,10 +52,23 @@ public class GoodsServiceImpl implements GoodsService{
 		goodsDAO.deleteGoods(vo);
 		
 	}
-
-
+	
 	public List<GoodsVO> getCategoryGoodsList(String c_name, List<String> selectedBrands, Integer minPrice, Integer maxPrice) {
 		return goodsDAO.getCategoryGoodsList(c_name,selectedBrands,minPrice,maxPrice);
+	}
+
+	
+	// 사용자 제품 상세 페이지 
+	public GoodsVO getProductDetail(String g_id) {
+		return goodsDAO.getProductDetail(g_id);
+	}
+
+	public List<PriceVO> getProductPrice(String g_id) {
+		return goodsDAO.getProductPrice(g_id);
+	}
+
+	public PriceVO getMinPrice(String g_id) {
+		return goodsDAO.getMinPrice(g_id);
 	}
 
 

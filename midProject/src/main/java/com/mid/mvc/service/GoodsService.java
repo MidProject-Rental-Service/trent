@@ -25,4 +25,11 @@ public interface GoodsService {
 	void deleteGoods(GoodsVO vo);
 
 	List<GoodsVO> getCategoryGoodsList(String c_name, List<String> selectedBrands, Integer minPrice, Integer maxPrice);
+
+	// 사용자 제품 상세 페이지
+	GoodsVO getProductDetail(String g_id);
+
+	List<PriceVO> getProductPrice(String g_id);
+
+	PriceVO getMinPrice(String g_id);
 }

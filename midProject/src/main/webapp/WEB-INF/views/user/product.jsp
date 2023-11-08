@@ -129,21 +129,30 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
-                                <img class="product-big-img" src="/midProject/resources/img/products/7d791a1d-f1ae-434f-a2b9-57f6e3fa76a3_lg-air-3.jpg" alt="">
+                                <img class="product-big-img" src="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />" alt="Product_Main_Thumbnail">
                                 <div class="zoom-icon">
                                     <i class="fa fa-search-plus"></i>
                                 </div>
                             </div>
                             <div class="product-thumbs">
                                 <div class="product-thumbs-track ps-slider owl-carousel">
-                                    <div class="pt active" data-imgbigurl="../img/product-single/product-1.jpg"><img
-                                            src="/midProject/resources/img/products/8f058b4b-4aed-4a11-854d-891db638f4ce_lg-air-1.jpg" alt=""></div>
-                                    <div class="pt" data-imgbigurl="../img/product-single/product-2.jpg"><img
-                                            src="/midProject/resources/img/products/8f058b4b-4aed-4a11-854d-891db638f4ce_lg-air-1.jpg" alt=""></div>
-                                    <div class="pt" data-imgbigurl="../img/product-single/product-3.jpg"><img
-                                            src="/midProject/resources/img/products/8f058b4b-4aed-4a11-854d-891db638f4ce_lg-air-1.jpg" alt=""></div>
-                                    <div class="pt" data-imgbigurl="../img/product-single/product-3.jpg"><img
-                                            src="/midProject/resources/img/products/8f058b4b-4aed-4a11-854d-891db638f4ce_lg-air-1.jpg" alt=""></div>
+                                    <!-- 이미지 -->
+                                    <div class="pt active" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />">
+                                   		<img src="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />" alt="Product_Main_Thumbnail">
+                                    </div>
+                                    
+                                    <div class="pt" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />">
+                                    	<img src="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />" alt="Product_Main_Thumbnail">
+                                    </div>
+                                    
+                                    <div class="pt" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />">
+                                    	<img src="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />" alt="Product_Main_Thumbnail">
+                                    </div>
+                                    
+                                    <div class="pt" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />">
+                                    	<img src="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />" alt="Product_Main_Thumbnail">
+                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -151,25 +160,21 @@
                         <div class="col-lg-6">
                             <div class="product-details">
                                 <div class="pd-title">
-                                    <h4>LG 공기청정기 15평 (퓨리케어 / 360˚ / UP가전2.0 / 히트 / 화이트&다크그레이)</h4>
+                                    <h4>${productInfo.g_name}</h4>
                                 </div>
                              	<div class="rental-info-details"> <!-- 렌탈정보 상세 -->
                                 <div class="pd-desc">
 									<dl>
 										<dt>모델명</dt>
-										<dd>AS153HWFS1_LG</dd>
+										<dd>${productInfo.g_id}</dd>
 									</dl>
 									<dl>
 										<dt>특징</dt>
-										<dd>LG전자 / 스마트폰제어 / 탈취기능 / 공기질표시 / 미세먼지 집진필터 / HEPA / 탈취필터 / 2등급 / 케어서비스(12개월)</dd>
+										<dd>${productInfo.g_content}</dd>
 									</dl>
 									<dl>
 										<dt>공급사</dt>
 										<dd>LG케어솔루션</dd>
-									</dl>
-									<dl>
-										<dt>혜택</dt>
-										<dd>케어</dd>
 									</dl>
                                 </div>
                             </div>
@@ -178,9 +183,9 @@
                         	<div class="rental-info-details2">
                         		<table class="pd-desc2">
                         			<tr>
-                        				<td class="min_sub">최저공급사<a>LG케어솔루션</a></td>
-                        				<td class="min_price">최저렌탈가<a>월<span>14,900</span>원</a></td>
-                        				<td class="max_discount">카드할인가<a>월<span>20,000</span>원</a></td>
+                        				<td class="min_sub">최저공급사<a>${minPrice.s_name }</a></td>
+                        				<td class="min_price">최저렌탈가<a>월<span class="formatted-number">${minPrice.p_price }</span>원</a></td>
+                        				<td class="max_discount">카드할인가<a>월<span class="formatted-number">${minPrice.p_card }</span>원</a></td>
                         			</tr>
                         		</table>
                         	</div>
@@ -213,36 +218,27 @@
 	                                                <h5>약정선택<span>약정개월을 선택해주세요</span></h5>
 	                                                <!-- 약정선택 탭 -->
 	                                                <div class="btn_choice_box1">
-	                                                	<div class="choice_m">
-	                                                		<button type="button" data-rentalperiod="72" class="rentalPeriod">
-	                                                		<a>72개월</a><p class="price03">67,300원</p>
-															</button>
-	                                                	</div>
-	                                                	<div class="choice_m">
-	                                                		<button type="button" data-rentalperiod="60" class="rentalPeriod">
-	                                                		<a>60개월</a><p class="price02">81,500원</p>
-															</button>
-	                                                	</div>
-	                                                	<div class="choice_m">
-	                                                		<button type="button" data-rentalperiod="48" class="rentalPeriod">
-	                                                		<a>48개월</a><p class="price01">96,700원</p>
-															</button>
-	                                                	</div>
-	                                                </div>
-	                                               
-	                                                <!-- 약정선택 탭 끝 -->
+													    <c:forEach items="${priceInfoList}" var="rental_price">
+													        <div class="choice_m">
+													            <button type="button" data-rentalperiod="${rental_price.p_rent}" class="rentalPeriod">
+													                <a>${rental_price.p_rent}개월</a><p class="price03"><span class="formatted-number">${rental_price.p_price}</span>원</p>
+													            </button>
+													        </div>
+													    </c:forEach>
+													</div> <!-- 약정선택 탭 끝 -->
+
 	                                                <!-- 가격비교 탭 시작 -->
 														<h5>
 															가격비교<span>렌탈 공급사별 가입조건, 결제방법, 제휴카드 혜택 등 비교 후 선택하세요</span>
 														</h5>
+														<!-- 공급사 가격정보 for문 시작 -->
 														<div class="sub_price_view">
 															<table class="sub_price_Table">
 																<tbody>
 																	<tr>
 																		<td class="sub_Title">
 																			<div class="sub_logo_img">
-																				<img
-																					src="https://rentaltok.com/data/icon/goods_icon/intro_lgcaresolutions.png">
+																				<img src="https://rentaltok.com/data/icon/goods_icon/intro_lgcaresolutions.png">
 																			</div>
 																			<p>LG케어솔루션</p>
 																		</td>
@@ -282,6 +278,9 @@
 
 														</div>
 
+														
+														
+														
 														<!-- 가격비교 탭 끝 -->
                                            		</div>
                                             </div>
@@ -289,7 +288,7 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tab-2" role="tabpanel">
-									<img alt="" src="../img/detail/details.jpg">
+									<img src="<c:url value='../resources/img/products/${productInfo.g_rimg4}' />" alt="Product_Detail">
                                 </div>
                                 <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                     <div class="customer-review-option">
@@ -492,6 +491,37 @@
 <script src="../js/jquery.slicknav.js"></script>
 <script src="../js/owl.carousel.min.js"></script>
 <script src="../js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+	jQuery.fn.formatNumber = function () {
+        return this.each(function () {
+            var number = parseFloat($(this).text());
+            var formatted = number.toLocaleString('en');
+            $(this).text(formatted);
+        });
+    }
+
+    $(function () {
+        $('.formatted-number').formatNumber();
+        
+        /* 약정 개월 수 버튼 클릭 이벤트 */
+        
+     	// 페이지 로드 시 첫 번째 rentalPeriod 버튼에 on 클래스 추가
+        $(".btn_choice_box1 .rentalPeriod:first, .btn_choice_box1 .rentalPeriod:first p, .btn_choice_box1 .rentalPeriod:first a").addClass("on");
+
+        // rentalPeriod 버튼 클릭 시 on 클래스 제어
+        $(".btn_choice_box1 .rentalPeriod").click(function() {
+            // 모든 rentalPeriod 버튼에서 on 클래스 제거
+            $(".btn_choice_box1 .rentalPeriod, .btn_choice_box1 .rentalPeriod:first p, .btn_choice_box1 .rentalPeriod:first a").removeClass("on");
+            
+            // 클릭한 버튼에 on 클래스 추가
+            $(this).addClass("on");
+        });
+        
+    });
+
+</script>
 
 <jsp:include page="footer.jsp" />
 </body>

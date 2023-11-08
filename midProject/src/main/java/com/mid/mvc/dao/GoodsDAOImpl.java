@@ -73,6 +73,21 @@ public class GoodsDAOImpl {
         System.out.println("===>"+ maxPrice);
         return SqlSession.selectList("GoodsMapper.getCategoryGoodsList", map);
     }
+
+	public GoodsVO getProductDetail(String g_id) {
+		//System.out.println("=====> getProductDetail() 호출");
+		return SqlSession.selectOne("GoodsMapper.getProductDetail", g_id);
+	}
+
+	public List<PriceVO> getProductPrice(String g_id) {
+		System.out.println("=====> getProductPrice() 호출");
+		return SqlSession.selectList("GoodsMapper.getProductPrice", g_id);
+	}
+
+	public PriceVO getMinPrice(String g_id) {
+		System.out.println("=====> getMinPrice() 호출");
+		return SqlSession.selectOne("GoodsMapper.getMinPrice", g_id);
+	}
 	
 	
 }

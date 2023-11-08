@@ -22,6 +22,37 @@
 		WHERE g_id = #{g_id}
 	</select>
 	
+	<!-- ============================ -->
+	<!-- user 페이지에서 제품 상세 페이지 보기 -->
+	<select id="getProductDetail" parameterType="String" resultType="GoodsVO">
+		SELECT * FROM goods
+		WHERE g_id = #{g_id}
+	</select>
+	
+	<!-- price 정보(최소가격) 갖고오기 -->
+	<select id="getProductPrice" parameterType="String" resultType="PriceVO">
+		SELECT p.* 
+		FROM price p
+		JOIN (
+		    SELECT p_rent, MIN(p_price) AS min_price
+		    FROM price
+		    WHERE g_id = #{g_id}
+		    GROUP BY p_rent
+		) min_prices
+		ON p.p_rent = min_prices.p_rent AND p.p_price = min_prices.min_price
+		WHERE p.g_id = #{g_id}
+	</select>
+	
+	<!-- 최저 렌탈 정보 갖고오기 -->
+	<select id="getMinPrice" parameterType="String" resultType="PriceVO">
+		SELECT * FROM price
+		WHERE g_id = #{g_id} AND p_price = (
+		    SELECT MIN(p_price)
+		    FROM price
+		    WHERE g_id = #{g_id}
+		)
+	</select>
+	
 	
 	<update id="saveUserReview" parameterType="UserReviewVO">
 		UPDATE REVIEW SET
