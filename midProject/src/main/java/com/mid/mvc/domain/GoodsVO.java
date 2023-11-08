@@ -17,6 +17,8 @@ public class GoodsVO {
 	private String c_name;			//	카테고리명 (제품분류)
 	private int m_id;						// 제조사아이디
 	private String m_name;			//	제조사명
+	private int p_price;					// 렌탈비용
+	private String s_name;			// 공급사명
 	
 	private String g_img1;
 	private String g_rimg1;

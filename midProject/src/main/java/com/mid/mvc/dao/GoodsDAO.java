@@ -1,5 +1,6 @@
 package com.mid.mvc.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.mid.mvc.domain.GoodsVO;
@@ -20,4 +21,6 @@ public interface GoodsDAO {
 	public List<PriceVO> getPriceList(PriceVO vo);
 	
 	 List<GoodsVO> getCategoryGoodsList(String c_name, List<String> selectedBrands, Integer minPrice, Integer maxPrice);
+	 
+	 public List<GoodsVO>getSearchGoodsList(HashMap map);
 }

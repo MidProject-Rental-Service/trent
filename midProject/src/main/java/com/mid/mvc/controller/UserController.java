@@ -235,13 +235,33 @@ public class UserController {
 	public void GoodsList(GoodsVO vo, Model m) {
     	System.out.println("화면에서 넘겨오는 값:" + vo.toString());
 		List<GoodsVO> result = goodsServiceImpl.getGoodsList(vo);
+		int cnt = result.size();
 		m.addAttribute("goodsList", result);
+		
 	}
+    
+    //상품 검색 (Header) 검색창
+    @RequestMapping("/shop_search.do")
+	public void searchGoodsList(GoodsVO vo, Model m,String searchCondition, String searchKeyword) {
+    	
+    	HashMap map = new HashMap();
+ 		map.put("searchCondition", searchCondition);
+ 		map.put("searchKeyword", searchKeyword);
+    	
+
+		List<GoodsVO> result = goodsServiceImpl.getSearchGoodsList(map);
+		int cnt = result.size();
+		m.addAttribute("searchKeyword", searchKeyword);
+		m.addAttribute("cnt",cnt);
+		m.addAttribute("goodsList", result);
+		
+	}
+    
     
     // 제품군 검색 (좌측패널)
     @RequestMapping(value="/searchCategory",method=RequestMethod.POST)
     @ResponseBody
-    public List<GoodsVO> searchByCategory(
+    public List<GoodsVO> searchCategory(
     		// 요소들이 전부다 전송되지 않아도 에러나지않게 처리 
             @RequestParam(required = false) String c_name,
             @RequestParam(value = "selectedBrands[]", required = false) List<String> selectedBrands,
