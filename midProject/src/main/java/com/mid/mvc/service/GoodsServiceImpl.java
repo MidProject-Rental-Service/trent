@@ -43,8 +43,6 @@ public class GoodsServiceImpl implements GoodsService{
 		
 	}
 	
-<<<<<<< HEAD
-=======
 	// 가격 목록 띄우기
 	public List<PriceVO> getPriceList(PriceVO vo) {
 		return goodsDAO.getPriceList(vo);
