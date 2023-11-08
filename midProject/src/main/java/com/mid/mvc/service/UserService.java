@@ -23,4 +23,6 @@ public interface UserService {
 	public UserVO userDetail(UserVO vo);
 	
 	void userModify(UserVO vo);
+	
+	public int getTotal();
 }

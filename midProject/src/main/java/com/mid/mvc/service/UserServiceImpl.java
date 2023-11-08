@@ -59,6 +59,11 @@ public class UserServiceImpl implements UserService {
 		userDAOImpl.userUpdate(vo);
 	}
 
+	@Override
+	public int getTotal() {
+		return userDAOImpl.getTotal();
+	}
+
 	
 	
 }

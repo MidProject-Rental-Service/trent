@@ -113,7 +113,7 @@
 									<div class="col-md-2"></div>
 									<div class="col-md-2"></div>
 									<div class="col-md-2 sb-answerbtn supply-info text-center">
-										<button type="submit" class="btn btn-primary" >답변하기</button>
+										<button type="submit" class="btn btn-primary" id="answer" >답변하기</button>
 									</div>
 									<div class="col-md-2 ub-canclebtn user-info text-center">
 										<a href="supplyinquiry.do"
@@ -130,6 +130,8 @@
 
 		</div>
 	</div>
+	<script
+		src="../src/assets/libs/jquery/dist/jquery.max.js"></script>	
 		<script
 		src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script

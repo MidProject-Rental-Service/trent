@@ -15,6 +15,11 @@
 
 <link rel="stylesheet"
 	href="../src/assets/css/styles.min.css" />
+
+
+
+
+
 </head>
 
 <body>
@@ -41,7 +46,7 @@
 							<input type="hidden" name="id" value="${user.id}">
 							<div class="row g-3">
 								<div class="row">
-									<div class="col-sm-4 offset-sm-4">
+									<div class="offset-sm-4 col-sm-3 offset-sm-4">
 										<label for="id" class="form-label">아이디</label> 
 										<input type="text" class="form-control" readonly value="${user.id }">
 										<div class="invalid-feedback"></div>
@@ -49,14 +54,14 @@
 								</div>
 
 								<div class="row">
-									<div class="col-sm-4 offset-sm-4">
+									<div class="col-sm-3 offset-sm-4">
 										<label  class="pwd">비밀번호</label> 
 										<input type="text" class="form-control" name="pwd" value="${user.pwd }" >
 									</div>
 								</div>
 
 								<div class="row">
-									<div class="col-sm-4 offset-sm-4">
+									<div class="col-sm-3 offset-sm-4">
 										<label for="name" class="form-label">이름</label> 
 										<input type="text" class="form-control" name="name" value="${user.name }">
 										<div class="invalid-feedback"></div>
@@ -64,7 +69,7 @@
 								</div>
 
 								<div class="row">
-									<div class="col-sm-4 offset-sm-4">
+									<div class="col-sm-3 offset-sm-4">
 										<label for="phone" class="form-label">전화번호</label> 
 										<input type="text" class="form-control" name="phone" value="${user.phone }">
 										<div class="invalid-feedback"></div>
@@ -72,15 +77,19 @@
 								</div>
 
 								<div class="row">
-									<div class="col-sm-4 offset-sm-4">
+									<div class="col-sm-3 offset-sm-4">
 										<label for="addr" class="form-label">주소</label> 
-										<input type="text" class="form-control" name="addr" value="${user.addr }">
+		                                <input type="text" id="sample6_postcode" class="f" name="postcode" size="2" >
+										<input type="button" onclick="sample6_execDaumPostcode()"  value="우편번호검색" onclick="checkPost()">
+										<input type="text" id="sample6_address" class="form-control" name="addr" size="50" placeholder="주소" value="${user.addr }" ><br/>
+										<input type="text" id="sample6_detailAddress" class="form-control" name="addr" size="50" placeholder="상세주소">
+										<input type="text" id="sample6_extraAddress" class="form-control" style="display:none;">
 										<div class="invalid-feedback"></div>
 									</div>
 								</div>
 
 								<div class="row">
-									<div class="col-sm-4 offset-sm-4">
+									<div class="col-sm-3 offset-sm-4">
 										<label for="email" class="form-label">이메일</label> 
 										<input type="text" class="form-control" name="email" value="${user.email }">
 										<div class="invalid-feedback"></div>
@@ -89,7 +98,7 @@
 
 								<div class="row text-center">
 									<div class="col-sm-12">
-										<button type="submit" class="btn btn-primary" >수정하기</button>
+										<button type="submit" class="btn btn-primary" id="modify" >수정하기</button>
 										<a class="btn btn-danger mx-2" href="usermange.do">뒤로가기</a>
 									</div>
 								</div>
@@ -103,6 +112,11 @@
 
 	</div>
 	<!-- div 끝  -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>  
+	
+	<script
+		src="../src/assets/libs/jquery/dist/jquery.max.js"></script>
+
 	<script
 		src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script
