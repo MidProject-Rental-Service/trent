@@ -17743,21 +17743,21 @@ keyframes placeholder-wave {
 
 .sidebar-nav ul .sidebar-item .sidebar-link {
 	color: #2A3547;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	font-size: 14px;
-	white-space: nowrap;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	line-height: 25px;
-	position: relative;
-	margin: 0px 0px 2px;
-	padding: 10px;
-	border-radius: 7px;
-	gap: 15px;
-	font-weight: 400
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 18px;
+    white-space: nowrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    line-height: 25px;
+    position: relative;
+    margin: 0px 0px 2px;
+    padding: 10px;
+    border-radius: 7px;
+    gap: 15px;
+    font-weight: 700;
 }
 
 .sidebar-nav ul .sidebar-item .sidebar-link span:first-child {
@@ -18245,6 +18245,11 @@ ul {
 /*  사이드 바  조정*/
 #sidebarnav{
 	margin-top:40px;
+}
+
+#sidebarnav .sidebar-item {
+    margin-bottom: 30px;
+    font-size: 30px;
 }
 
 

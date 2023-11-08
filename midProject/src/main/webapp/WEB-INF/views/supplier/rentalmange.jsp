@@ -70,28 +70,28 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>No.</th>
-								<th>렌탈 신청일</th>
-								<th>제품 코드</th>
-								<th>제품명</th>
-								<th>신청자명</th>
-								<th>휴대폰번호</th>
-								<th>약정 개월</th>
-								<th>배송상태</th>
-								<th>렌탈 시작일</th>
-								<th>렌탈 만료일</th>
+								<th style="vertical-align:middle">No.</th>
+								<th style="vertical-align:middle">렌탈 신청일</th>
+								<th style="vertical-align:middle">제품 코드</th>
+								<th style="vertical-align:middle">제품명</th>
+								<th style="vertical-align:middle">신청자명</th>
+								<th style="vertical-align:middle">휴대폰번호</th>
+								<th style="vertical-align:middle">약정 개월</th>
+								<th style="vertical-align:middle">배송상태</th>
+								<th style="vertical-align:middle">렌탈 시작일</th>
+								<th style="vertical-align:middle">렌탈 만료일</th>
 							</tr>
 						</thead>
 
 						<c:forEach items="${buyList}" var="list">
 							<tr>
-								<td><c:out value="${list.b_id}" /></td>
-								<td><c:out value="${list.b_signdate}" /></td>
-								<td><c:out value="${list.id}" /></td>
-								<td><c:out value="${list.g_name}" /></td>
-								<td><c:out value="${list.u_name}" /></td>
-								<td><c:out value="${list.u_phone}" /></td>
-								<td><c:out value="${list.b_rent}" /></td>
+								<td style="vertical-align:middle"><c:out value="${list.b_id}" /></td>
+								<td style="vertical-align:middle"><c:out value="${list.b_signdate}" /></td>
+								<td style="vertical-align:middle"><c:out value="${list.id}" /></td>
+								<td style="vertical-align:middle"><c:out value="${list.g_name}" /></td>
+								<td style="vertical-align:middle"><c:out value="${list.u_name}" /></td>
+								<td style="vertical-align:middle"><c:out value="${list.u_phone}" /></td>
+								<td style="vertical-align:middle"><c:out value="${list.b_rent}" /></td>
 								<!-- 답변을 추가하면 btn 생성하게 하는법?? -->
 								<td><c:out value="" /></td>
 								<td><c:out value="b_startdate" /></td>

@@ -46,42 +46,36 @@
 					
 
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="admin_index.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i
+							href="admin_index.do" aria-expanded="false" > <span> <i
 									class="ti ti-layout-dashboard"></i>
 							</span> <span class="hide-menu">대시보드</span>
 						</a></li>
 
 
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="usermange.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i class="ti ti-user"></i>
+							href="usermange.do" aria-expanded="false" > <span> <i class="ti ti-user"></i>
 							</span> <span class="hide-menu">사용자관리</span>
 						</a></li>
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="supplymange.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i
-									class="ti ti-file-description"></i>
+							href="supplymange.do" aria-expanded="false"> <span> <i
+									class="ti ti-building-factory-2"></i>
 							</span> <span class="hide-menu">공급사관리</span>
 						</a></li>
 
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="productmange.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i
+							href="productmange.do" aria-expanded="false"> <span> <i
 									class="ti ti-package"></i>
 							</span> <span class="hide-menu">제품관리</span>
 						</a></li>
 
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="statistics.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i
+							href="statistics.do" aria-expanded="false"> <span> <i
 									class="ti ti-presentation"></i>
 							</span> <span class="hide-menu">통계</span>
 						</a></li>
 						
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="logout.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i
+							href="logout.do" aria-expanded="false"> <span> <i
 									 class="ti ti-logout"></i>
 							</span> <span class="hide-menu">로그아웃</span>
 						</a></li>

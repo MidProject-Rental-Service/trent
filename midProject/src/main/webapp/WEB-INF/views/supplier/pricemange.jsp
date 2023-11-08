@@ -47,13 +47,13 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>모델명</th>
-								<th>공급사명</th>
-								<th>약정기간</th>
-								<th>렌탈비용</th>
-								<th>카드할인가(최대)</th>
-								<th>사은품혜택</th>
-								<th>가입조건</th>
+								<th style="vertical-align:middle">모델명</th>
+								<th style="vertical-align:middle">공급사명</th>
+								<th style="vertical-align:middle">약정기간</th>
+								<th style="vertical-align:middle">렌탈비용</th>
+								<th style="vertical-align:middle">카드할인가(최대)</th>
+								<th style="vertical-align:middle">사은품혜택</th>
+								<th style="vertical-align:middle">가입조건</th>
 							</tr>
 						</thead>
 
@@ -61,7 +61,7 @@
 							<tr>	
 								<td style="vertical-align:middle"><c:out value="${list.g_id}" /></td>
 								<td style="vertical-align:middle"><c:out value="${list.s_name}" /></td>
-								<td style="vertical-align:middle"><a href="<c:url value='/supplier/pricemodify.do?g_id=${list.g_id}'/>"><c:out value="${list.p_rent}개월" /></a></td>
+								<td style="vertical-align:middle"><a href="<c:url value='/supplier/pricemodify.do?p_id=${list.p_id}'/>"><c:out value="${list.p_rent}개월" /></a></td>
 								<td style="vertical-align:middle"><c:out value="${list.p_price}원" /></td>
 								<td style="vertical-align:middle"><c:out value="${list.p_card}원" /></td> 
 								<td style="vertical-align:middle"><c:out value="${list.p_gift}원" /></td> 

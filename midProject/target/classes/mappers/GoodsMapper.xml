@@ -54,32 +54,98 @@
 	</select>
 	
 	
+
+	<!-- 리뷰 등록 -->
 	<update id="saveUserReview" parameterType="UserReviewVO">
 		UPDATE REVIEW SET
 		R_POINT = #{r_point}, R_CONTENT= #{r_content}, R_REGDATE = now()
 		WHERE
 		R_ID = #{r_id}
 	</update>
+
+<!-- #############
+		#     가격 관련 매퍼     #
+		############ -->
+
+	<!-- 가격 목록 띄우기 -->
+	<select id="getPriceList" resultType="PriceVO">
+		<![CDATA[
+		SELECT  *  FROM PRICE P
+		INNER JOIN GOODS G
+		ON P.G_ID = G.G_ID
+		WHERE id = #{id};
+		]]>
+	</select>
 	
+	<!-- 가격 상세 보기 -->
+	<select id="getPriceById" parameterType="PriceVO" resultType="PriceVO">
+		SELECT * FROM price
+		WHERE p_id = #{p_id}
+	</select>
+	
+	<!-- 가격 등록 -->
 	<insert id="insertPrice" parameterType="PriceVO">
 		INSERT INTO price ( p_id, s_name, p_rent, p_price, p_card,  p_gift, p_text, g_id, id ) 
 		VALUES(#{p_id}, #{s_name}, #{p_rent}, #{p_price}, #{ p_card}, #{p_gift}, #{p_text}, #{g_id}, #{id} )
 	</insert>
 	
-	<update id="modifyPrice" parameterType="PriceVO">
+	<!-- 가격 수정 -->
+	<update id="updatePrice" parameterType="PriceVO">
 		UPDATE price SET
-		p_id = #{p_id}, s_name = #{s_name}, p_rent = #{p_rent}, p_price = #{p_price}, p_card = #{ p_card}, p_gift = #{p_gift}, p_text = #{p_text}, g_id = #{g_id}, id = #{id}
+		p_price = #{p_price}, p_card = #{ p_card}, p_gift = #{p_gift}, p_text = #{p_text}
 		WHERE
 		P_ID = #{p_id}
 	</update>
 	
-	<select id="getPriceList" resultType="PriceVO">
+	<!-- 가격 삭제 -->
+	<delete id="deletePrice" parameterType="PriceVO">
+		DELETE FROM price
+		WHERE p_id = #{p_id}
+	</delete>
+
+<!-- #############
+		#     카드 관련 매퍼     #
+		############ -->
+
+	<!--  카드 등록 -->
+	<insert id="insertCard" parameterType="CardVO">
+		INSERT INTO card ( c_img1, c_rimg1, id ) 
+		VALUES( #{c_img1}, #{c_rimg1}, #{id} )
+	</insert>
+	
+	<!-- 카드 목록 띄우기 -->
+	<select id="getCardList" resultType="CardVO">
 		<![CDATA[
-		SELECT  *  FROM PRICE P
-		INNER JOIN GOODS G ON P.G_ID = G.G_ID ;
+		SELECT  *  FROM CARD
+		WHERE id = #{id}
+		ORDER BY c_num ASC;
 		]]>
 	</select>
-
+	
+	<!-- 카드 상세 보기 -->
+	<select id="getCardById" parameterType="CardVO" resultType="CardVO">
+		SELECT * FROM card
+		WHERE c_num = #{c_num}
+	</select>
+	
+	<!-- 카드 수정 -->
+	<update id="updateCard" parameterType="CardVO">
+		UPDATE card
+		SET
+	        <if test="c_img1 != null">
+	            c_img1 = #{c_img1}
+	            , c_rimg1 = #{c_rimg1}
+	        </if>
+		WHERE
+		c_num = #{c_num}
+	</update>
+	
+	<!-- 카드 삭제 -->
+	<delete id="deleteCard" parameterType="CardVO">
+		DELETE FROM card
+		WHERE c_num = #{c_num}
+	</delete>
+	
 
 	<!-- 제품 수정 -->
 	<update id="updateGoods" parameterType="GoodsVO">
