@@ -83,23 +83,23 @@
 						<h4 class="fw-title">Brand</h4>
 						<div class="fw-brand-check">
 							<div class="bc-item">
-								<label for="bc-calvin"> LG <input type="checkbox"
-									id="bc-calvin"> <span class="checkmark"></span>
+								<label for="엘지"> LG <input type="checkbox"
+									id="엘지"> <span class="checkmark"></span>
 								</label>
 							</div>
 							<div class="bc-item">
-								<label for="bc-diesel"> SAMSUNG <input type="checkbox"
-									id="bc-diesel"> <span class="checkmark"></span>
+								<label for="삼성"> SAMSUNG <input type="checkbox"
+									id="삼성"> <span class="checkmark"></span>
 								</label>
 							</div>
 							<div class="bc-item">
-								<label for="bc-polo"> XIOMI <input type="checkbox"
-									id="bc-polo"> <span class="checkmark"></span>
+								<label for="샤오미"> XIOMI <input type="checkbox"
+									id="샤오미"> <span class="checkmark"></span>
 								</label>
 							</div>
 							<div class="bc-item">
-								<label for="bc-tommy"> DYSON <input type="checkbox"
-									id="bc-tommy"> <span class="checkmark"></span>
+								<label for="다이슨"> DYSON <input type="checkbox"
+									id="다이슨"> <span class="checkmark"></span>
 								</label>
 							</div>
 						</div>

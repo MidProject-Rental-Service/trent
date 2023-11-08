@@ -239,14 +239,24 @@ public class UserController {
 	}
     
     // 제품군 검색 (좌측패널)
-    @RequestMapping(value="/searchByCategory",method=RequestMethod.POST)
+    @RequestMapping(value="/searchCategory",method=RequestMethod.POST)
     @ResponseBody
-    public List<GoodsVO> searchByCategory(@RequestParam String c_name) {
-    	System.out.println("===> " + c_name);
-        return goodsServiceImpl.getCategoryGoodsList(c_name);
+    public List<GoodsVO> searchByCategory(
+    		// 요소들이 전부다 전송되지 않아도 에러나지않게 처리 
+            @RequestParam(required = false) String c_name,
+            @RequestParam(value = "selectedBrands[]", required = false) List<String> selectedBrands,
+            @RequestParam(required = false) Integer minPrice,
+            @RequestParam(required = false) Integer maxPrice) {
 
+        System.out.println("===> " + c_name);
+        System.out.println("Selected Brands: " + selectedBrands);
+        System.out.println("Min Price: " + minPrice);
+        System.out.println("Max Price: " + maxPrice);
+
+        // 여기서 선택된 브랜드와 가격을 이용하여 SQL 쿼리를 생성하여 처리합니다.
+
+        return goodsServiceImpl.getCategoryGoodsList(c_name,selectedBrands,minPrice,maxPrice);
     }
-    
-    
+
     
 }

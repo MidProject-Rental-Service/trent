@@ -85,7 +85,31 @@
 		WHERE g_id = #{g_id}
 	</delete>
 
-	<select id="getCategoryGoodsList" parameterType="String" resultType="GoodsVO">
+<!--  제품상세검색 -->
+<select id="getCategoryGoodsList" parameterType="HashMap" resultType="GoodsVO">
+    SELECT GOODS.*, CATEGORY.C_NAME, MAKER.M_NAME 
+    FROM GOODS
+    INNER JOIN CATEGORY ON GOODS.C_ID = CATEGORY.C_ID 
+    INNER JOIN MAKER ON GOODS.M_ID = MAKER.M_ID 
+    <where>
+        <if test="c_name != null and !c_name.isEmpty()">
+            AND CATEGORY.C_NAME = #{c_name}
+        </if>
+        <if test="selectedBrands != null and !selectedBrands.isEmpty()">
+            AND MAKER.M_NAME IN
+            <foreach collection="selectedBrands" item="brand" open="(" separator="," close=")">
+                #{brand}
+            </foreach>
+        </if>
+<!-- 여기에 if 가격 -->
+    </where>
+</select>
+
+
+
+
+
+<!-- 	<select id="getCategoryGoodsList" parameterType="String" resultType="GoodsVO">
         SELECT GOODS.*,CATEGORY.C_NAME,MAKER.M_NAME 
 	    FROM GOODS
 	    INNER JOIN CATEGORY
@@ -95,6 +119,6 @@
 	    
         WHERE CATEGORY.C_NAME = #{c_name}
     </select>
-
+ -->
 
 </mapper>

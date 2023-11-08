@@ -12,8 +12,6 @@ public interface GoodsDAO {
 	public List<GoodsVO> getGoodsList(GoodsVO vo);	
 
 	public GoodsVO getGoodsById(GoodsVO vo);
-	
-	public List<GoodsVO> getGoodsList(String c_name);
 
 	public void insertPrice(PriceVO vo);
 	
@@ -21,4 +19,5 @@ public interface GoodsDAO {
 	
 	public List<PriceVO> getPriceList(PriceVO vo);
 	
+	 List<GoodsVO> getCategoryGoodsList(String c_name, List<String> selectedBrands, Integer minPrice, Integer maxPrice);
 }
