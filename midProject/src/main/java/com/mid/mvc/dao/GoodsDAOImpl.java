@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mid.mvc.domain.CardVO;
 import com.mid.mvc.domain.GoodsVO;
 import com.mid.mvc.domain.PriceVO;
 
@@ -41,25 +42,57 @@ public class GoodsDAOImpl {
 		SqlSession.delete("GoodsMapper.deleteGoods", vo);
 		
 	}
-
-	public void insertPrice(PriceVO vo) {
-		System.out.println("GoodsDAOImpl 호출");
-		SqlSession.insert("GoodsMapper.insertPrice" , vo);
-	}
-	
-	public void modifyPrice(PriceVO vo) {
-		System.out.println("GoodsDAOImpl 호출");
-		SqlSession.insert("GoodsMapper.modifyPrice" , vo);
-	}
 	
 	// 상품 전체 검색
 	public List<PriceVO> getPriceList(PriceVO vo){
-		System.out.println("===> Mybatis getPriceList() 호출");
 		System.out.println(vo.toString());
 		return SqlSession.selectList("GoodsMapper.getPriceList", vo);
 	}
+	
+	public PriceVO getPriceById(PriceVO vo) {
+		System.out.println("====> getPriceById 호출");
+		System.out.println(vo.toString());
+		return SqlSession.selectOne("GoodsMapper.getPriceById", vo);
+	}
 
-
+	public void insertPrice(PriceVO vo) {
+		SqlSession.insert("GoodsMapper.insertPrice" , vo);
+	}
+	
+	public void updatePrice(PriceVO vo) {
+		System.out.println("====> updatePrice 호출");
+		System.out.println(vo.toString());
+		SqlSession.insert("GoodsMapper.updatePrice" , vo);
+	}
+	
+	public void deletePrice(PriceVO vo) {
+		System.out.println("====> deletePrice 호출");
+		System.out.println(vo.toString());
+		SqlSession.delete("GoodsMapper.deletePrice", vo);		
+	}
+	
+	// 카드 전체 검색
+	public List<CardVO> getCardList(CardVO vo){
+		System.out.println(vo.toString());
+		return SqlSession.selectList("GoodsMapper.getCardList", vo);
+	}
+	
+	public CardVO getCardById(CardVO vo) {
+		return SqlSession.selectOne("GoodsMapper.getCardById", vo);
+	}
+	
+	public void insertCard(CardVO vo) {
+		SqlSession.insert("GoodsMapper.insertCard" , vo);
+	}
+	
+	public void updateCard(CardVO vo) {
+		SqlSession.insert("GoodsMapper.updateCard" , vo);
+	}
+	
+	public void deleteCard(CardVO vo) {
+		SqlSession.delete("GoodsMapper.deleteCard", vo);		
+	}
+	
 	public List<GoodsVO> getCategoryGoodsList(String c_name, List<String> selectedBrands, Integer minPrice, Integer maxPrice) {
         HashMap<String, Object> map = new HashMap<>();
         System.out.println("===> SqlSession getCategoryGoodsList() 호출" );

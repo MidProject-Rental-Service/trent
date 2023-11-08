@@ -16,12 +16,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>가격정보 등록</title>
 
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="../src/assets/css/styles.min.css" />
 
-
-<link rel="stylesheet"
-	href="../src/assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -57,40 +54,38 @@
 		<div class="container-fluid">
 			<main>
 				<div class="py-5 text-left">
-					<h1>가격등록</h1>
+					<h1>가격수정</h1>
 					<p class="lead"></p>
 				</div>
 
 				<div class="row g-5">
 					<div class="col-md-12">
-						<form action="modifyPrice.do" method='post' enctype="multipart/form-data">
-							<input name="g_id" type="hidden" value="${product.g_id}" />	
+						<form action="updatePrice.do" method='post' enctype="multipart/form-data">
+							<input name="p_id" type="hidden" value="${price.p_id}" />	
 							<input name="s_name" type="hidden" value="<%= user.getName() %>" />
 							<input name="id" type="hidden" value="<%= user.getId() %>" />
 							<div class="row g-3">
 								<div class="row">
 									<div class="col-sm-2">
 										<label for="contractperiod" class="form-label">약정기간</label>
-										<select	class="form-select" id="contractperiod" name="p_rent" >
-											<option value="">약정기간 선택</option>
-											<option value="12">12개월</option>
-											<option value="24">24개월</option>
-											<option value="36">36개월</option>
-											<option value="48">48개월</option>
-											<option value="50">60개월</option>
-											<option value="72">72개월</option>
-										</select>
+									    <select class="form-select" id="contractperiod" name="p_rent" disabled>
+									        <option value="">약정기간 선택</option>
+									        <option value="12" ${price.p_rent == '12' ? 'selected' : ''}>12개월</option>
+									        <option value="24" ${price.p_rent == '24' ? 'selected' : ''}>24개월</option>
+									        <option value="36" ${price.p_rent == '36' ? 'selected' : ''}>36개월</option>
+									        <option value="48" ${price.p_rent == '48' ? 'selected' : ''}>48개월</option>
+									        <option value="60" ${price.p_rent == '60' ? 'selected' : ''}>60개월</option>
+									        <option value="72" ${price.p_rent == '72' ? 'selected' : ''}>72개월</option>
+									    </select>
 									</div>
 								</div>
-
-								<hr>
 
 								<div class="row">
 									<div class="col-sm-2">
 										<label for="g_id" class="form-label">월렌탈요금</label>
 									</div>
 									<div class="col-sm-3">
-										<input type="text" class="form-control" id="g_id" name="p_price">
+										<input type="text" class="form-control" id="g_id" name="p_price" value="${price.p_price}">
 									</div>
 								</div>
 
@@ -99,7 +94,7 @@
 										<label for="g_id" class="form-label">카드할인가</label>
 									</div>
 									<div class="col-sm-3">
-										<input type="text" class="form-control" id="g_id" name="p_card">
+										<input type="text" class="form-control" id="g_id" name="p_card" value="${price.p_card}">
 									</div>
 								</div>
 
@@ -108,30 +103,24 @@
 										<label for="g_id" class="form-label">사은품혜택</label>
 									</div>
 									<div class="col-sm-3">
-										<input type="text" class="form-control" id="g_id" name="p_gift">
+										<input type="text" class="form-control" id="g_id" name="p_gift" value="${price.p_gift}">
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-sm-7">
 										<label for="g_id" class="form-label">가입조건입력</label>
-										<textarea class="form-control" id="g_id" name="p_text" rows="6"></textarea>
+										<textarea class="form-control" id="g_id" name="p_text" rows="6">${price.p_text}</textarea>
 									</div>
 								</div>
 
 								<hr>
 
-								<div class="row">
-									<div class="col-sm-7">
-										<label for="g_id" class="form-label">제휴카드등록 </label>
-										<!-- <table id='replyList' border='2'/> -->
-									</div>
-								</div>
-
 								<div class="row text-center">
-									<div class="col-sm-12">
-										<input class="btn btn-primary mx-2" type="submit" value="등록하기" />
-										<a class="btn btn-danger mx-2"	 href="productmange.do">뒤로가기</a>
+									<div class="col-sm-10">
+										<input class="btn btn-primary mx-2" type="submit" value="수정하기" />
+										<a class="btn btn-secondary mx-2"	 href="pricemange.do?id=${price.id}">취소 및 뒤로가기</a>
+										<a class="btn btn-danger mx-2" href="<c:url value='/supplier/deletePrice.do?p_id=${price.p_id}&id=${price.id}'/>">삭제하기</a>
 									</div>
 								</div>
 							</div>

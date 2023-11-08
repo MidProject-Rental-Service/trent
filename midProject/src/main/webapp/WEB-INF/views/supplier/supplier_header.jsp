@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.mid.mvc.domain.UserVO"%>
+<% 
+  UserVO user = (UserVO) session.getAttribute("loggedInUser");
+%>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,46 +53,40 @@
 
 
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="./supplier_index.do" aria-expanded="false" style="font-size: 25px;">
+							href="./supplier_index.do" aria-expanded="false">
 								<span> <i class="ti ti-layout-dashboard"></i>
 							</span> <span class="hide-menu">대시보드</span>
 						</a></li>
 						
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="./productmange.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i class="ti ti-clipboard-list"></i>
+							href="./productmange.do" aria-expanded="false"> <span> <i class="ti ti-clipboard-list"></i>
 							</span> <span class="hide-menu">제품관리</span>
 						</a></li>
 
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="./pricemange.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i class="ti ti-businessplan"></i>
+							href="./pricemange.do?id=<%= user.getId() %>" aria-expanded="false"> <span> <i class="ti ti-businessplan"></i>
 							</span> <span class="hide-menu">가격정보관리</span>
 						</a></li>
 						
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="./cardmange.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i class="ti ti-credit-card"></i>
+							href="./cardmange.do?id=<%= user.getId() %>" aria-expanded="false"> <span> <i class="ti ti-credit-card"></i>
 							</span> <span class="hide-menu">할인카드관리</span>
 						</a></li>
 
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="./rentalmange.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i
+							href="./rentalmange.do" aria-expanded="false"> <span> <i
 									class="ti ti-file-description"></i>
 							</span> <span class="hide-menu">렌탈상태관리</span>
 						</a></li>
 
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="./inquirymange.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i
+							href="./inquirymange.do" aria-expanded="false"> <span> <i
 									class="ti ti-package"></i>
 							</span> <span class="hide-menu">1:1문의</span>
 						</a></li>
 						
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="logout.do" aria-expanded="false"
-							style="font-size: 25px;"> <span> <i
+							href="logout.do" aria-expanded="false"> <span> <i
 									 class="ti ti-logout"></i>
 							</span> <span class="hide-menu">로그아웃</span>
 						</a></li>
