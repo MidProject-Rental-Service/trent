@@ -283,8 +283,6 @@ public class UserController {
     	HashMap map = new HashMap();
  		map.put("searchCondition", searchCondition);
  		map.put("searchKeyword", searchKeyword);
-    	
-
 		List<GoodsVO> result = goodsServiceImpl.getSearchGoodsList(map);
 		int cnt = result.size();
 		m.addAttribute("searchKeyword", searchKeyword);

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mid.mvc.dao.UserBoardDAO;
+import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.UserBoardVO;
 import com.mid.mvc.domain.UserRentalVO;
 
@@ -24,8 +25,8 @@ public class UserBoardServiceImpl implements UserBoardService{
 	}
 	
 	//관리자페이지 사용자 문의 리스트
-	public List<UserBoardVO> admingetUserBoardList(HashMap map) {
-		return userboardDAO.admingetUserBoardList(map);
+	public List<UserBoardVO> admingetUserBoardList(HashMap map, Criteria cri) {
+		return userboardDAO.admingetUserBoardList(map, cri);
 	}
 	
 
@@ -51,6 +52,11 @@ public class UserBoardServiceImpl implements UserBoardService{
 
 	public void insertAnswer(UserBoardVO vo) {
 		userboardDAO.insertAnswer(vo);
+	}
+
+	@Override
+	public int getTotal() {
+		return userboardDAO.getTotal();
 	}
 
 }

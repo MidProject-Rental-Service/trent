@@ -2,11 +2,13 @@ package com.mid.mvc.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.UserBoardVO;
 import com.mid.mvc.domain.UserRentalVO;
 
@@ -41,7 +43,9 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 	}
 	
 	//관리자 페이지에서 사용자 문의리스트
-	public List<UserBoardVO> admingetUserBoardList(HashMap map) {
+	public List<UserBoardVO> admingetUserBoardList(HashMap map, Criteria cri) {
+		cri.setStartNum((cri.getPageNum() - 1) * cri.getAmount());
+		map.put("criteria", cri);
 		System.out.println("===> sqlSession getUserBoardList() 호출");
 		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
 		return sqlSession.selectList("UserBoardMapper.admingetUserBoardList",map);
@@ -64,6 +68,13 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 	public void insertAnswer(UserBoardVO vo) {
 		int result = sqlSession.update("UserBoardMapper.insertAnswer", vo);
 		System.out.println("입력결과 : " + result);
+	}
+
+
+	@Override
+	public int getTotal() {
+	    int result = sqlSession.selectOne("UserBoardMapper.getTotal");
+	    return result;
 	}
 	
 }

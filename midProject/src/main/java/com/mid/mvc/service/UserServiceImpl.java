@@ -37,8 +37,8 @@ public class UserServiceImpl implements UserService {
 		userDAOImpl.updateUser(vo);
 	}
 	
-	public List<UserVO> getUserList(UserVO vo, Criteria cri){
-		return userDAOImpl.getUserList(vo, cri);
+	public List<UserVO> getUserList(HashMap map){
+		return userDAOImpl.getUserList(map);
 	}
 	
 	public List<UserVO> getSupplyList(HashMap map){

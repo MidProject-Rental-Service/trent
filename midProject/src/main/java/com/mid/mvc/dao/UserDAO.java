@@ -16,7 +16,7 @@ public interface UserDAO {
 	
 	public void updateUser(UserVO vo);
 
-	public List<UserVO> getUserList(UserVO vo, Criteria cri);	
+	public List<UserVO> getUserList(HashMap map);	
 	
 	public List<UserVO> getSupplyList(HashMap map);	
 	

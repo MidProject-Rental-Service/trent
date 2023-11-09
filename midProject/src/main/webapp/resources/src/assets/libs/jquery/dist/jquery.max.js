@@ -4,13 +4,19 @@ jqueryScript.type = 'text/javascript';
 document.head.appendChild(jqueryScript);
 
 jqueryScript.onload = function() {
+	
+
 
 	{
     console.log("ee");
     var listForm = $("#listForm");
 
     $(".pagination_button").on("click", function(e) {
+
         e.preventDefault();
+        
+        // searchCondition 값을 가져와서 console에 출력
+
 
         var pageNum = $(this).find("a").attr("href"); // 페이지 번호 가져오기
         listForm.find("input[name='pageNum']").val(pageNum);
@@ -94,6 +100,11 @@ jqueryScript.onload = function() {
 
 
 };
+
+
+
+
+
 
 	function sample6_execDaumPostcode() {
 	    new daum.Postcode({

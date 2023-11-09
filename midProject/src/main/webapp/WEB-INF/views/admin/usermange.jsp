@@ -46,6 +46,7 @@
 
 				<section id="container">
 					<form role="form" method="get" id="listForm">
+						
 						<input type="hidden" name="pageNum"
 							value="${pageMaker.cri.pageNum }"> <input type="hidden"
 							name="amount" value="${pageMaker.cri.amount }">
@@ -75,7 +76,7 @@
 								</tr>
 							</c:forEach>
 						</table>
-						
+
 					</form>
 					<!-- page 이전 1 2 3 4 5 다음 만드세요  -->
 					<div name="paging">
@@ -97,36 +98,29 @@
 							</c:if>
 						</ul>
 					</div>
-					
-					<form action=""name="search-form">
-						<div></div>
 
-						<!-- page 이전 1 2 3 4 5 다음 만드세요  -->
-						<div>
-						</div>
-					</form>
-					
-						<!-- 검색폼 시작 (name값이랑 value값은 변경금지!!) -->
-						<form action="usermange.do">
+
+					<!-- 검색폼 시작 (name값이랑 value값은 변경금지!!) -->
+					<form action="usermange.do" id="searchForm">
 						<div class="search row">
 							<select name="searchCondition" id="searchCondition"
-										class="search-date-bar">
-										<option value="name">이름</option>
-										<option value="phone">휴대폰번호</option>
-										<option value="id">아이디</option>
-										<option value="addr">주소</option>
-										<option value="email">이메일</option>
-									</select> <input type="text" name="searchKeyword"> 
-									<input type="submit" class="btn btn-primary search-btn " value="검색">
+								class="search-date-bar">
+								<option class="u" value="name">이름</option>
+								<option class="u" value="phone">휴대폰번호</option>
+								<option class="u" value="id">아이디</option>
+								<option class="u" value="addr">주소</option>
+								<option class="u" value="email">이메일</option>
+							</select> <input type="text" name="searchKeyword"> <input
+								type="submit" class="btn btn-primary search-btn " value="검색">
+        
 						</div>
-						</form>
-						<!-- 검색 폼 끝 -->
-				</section>
+					</form>
 
+					<!-- 검색 폼 끝 -->
+				</section>
 			</div>
 		</div>
 	</div>
-
 
 	<script src="../src/assets/libs/jquery/dist/jquery.max.js"></script>
 	<script src="../src/assets/libs/jquery/dist/jquery.min.js"></script>

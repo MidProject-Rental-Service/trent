@@ -79,8 +79,8 @@
 								<div class="row">
 									<div class="col-sm-3 offset-sm-4">
 										<label for="addr" class="form-label">주소</label> 
-		                                <input type="text" id="sample6_postcode" class="f" name="postcode" size="2" >
 										<input type="button" onclick="sample6_execDaumPostcode()"  value="우편번호검색" onclick="checkPost()">
+		                                <input type="text" id="sample6_postcode" class="form-control" name="postcode" size="2" >							
 										<input type="text" id="sample6_address" class="form-control" name="addr" size="50" placeholder="주소" value="${user.addr }" ><br/>
 										<input type="text" id="sample6_detailAddress" class="form-control" name="addr" size="50" placeholder="상세주소">
 										<input type="text" id="sample6_extraAddress" class="form-control" style="display:none;">

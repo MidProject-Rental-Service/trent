@@ -72,15 +72,27 @@ public class AdminController {
 	
 	//사용자 전체 검색 --
 	@RequestMapping("/usermange.do")
-	public void userList(UserVO vo, Model model, Criteria cri) {
-		List<UserVO> result = userService.getUserList(vo, cri);
+	public void userList(UserVO vo, Model model, Criteria cri, String searchCondition, String searchKeyword) {
+		HashMap map = new HashMap();
+
+		cri.setStartNum((cri.getPageNum() - 1) * cri.getAmount());
+		
+		
+ 		map.put("searchCondition", searchCondition);
+ 		map.put("searchKeyword", searchKeyword);
+ 		map.put("criteria", cri);
+		
+		List<UserVO> result = userService.getUserList(map);
 		int total = userService.getTotal();
 
 		model.addAttribute("userList",result);
 		model.addAttribute("pageMaker", new PageVO(cri, total));
+	
+		
 		System.out.println("Amount : " + cri.getAmount());
 		System.out.println("StartNum : " + cri.getStartNum());
 		System.out.println("PageNum : " + cri.getPageNum());
+	
 	}
 
 	//공급사 전체 검색  --
@@ -163,11 +175,14 @@ public class AdminController {
 	 
 	  //관리자 페이지에서 더보기 누르면 사용자 공급사 문의 전체 검색
 	  @RequestMapping("/userinquiry.do")
-	  public void adminUserBoardList(Model m) {
+	  public void adminUserBoardList(Model m, Criteria cri) {
 		  HashMap map = new HashMap();
-	      List<UserBoardVO>result = userBoardService.admingetUserBoardList(map);
+	      List<UserBoardVO>result = userBoardService.admingetUserBoardList(map, cri);
+	      int total = userBoardService.getTotal();
+	      
 	      System.out.println(result);
 	      m.addAttribute("userBoardList",result);		  		  
+	      m.addAttribute("pageMaker", new PageVO(cri, total));		  		  
 	  }
 	  
 
