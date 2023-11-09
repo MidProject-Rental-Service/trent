@@ -2,6 +2,7 @@ package com.mid.mvc.dao;
 
 import java.util.List;
 
+import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.UserVO;
 
 public interface UserDAO {
@@ -14,7 +15,7 @@ public interface UserDAO {
 	
 	public void updateUser(UserVO vo);
 	
-	public List<UserVO> getUserList(UserVO vo);	
+	public List<UserVO> getUserList(UserVO vo, Criteria cri);	
 	
 	public List<UserVO> getSupplyList(UserVO vo);	
 	

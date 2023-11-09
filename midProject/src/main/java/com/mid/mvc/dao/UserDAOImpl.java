@@ -1,11 +1,14 @@
 package com.mid.mvc.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.UserVO;
 
 @Repository
@@ -45,9 +48,13 @@ public class UserDAOImpl implements UserDAO {
 		
 	}
 	
-	public List<UserVO> getUserList(UserVO vo){
-		System.out.println("UserDAOImpl");
-		return sqlSession.selectList("UserMapper.getUserList", vo);
+	public List<UserVO> getUserList(UserVO vo, Criteria cri){
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("userVO", vo);
+		cri.setStartNum((cri.getPageNum() - 1) * cri.getAmount());
+		paramMap.put("criteria", cri);
+		System.out.println("====> Mybatis로 getBoardList() 기능 처리");
+		return sqlSession.selectList("UserMapper.getUserList", paramMap);
 	}
 	
 	public List<UserVO> getSupplyList(UserVO vo){
