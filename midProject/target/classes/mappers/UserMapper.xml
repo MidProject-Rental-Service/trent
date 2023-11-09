@@ -29,9 +29,9 @@
     
     <!--  회원정보 리스트 출력 -->
     <select id="getUserList" resultType="UserVO">
-		<![CDATA[
-		SELECT * FROM user WHERE role ="USER" ORDER BY id DESC
-		]]>
+		SELECT * FROM user 
+		WHERE role ="USER"
+		LIMIT #{criteria.amount} OFFSET #{criteria.startNum} 
 	</select>
 	
     <!-- 게시물 총 개숫 -->

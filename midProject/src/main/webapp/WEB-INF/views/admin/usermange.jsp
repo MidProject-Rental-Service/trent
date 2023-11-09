@@ -45,7 +45,10 @@
 				</div>
 
 				<section id="container">
-					<form role="form" method="get">
+					<form role="form" method="get" id="listForm">
+						<input type="hidden" name="pageNum"
+							value="${pageMaker.cri.pageNum }"> <input type="hidden"
+							name="amount" value="${pageMaker.cri.amount }">
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -71,21 +74,39 @@
 									<td><a></a></td>
 								</tr>
 							</c:forEach>
-
 						</table>
-						<!-- 검색버튼 만드세요 -->
-						<div class="search row">
+					</form>
+					<!-- page 이전 1 2 3 4 5 다음 만드세요  -->
+					<div name="paging">
+						<ul class="pagination">
+							<c:if test="${pageMaker.prev }">
+								<li class="pagination_button"><a
+									href="${pageMaker.startPage - 1 }">Previous</a></li>
+							</c:if>
 
-						</div>
-						<!-- page 이전 1 2 3 4 5 다음 만드세요  -->
-						<div>
+							<c:forEach var="num" begin="${pageMaker.startPage }"
+								end="${pageMaker.endPage }">
+								<li class="pagination_button"><a href="${num }">${num }</a>
+								</li>
+							</c:forEach>
 
-						</div>
+							<c:if test="${pageMaker.next }">
+								<li class="pagination_button"><a
+									href="${pageMaker.endPage + 1 }">Next</a></li>
+							</c:if>
+						</ul>
+					</div>
+					<form action=""name="search-form">
+						<div></div>
 					</form>
 				</section>
+
 			</div>
 		</div>
 	</div>
+
+
+	<script src="../src/assets/libs/jquery/dist/jquery.max.js"></script>
 	<script src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script
 		src="../src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

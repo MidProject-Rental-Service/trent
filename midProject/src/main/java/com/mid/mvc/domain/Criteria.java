@@ -1,45 +1,47 @@
 package com.mid.mvc.domain;
 
-import lombok.Data;
-
-@Data
 public class Criteria {
-    private int pageNum;      // 현재 페이지 번호
-    private int amount;       // 페이지당 항목 수
-    private String keyword;   // 검색어 (선택 사항)
+	private int pageNum;
+	private int amount;
+	private int startNum;
+	
+	public Criteria() {
+		//객체 생성시 기본 생성자를 호출하여 매개변수를 줘서 매개변수를 가지고 있는 생성자 함수 호출
+		this(1, 10); //생성자에서 pageNum=1, amount=10으로 설정
+	}
+	
+	// 기본 생성자 설정
+	public Criteria(int pageNum, int amount) {
+		this.pageNum = pageNum;
+		this.amount = amount;
+	}
 
-    public Criteria() {
-        this(1, 10);  // 기본 생성자로 페이지 번호를 1, 페이지당 항목 수를 10으로 초기화
-    }
+	public int getPageNum() {
+		return pageNum;
+	}
 
-    public Criteria(int pageNum, int amount) {
-        this.pageNum = pageNum;
-        this.amount = amount;
-    }
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
 
-    // Getter 및 Setter 메서드는 필요에 따라 추가할 수 있습니다.
+	public int getAmount() {
+		return amount;
+	}
 
-    public int getPageNum() {
-        return pageNum;
-    }
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	
+	public int getStartNum() {
+		return startNum;
+	}
 
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
-    }
+	public void setStartNum(int startNum) {
+		this.startNum = startNum;
+	}
 
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
+	@Override
+	public String toString() {
+		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + "]";
+	}
 }

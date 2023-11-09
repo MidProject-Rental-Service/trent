@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +16,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.GoodsVO;
+import com.mid.mvc.domain.PageVO;
 import com.mid.mvc.domain.SupplierBoardVO;
 import com.mid.mvc.domain.UserBoardVO;
 import com.mid.mvc.domain.UserVO;
@@ -27,6 +30,8 @@ import com.mid.mvc.service.UserService;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+	
+	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
 
 	@Autowired
 	private UserService userService;
@@ -67,10 +72,18 @@ public class AdminController {
 	
 	//사용자 전체 검색
 	@RequestMapping("/usermange.do")
-	public void userList(UserVO vo, Model model) {
-		System.out.println("usermange호출");
-		List<UserVO> result = userService.getUserList(vo);
+	public void userList(UserVO vo, Model model, Criteria cri) {
+		List<UserVO> result = userService.getUserList(vo, cri);
+		
+		
+		int total = userService.getTotal();
+		
 		model.addAttribute("userList",result);
+		model.addAttribute("pageMaker", new PageVO(cri, total));
+		System.out.println("Amount : " + cri.getAmount());
+		System.out.println("StartNum : " + cri.getStartNum());
+		System.out.println("PageNum : " + cri.getPageNum());
+		
 	}
 
 	

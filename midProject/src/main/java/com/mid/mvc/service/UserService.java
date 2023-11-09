@@ -2,6 +2,7 @@ package com.mid.mvc.service;
 
 import java.util.List;
 
+import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.UserVO;
 
 public interface UserService {
@@ -14,7 +15,7 @@ public interface UserService {
 	
 	public void updateUser(UserVO vo);
 	
-	List<UserVO> getUserList(UserVO vo);
+	List<UserVO> getUserList(UserVO vo , Criteria cri);
 	
 	List<UserVO> getSupplyList(UserVO vo);
 	
@@ -25,4 +26,6 @@ public interface UserService {
 	void userModify(UserVO vo);
 	
 	public int getTotal();
+	
+	
 }

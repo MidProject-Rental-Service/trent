@@ -16,8 +16,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-<link rel="stylesheet"
-	href="../src/assets/css/styles.min.css" />
+<link rel="stylesheet" href="../src/assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -25,8 +24,8 @@
 	<div class="page-wrapper" id="main-wrapper" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed">
-		
-	<jsp:include page="./admin_header.jsp"/>
+
+		<jsp:include page="./admin_header.jsp" />
 
 		<!--  메인페이지 -->
 
@@ -67,53 +66,13 @@
 								<td><c:out value="${list.id}" /></td>
 								<td><c:out value="${list.addr}" /></td>
 								<td><c:out value="${list.email}" /></td>
-								<!-- 답변을 추가하면 btn 생성하게 하는법?? -->
-								<td><a class= "btn btn-primary" href ="supplymangemodify.do?id=${list.id}">수정하기</a></td>
+								<td><a class="btn btn-primary"
+									href="supplymangemodify.do?id=${list.id}">수정하기</a></td>
 							</tr>
 						</c:forEach>
 
 					</table>
-					<div class="search row">
-						<div class="col-xs-2 col-sm-2">
-							<select name="searchType" class="form-control">
-								<option value="n"
-									<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
-								<option value="t"
-									<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>아이디</option>
-								<option value="c"
-									<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>휴대폰번호</option>
-							</select>
-						</div>
 
-						<div class="col-xs-10 col-sm-10">
-							<div class="input-group">
-								<input type="text" name="keyword" id="keywordInput"
-									value="${scri.keyword}" class="form-control" /> <span
-									class="input-group-btn">
-									<button id="searchBtn" type="button" class="btn btn-default">검색</button>
-								</span>
-							</div>
-						</div>
-						<!-- 검색버튼 누르면 js  -->
-						<script>
-							$(function() {
-								$('#searchBtn')
-										.click(
-												function() {
-													self.location = "list"
-															+ '${pageMaker.makeQuery(1)}'
-															+ "&searchType="
-															+ $(
-																	"select option:selected")
-																	.val()
-															+ "&keyword="
-															+ encodeURIComponent($(
-																	'#keywordInput')
-																	.val());
-												});
-							});
-						</script>
-					</div>
 					<!-- page 이전 1 2 3 4 5 다음  -->
 					<div class="col-md-offset-3">
 						<ul class="pagination">
@@ -137,20 +96,45 @@
 						</ul>
 					</div>
 				</form>
+				<form>
+					<div class="search row">
+						<div class="col-xs-2 col-sm-2">
+							<select name="searchType" class="form-control">
+								<option value="n"
+									<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
+								<option value="t"
+									<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>아이디</option>
+								<option value="c"
+									<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>휴대폰번호</option>
+							</select>
+						</div>
+
+						<div class="col-xs-10 col-sm-10">
+							<div class="input-group">
+								<input type="text" name="keyword" id="keywordInput"
+									value="${scri.keyword}" class="form-control" /> <span
+									class="input-group-btn">
+									<button id="searchBtn" type="button" class="btn btn-default">검색</button>
+								</span>
+							</div>
+						</div>
+
+					</div>
+
+				</form>
+
+
 			</section>
 		</div>
 
 	</div>
-	<script
-		src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
+	<script src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script
 		src="../src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="../src/assets/js/sidebarmenu.js"></script>
 	<script src="../src/assets/js/app.min.js"></script>
-	<script
-		src="../src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-	<script
-		src="../src/assets/libs/simplebar/dist/simplebar.js"></script>
+	<script src="../src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+	<script src="../src/assets/libs/simplebar/dist/simplebar.js"></script>
 	<script src="../src/assets/js/dashboard.js"></script>
 
 </body>
