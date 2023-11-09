@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
-	
-	<!-- ####### MySql #######  -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" 	value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" 						value="jdbc:mysql://114.207.167.66/rental_shop"></property>
-		<property name="username" 			value="harim"></property>
-		<property name="password" 			value="1234"></property>
-	</bean>	
-	
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+   xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+   
+   <!-- ####### MySql #######  -->
+   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName"    value="com.mysql.cj.jdbc.Driver"></property>
+      <property name="url"                   value="jdbc:mysql://114.207.167.66/rental_shop"></property>
+      <property name="username"          value="harim"></property>
+      <property name="password"          value="1234"></property>
+   </bean>   
+   
 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
   <property name="dataSource" ref="dataSource" />
   <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
   <property name="typeAliases">
-  	<list>
-  		<value>com.mid.mvc.domain.UserVO</value> <!-- UserVO 별칭 -->
-  		<value>com.mid.mvc.domain.UserReviewVO</value>
-  		<value>com.mid.mvc.domain.UserBoardVO</value>
-  		<value>com.mid.mvc.domain.UserRentalVO</value>
-  		<value>com.mid.mvc.domain.SupplierBoardVO</value>
-  		<value>com.mid.mvc.domain.GoodsVO</value>
-  		<value>com.mid.mvc.domain.PriceVO</value>
-  		<value>com.mid.mvc.domain.CardVO</value>
-  		<value>com.mid.mvc.domain.PageVO</value>
-  		<value>com.mid.mvc.domain.Criteria</value>
-  		<value>com.mid.mvc.domain.ShoppingCartVO</value>
-  	</list>
+     <list>
+        <value>com.mid.mvc.domain.UserVO</value> <!-- UserVO 별칭 -->
+        <value>com.mid.mvc.domain.UserReviewVO</value>
+        <value>com.mid.mvc.domain.UserBoardVO</value>
+        <value>com.mid.mvc.domain.UserRentalVO</value>
+        <value>com.mid.mvc.domain.SupplierBoardVO</value>
+        <value>com.mid.mvc.domain.GoodsVO</value>
+        <value>com.mid.mvc.domain.PriceVO</value>
+        <value>com.mid.mvc.domain.CardVO</value>
+        <value>com.mid.mvc.domain.PageVO</value>
+        <value>com.mid.mvc.domain.Criteria</value>
+        <value>com.mid.mvc.domain.ShoppingCartVO</value>
+     </list>
   </property>
  </bean>
  
@@ -39,7 +39,5 @@
    <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
  </bean>
  
-  		
+        
 </beans>
-
-
