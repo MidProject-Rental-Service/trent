@@ -1,5 +1,6 @@
 package com.mid.mvc.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.mid.mvc.domain.Criteria;
@@ -14,10 +15,10 @@ public interface UserDAO {
 	public UserVO loginCheck(UserVO vo);
 	
 	public void updateUser(UserVO vo);
-	
+
 	public List<UserVO> getUserList(UserVO vo, Criteria cri);	
 	
-	public List<UserVO> getSupplyList(UserVO vo);	
+	public List<UserVO> getSupplyList(HashMap map);	
 	
 	public void insertSupply(UserVO vo);
 	

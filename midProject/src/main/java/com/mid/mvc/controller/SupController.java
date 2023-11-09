@@ -1,6 +1,7 @@
 package com.mid.mvc.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -37,7 +38,8 @@ public class SupController {
 	//상품 전체 검색
 	@RequestMapping("/productmange.do")
 	public void GoodsList(GoodsVO vo, Model model) { 
-		List<GoodsVO> result = goodsService.getGoodsList(vo); 
+		HashMap map = new HashMap();
+		List<GoodsVO> result = goodsService.getGoodsList(map); 
 		model.addAttribute("goodsList",result);
 	}
 	

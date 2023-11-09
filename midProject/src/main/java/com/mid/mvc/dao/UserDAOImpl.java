@@ -47,7 +47,7 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.update("UserMapper.updateUser", vo);
 		
 	}
-	
+
 	public List<UserVO> getUserList(UserVO vo, Criteria cri){
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("userVO", vo);
@@ -57,9 +57,10 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectList("UserMapper.getUserList", paramMap);
 	}
 	
-	public List<UserVO> getSupplyList(UserVO vo){
-		System.out.println("UserDAOImpl");
-		return sqlSession.selectList("UserMapper.getSupplyList", vo);
+	public List<UserVO> getSupplyList(HashMap map){
+		System.out.println("===> sqlSession getSupplyList");
+		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
+		return sqlSession.selectList("UserMapper.getSupplyList", map);
 	}
 	
 	public void insertSupply(UserVO vo) {

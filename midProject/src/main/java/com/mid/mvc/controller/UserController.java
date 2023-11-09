@@ -237,7 +237,8 @@ public class UserController {
     @RequestMapping("/shop.do")
 	public void GoodsList(GoodsVO vo, Model m) {
     	System.out.println("화면에서 넘겨오는 값:" + vo.toString());
-		List<GoodsVO> result = goodsServiceImpl.getGoodsList(vo);
+    	HashMap map = new HashMap();
+		List<GoodsVO> result = goodsServiceImpl.getGoodsList(map);
 		int cnt = result.size();
 		m.addAttribute("goodsList", result);
 		

@@ -11,7 +11,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize Free</title>
+<title>공급사관리</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -42,8 +42,6 @@
 					<a href="supplymangeregister.do" class="btn btn-primary float-end">등록하기</a>
 				</div>
 			</div>
-
-
 
 			<section id="container">
 				<form role="form" method="get">
@@ -96,6 +94,7 @@
 						</ul>
 					</div>
 				</form>
+
 				<form>
 					<div class="search row">
 						<div class="col-xs-2 col-sm-2">
@@ -123,6 +122,10 @@
 
 				</form>
 
+				<!-- 검색부분 -->
+				<form action="">
+				
+				</form>
 
 			</section>
 		</div>

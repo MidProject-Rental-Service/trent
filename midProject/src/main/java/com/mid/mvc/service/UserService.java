@@ -1,5 +1,6 @@
 package com.mid.mvc.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.mid.mvc.domain.Criteria;
@@ -14,10 +15,10 @@ public interface UserService {
 	public UserVO loginCheck(UserVO vo);
 	
 	public void updateUser(UserVO vo);
-	
+
 	List<UserVO> getUserList(UserVO vo , Criteria cri);
-	
-	List<UserVO> getSupplyList(UserVO vo);
+
+	List<UserVO> getSupplyList(HashMap map);
 	
 	void insertSupply(UserVO vo);
 	
