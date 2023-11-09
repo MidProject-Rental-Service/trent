@@ -20,7 +20,7 @@
 	<!--  리뷰상세보기 -->
    <select id="getUserReview" parameterType="UserReviewVO"
       resultType="UserReviewVO">
-      SELECT REVIEW.*,GOODS.G_NAME,MAKER.M_NAME,BUY.S_NAME
+      SELECT REVIEW.*,GOODS.G_NAME,GOODS.G_RIMG1,MAKER.M_NAME,BUY.S_NAME
       FROM
       REVIEW
       INNER JOIN GOODS
