@@ -76,9 +76,6 @@
 											<option value="12">12개월</option>
 											<option value="24">24개월</option>
 											<option value="36">36개월</option>
-											<option value="48">48개월</option>
-											<option value="50">60개월</option>
-											<option value="72">72개월</option>
 										</select>
 									</div>
 								</div>

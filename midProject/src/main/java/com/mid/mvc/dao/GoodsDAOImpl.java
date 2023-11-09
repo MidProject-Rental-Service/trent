@@ -27,6 +27,10 @@ public class GoodsDAOImpl {
 		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
 		return SqlSession.selectList("GoodsMapper.getGoodsList", map);
 	}
+	
+	public List<GoodsVO> getMinPriceList(GoodsVO vo) {
+		return SqlSession.selectList("GoodsMapper.getMinPriceList", vo);
+	}
 
 	public GoodsVO getGoodsById(GoodsVO vo) {
 		System.out.println("====> getGoodsById 호출");

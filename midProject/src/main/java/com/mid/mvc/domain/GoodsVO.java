@@ -10,15 +10,15 @@ import lombok.Data;
 
 @Data
 public class GoodsVO {
-	private String g_id;					// 모델명
-	private String g_name;			// 제품명
-	private String g_content;		// 제품설명
-	private int c_id;							// 카테고리아이디
-	private String c_name;			//	카테고리명 (제품분류)
-	private int m_id;						// 제조사아이디
-	private String m_name;			//	제조사명
-	private int p_price;					// 렌탈비용
-	private String s_name;			// 공급사명
+	private String 	g_id;				// 모델명
+	private String 	g_name;		// 제품명
+	private String 	g_content;		// 제품설명
+	private int 			c_id;				// 카테고리아이디
+	private String 	c_name;		//	카테고리명 (제품분류)
+	private int 			m_id;			// 제조사아이디
+	private String 	m_name;		//	제조사명
+	private int 			p_price;		// 렌탈비용
+	private String 	s_name;		// 공급사명
 	
 	private String g_img1;
 	private String g_rimg1;
@@ -52,7 +52,7 @@ public class GoodsVO {
 
 	        // 실제 파일 저장
 	        // 나중에 웹서버 경로를 찾아서 수정
-	        File f = new File("C:\\Users\\ict0307\\git\\trent\\midProject\\src\\main\\webapp\\resources\\img\\products\\" + g_rimg1);
+	        File f = new File("C:\\Users\\조대연\\git\\trent\\midProject\\src\\main\\webapp\\resources\\img\\products\\" + g_rimg1);
 
 	        try {
 	            file1.transferTo(f);
@@ -78,7 +78,7 @@ public class GoodsVO {
 
 	        // 실제 파일 저장
 	        // 나중에 웹서버 경로를 찾아서 수정
-	        File f = new File("C:\\Users\\ict0307\\git\\trent\\midProject\\src\\main\\webapp\\resources\\img\\products\\" + g_rimg2);
+	        File f = new File("C:\\Users\\조대연\\git\\trent\\midProject\\src\\main\\webapp\\resources\\img\\products\\" + g_rimg2);
 
 	        try {
 	            file2.transferTo(f);
@@ -104,7 +104,7 @@ public class GoodsVO {
 
 	        // 실제 파일 저장
 	        // 나중에 웹서버 경로를 찾아서 수정
-	        File f = new File("C:\\Users\\ict0307\\git\\trent\\midProject\\src\\main\\webapp\\resources\\img\\products\\" + g_rimg3);
+	        File f = new File("C:\\Users\\조대연\\git\\trent\\midProject\\src\\main\\webapp\\resources\\img\\products\\" + g_rimg3);
 
 	        try {
 	            file3.transferTo(f);
@@ -126,7 +126,7 @@ public class GoodsVO {
 
 	        // 실제 파일 저장
 	        // 나중에 웹서버 경로를 찾아서 수정
-	        File f = new File("C:\\Users\\ict0307\\git\\trent\\midProject\\src\\main\\webapp\\resources\\img\\products\\" + g_rimg4);
+	        File f = new File("C:\\Users\\조대연\\git\\trent\\midProject\\src\\main\\webapp\\resources\\img\\products\\" + g_rimg4);
 
 	        try {
 	            file4.transferTo(f);

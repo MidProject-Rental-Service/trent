@@ -32,7 +32,6 @@
 
 .sponsor_card_box .sponsor_card {
     max-width: 1000px; /* 원하는 최대 너비로 설정해보세요 */
-    margin: 10px; /* 카드 간격을 조정해보세요 */
     width: 100%; /* 가로 길이를 100%로 유지하고 싶다면 추가 */
     text-align: left; /* 텍스트 좌측 정렬 */
 }
@@ -65,7 +64,10 @@
     text-align: left; /* 텍스트 좌측 정렬 */
 }
 
-
+.rental_title .title_open {
+	margin: 5px;
+	background-color: lightgrey;
+}
 
 .card_box {
     list-style: none;

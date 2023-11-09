@@ -122,9 +122,7 @@
 						<ul class="depart-hover">
 							<li class="active"><a href="#">공기청정기</a></li>
 							<li><a href="./shop.do">가습기</a></li>
-							<li><a href="./shop.do">냉난방기</a></li>
 							<li><a href="./shop.do">제습기</a></li>
-							<li><a href="./shop.do">에어컨</a></li>
 						</ul>
 					</div>
 				</div>
@@ -132,12 +130,7 @@
 					<ul>
 						<li class="active"><a href="./main.do">Home</a></li>
 						<li><a href="./shop.do">전체렌탈상품</a></li>
-						<li><a href="#">BEST 상품</a>
-							<ul class="dropdown">
-								<li><a href="./shop.do">공기청정기</a></li>
-								<li><a href="./shop.do">가습기</a></li>
-								<li><a href="./shop.do">제습기</a></li>
-							</ul></li>
+						<li><a href="./shop_best.do">BEST 상품</a>
 						<li><a href="./discountCard.do">할인카드</a></li>
 						<li><a href="#">Pages</a>
 							<ul class="dropdown">

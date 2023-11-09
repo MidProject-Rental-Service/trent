@@ -12,6 +12,8 @@ public interface GoodsService {
 	void productRegister(GoodsVO vo);
 	
 	List<GoodsVO> getGoodsList(HashMap map);
+	
+	List<GoodsVO> getMinPriceList(GoodsVO vo);
 
 	// 관리자 
 	GoodsVO getGoodsById(GoodsVO vo);

@@ -1202,7 +1202,8 @@ select#searchCondition.category-btn{
 }
 
 .product-item .pi-pic .sale.pp-sale {
-  background: #001f5f;
+  background: #b20101;
+  font-weight: 700;
 }
 
 .product-item .pi-pic .icon {
@@ -1278,9 +1279,8 @@ select#searchCondition.category-btn{
 
 .product-item .pi-text .product-price span {
   font-size: 14px;
-  font-weight: 400;
-  color: #b2b2b2;
-  text-decoration: line-through;
+  font-weight: 600;
+  color: #888888;
 }
 
 /*---------------------
@@ -1772,7 +1772,7 @@ select#searchCondition.category-btn{
 
 .filter-widget .filter-range-wrap .range-slider .price-input:after {
   position: absolute;
-  left: 91px;
+  left: 113px;
   top: 13px;
   height: 1px;
   width: 17px;

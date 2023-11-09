@@ -11,7 +11,9 @@ public interface GoodsDAO {
 	
 	public void productRegister(GoodsVO vo);
 	
-	public List<GoodsVO> getGoodsList(HashMap map);	
+	public List<GoodsVO> getGoodsList(HashMap map);
+	
+	public List<GoodsVO> getMinPriceList(GoodsVO vo);
 
 	public GoodsVO getGoodsById(GoodsVO vo);
 	

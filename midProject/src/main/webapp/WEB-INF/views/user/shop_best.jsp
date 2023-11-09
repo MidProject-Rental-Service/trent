@@ -65,8 +65,8 @@
 	<section class="product-shop spad">
 		<div class="container">
 			<div class="filter-widget">
-				<h5 class="search" >"${searchKeyword }" 검색결과 ${cnt} 개의 
-					제품이 있습니다</h5>
+				<h6 class="search" style="visibility: hidden">"OOO" 검색결과 ${cnt} 개의 
+					제품이 있습니다</h6>
 			</div>
 			<div class="row">
 				<div
@@ -167,7 +167,11 @@
 									<div class="product-item">
 										<div class="pi-pic">
 											<a href="product.do?g_id=${list.g_id }">
-												<img src="../img/products/${list.g_rimg1}" alt="">
+											<img src="../img/products/${list.g_rimg1}" alt="">
+												<div class="sale pp-sale">BEST</div>
+												<!-- <div class="icon">
+													<i class="icon_heart_alt"></i>
+												</div> -->
 											</a>
 										</div>
 										<div class="pi-text">
@@ -175,8 +179,7 @@
 												<h5>${list.g_name}</h5>
 											</a>
 											<div class="product-price">
-												
-												<span>최저렌탈가</span> 월<span class="formatted-number">${list.MIN_PRICE }</span>원</a>
+												<span>$35.00</span> $14.00
 
 											</div>
 										</div>
@@ -184,7 +187,6 @@
 								</div>
 							</c:forEach>
 
-		
 						</div>
 					</div>
 				</div>

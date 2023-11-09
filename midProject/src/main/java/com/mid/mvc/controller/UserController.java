@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mid.mvc.domain.CardVO;
 import com.mid.mvc.domain.GoodsVO;
 import com.mid.mvc.domain.PriceVO;
 import com.mid.mvc.domain.UserBoardVO;
@@ -236,6 +237,13 @@ public class UserController {
     //상품 전체 검색
     @RequestMapping("/shop.do")
 	public void GoodsList(GoodsVO vo, Model m) {
+		List<GoodsVO> result = goodsServiceImpl.getMinPriceList(vo);
+		m.addAttribute("goodsList", result);
+	}
+    
+    //BEST 상품 전체 검색
+    @RequestMapping("/shop_best.do")
+	public void shopBest(GoodsVO vo, Model m) {
     	System.out.println("화면에서 넘겨오는 값:" + vo.toString());
     	HashMap map = new HashMap();
 		List<GoodsVO> result = goodsServiceImpl.getGoodsList(map);
@@ -313,6 +321,5 @@ public class UserController {
 
         return goodsServiceImpl.getCategoryGoodsList(c_name,selectedBrands,minPrice,maxPrice);
     }
-
     
 }

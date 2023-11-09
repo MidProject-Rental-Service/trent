@@ -102,6 +102,21 @@
 									id="다이슨"> <span class="checkmark"></span>
 								</label>
 							</div>
+							<div class="bc-item">
+								<label for="위닉스"> WINIX <input type="checkbox"
+									id="위닉스"> <span class="checkmark"></span>
+								</label>
+							</div>
+							<div class="bc-item">
+								<label for="에어메이드"> 에어메이드 <input type="checkbox"
+									id="에어메이드"> <span class="checkmark"></span>
+								</label>
+							</div>
+							<div class="bc-item">
+								<label for="듀플렉스"> DUPLEX <input type="checkbox"
+									id="듀플렉스"> <span class="checkmark"></span>
+								</label>
+							</div>
 						</div>
 					</div>
 					<div class="filter-widget">
@@ -153,26 +168,20 @@
 										<div class="pi-pic">
 											<a href="product.do?g_id=${list.g_id }">
 											<img src="../img/products/${list.g_rimg1}" alt="">
-												<div class="sale pp-sale">Sale</div>
+												<!-- <div class="sale pp-sale">Sale</div>
 												<div class="icon">
 													<i class="icon_heart_alt"></i>
-												</div>
+												</div> -->
 											</a>
-											<ul>
-												<li class="w-icon active"><a href="#"><i
-														class="icon_bag_alt"></i></a></li>
-												<li class="quick-view"><a href="#">+ Quick View</a></li>
-												<li class="w-icon"><a href="#"><i
-														class="fa fa-random"></i></a></li>
-											</ul>
 										</div>
 										<div class="pi-text">
-											<a href="#">
+											<a href="product.do?g_id=${list.g_id }">
 												<h5>${list.g_name}</h5>
 											</a>
 											<div class="product-price">
-												<span>$35.00</span> $14.00
-
+										
+												<span>최저렌탈가</span> 월 ${list.p_price } 원
+										
 											</div>
 										</div>
 									</div>

@@ -60,7 +60,7 @@
 						
 						<li class="sidebar-item"><a class="sidebar-link"
 							href="./productmange.do" aria-expanded="false"> <span> <i class="ti ti-clipboard-list"></i>
-							</span> <span class="hide-menu">제품관리</span>
+							</span> <span class="hide-menu">제품목록</span>
 						</a></li>
 
 						<li class="sidebar-item"><a class="sidebar-link"
