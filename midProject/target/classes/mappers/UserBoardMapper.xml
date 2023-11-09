@@ -95,7 +95,12 @@
 	<select id="admingetUserBoardList" resultType="UserBoardVO">
 		SELECT *
 		FROM USERBOARD 
-		ORDER BY UB_ID DESC;
+		ORDER BY UB_ID DESC
+		LIMIT #{criteria.amount} OFFSET #{criteria.startNum};
 	</select>	
+	
+    <select id="getTotal" resultType="int">
+        select count(*) from USERBOARD;
+    </select>	
 
 </mapper>

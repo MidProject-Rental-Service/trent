@@ -3,6 +3,7 @@ package com.mid.mvc.service;
 import java.util.HashMap;
 import java.util.List;
 
+import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.UserBoardVO;
 import com.mid.mvc.domain.UserRentalVO;
 
@@ -15,7 +16,7 @@ public interface UserBoardService {
 	List<UserBoardVO> getUserBoardList(HashMap map);
 	
 	//관리자 페이지에서  사용자 문의 리스트
-	List<UserBoardVO> admingetUserBoardList(HashMap map);
+	List<UserBoardVO> admingetUserBoardList(HashMap map, Criteria cri);
 	
 	void insertUserBoard(UserBoardVO vo);
 	
@@ -27,4 +28,7 @@ public interface UserBoardService {
 
 	//사용자 문의 답변하기
 	void insertAnswer(UserBoardVO vo);
+	
+	//사용자 문의 개시글 수
+	public int getTotal();
 }

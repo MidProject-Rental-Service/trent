@@ -48,13 +48,10 @@ public class UserDAOImpl implements UserDAO {
 		
 	}
 
-	public List<UserVO> getUserList(UserVO vo, Criteria cri){
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("userVO", vo);
-		cri.setStartNum((cri.getPageNum() - 1) * cri.getAmount());
-		paramMap.put("criteria", cri);
+	public List<UserVO> getUserList(HashMap map){
+		System.out.println("Map : " + map);
 		System.out.println("====> Mybatis로 getBoardList() 기능 처리");
-		return sqlSession.selectList("UserMapper.getUserList", paramMap);
+		return sqlSession.selectList("UserMapper.getUserList", map);
 	}
 	
 	public List<UserVO> getSupplyList(HashMap map){

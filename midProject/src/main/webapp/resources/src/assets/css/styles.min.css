@@ -18318,7 +18318,38 @@ a.btn.btn-primary {
     justify-content: center;
 }
 
+#sample6_postcode {
+	width : 90px
+}
+
 .pagination_button {
     margin-right: 20px; /* 버튼 사이의 간격을 조절할 수 있는 값 */
 }
+
+/* 검색창 */
+
+.search select {
+	 width: 10%; 
+}
+
+.search input[type="text"] {
+	width: 80%; 
+	text-align: center;
+	padding-left : -50px;
+
+}
+
+
+
+.search-btn-container {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+
+}
+
+
+.search-btn {
+    width: 100px; /* 원하는 가로 길이로 조정 */
+}
+
 

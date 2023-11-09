@@ -16,7 +16,7 @@ public interface UserService {
 	
 	public void updateUser(UserVO vo);
 
-	List<UserVO> getUserList(UserVO vo , Criteria cri);
+	List<UserVO> getUserList(HashMap map);
 
 	List<UserVO> getSupplyList(HashMap map);
 	
