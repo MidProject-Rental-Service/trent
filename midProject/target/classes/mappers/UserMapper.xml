@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -100,4 +101,76 @@
 		WHERE id = #{id}
 	</update>
 	
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+
+	<!-- 회원정보 입력 -->
+	<insert id='insertUser' parameterType="UserVO">
+		INSERT INTO user(id, pwd, name, phone, addr, email, role)
+		VALUES(#{id}, #{pwd}, #{name}, #{phone}, #{addr}, #{email}, 'user')
+	</insert>
+
+
+	<!-- 아이디 중복 체크 -->
+	<select id='idCheck' parameterType="string" resultType="int">
+        SELECT COUNT(*)  cnt FROM user WHERE id = #{id}
+    </select>
+    
+    <!-- 사용자 로그인 검증 -->
+	<select id='loginCheck' parameterType="UserVO" resultType="UserVO">
+   		SELECT id, pwd, name, phone, addr, email, role FROM user WHERE id = #{id} AND pwd = #{pwd} AND role = #{role}
+	</select>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="updateUser" parameterType="UserVO">
+		UPDATE user
+		SET pwd = #{pwd}, phone = #{phone}, addr = #{addr}, email = #{email}
+		WHERE id = #{id}
+	</update>
+    
+    
+    <!--  회원정보 리스트 출력 -->
+    <select id="getUserList" resultType="UserVO">
+		SELECT * FROM user 
+		WHERE role ="USER"
+		LIMIT #{criteria.amount} OFFSET #{criteria.startNum}
+	</select>
+	
+    <!-- 게시물 총 개수 -->
+    <select id="getTotal" resultType="int">
+        select count(*) from user WHERE role ="USER"
+    </select>	
+	
+	<!--  공급사 추가 -->
+	<insert id="insertSupply" parameterType="UserVO">	
+		INSERT INTO user (id , pwd, name, phone, addr, email, role) 
+		VALUES(#{id}, #{pwd}, #{name}, #{phone}, #{addr}, #{email}, 'supplier')
+	</insert>
+	
+	<!--  공급사 리스트 출력 -->
+	<select id="getSupplyList" resultType="UserVO">
+		<![CDATA[
+		SELECT * FROM user WHERE role = "supplier" ORDER BY id DESC;
+		]]>
+	</select>
+	
+	<!-- 관리자 페이지 사용자 정보 상세보기 -->
+	<select id="userDetail" resultType="UserVO">
+		<![CDATA[
+		SELECT * FROM user 
+		WHERE id = "${id}";
+		]]>
+	</select>    
+
+	<!-- 관리자 페이지 사용자 정보 상세보기 -->
+	<update id="userModify" parameterType="UserVO">
+		UPDATE user 
+		SET pwd ='${pwd}', name ='${name}', phone ='${phone}', addr='${addr}', email='${email}'
+		WHERE id = #{id}
+	</update>
+	
+>>>>>>> refs/remotes/origin/BMH
 </mapper>

@@ -11,7 +11,10 @@ public class PriceVO {
 	private int 			p_card;
 	private int 			p_gift;
 	private String 	p_text;
+	
 	private String 	g_id;
+	private String 	g_name;
 	private String 	id;
+	private String 	g_rimg1;
 
 }

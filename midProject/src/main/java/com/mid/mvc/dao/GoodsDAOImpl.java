@@ -27,6 +27,11 @@ public class GoodsDAOImpl {
 		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
 		return SqlSession.selectList("GoodsMapper.getGoodsList", map);
 	}
+	
+	// shop에서 보여지는 가격 정보 리스트
+	public List<GoodsVO> getMinPriceList(GoodsVO vo) {
+		return SqlSession.selectList("GoodsMapper.getMinPriceList", vo);
+	}
 
 	public GoodsVO getGoodsById(GoodsVO vo) {
 		System.out.println("====> getGoodsById 호출");
@@ -142,10 +147,9 @@ public class GoodsDAOImpl {
 		
 		return SqlSession.selectList("GoodsMapper.getPriceInfo", map);
 	}
-
+	
 	public List<PriceVO> getSupplierInfo(String g_id) {
 		return SqlSession.selectList("GoodsMapper.getSupplierInfo", g_id);
 	}
-	
-	
 }
+

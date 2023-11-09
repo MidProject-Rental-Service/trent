@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /******************************************************************
   Template Name: Fashi
   Description: Fashi eCommerce HTML Template
@@ -1685,13 +1686,9 @@ select#searchCondition.category-btn{
 -----------------------*/
 
 .product-shop {
-<<<<<<< HEAD
 	padding-top: 50px;
 	padding-bottom: 80px;
-=======
-  padding-top: 80px;
-  padding-bottom: 80px;
->>>>>>> refs/remotes/origin/SungQ
+
 }
 
 .filter-widget {
@@ -2047,11 +2044,7 @@ select#searchCondition.category-btn{
 -----------------------*/
 
 .product-shop.page-details {
-<<<<<<< HEAD
 	padding-bottom: 50px;
-=======
-  padding-bottom: 60px;
->>>>>>> refs/remotes/origin/SungQ
 }
 
 .product-pic-zoom {
@@ -4872,3 +4865,4 @@ img.cart-img {
     padding-right: 15px;
   }
 }
+

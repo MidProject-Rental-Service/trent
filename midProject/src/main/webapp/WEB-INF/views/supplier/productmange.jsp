@@ -11,7 +11,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>가격정보관리</title>
+<title>제품목록</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -35,7 +35,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="py-5 text-start">
-						<h1>제품관리</h1>
+						<h1>제품목록</h1>
 						<p class="lead"></p>
 					</div>
 				</div>
@@ -50,7 +50,6 @@
 								<th>제품사진</th>
 								<th>제품명</th>
 								<th>모델명</th>
-								<th>분류</th>
 								<th>제품 특징</th>
 							</tr>
 						</thead>
@@ -60,7 +59,6 @@
 								<td ><img src="<c:url value='../resources/img/products/${list.g_rimg1}' />" width="100" /></td>
 								<td style="vertical-align:middle"><a href="<c:url value='/supplier/priceregister.do?g_id=${list.g_id}'/>"><c:out value="${list.g_name}" /></a></td>		
 								<td style="vertical-align:middle"><c:out value="${list.g_id}" /></td>
-								<td style="vertical-align:middle"><c:out value="${list.c_name}" /></td> 
 								<td style="vertical-align:middle"><c:out value="${list.g_content}" /></td>
 									</tr>
 						</c:forEach>

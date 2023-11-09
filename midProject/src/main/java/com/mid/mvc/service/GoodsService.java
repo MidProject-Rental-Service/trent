@@ -57,5 +57,7 @@ public interface GoodsService {
 
 	List<PriceVO> getSupplierInfo(String g_id);
 
+	List<GoodsVO> getMinPriceList(GoodsVO vo);
+
 
 }

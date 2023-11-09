@@ -117,10 +117,6 @@ public class UserController {
 		return "redirect:applicationList.do";
 	}
 
-
-	
-	
-	
 	// 리뷰관리
 	@RequestMapping("/reviewManagement.do")
 	public void reviewManagement(Model m, HttpSession session) {
@@ -204,9 +200,6 @@ public class UserController {
 	    return "success";
 	}
 
-	
-	
-	
 	// 1:1문의 목록
 	@RequestMapping("/inquiryList.do")
 	public void inquiryList(Model m, HttpSession session, String searchCondition, String searchKeyword,
@@ -270,13 +263,20 @@ public class UserController {
 		m.addAttribute("userRentalList", result);
 	}
 
-	// 상품 전체 검색
-	@RequestMapping("/shop.do")
-	public void GoodsList(GoodsVO vo, Model m) {
-		System.out.println("화면에서 넘겨오는 값:" + vo.toString());
-		HashMap map = new HashMap();
+	//BEST 상품 전체 검색
+    @RequestMapping("/shop_best.do")
+	public void shopBest(GoodsVO vo, Model m) {
+    	System.out.println("화면에서 넘겨오는 값:" + vo.toString());
+    	HashMap map = new HashMap();
 		List<GoodsVO> result = goodsServiceImpl.getGoodsList(map);
 		int cnt = result.size();
+		m.addAttribute("goodsList", result);
+	}
+	
+	//상품 전체 검색
+    @RequestMapping("/shop.do")
+	public void GoodsList(GoodsVO vo, Model m) {
+		List<GoodsVO> result = goodsServiceImpl.getMinPriceList(vo);
 		m.addAttribute("goodsList", result);
 	}
     

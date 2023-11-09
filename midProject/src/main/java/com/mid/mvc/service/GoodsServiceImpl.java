@@ -23,6 +23,10 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsDAO.getGoodsList(map);
 	}
 	
+	public List<GoodsVO> getMinPriceList(GoodsVO vo ) {
+		return goodsDAO.getMinPriceList(vo);
+	}
+	
 	// 제품 상세보기
 	public GoodsVO getGoodsById(GoodsVO vo) {
 		return goodsDAO.getGoodsById(vo);
@@ -128,5 +132,4 @@ public class GoodsServiceImpl implements GoodsService{
 	public List<PriceVO> getSupplierInfo(String g_id) {
 		return goodsDAO.getSupplierInfo(g_id);
 	}
-
 }

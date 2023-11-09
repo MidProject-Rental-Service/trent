@@ -67,7 +67,7 @@ public class SupController {
 	@RequestMapping("/insertPrice.do")
 	public String insertPrice(PriceVO vo, Model m) {
 		goodsService.insertPrice(vo);
-		return "redirect:/supplier/pricemange.do?id="+vo.getId();
+		return "redirect:/supplier/productmange.do";
 	}
 	
 	//가격 정보 수정 (페이지 띄우기)
