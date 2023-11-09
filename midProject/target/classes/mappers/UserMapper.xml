@@ -42,11 +42,28 @@
 	</delete>
 	
 	<!--  회원정보 리스트 출력 -->
-    <select id="getUserList" resultType="UserVO">
-      SELECT * FROM user 
-      WHERE role ="USER"
-      LIMIT #{criteria.amount} OFFSET #{criteria.startNum}
-   </select>
+    <select id="getUserList" parameterType="hashMap" resultType="UserVO">
+	    SELECT * FROM user 
+	    WHERE role = 'USER'
+		 <choose>
+		    <when test="searchCondition == 'name'">
+		        AND name LIKE CONCAT('%', #{searchKeyword}, '%')
+		    </when>
+		    <when test="searchCondition == 'phone'">
+		        AND phone LIKE CONCAT('%', #{searchKeyword}, '%')
+		    </when>
+		    <when test="searchCondition == 'id'">
+		        AND id LIKE CONCAT('%', #{searchKeyword}, '%')
+		    </when>
+		    <when test="searchCondition == 'addr'">
+		        AND addr LIKE CONCAT('%', #{searchKeyword}, '%')
+		    </when>
+		    <when test="searchCondition == 'email'">
+		        AND email LIKE CONCAT('%', #{searchKeyword}, '%')
+		    </when>
+		</choose>
+		LIMIT #{criteria.amount} OFFSET #{criteria.startNum}
+	</select>
 	
     <!-- 게시물 총 개수 -->
     <select id="getTotal" resultType="int">
