@@ -45,7 +45,7 @@ public class UserReviewVO {
 
 	        // 실제 파일 저장
 	        // 나중에 웹서버 경로를 찾아서 수정
-	        File f = new File("C:\\Users\\ict0330\\git\\trent\\midProject\\src\\main\\webapp\\resources\\img\\products\\" + r_rimg);
+	        File f = new File("C:\\Users\\ict0330\\git\\trent\\midProject\\src\\main\\webapp\\resources\\img\\review\\" + r_rimg);
 
 	        try {
 	            file1.transferTo(f);

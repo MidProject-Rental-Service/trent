@@ -288,18 +288,26 @@ public class UserController {
         List<PriceVO> priceInfoList = goodsServiceImpl.getProductPrice(g_id);
         PriceVO minPrice = goodsServiceImpl.getMinPrice(g_id);
         List<PriceVO> supInfo = goodsServiceImpl.getSupplierInfo(g_id);
+        List<UserReviewVO> result = userReviewService.reviewGoodsList(g_id);
+        
         
         if (productInfo != null) {
+        	int reviewCnt = result.size();
+
             model.addAttribute("productInfo", productInfo);
             model.addAttribute("priceInfoList", priceInfoList);
             model.addAttribute("minPrice", minPrice);
             model.addAttribute("supInfo", supInfo);
-            
+         	model.addAttribute("reviewGoodsList", result);
+        	model.addAttribute("reviewCnt", reviewCnt);
+        	
             return "user/product";
         } else {
             return "errorPage"; // 오류 페이지로 리다이렉트 또는 표시
         }
     }
+    
+
     
     // Ajax를 통해 가격 정보를 업데이트하는 메서드를 추가
     @RequestMapping(value = "/updatePrice.do", method = RequestMethod.POST)
@@ -314,6 +322,8 @@ public class UserController {
         return updatedPriceInfo;
     }
 
+    
+    
 	// 상품 검색 (Header) 검색창
 	@RequestMapping("/shop_search.do")
 	public void searchGoodsList(GoodsVO vo, Model m, String searchCondition, String searchKeyword) {

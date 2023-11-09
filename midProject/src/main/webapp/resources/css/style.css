@@ -2806,15 +2806,38 @@ table.sub_price_Table button.btn-card:hover {
   margin-bottom: 20px;
 }
 
+/* 성규*/
+div.co-item{
+    border: solid 1px #bebebe;
+    height:150px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* 성규 */
 .customer-review-option .comment-option .co-item .avatar-pic {
-  float: left;
+  float: right;
   margin-right: 20px;
 }
 
+
+/* 성규 */
 .customer-review-option .comment-option .co-item .avatar-pic img {
-  height: 63px;
-  width: 63px;
-  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  border-radius: 10%;
+  
+}
+
+#myModal {
+  max-width: 600px;
+  max-height: 600px; 
+  display: none; /* 모달을 초기에 숨깁니다. */
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .customer-review-option .comment-option .co-item .avatar-text {

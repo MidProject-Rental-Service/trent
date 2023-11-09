@@ -76,5 +76,11 @@
 	WHERE REVIEW.B_ID = #{b_id}
 	</update>
 
+<!--  상품페이지 리뷰 -->
+<select id="reviewGoodsList" parameterType="String" resultType="UserReviewVO">
+SELECT *
+FROM REVIEW
+WHERE G_ID = #{g_id} AND r_content IS NOT NULL
+</select>
 
 </mapper>
