@@ -45,6 +45,15 @@
 		WHERE g_id = #{g_id}
 	</select>
 	
+	<!-- =========== 렌탈정보-하림 ========== -->
+	<select id="getRentalInfo" parameterType="hashmap" resultType="PriceVO">
+		SELECT DISTINCT p.s_name, p.g_id, p.p_rent, p.p_price, g.g_rimg1
+		FROM Price p
+		JOIN Goods g ON p.g_id = g.g_id
+		WHERE p.p_rent = #{p_rent} AND p.g_id = #{g_id}
+		AND p.s_name = #{s_name}
+	</select>
+	
 	<!-- ============================ -->
 	<!-- 이 제품의 공급사들 출력  -->
 	<select id="getSupplierInfo" parameterType="String" resultType="PriceVO">

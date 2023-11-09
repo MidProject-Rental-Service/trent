@@ -239,20 +239,15 @@
                     <td class="rentalFee">렌탈 요금</td>
                   </tr>
                   <tr>
-                    <td><img src="../img/cart-page/product-1.jpg" alt="" /></td>
-                    <td>상품명<br />공급사<br />약정기간<br />수량</td>
-                    <td>12,000</td>
-                  </tr>
-                  <tr>
-                    <td><img src="../img/cart-page/product-2.jpg" alt="" /></td>
-                    <td>상품명<br />공급사<br />약정기간<br />수량</td>
-                    <td>12,000</td>
+                    <td><img src="<c:url value='../resources/img/products/${rentalInfo.g_rimg1}' />"></td>
+                    <td>${rentalInfo.g_id}<br />${rentalInfo.s_name}<br />${rentalInfo.p_rent}</td>
+                    <td>${rentalInfo.p_price}원</td>
                   </tr>
                 </table>
                     <div class="rent-checkout">
                       <ul>
                   
-                        <li class="rent-total">월 청구요금<span>36,000원</span></li>
+                        <li class="rent-total">월 청구요금<span>${rentalInfo.p_price}원</span></li>
                   
                       </ul>
                       <a href="" class="rent-btn">렌탈신청하기</a>

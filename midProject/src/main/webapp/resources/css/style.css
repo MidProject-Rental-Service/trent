@@ -1249,9 +1249,15 @@ select#searchCondition.category-btn{
   padding: 16px 18px 12px 19px;
 }
 
+/* 하림!!!!!!!!!!!! */
 .product-item .pi-text {
   text-align: center;
   padding-top: 20px;
+  padding-bottom: 10px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .product-item .pi-text .catagory-name {
@@ -1278,10 +1284,9 @@ select#searchCondition.category-btn{
 }
 
 .product-item .pi-text .product-price span {
-  font-size: 14px;
-  font-weight: 400;
-  color: #b2b2b2;
-  text-decoration: line-through;
+  font-size: 15px;
+  font-weight: 600;
+  color: #B93232;
 }
 
 /*---------------------

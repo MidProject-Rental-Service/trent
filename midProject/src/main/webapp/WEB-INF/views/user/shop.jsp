@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -179,9 +180,7 @@
 												<h5>${list.g_name}</h5>
 											</a>
 											<div class="product-price">
-										
-												<span>최저렌탈가</span> 월 ${list.p_price } 원
-										
+												<span>최저렌탈가</span> 월<fmt:formatNumber type="number" pattern="#,##0" value="${list.p_price }" /> 원
 											</div>
 										</div>
 									</div>

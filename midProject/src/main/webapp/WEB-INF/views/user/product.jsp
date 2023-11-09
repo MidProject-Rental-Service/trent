@@ -550,17 +550,22 @@
             });
         }
         
+     	var isLoggedIn = <%= (loggedInUser != null) %>;
+     	
      	// 장바구니 버튼 클릭 시 이벤트 핸들러
      	function addToCart() {
-     	    // 여기에 장바구니에 추가하는 로직 추가
-     	    alert("장바구니에 추가되었습니다.");
-     	   window.location.href = '/midProject/user/shopping_cart.do';
+     		 if (isLoggedIn) {
+     			alert("장바구니에 추가되었습니다.");
+          	    window.location.href = '/midProject/user/shopping_cart.do';
+      	    } else {
+      	        // 로그인이 안되어 있으면 경고창 표시 후 로그인 페이지로 이동
+      	        alert("로그인이 필요한 서비스입니다.");
+      	        window.location.href = '/midProject/user/login.do';
+      	    }
      	}
 
      	// 렌탈 신청 버튼 클릭 시 이벤트 핸들러
      	function applyForRental() {
-     		var isLoggedIn = <%= (loggedInUser != null) %>;
-
      	    if (isLoggedIn) {
      	        // 로그인이 되어 있으면 렌탈 신청 페이지로 이동
      	        window.location.href = '/midProject/user/rental.do';

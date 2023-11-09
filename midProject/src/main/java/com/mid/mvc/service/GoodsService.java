@@ -59,5 +59,7 @@ public interface GoodsService {
 
 	List<GoodsVO> getMinPriceList(GoodsVO vo);
 
+	PriceVO getRentalInfo(String g_id, String p_rent);
+
 
 }

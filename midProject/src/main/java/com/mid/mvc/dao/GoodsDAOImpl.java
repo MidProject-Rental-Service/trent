@@ -151,5 +151,13 @@ public class GoodsDAOImpl {
 	public List<PriceVO> getSupplierInfo(String g_id) {
 		return SqlSession.selectList("GoodsMapper.getSupplierInfo", g_id);
 	}
+
+	public PriceVO getRentalInfo(String g_id, String p_rent) {
+		HashMap map = new HashMap();
+		map.put("g_id", g_id);
+		map.put("p_rent", p_rent);
+		
+		return SqlSession.selectOne("GoodsMapper.getRentalInfo", map);
+	}
 }
 

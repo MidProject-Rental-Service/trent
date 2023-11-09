@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -328,6 +329,17 @@ public class UserController {
 		m.addAttribute("cnt", cnt);
 		m.addAttribute("goodsList", result);
 
+	}
+	
+	// 렌탈 신청 폼에 정보 가져오기
+	@RequestMapping(value = "/rental", method = RequestMethod.POST)
+	public String getRentalInfo(@RequestParam("g_id") String g_id, @RequestParam("p_rent") String p_rent, Model model) {
+	    // Service를 통해 데이터베이스에서 데이터를 가져옴
+	    PriceVO rentalInfo = goodsServiceImpl.getRentalInfo(g_id, p_rent);
+	    // Model에 데이터를 담아 JSP로 전달
+	    model.addAttribute("rentalInfo", rentalInfo);
+
+	    return "user/rental";
 	}
 
 	// 제품군 검색 (좌측패널)
