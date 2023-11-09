@@ -2,23 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UserReviewMapper">
-
+	
+	<!--  리뷰 작성 (사용자) -->
    <update id="saveUserReview" parameterType="UserReviewVO">
       UPDATE REVIEW SET
-      R_POINT = #{r_point}, R_CONTENT= #{r_content}, R_REGDATE = now(),R_IMG = #{r_img}
+      R_POINT = #{r_point}, R_CONTENT= #{r_content}, R_REGDATE = now(),R_IMG = #{r_img},R_RIMG = #{r_rimg}
       WHERE
       R_ID = #{r_id}
    </update>
-
+	<!--  리뷰삭제 -->
    <delete id="deleteUserReview" parameterType="UserReviewVO">
     DELETE 
     FROM REVIEW 
     WHERE R_ID =   #{r_id}
 </delete>
 
+	<!--  리뷰상세보기 -->
    <select id="getUserReview" parameterType="UserReviewVO"
       resultType="UserReviewVO">
-      SELECT REVIEW.*,GOODS.G_NAME,MAKER.M_NAME,BUY.P_NAME
+      SELECT REVIEW.*,GOODS.G_NAME,MAKER.M_NAME,BUY.S_NAME
       FROM
       REVIEW
       INNER JOIN GOODS
@@ -34,11 +36,13 @@
       WHERE REVIEW.R_ID = #{r_id}
 
    </select>
-
+   
+   
+	<!--  리뷰목록출력 -->
    <select id="getUserReviewList" parameterType="UserReviewVO"
       resultType="UserReviewVO">
 
-      SELECT REVIEW.*,GOODS.G_NAME,MAKER.M_NAME,BUY.P_NAME
+      SELECT REVIEW.*,GOODS.G_NAME,MAKER.M_NAME,BUY.S_NAME
       FROM
       REVIEW
       INNER JOIN GOODS
@@ -56,6 +60,21 @@
       DESC;
 
    </select>
+
+	<!-- 리뷰작성 (구매확정) -->
+	<insert id="insertUserReview" parameterType="UserReviewVO">
+	 INSERT INTO
+    REVIEW( R_POINT, ID, G_ID, B_ID)
+    VALUES( 0, #{id}, #{g_id}, #{b_id} )
+	</insert>
+	
+	<update id="updateBstat" parameterType="UserReviewVO">
+	UPDATE BUY
+	INNER JOIN REVIEW
+	ON REVIEW.B_ID = BUY.B_ID
+	SET BUY.B_STAT = 6
+	WHERE REVIEW.B_ID = #{b_id}
+	</update>
 
 
 </mapper>

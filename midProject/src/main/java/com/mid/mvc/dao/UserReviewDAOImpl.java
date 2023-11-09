@@ -25,7 +25,7 @@ public class UserReviewDAOImpl implements UserReviewDAO{
 	public void saveUserReview(UserReviewVO vo) {
 		System.out.println("===> sqlSession saveUserReview() 호출");
 		System.out.println("==>" + vo.toString());
-		int result = sqlSession.insert("UserReviewMapper.saveUserReview", vo); 
+		int result = sqlSession.update("UserReviewMapper.saveUserReview", vo); 
 		System.out.println("입력결과 : " + result);
 	}
 	
@@ -42,6 +42,14 @@ public class UserReviewDAOImpl implements UserReviewDAO{
 		System.out.println("===> sqlSession deleteUserReview() 호출");
 		System.out.println("===> " + vo.toString());
 		return sqlSession.delete("UserReviewMapper.deleteUserReview",vo);
+	}
+	// 리뷰 등록
+	public void insertUserReview(UserReviewVO vo) {
+		System.out.println("===> sqlSession insertUserReview() 호출");
+		System.out.println("===> " + vo.toString());
+		sqlSession.insert("UserReviewMapper.insertUserReview", vo);
+		sqlSession.update("UserReviewMapper.updateBstat",vo);
+		 
 	}
 
 

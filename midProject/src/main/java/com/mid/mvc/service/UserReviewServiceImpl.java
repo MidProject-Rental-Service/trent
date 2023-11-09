@@ -35,5 +35,9 @@ public class UserReviewServiceImpl implements UserReviewService{
 		return	userReviewDAO.deleteUserReview(vo);
 		
 	}
+	// 리뷰 등록 (구매확정)
+	public void insertUserReview(UserReviewVO vo) {
+			userReviewDAO.insertUserReview(vo);
+	}
 	
 }

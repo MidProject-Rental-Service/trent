@@ -19,4 +19,7 @@ public interface UserReviewService {
 	
 	// 리뷰 삭제
 	int deleteUserReview(UserReviewVO vo);
+	
+	// 리뷰 등록 (구매확정)
+	void insertUserReview(UserReviewVO vo);
 }

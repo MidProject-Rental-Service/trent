@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mid.mvc.dao.UserDAO;
 import com.mid.mvc.domain.Criteria;
+import com.mid.mvc.domain.ShoppingCartVO;
 import com.mid.mvc.domain.UserVO;
 
 @Service
@@ -65,6 +66,13 @@ public class UserServiceImpl implements UserService {
 		return userDAOImpl.getTotal();
 	}
 
+	// 장바구니 
+	public List<ShoppingCartVO> getCartList(HashMap map) {
+		 return userDAOImpl.getCartList(map);
+	}
 	
-	
+	// 장바구니 삭제
+	public int cartDelete(ShoppingCartVO vo) {
+		return userDAOImpl.cartDelete(vo);
+	}
 }

@@ -157,7 +157,7 @@
 
 								<c:forEach items="${reviewList }" var="review">
 									<tr>
-										<td><input type="checkbox" value="${review.r_id }">${review.r_id }</td>
+										<td><input type="checkbox" value="${review.r_id }"></td>
 										<td>${review.g_id }</td>
 										<td style="font-size: 12px">${review.m_name}/
 											${review.g_name}</td>

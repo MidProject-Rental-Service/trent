@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.mid.mvc.domain.Criteria;
+import com.mid.mvc.domain.ShoppingCartVO;
 import com.mid.mvc.domain.UserVO;
 
 public interface UserService {
@@ -27,6 +28,11 @@ public interface UserService {
 	void userModify(UserVO vo);
 	
 	public int getTotal();
+	
+	List<ShoppingCartVO> getCartList(HashMap map);
+	
+	int cartDelete(ShoppingCartVO vo);
+		 		
 	
 	
 }
