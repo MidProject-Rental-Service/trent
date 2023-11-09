@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mid.mvc.domain.GoodsVO;
 import com.mid.mvc.domain.PriceVO;
+import com.mid.mvc.domain.ShoppingCartVO;
 import com.mid.mvc.domain.UserBoardVO;
 import com.mid.mvc.domain.UserRentalVO;
 import com.mid.mvc.domain.UserReviewVO;
@@ -38,7 +39,7 @@ public class UserController {
 
 	@Autowired
 	private GoodsService goodsServiceImpl;
-	
+
 	@Autowired
 	@Qualifier("userReviewServiceImpl")
 	private UserReviewService userReviewService;
@@ -108,6 +109,18 @@ public class UserController {
 		return "redirect:login.do";
 	}
 
+	// 구매확정
+	@RequestMapping("/buyConfirm.do")
+	public String buyConfirm(UserReviewVO vo) {
+		System.out.println("====> buyConfirm" + vo);
+		userReviewService.insertUserReview(vo);
+		return "redirect:applicationList.do";
+	}
+
+
+	
+	
+	
 	// 리뷰관리
 	@RequestMapping("/reviewManagement.do")
 	public void reviewManagement(Model m, HttpSession session) {
@@ -122,7 +135,7 @@ public class UserController {
 		m.addAttribute("reviewList", result);
 
 	}
-	
+
 	// 리뷰 작성
 	@RequestMapping("/reviewWrite.do")
 	public void reviewWrite(Model m, UserReviewVO vo, @RequestParam("r_id") String reviewId, HttpSession session) {
@@ -132,40 +145,65 @@ public class UserController {
 		m.addAttribute("userReview", result);
 
 	}
-	
+
 	// 리뷰 저장
-	@RequestMapping("/saveUserReview.do")
+	@RequestMapping(value = "/saveUserReview.do", method = RequestMethod.POST)
 	public String saveUserReview(UserReviewVO vo) {
-		System.out.println("===> Controller saveUserReview 호출" );
+		System.out.println("===> Controller saveUserReview 호출");
 		System.out.println(" saveUserReview:" + vo);
 		userReviewService.saveUserReview(vo);
 		return "redirect:reviewManagement.do";
 	}
-	
 
-	
 	// 리뷰 삭제
-	@RequestMapping(value="reviewUserDelete.do" ,method=RequestMethod.POST)
-	@ResponseBody 
-	public  String reviewUserDelete(@RequestParam(value = "reviewIds[]") List<Integer> reviewIds) {
+	@RequestMapping(value = "reviewUserDelete.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String reviewUserDelete(@RequestParam(value = "reviewIds[]") List<Integer> reviewIds) {
 		System.out.println("===> reviewUserDelete 호출");
 		System.out.println("===>" + reviewIds);
-		 for (Integer r_id : reviewIds) {
-		        UserReviewVO vo = new UserReviewVO();
-		        vo.setR_id(r_id);
-		        userReviewService.deleteUserReview(vo);
-		 }
-	  return "success";
+		for (Integer r_id : reviewIds) {
+			UserReviewVO vo = new UserReviewVO();
+			vo.setR_id(r_id);
+			userReviewService.deleteUserReview(vo);
+		}
+		return "success";
 	}
 	// user review end
-	
-
 
 	// 장바구니
 	@RequestMapping("/shopping_cart.do")
-	public String shoppingCart() {
-		return "user/shopping_cart";
+	public void shoppingCart(Model m, HttpSession session) {
+		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+		String loggedInUserId = loggedInUser.getId();
+
+		HashMap map = new HashMap();
+		map.put("id", loggedInUserId);
+
+		List<ShoppingCartVO> result = userServiceImpl.getCartList(map);
+		int totalCnt = result.size();
+
+		int totalPrice = 0;
+		for (ShoppingCartVO cart : result) {
+			totalPrice += cart.getP_price();
+		}
+
+		m.addAttribute("cartList", result);
+		m.addAttribute("totalCnt", totalCnt);
+		m.addAttribute("totalPrice", totalPrice);
+
 	}
+
+	// 장바구니 삭제
+	@RequestMapping(value = "/cartDelete.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String cartDelete(ShoppingCartVO vo) {
+		System.out.println("===> cartDelete 호출");
+	    int sh_id = vo.getSh_id();
+	    userServiceImpl.cartDelete(vo);
+	    
+	    return "success";
+	}
+
 	
 	
 	
@@ -184,64 +222,62 @@ public class UserController {
 		map.put("startDate", datepicker1);
 		map.put("endDate", datepicker2);
 
-		
 		List<UserBoardVO> result = userBoardService.getUserBoardList(map);
 		m.addAttribute("userBoardList", result);
 	}
-	
-	// 문의 작성화면 
+
+	// 문의 작성화면
 	@RequestMapping("/inquiryWrite.do")
 	public String inquiryWrite() {
 
 		return "user/inquiryWrite";
 	}
-	
-	// 문의 상세보기 
+
+	// 문의 상세보기
 	@RequestMapping("/inquiry.do")
 	public void getUserBoard(UserBoardVO vo, Model m) {
 		UserBoardVO result = userBoardService.getUserBoard(vo);
 		m.addAttribute("userBoard", result);
 
-	} 
+	}
 
-    // 문의 작성 저장
-    @RequestMapping("/saveUserBoard.do")
-    public String saveUserBoard(UserBoardVO vo) {
-    	System.out.println(" saveUserBoard:" + vo );
-    	userBoardService.insertUserBoard(vo);
-        return "redirect:inquiryList.do";
-    }
-    
-    // 신청목록 
- 	@RequestMapping("/applicationList.do")
- 	public void rentalList(Model m, HttpSession session, String searchCondition, String searchKeyword,
- 		String datepicker1, String datepicker2) {
+	// 문의 작성 저장
+	@RequestMapping("/saveUserBoard.do")
+	public String saveUserBoard(UserBoardVO vo) {
+		System.out.println(" saveUserBoard:" + vo);
+		userBoardService.insertUserBoard(vo);
+		return "redirect:inquiryList.do";
+	}
 
- 		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
- 		String loggedInUserId = loggedInUser.getId();
+	// 신청목록
+	@RequestMapping("/applicationList.do")
+	public void rentalList(Model m, HttpSession session, String searchCondition, String searchKeyword,
+			String datepicker1, String datepicker2) {
 
- 		HashMap map = new HashMap();
- 		map.put("id", loggedInUserId);
- 		map.put("searchCondition", searchCondition);
- 		map.put("searchKeyword", searchKeyword);
- 		map.put("startDate", datepicker1);
- 		map.put("endDate", datepicker2);
+		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+		String loggedInUserId = loggedInUser.getId();
 
- 		//userBoardService.getUserRentalList(map);
- 		List<UserRentalVO> result = userBoardService.getUserRentalList(map);
+		HashMap map = new HashMap();
+		map.put("id", loggedInUserId);
+		map.put("searchCondition", searchCondition);
+		map.put("searchKeyword", searchKeyword);
+		map.put("startDate", datepicker1);
+		map.put("endDate", datepicker2);
 
- 		m.addAttribute("userRentalList", result);
- 	}
-    
-    //상품 전체 검색
-    @RequestMapping("/shop.do")
+		// userBoardService.getUserRentalList(map);
+		List<UserRentalVO> result = userBoardService.getUserRentalList(map);
+
+		m.addAttribute("userRentalList", result);
+	}
+
+	// 상품 전체 검색
+	@RequestMapping("/shop.do")
 	public void GoodsList(GoodsVO vo, Model m) {
-    	System.out.println("화면에서 넘겨오는 값:" + vo.toString());
-    	HashMap map = new HashMap();
+		System.out.println("화면에서 넘겨오는 값:" + vo.toString());
+		HashMap map = new HashMap();
 		List<GoodsVO> result = goodsServiceImpl.getGoodsList(map);
 		int cnt = result.size();
 		m.addAttribute("goodsList", result);
-		
 	}
     
     // 상품 상세 페이지로 이동
@@ -278,41 +314,39 @@ public class UserController {
         return updatedPriceInfo;
     }
 
-    //상품 검색 (Header) 검색창
-    @RequestMapping("/shop_search.do")
-	public void searchGoodsList(GoodsVO vo, Model m,String searchCondition, String searchKeyword) {
-    	
-    	HashMap map = new HashMap();
- 		map.put("searchCondition", searchCondition);
- 		map.put("searchKeyword", searchKeyword);
+	// 상품 검색 (Header) 검색창
+	@RequestMapping("/shop_search.do")
+	public void searchGoodsList(GoodsVO vo, Model m, String searchCondition, String searchKeyword) {
+
+		HashMap map = new HashMap();
+		map.put("searchCondition", searchCondition);
+		map.put("searchKeyword", searchKeyword);
+
 		List<GoodsVO> result = goodsServiceImpl.getSearchGoodsList(map);
 		int cnt = result.size();
 		m.addAttribute("searchKeyword", searchKeyword);
-		m.addAttribute("cnt",cnt);
+		m.addAttribute("cnt", cnt);
 		m.addAttribute("goodsList", result);
-		
+
 	}
 
-    
-    // 제품군 검색 (좌측패널)
-    @RequestMapping(value="/searchCategory",method=RequestMethod.POST)
-    @ResponseBody
-    public List<GoodsVO> searchCategory(
-    		// 요소들이 전부다 전송되지 않아도 에러나지않게 처리 
-            @RequestParam(required = false) String c_name,
-            @RequestParam(value = "selectedBrands[]", required = false) List<String> selectedBrands,
-            @RequestParam(required = false) Integer minPrice,
-            @RequestParam(required = false) Integer maxPrice) {
+	// 제품군 검색 (좌측패널)
+	@RequestMapping(value = "/searchCategory", method = RequestMethod.POST)
+	@ResponseBody
+	public List<GoodsVO> searchCategory(
+			// 요소들이 전부다 전송되지 않아도 에러나지않게 처리
+			@RequestParam(required = false) String c_name,
+			@RequestParam(value = "selectedBrands[]", required = false) List<String> selectedBrands,
+			@RequestParam(required = false) Integer minPrice, @RequestParam(required = false) Integer maxPrice) {
 
-        System.out.println("===> " + c_name);
-        System.out.println("Selected Brands: " + selectedBrands);
-        System.out.println("Min Price: " + minPrice);
-        System.out.println("Max Price: " + maxPrice);
+		System.out.println("===> " + c_name);
+		System.out.println("Selected Brands: " + selectedBrands);
+		System.out.println("Min Price: " + minPrice);
+		System.out.println("Max Price: " + maxPrice);
 
-        // 여기서 선택된 브랜드와 가격을 이용하여 SQL 쿼리를 생성하여 처리합니다.
+		// 여기서 선택된 브랜드와 가격을 이용하여 SQL 쿼리를 생성하여 처리합니다.
 
-        return goodsServiceImpl.getCategoryGoodsList(c_name,selectedBrands,minPrice,maxPrice);
-    }
+		return goodsServiceImpl.getCategoryGoodsList(c_name, selectedBrands, minPrice, maxPrice);
+	}
 
-    
 }

@@ -146,7 +146,7 @@
 											disabled>
 									</div>
 									<div class="form-group">
-										<input class="form-control" name="p_name" type="text" value="${userReview.p_name }" disabled>
+										<input class="form-control" name="p_name" type="text" value="${userReview.s_name }" disabled>
 									</div>
 								</div>
 							</div>

@@ -30,6 +30,7 @@
   		<value>com.mid.mvc.domain.CardVO</value>
   		<value>com.mid.mvc.domain.PageVO</value>
   		<value>com.mid.mvc.domain.Criteria</value>
+  		<value>com.mid.mvc.domain.ShoppingCartVO</value>
   	</list>
   </property>
  </bean>

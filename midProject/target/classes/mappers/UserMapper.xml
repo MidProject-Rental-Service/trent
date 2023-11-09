@@ -27,7 +27,21 @@
 		WHERE id = #{id}
 	</update>
     
-    
+	<!-- 쇼핑카트 출력 -->
+	<select id="getCartList" parameterType="hashmap" resultType="ShoppingCartVO">
+		SELECT * 
+	    FROM SHOPPINGCART 
+	    WHERE ID = #{id}
+	</select>	
+	
+	<!--  쇼핑카트 삭제 -->
+	<delete id="cartDelete" parameterType="ShoppingCartVO">
+		DELETE 
+		FROM SHOPPINGCART
+		WHERE SH_ID = #{sh_id}
+	</delete>
+	
+ 
     <!--  회원정보 리스트 출력 -->
 	<select id="getUserList" parameterType="HashMap" resultType="UserVO">
     SELECT * FROM user 

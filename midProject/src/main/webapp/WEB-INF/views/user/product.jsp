@@ -451,6 +451,7 @@
 <script src="../js/main.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/shopSearch.js"></script>
+
 <script type="text/javascript">
 	jQuery.fn.formatNumber = function () {
         return this.each(function () {

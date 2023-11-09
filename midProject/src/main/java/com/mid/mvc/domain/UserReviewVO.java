@@ -23,7 +23,7 @@ public class UserReviewVO {
 	private String g_name;		// 제품명
 	private int b_id;						// 주문번호
 	private String m_name;		// 제조사명 
-	private String p_name;		// 공급사명
+	private String s_name;		// 공급사명
 
 	//******************파일 업로드**************************
 	MultipartFile file1;

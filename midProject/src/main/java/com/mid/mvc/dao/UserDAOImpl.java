@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mid.mvc.domain.Criteria;
+import com.mid.mvc.domain.ShoppingCartVO;
 import com.mid.mvc.domain.UserVO;
 
 @Repository
@@ -79,5 +80,18 @@ public class UserDAOImpl implements UserDAO {
 	    return result;
 	}
 
+	// 장바구니 
+	public List<ShoppingCartVO> getCartList(HashMap map) {
+		System.out.println("===> sqlSession getCartList() 호출");
+		System.out.println("===> " + map);
+		return sqlSession.selectList("UserMapper.getCartList",map);
+	}
+	
+	public int cartDelete(ShoppingCartVO vo) {
+		System.out.println("===> sqlSession cartDelete() 호출");
+		System.out.println("===> " + vo);
+		int result = sqlSession.delete("UserMapper.cartDelete",vo);
+		return result;
+	}
 
 }

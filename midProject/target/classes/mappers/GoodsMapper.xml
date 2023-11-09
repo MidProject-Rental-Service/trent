@@ -79,14 +79,6 @@
 	</select>
 	
 
-	<!-- 리뷰 등록 -->
-	<update id="saveUserReview" parameterType="UserReviewVO">
-		UPDATE REVIEW SET
-		R_POINT = #{r_point}, R_CONTENT= #{r_content}, R_REGDATE = now()
-		WHERE
-		R_ID = #{r_id}
-	</update>
-
 <!-- #############
 		#     가격 관련 매퍼     #
 		############ -->

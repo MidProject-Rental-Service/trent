@@ -3147,13 +3147,21 @@ table.good_list_wrap {
   text-transform: uppercase;
 }
 
+/* 성규 수정*/
 .cart-table table tr th.p-name {
-  text-align: left;
+  text-align: center;
+  width: 12%;
 }
-
+/* 성규 수정*/
 .cart-table table tr td {
   text-align: center;
-  padding-bottom: 34px;
+  padding-bottom: 21px;
+  padding-top: 21px;
+}
+
+/* 성규 수정 */
+img.cart-img {
+    max-width: 60%;
 }
 
 .cart-table table tr td.first-row {

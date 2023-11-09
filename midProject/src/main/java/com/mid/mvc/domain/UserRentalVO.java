@@ -11,7 +11,7 @@ import lombok.Data;
  
 @Data
 public class UserRentalVO {
-	private String b_id;				// 주문번호
+	private String b_id;				// 주문번호*
 	private Date b_signdate;		// 렌탈신청일
 	private Date b_startdate;		// 렌탈시작일
 	private Date b_enddate;		// 렌탈 종료일
@@ -21,8 +21,8 @@ public class UserRentalVO {
 	private int b_card;				// 카드할인가
 	private int b_gift;					// 사은품
 	private String p_name;		// 공급사명
-	private String id;					// 회원아이디
-	private String g_id;				// 모델명
+	private String id;					// 회원아이디*
+	private String g_id;				// 모델명 *
 	private String g_name;		// 제품명
 	private String startDate;
 	private String endDate;
