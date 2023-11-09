@@ -62,6 +62,11 @@
 		)
 	</select>
 	
+	<!-- 개월 수에 따른 공급사의 가격 정보 가져오기 -->
+	<select id="getPriceInfo" parameterType="hashmap" resultType="PriceVO">
+		SELECT * FROM price
+    	WHERE g_id = #{g_id} AND p_rent = #{selectedMonths}
+	</select>
 	
 
 	<!-- 리뷰 등록 -->

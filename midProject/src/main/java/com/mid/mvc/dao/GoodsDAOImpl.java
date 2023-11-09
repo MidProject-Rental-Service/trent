@@ -22,8 +22,10 @@ public class GoodsDAOImpl {
 	}
 
 	// 상품 전체 검색
-	public List<GoodsVO> getGoodsList(GoodsVO vo){
-		return SqlSession.selectList("GoodsMapper.getGoodsList", vo);
+	public List<GoodsVO> getGoodsList(HashMap map){
+		System.out.println("====>  sqlSession getGoodsList ");
+		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
+		return SqlSession.selectList("GoodsMapper.getGoodsList", map);
 	}
 
 	public GoodsVO getGoodsById(GoodsVO vo) {
@@ -128,6 +130,17 @@ public class GoodsDAOImpl {
 		   System.out.println("===> SqlSession getSearchGoodsList() 호출" );
 		   System.out.println("===> " + map );
 		return SqlSession.selectList("GoodsMapper.getSearchGoodsList", map);
+	}
+
+	// 공급사 제품 가격 정보 
+	public List<PriceVO> getPriceInfo(String g_id, int selectedMonths) {
+		System.out.println("=====> getPriceInfo() 호출");
+		System.out.println("======> g_id: "+ g_id +"// p_rent: "+ selectedMonths);
+		HashMap map = new HashMap();
+		map.put("g_id", g_id);
+		map.put("selectedMonths", selectedMonths);
+		
+		return SqlSession.selectList("GoodsMapper.getPriceInfo", map);
 	}
 	
 	

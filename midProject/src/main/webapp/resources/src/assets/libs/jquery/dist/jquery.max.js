@@ -5,6 +5,20 @@ document.head.appendChild(jqueryScript);
 
 jqueryScript.onload = function() {
 
+	{
+    console.log("ee");
+    var listForm = $("#listForm");
+
+    $(".pagination_button").on("click", function(e) {
+        e.preventDefault();
+
+        var pageNum = $(this).find("a").attr("href"); // 페이지 번호 가져오기
+        listForm.find("input[name='pageNum']").val(pageNum);
+        listForm.submit();
+    });
+    }
+
+
 
 	// 답변하기 버튼 클릭 이벤트 처리
 	$('#answer').click(function() {
@@ -124,6 +138,7 @@ jqueryScript.onload = function() {
 	        }
 	    }).open();
 	}
+
 
 
 

@@ -11,7 +11,7 @@ public interface GoodsService {
 	
 	void productRegister(GoodsVO vo);
 	
-	List<GoodsVO> getGoodsList(GoodsVO vo);
+	List<GoodsVO> getGoodsList(HashMap map);
 
 	// 관리자 
 	GoodsVO getGoodsById(GoodsVO vo);
@@ -52,5 +52,8 @@ public interface GoodsService {
 
 	// 제품검색 헤더 
 	List<GoodsVO>getSearchGoodsList(HashMap map);
+
+	List<PriceVO> getPriceInfo(String g_id, int selectedMonths);
+
 
 }

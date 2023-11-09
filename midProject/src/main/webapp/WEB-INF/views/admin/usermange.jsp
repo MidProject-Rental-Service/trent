@@ -11,7 +11,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize Free</title>
+<title>사용자 관리 usermanage</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -45,7 +45,10 @@
 				</div>
 
 				<section id="container">
-					<form role="form" method="get">
+					<form role="form" method="get" id="listForm">
+						<input type="hidden" name="pageNum"
+							value="${pageMaker.cri.pageNum }"> <input type="hidden"
+							name="amount" value="${pageMaker.cri.amount }">
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -71,21 +74,61 @@
 									<td><a></a></td>
 								</tr>
 							</c:forEach>
-
 						</table>
-						<!-- 검색버튼 만드세요 -->
-						<div class="search row">
+						
+					</form>
+					<!-- page 이전 1 2 3 4 5 다음 만드세요  -->
+					<div name="paging">
+						<ul class="pagination">
+							<c:if test="${pageMaker.prev }">
+								<li class="pagination_button"><a
+									href="${pageMaker.startPage - 1 }">Previous</a></li>
+							</c:if>
 
-						</div>
+							<c:forEach var="num" begin="${pageMaker.startPage }"
+								end="${pageMaker.endPage }">
+								<li class="pagination_button"><a href="${num }">${num }</a>
+								</li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next }">
+								<li class="pagination_button"><a
+									href="${pageMaker.endPage + 1 }">Next</a></li>
+							</c:if>
+						</ul>
+					</div>
+					
+					<form action=""name="search-form">
+						<div></div>
+
 						<!-- page 이전 1 2 3 4 5 다음 만드세요  -->
 						<div>
-
 						</div>
 					</form>
+					
+						<!-- 검색폼 시작 (name값이랑 value값은 변경금지!!) -->
+						<form action="usermange.do">
+						<div class="search row">
+							<select name="searchCondition" id="searchCondition"
+										class="search-date-bar">
+										<option value="name">이름</option>
+										<option value="phone">휴대폰번호</option>
+										<option value="id">아이디</option>
+										<option value="addr">주소</option>
+										<option value="email">이메일</option>
+									</select> <input type="text" name="searchKeyword"> 
+									<input type="submit" class="btn btn-primary search-btn " value="검색">
+						</div>
+						</form>
+						<!-- 검색 폼 끝 -->
 				</section>
+
 			</div>
 		</div>
 	</div>
+
+
+	<script src="../src/assets/libs/jquery/dist/jquery.max.js"></script>
 	<script src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script
 		src="../src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

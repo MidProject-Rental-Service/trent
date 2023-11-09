@@ -19,8 +19,8 @@ public class GoodsServiceImpl implements GoodsService{
 	
 	
 	// 제품 목록 띄우기
-	public List<GoodsVO> getGoodsList(GoodsVO vo) {
-		return goodsDAO.getGoodsList(vo);
+	public List<GoodsVO> getGoodsList(HashMap map) {
+		return goodsDAO.getGoodsList(map);
 	}
 	
 	// 제품 상세보기
@@ -117,6 +117,11 @@ public class GoodsServiceImpl implements GoodsService{
 	// 제품 검색 (헤더)
 	public List<GoodsVO> getSearchGoodsList(HashMap map) {
 		return goodsDAO.getSearchGoodsList(map);
+	}
+
+	// 공급사별 가격 정보
+	public List<PriceVO> getPriceInfo(String g_id, int selectedMonths) {
+		return goodsDAO.getPriceInfo(g_id, selectedMonths);
 	}
 
 }

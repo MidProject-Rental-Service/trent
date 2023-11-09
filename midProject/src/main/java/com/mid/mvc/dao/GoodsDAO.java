@@ -11,7 +11,7 @@ public interface GoodsDAO {
 	
 	public void productRegister(GoodsVO vo);
 	
-	public List<GoodsVO> getGoodsList(GoodsVO vo);	
+	public List<GoodsVO> getGoodsList(HashMap map);	
 
 	public GoodsVO getGoodsById(GoodsVO vo);
 	
@@ -40,4 +40,6 @@ public interface GoodsDAO {
 	 List<GoodsVO> getCategoryGoodsList(String c_name, List<String> selectedBrands, Integer minPrice, Integer maxPrice);
 	 
 	 public List<GoodsVO>getSearchGoodsList(HashMap map);
+	 
+	 
 }
