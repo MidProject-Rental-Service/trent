@@ -290,9 +290,19 @@
 														<c:forEach items="${reviewGoodsList}" var="review">
 															<div class="co-item">
 																<div class="avatar-pic">
-																	<img src="${pageContext.request.contextPath}/img/review/${review.r_rimg}"
-																	 alt=""
-																		onclick="openModal('${pageContext.request.contextPath}/img/review/${review.r_rimg}')">
+																	<c:choose>
+																		<c:when test="${not empty review.r_rimg}">
+																			<img
+																				src="${pageContext.request.contextPath}/img/review/${review.r_rimg}"
+																				alt=""
+																				onclick="openModal('${pageContext.request.contextPath}/img/review/${review.r_rimg}')">
+																		</c:when>
+																		<c:otherwise>
+																			<img
+																				src="../resources/img/review/imgNone.png"
+																				alt="">
+																		</c:otherwise>
+																	</c:choose>
 																</div>
 																<div class="avatar-text">
 																	<div class="at-rating">
