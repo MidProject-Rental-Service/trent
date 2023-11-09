@@ -251,11 +251,13 @@ public class UserController {
         GoodsVO productInfo = goodsServiceImpl.getProductDetail(g_id);
         List<PriceVO> priceInfoList = goodsServiceImpl.getProductPrice(g_id);
         PriceVO minPrice = goodsServiceImpl.getMinPrice(g_id);
+        List<PriceVO> supInfo = goodsServiceImpl.getSupplierInfo(g_id);
         
         if (productInfo != null) {
             model.addAttribute("productInfo", productInfo);
             model.addAttribute("priceInfoList", priceInfoList);
             model.addAttribute("minPrice", minPrice);
+            model.addAttribute("supInfo", supInfo);
             
             return "user/product";
         } else {
@@ -263,7 +265,7 @@ public class UserController {
         }
     }
     
-    // Ajax 엔드포인트를 통해 가격 정보를 업데이트하는 메서드를 추가
+    // Ajax를 통해 가격 정보를 업데이트하는 메서드를 추가
     @RequestMapping(value = "/updatePrice.do", method = RequestMethod.POST)
     @ResponseBody
     public List<PriceVO> updatePrice(@RequestBody PriceVO vo) {

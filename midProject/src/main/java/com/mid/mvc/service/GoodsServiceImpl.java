@@ -124,4 +124,9 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsDAO.getPriceInfo(g_id, selectedMonths);
 	}
 
+	// 모델명에 따른 공급사 정보
+	public List<PriceVO> getSupplierInfo(String g_id) {
+		return goodsDAO.getSupplierInfo(g_id);
+	}
+
 }

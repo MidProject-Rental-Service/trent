@@ -26,7 +26,7 @@ function sendCategoryToController(category) {
           `<div class="col-lg-4 col-sm-6">
             <div class="product-item">
               <div class="pi-pic">
-                <a href="getBoard.do?b_id=${list.g_id}">
+                <a href="product.do?g_id=${list.g_id }">
                   <img src="../img/products/${list.g_rimg1}" alt="">
                   <div class="sale pp-sale">Sale</div>
                   <div class="icon">
@@ -105,7 +105,7 @@ function sendBrandAndPriceToController() {
           `<div class="col-lg-4 col-sm-6">
             <div class="product-item">
               <div class="pi-pic">
-                <a href="getBoard.do?b_id=${list.g_id}">
+                <a href="product.do?g_id=${list.g_id }">
                   <img src="../img/products/${list.g_rimg1}" alt="">
                   <div class="sale pp-sale">Sale</div>
                   <div class="icon">

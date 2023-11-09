@@ -55,5 +55,7 @@ public interface GoodsService {
 
 	List<PriceVO> getPriceInfo(String g_id, int selectedMonths);
 
+	List<PriceVO> getSupplierInfo(String g_id);
+
 
 }

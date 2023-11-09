@@ -142,6 +142,10 @@ public class GoodsDAOImpl {
 		
 		return SqlSession.selectList("GoodsMapper.getPriceInfo", map);
 	}
+
+	public List<PriceVO> getSupplierInfo(String g_id) {
+		return SqlSession.selectList("GoodsMapper.getSupplierInfo", g_id);
+	}
 	
 	
 }

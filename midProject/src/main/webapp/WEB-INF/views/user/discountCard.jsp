@@ -65,10 +65,11 @@
 								<p>
 									"월 렌탈료 " <span>10,000원 - 25,000원 할인</span> " 혜택"
 								</p>
-								<hr />
+<!-- 								<hr /> -->
 							</div>
 							<ul class="card_box" style="display: none;">
 								<li><img src="../img/card-1.png"></li>
+								<hr/>
 								<li><img src="../img/card-2.png"></li>
 								<li><img src="../img/card-3.png"></li>
 							</ul>

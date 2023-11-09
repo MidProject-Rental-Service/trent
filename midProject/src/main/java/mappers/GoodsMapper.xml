@@ -32,6 +32,16 @@
 	</select>
 	
 	<!-- ============================ -->
+	
+	<!-- 이 제품의 공급사들 출력  -->
+	<select id="getSupplierInfo" parameterType="String" resultType="PriceVO">
+		SELECT DISTINCT s_name
+		FROM price
+		WHERE g_id = #{g_id}
+	</select>
+	
+	<!-- 제품 -->
+	
 	<!-- user 페이지에서 제품 상세 페이지 보기 -->
 	<select id="getProductDetail" parameterType="String" resultType="GoodsVO">
 		SELECT * FROM goods

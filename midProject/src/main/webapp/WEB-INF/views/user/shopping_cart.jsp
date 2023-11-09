@@ -41,7 +41,6 @@
     <script src="../js/main.js"></script>
     <script type="text/javascript">
     
-    history.back();
     </script>
     
   </head>
@@ -169,7 +168,7 @@
                     <li class="subtotal">수량 <span>3</span></li>
                     <li class="cart-total">월 청구요금 <span>36,000</span></li>
                   </ul>
-                  <a href="rent-check-out.do" class="proceed-btn">렌탈신청하기</a>
+                  <a href="rental.do" class="proceed-btn">렌탈신청하기</a>
                 </div>
               </div>
             </div>

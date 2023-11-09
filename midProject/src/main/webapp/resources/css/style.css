@@ -161,7 +161,7 @@ ol {
 }
 
 .spad {
-  padding-top: 100px;
+  padding-top: 30px;
   padding-bottom: 100px;
 }
 
@@ -2407,6 +2407,20 @@ select#searchCondition.category-btn{
 }
 /* 하림!!!!!! */
 
+/* 동적 테이블 스타일 지정 */
+table.sub_price_Table div#join_condition {
+    white-space: pre-line;
+    font-size: small;
+    width: 340px;
+}
+
+table.sub_price_Table button.btn-cart:hover,
+table.sub_price_Table button.btn-rental:hover,
+table.sub_price_Table button.btn-card:hover {
+    background-color: #96C7ED;
+    border-color: #96C7ED;
+    color: #fff;
+}
 
 .product-tab .tab-item .nav {
   width: 100%;
@@ -2581,6 +2595,8 @@ select#searchCondition.category-btn{
 .price_detail .btn_choice_box1 .rentalPeriod:hover a {color: #fff !important; background-color: #96C7ED !important;}
 .price_detail .btn_choice_box1 .rentalPeriod:hover p {color: #fff !important;}
 
+
+
 /* 가격비교 탭 내용*/
 .sub_price_view .sub_price_Table {
   cursor: pointer;
@@ -2598,11 +2614,14 @@ select#searchCondition.category-btn{
 .price_detail table.sub_price_Table td.sub_Title {
   text-indent: unset;
   text-align: center;
+  vertical-align: middle;
   font-size: 13px;
   color: #666666 !important;
   font-weight: normal !important;
   padding-right: 15px;
+  padding-top: 25px;
   border-right: 1px solid #999999;
+  width: 80px;
 }
 
 .sub_price_view .sub_Info {

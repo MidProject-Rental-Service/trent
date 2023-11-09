@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     	
+<%-- 세션에서 로그인 정보 가져오기 --%>
+<% UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,19 +96,26 @@
 	<script>
 	$(function() { 
 		
-		// 주소 값 분리
-		// 페이지가 로드될 때 주소 필드의 내용을 읽어와서 분리
-	    var fullAddress = $("#sample6_address").val();
-	    var parts = fullAddress.split(',');
-	
-	    // 주소 입력 필드에 주소 설정
-	    $("#sample6_address").val(parts[0]);
-	    
-	    // 상세주소 입력 필드에 상세주소 설정 (필요에 따라 조건 검사)
-	    if (parts.length >= 1) {
-	        $("#sample6_detailAddress").val(parts[1]);
-	    }
+		  // 페이지 로드 시 주소 정보를 각 필드에 표시
+		  $(document).ready(function() {
+		    var fullAddress = "<%= loggedInUser.getAddr() %>";
+		    if (fullAddress) {
+		      var addressParts = fullAddress.split(",");
+		      $("#sample6_postcode").val(addressParts[0]);
+		      $("#sample6_address").val(addressParts[1]);
+		      $("#sample6_detailAddress").val(addressParts[2]);
+		    }
+		  });
 			
+		  // 상세주소 입력이 완료되면 주소 정보를 hidden 필드에 저장
+		  $("#sample6_detailAddress").on("change", function() {
+		    var postcode = $("#sample6_postcode").val();
+		    var addr = $("#sample6_address").val();
+		    var detailaddr = $(this).val();
+		    var fullAddress = postcode + "," + addr + "," + detailaddr;
+		    $("#sample6_extraAddress").val(fullAddress);
+		  });
+		  
 	    function validateId() {
 	        var id = $("#id").val();
 	        var idPattern = /^[a-zA-Z0-9]{5,10}$/;
@@ -195,8 +204,6 @@
 </head>
 
 <body>
-	<%-- 세션에서 로그인 정보 가져오기 --%>
-	<% UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser"); %>
 	
 	<%-- 로그인 상태에 따라 다른 헤더 포함 --%>
 	<c:if test="<%= loggedInUser != null %>">
@@ -249,9 +256,9 @@
                                 <label for="addr">주소</label>
                                 <input type="text" id="sample6_postcode" class="postcode" name="postcode" size="5" readonly>
 								<input type="button" onclick="sample6_execDaumPostcode()" class="site-btn" value="우편번호검색">
-								<input type="text" id="sample6_address" name="addr" size="50" placeholder="주소" value="<%= loggedInUser.getAddr() %>" readonly><br/>
+								<input type="text" id="sample6_address" name="address" size="50" placeholder="주소" value="<%= loggedInUser.getAddr() %>" readonly><br/>
 								<input type="text" id="sample6_detailAddress" name="detailaddr" size="50" placeholder="상세주소">
-								<input type="text" id="sample6_extraAddress" style="display:none;">
+								<input type="text" id="sample6_extraAddress" name="addr" style="display:none;">
 							</div>
                             <div class="group-input" id="email">
                                 <label for="email">이메일 *</label>

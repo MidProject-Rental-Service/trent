@@ -174,7 +174,10 @@
 									</dl>
 									<dl>
 										<dt>공급사</dt>
-										<dd>LG케어솔루션</dd>
+										<c:forEach items="${supInfo}" var="supplier" varStatus="status">
+								            ${supplier.s_name}
+								            <c:if test="${!status.last}">/</c:if>
+								        </c:forEach>
 									</dl>
                                 </div>
                             </div>
@@ -233,54 +236,9 @@
 														</h5>
 														<!-- 공급사 가격정보 for문 시작 -->
 														<div class="sub_price_view">
-															<table class="sub_price_Table">
-																<tbody>
-																	<tr>
-																		<td class="sub_Title">
-																			<div class="sub_logo_img">
-																				<img src="https://rentaltok.com/data/icon/goods_icon/intro_lgcaresolutions.png">
-																			</div>
-																			<p>LG케어솔루션</p>
-																		</td>
-																		<td class="sub_Info">
-																		
-																			<div class="join_condition">
-																				<textarea id="join_condition" name="join_condition" rows="2" cols="30" readonly>이 텍스트 영역은 읽기 전용입니다. 사용자는 내용을 편집할 수 없습니다.</textarea>
-																			</div>
-																			<div class="btn_choice_box_con">
-																				<button type="button">
-																					제휴카드보기&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/></svg>
-																				</button>
-																			</div>
-																		</td>
-																		<td class="sub_Info2">
-																			<div class="sub_info_box_rental">
-																				<table summary="요약" class="info_box">
-																					<tbody>
-																						<tr style="padding: 0px; border: none; margin: 0;">
-																							<td class="sub_info_box1">월렌탈요금<br/><a>월<span class="formatted-number">000</span>원</a></td>
-																							<td class="sub_info_box2">카드할인가<br/><a>월<span class="formatted-number">000</span>원</a></td>
-																							<td class="sub_info_box3">사은품 혜택<br/><a>월<span class="formatted-number">000</span>P</a></td>
-																						</tr>
-																					</tbody>
-																				</table>
-																			</div>
-																			<div class="btn_choice_box2">
-																				<button type="button" class="btn-cart">장바구니</button>
-																				<button type="button" class="btn-rental">렌탈신청</button>
-																			</div>
-																		</td>
-																	</tr> <!-- 이 뒤부터 카드정보 -->
-
-																</tbody>
-
-															</table>
-
+															<!--  테이블 동적 추가 -->
 														</div>
 
-														
-														
-														
 														<!-- 가격비교 탭 끝 -->
                                            		</div>
                                             </div>
@@ -492,7 +450,7 @@
 <script src="../js/owl.carousel.min.js"></script>
 <script src="../js/main.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script src="../js/shopSearch.js"></script>
 <script type="text/javascript">
 	jQuery.fn.formatNumber = function () {
         return this.each(function () {
@@ -505,31 +463,47 @@
     $(function () {
         $('.formatted-number').formatNumber();
         
-        /* 약정 개월 수 버튼 클릭 이벤트 */
-        
      	// 페이지 로드 시 첫 번째 rentalPeriod 버튼에 on 클래스 추가
         $(".btn_choice_box1 .rentalPeriod:first, .btn_choice_box1 .rentalPeriod:first p, .btn_choice_box1 .rentalPeriod:first a").addClass("on");
 
-        // rentalPeriod 버튼 클릭 시 on 클래스 제어
+        
+        // rentalPeriod 버튼 클릭 시
         $(".btn_choice_box1 .rentalPeriod").click(function() {
-            // 모든 rentalPeriod 버튼에서 on 클래스 제거
+            // on 클래스 제거
             $(".btn_choice_box1 .rentalPeriod, .btn_choice_box1 .rentalPeriod:first p, .btn_choice_box1 .rentalPeriod:first a").removeClass("on");
             
             // 클릭한 버튼에 on 클래스 추가
             $(this).addClass("on");
-        });
-        
-        // ********************************************
-        
-     	// 개월 수 버튼을 클릭했을 때
-        $('.rentalPeriod').on('click', function() {
-            var selectedMonths = $(this).data('rentalperiod');
+            
+            // 클릭한 버튼의 개월 수 가져오기
+			var selectedMonths = $(this).data('rentalperiod');
             
             // PriceVO 객체 생성
             var priceVO = {
                 g_id: "${productInfo.g_id}", // 상품 ID를 서버에서 받은 값을 사용
                 p_rent: selectedMonths
             };
+            
+            updatePriceTable(priceVO);
+        });
+        
+     	// 페이지 로드 시 기본적으로 선택된 약정 개월 수에 해당하는 정보를 표시
+        var defaultSelectedMonths = $(".btn_choice_box1 .rentalPeriod:first").data('rentalperiod');
+        var defaultButton = $(`.btn_choice_box1 .rentalPeriod[data-rentalperiod='${defaultSelectedMonths}']`);
+        defaultButton.click();
+        
+        var defaultPriceVO = {
+            g_id: "${productInfo.g_id}",
+            p_rent: defaultSelectedMonths
+        };
+        
+        updatePriceTable(defaultPriceVO);
+    });
+        
+        // ********************************************
+        
+     	function updatePriceTable(priceVO) {
+            
             
             $.ajax({
                 type: 'POST',
@@ -550,29 +524,58 @@
 
                         // 각 데이터 항목에 대한 처리
                         var tr = $('<tr>');
-                        tr.append($('<td>').addClass('sub_Title').html('<div class="sub_logo_img"><img src="' + item.image + '"></div><p>' + item.s_name + '</p>'));
+                        tr.append($('<td>').addClass('sub_Title').html('<div class="sub_logo_img"><img style="width: 50px;" src="/midProject/resources/img/sup_logo/' + item.s_name + '.png"></div><p>' + item.s_name + '</p>'));
 
                         // 숫자 포맷팅 적용
                         var formattedPrice = item.p_price.toLocaleString('en');
                         var formattedCardPrice = item.p_card.toLocaleString('en');
                         var formattedGift = item.p_gift.toLocaleString('en');
 
-                        tr.append($('<td>').addClass('sub_Info').html('<div class="join_condition"><textarea id="join_condition" name="join_condition" rows="2" cols="30" readonly>' + item.p_text + '</textarea></div><div class="btn_choice_box_con"><button type="button">제휴카드보기&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/></svg></button></div>'));
+                        tr.append($('<td>').addClass('sub_Info').html('<div class="join_condition"><div id="join_condition" name="join_condition" rows="2" cols="30" readonly>' + item.p_text + '</div></div><div class="btn_choice_box_con"><button type="button" class="btn-card" onclick="openAffiliateCard()">제휴카드보기&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/></svg></button></div>'));
 
-                        tr.append($('<td>').addClass('sub_Info2').html('<div class="sub_info_box_rental"><table summary="요약" class="info_box"><tbody><tr style="padding: 0px; border: none; margin: 0;"><td class="sub_info_box1">월렌탈요금<br/><a style="color: red;">월<span style="font-weight: bold;" class="formatted-number">' + formattedPrice + '</span>원</a></td><td class="sub_info_box2">카드할인가<br/><a>월<span class="formatted-number">'+ formattedCardPrice +'</span>원</a></td><td class="sub_info_box3">사은품 혜택<br/><a>월<span class="formatted-number">'+ formattedGift +'</span>P</a></td></tr></tbody></table></div><div class="btn_choice_box2"><button type="button" class="btn-cart">장바구니</button><button type="button" class="btn-rental">렌탈신청</button></div>'));
+                        tr.append($('<td>').addClass('sub_Info2').html('<div class="sub_info_box_rental"><table summary="요약" class="info_box"><tbody><tr style="padding: 0px; border: none; margin: 0;"><td class="sub_info_box1">월렌탈요금<br/><a style="color: #1478FF;">월<span style="font-weight: bold;" class="formatted-number">' + formattedPrice + '</span>원</a></td><td class="sub_info_box2">카드할인가<br/><a style="color: #B93232;">월<span style="font-weight: bold;" class="formatted-number">'+ formattedCardPrice +'</span>원</a></td><td class="sub_info_box3">사은품 혜택<br/><a style="color: #000069;"><span style="font-weight: bold;" class="formatted-number">'+ formattedGift +'</span>P</a></td></tr></tbody></table></div><div class="btn_choice_box2"><button type="button" class="btn-cart" onclick="addToCart()">장바구니</button><button type="button" class="btn-rental" onclick="applyForRental()">렌탈신청</button></div>'));
 
                         tbody.append(tr);
                         table.append(tbody);
                         subPriceView.append(table);
                     });
+                    
+                    
                 },
                 error: function(error) {
-                    // 에러 처리
+                    alert("약정에 맞는 가격 정보가 없습니다");
+                    history.back();
                 }
             });
-        });
+        }
         
-    });
+     	// 장바구니 버튼 클릭 시 이벤트 핸들러
+     	function addToCart() {
+     	    // 여기에 장바구니에 추가하는 로직 추가
+     	    alert("장바구니에 추가되었습니다.");
+     	   window.location.href = '/midProject/user/shopping_cart.do';
+     	}
+
+     	// 렌탈 신청 버튼 클릭 시 이벤트 핸들러
+     	function applyForRental() {
+     		var isLoggedIn = <%= (loggedInUser != null) %>;
+
+     	    if (isLoggedIn) {
+     	        // 로그인이 되어 있으면 렌탈 신청 페이지로 이동
+     	        window.location.href = '/midProject/user/rental.do';
+     	    } else {
+     	        // 로그인이 안되어 있으면 경고창 표시 후 로그인 페이지로 이동
+     	        alert("로그인이 필요한 서비스입니다.");
+     	        window.location.href = '/midProject/user/login.do';
+     	    }
+     	}
+
+     	// 제휴카드 보기 버튼 클릭 시 이벤트 핸들러
+     	function openAffiliateCard() {
+     	    // 여기에 제휴카드 보기 로직 추가
+     	    alert("제휴카드를 확인합니다.");
+     	}
+
 
 </script>
 

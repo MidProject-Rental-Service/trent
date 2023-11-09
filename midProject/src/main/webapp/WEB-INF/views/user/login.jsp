@@ -79,7 +79,7 @@
 							    <label for="role">역할 *</label>
 							    <select id="role" name="role">
 							    	<option value="">-- 역할 선택 --</option>
-							        <option value="user">일반 사용자</option>
+							        <option value="user" selected>일반 사용자</option>
 							        <option value="admin">관리자</option>
 							        <option value="supplier">공급사</option>
 							    </select>

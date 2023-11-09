@@ -184,6 +184,14 @@
        $("#name").blur(validateName);
        $("#phone").blur(validatePhone);
        
+   	  // 상세주소 입력이 완료되면 주소 정보를 hidden 필드에 저장
+ 	  $("#sample6_detailAddress").on("change", function() {
+ 	    var postcode = $("#sample6_postcode").val();
+ 	    var addr = $("#sample6_address").val();
+ 	    var detailaddr = $(this).val();
+ 	    var fullAddress = postcode + "," + addr + "," + detailaddr;
+ 	    $("#sample6_extraAddress").val(fullAddress);
+ 	  });
 
    });
    </script>
@@ -242,9 +250,9 @@
                                 <label for="addr">주소</label>
                                 <input type="text" id="sample6_postcode" class="postcode" name="postcode" size="5" readonly>
 								<input type="button" onclick="sample6_execDaumPostcode()" class="site-btn" value="우편번호검색" onclick="checkPost()">
-								<input type="text" id="sample6_address" name="addr" size="50" placeholder="주소" readonly><br/>
-								<input type="text" id="sample6_detailAddress" name="addr" size="50" placeholder="상세주소">
-								<input type="text" id="sample6_extraAddress" style="display:none;">
+								<input type="text" id="sample6_address" name="address" size="50" placeholder="주소" readonly><br/>
+								<input type="text" id="sample6_detailAddress" name="detailaddr" size="50" placeholder="상세주소">
+								<input type="text" id="sample6_extraAddress" name="addr" style="display:none;">
 							</div>
                             <div class="group-input" id="email">
                                 <label for="email">이메일 *</label>
