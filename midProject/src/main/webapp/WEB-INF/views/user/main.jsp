@@ -41,7 +41,7 @@
 	    <%@ include file="header_before.jsp" %>
 	</c:if>
 
-        <!-- Hero Section Begin -->
+    <!-- Main Banner Section Begin -->
     <section class="hero-section">
         <div class="hero-items owl-carousel">
             <div class="single-hero-items set-bg" data-setbg="../img/hero-1.jpg">
@@ -54,7 +54,7 @@
 									휴대폰의 앱이 스스로 업데이트하듯 23년형 360˚공기청정기 플러스는
 									새로운 기능을 더하고 내게 맞춰 변화하는 업그레이드를 제공합니다.
 							</p>
-                            <a href="./product.do" class="primary-btn">렌탈 신청하기</a>
+                            <a href="./product.do?g_id=AS183DWFC" class="primary-btn">렌탈 신청하기</a>
                         </div>
                     </div>
                     <div class="off-card">
@@ -70,7 +70,7 @@
                             <h1>올바른 가습기 스테인리스 4.0L</h1>
                             <p>쉽고 위생적인 관리가 가능한 올케어 시스템
                                 </p>
-                            <a href="./product.do" class="primary-btn">렌탈 신청하기</a>
+                            <a href="./product.do?g_id=WL3E400-KNK" class="primary-btn">렌탈 신청하기</a>
                         </div>
                     </div>
                     <div class="off-card">
@@ -80,7 +80,7 @@
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
+    <!-- Main Banner Section End -->
 
     <!-- Banner Section Begin -->
     <div class="banner-section spad">
@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <a href="./shop.do"><img src="../img/banner-1.jpg" alt="">
+                        <a href="./shop_search.do?searchCondition=total&searchKeyword=공기청정기" method="post"><img src="../img/banner-1.jpg" alt="">
                         <div class="inner-text">
                             <h4>Air Cleaner</h4>
                         </div>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <a href="./shop.do"><img src="../img/banner-2.jpg" alt="">
+                        <a href="./shop_search.do?searchCondition=total&searchKeyword=가습기"><img src="../img/banner-2.jpg" alt="">
                         <div class="inner-text">
                             <h4>Humidifier</h4>
                         </div>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <a href="./shop.do"><img src="../img/banner-3.jpg" alt="">
+                        <a href="./shop_search.do?searchCondition=total&searchKeyword=제습기"><img src="../img/banner-3.jpg" alt="">
                         <div class="inner-text">
                             <h4>Dehumidifier</h4>
                         </div>
@@ -118,14 +118,14 @@
     </div>
     <!-- Banner Section End -->
 
-    <!-- Women Banner Section Begin -->
+    <!-- Air Cleaner Banner Section Begin -->
     <section class="women-banner spad">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="product-large set-bg" data-setbg="../img/Air-Cleaner-large.jpg">
                         <h2>Air Cleaner</h2>
-                        <a href="./shop.do">더보기</a>
+                        <a href="./shop_search.do?searchCondition=total&searchKeyword=공기청정기">더보기</a>
                     </div>
                 </div>
                 <div class="col-lg-8 offset-lg-1">
@@ -140,91 +140,53 @@
                     <div class="product-slider owl-carousel">
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="../img/products/women-1.jpg" alt="">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="./shopping-cart.do"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="./product.do">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
+                                <img src="../img/products/8f058b4b-4aed-4a11-854d-891db638f4ce_lg-air-1.jpg" alt="">
                             </div>
                             <div class="pi-text">
-                   
-                                <a href="./product.do">
-                                    <h5>Pure Pineapple</h5>
+                                <a href="./product.do?g_id=AS353NS3A">
+                                    <h5>LG 퓨리케어 오브제컬렉션 에어로타워</h5>
                                 </a>
                                 <div class="product-price">
-                                    $14.00
-                                    <span>$35.00</span>
+                                    <span>최저렌탈가</span>월38,900원
                                 </div>
                             </div>
                         </div>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="../img/products/women-2.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="./product.do">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
+                                <img src="../img/products/32f7a109-5069-4f47-9521-c776f72cce3a_lg-air-1.jpg" alt="">
                             </div>
                             <div class="pi-text">
-                                
-                                <a href="./product.do">
-                                    <h5>Guangzhou sweater</h5>
+                                <a href="./product.do?g_id=AS153HWWC">
+                                    <h5>LG 퓨리케어 360˚ 공기청정기 Hit</h5>
                                 </a>
                                 <div class="product-price">
-                                    $13.00
+                                    <span>최저렌탈가</span>월19,900원
                                 </div>
                             </div>
                         </div>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="../img/products/women-3.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="./product.do">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
+                                <img src="../img/products/040a890f-725d-4bf3-9082-5888ab836d27_lg-air-1.jpg" alt="">
                             </div>
                             <div class="pi-text">
-                                
-                                <a href="./product.do">
-                                    <h5>Pure Pineapple</h5>
+                                <a href="./product.do?g_id=AS183DWFC">
+                                    <h5>LG 퓨리케어 360˚ 공기청정기 플러스</h5>
                                 </a>
                                 <div class="product-price">
-                                    $34.00
+                                    <span>최저렌탈가</span>월25,000원
                                 </div>
                             </div>
                         </div>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="../img/products/women-4.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="./product.do">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
+                                <img src="../img/products/d0aa80f4-26bd-4b1e-9f94-638876923629_lg-air-1.jpg" alt="">
                             </div>
                             <div class="pi-text">
-                                
-                                <a href="./product.do">
-                                    <h5>Converse Shoes</h5>
+                                <a href="./product.do?g_id=AS283DWFA">
+                                    <h5>LG 퓨리케어 360˚ 공기청정기 플러스</h5>
                                 </a>
                                 <div class="product-price">
-                                    $34.00
+                                    <span>최저렌탈가</span>월34,500원
                                 </div>
                             </div>
                         </div>
@@ -233,7 +195,7 @@
             </div>
         </div>
     </section>
-    <!-- Women Banner Section End -->
+    <!-- Air Cleaner Banner Section End -->
 
     <!-- Deal Of The Week Section Begin-->
     <section class="deal-of-week set-bg spad" data-setbg="../img/time-bg.jpg">
@@ -241,121 +203,85 @@
             <div class="col-lg-6 text-center">
                 <div class="section-title">
                     <h2>금주의 특가 할인</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed<br /> do ipsum dolor sit amet,
-                        consectetur adipisicing elit </p>
+                    <p>디자인, 용량은 물론 우리집 공기질까지 맞춤청정하세요.
+                    BESPOKE AI+ 청정 기술로 10분마다 실내외 공기질을 비교, 학습하여 오염도가 높아질 것을 예측하고 미리 실내 공기를 정화합니다.
+                    실내 공기질이 좋아지면 스스로 팬을 꺼서 에너지가 최대 32 %까지 절감됩니다.
+                     팬이 꺼져도 센서는 작동하기 때문에 공기질이 나빠지면 알아서 다시 작동하니 걱정하지 마세요.</p>
                     <div class="product-price">
-                        <span>월 30,000원</span>
-                        월 25,000
+                        <span>월14,100원</span>
+                        월 0원
                     </div>
                 </div>
 
-                <a href="./product.do" class="primary-btn">렌탈 신청하기</a>
+                <a href="./product.do?g_id=AX053B810HND" class="primary-btn">렌탈 신청하기</a>
             </div>
         </div>
     </section>
     <!-- Deal Of The Week Section End -->
 
-    <!-- Man Banner Section Begin -->
+    <!-- Humidifier Banner Section Begin -->
     <section class="man-banner spad">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-8">
                     <div class="filter-control">
                         <ul>
-                            <li class="active">XIAOMI</li>
+                            <li class="active">AIRMADE</li>
                             <li>DUPLEX</li>
                             <li>LG</li>
-                            <li>AIRMADE</li>
+                            <li>XIAOMI</li>
                         </ul>
                     </div>
                     <div class="product-slider owl-carousel">
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="../img/products/man-1.jpg" alt="">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="./product.do">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
+                                <img src="../img/products/63cf58f1-2335-4f41-a943-556d7a8c3cf7_airmade-hu-1.jpg" alt="">
                             </div>
                             <div class="pi-text">
-                                
-                                <a href="./product.do">
-                                    <h5>Pure Pineapple</h5>
+                                <a href="./product.do?g_id=AMH-4000">
+                                    <h5>에어메이드 4L 대용량 초음파 무드등 THE투명한가습기</h5>
                                 </a>
                                 <div class="product-price">
-                                    $14.00
-                                    <span>$35.00</span>
+                                    <span>최저렌탈가</span>월8,900원
                                 </div>
                             </div>
                         </div>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="../img/products/man-2.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="./product.do">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
+                                <img src="../img/products/9a0d2f94-1c4c-4815-9ddb-bf47f8eebd5b_airmade-hu-1.jpg" alt="">
                             </div>
                             <div class="pi-text">
-                                
-                                <a href="./product.do">
-                                    <h5>Guangzhou sweater</h5>
+                                <a href="./product.do?g_id=AMH-4500B">
+                                    <h5>에어메이드 자동세척 습도조절 가열식 가습기 </h5>
                                 </a>
                                 <div class="product-price">
-                                    $13.00
+                                    <span>최저렌탈가</span>월12,900원
                                 </div>
                             </div>
                         </div>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="../img/products/man-3.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="./product.do">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
+                                <img src="../img/products/deaea510-83da-49fa-a1ec-fbffa6d49c6b_airmade-hu-1.jpg" alt="">
                             </div>
                             <div class="pi-text">
-                                
-                                <a href="./product.do">
-                                    <h5>Pure Pineapple</h5>
+                                <a href="./product.do?g_id=AMH-7000">
+                                    <h5>에어메이드 4L 대용량 복합식 THE 순수한가습기</h5>
                                 </a>
                                 <div class="product-price">
-                                    $34.00
+                                    <span>최저렌탈가</span>월14,900원
                                 </div>
                             </div>
                         </div>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="../img/products/man-4.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="./product.do">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
+                                <img src="../img/products/5d784ccd-537b-4af2-932d-32fb83f93a03_airmade-hu-1.jpg" alt="">
                             </div>
                             <div class="pi-text">
-                                
-                                <a href="./product.do">
-                                    <h5>Converse Shoes</h5>
+                                <a href="./product.do?g_id=AMH-9000">
+                                    <h5>에어메이드 9L 대용량 복합식 가열식 스마트가습기 </h5>
                                 </a>
                                 <div class="product-price">
-                                    $34.00
+                                    <span>최저렌탈가</span>월18,900원
                                 </div>
                             </div>
                         </div>
@@ -364,13 +290,13 @@
                 <div class="col-lg-3 offset-lg-1">
                     <div class="product-large set-bg m-large" data-setbg="../img/Humidifier-large.jpg">
                         <h2>Humidifier</h2>
-                        <a href="#">더보기</a>
+                        <a href="./shop_search.do?searchCondition=total&searchKeyword=가습기">더보기</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Man Banner Section End -->
+    <!-- Humidifier Banner Section End -->
     
 
     <!-- Js Plugins -->
@@ -384,6 +310,7 @@
     <script src="../js/jquery.slicknav.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/shopSearch.js"></script>
     
     <jsp:include page="./footer.jsp"/>
 

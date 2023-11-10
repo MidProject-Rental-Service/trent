@@ -267,19 +267,21 @@ public class UserController {
 	//BEST 상품 전체 검색
     @RequestMapping("/shop_best.do")
 	public void shopBest(GoodsVO vo, Model m) {
-    	System.out.println("화면에서 넘겨오는 값:" + vo.toString());
-    	HashMap map = new HashMap();
-		List<GoodsVO> result = goodsServiceImpl.getGoodsList(map);
+    	List<GoodsVO> result = goodsServiceImpl.getMinPriceList(vo);
 		int cnt = result.size();
 		m.addAttribute("goodsList", result);
+		m.addAttribute("cnt", cnt);
 	}
-	
+
 	//상품 전체 검색
     @RequestMapping("/shop.do")
 	public void GoodsList(GoodsVO vo, Model m) {
 		List<GoodsVO> result = goodsServiceImpl.getMinPriceList(vo);
+		int cnt = result.size();
 		m.addAttribute("goodsList", result);
+		m.addAttribute("cnt", cnt);
 	}
+    
     
     // 상품 상세 페이지로 이동
     @RequestMapping("/product.do")

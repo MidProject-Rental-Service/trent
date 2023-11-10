@@ -120,9 +120,9 @@
 					<div class="depart-btn">
 						<i class="ti-menu"></i> <span>All departments</span>
 						<ul class="depart-hover">
-							<li class="active"><a href="#">공기청정기</a></li>
-							<li><a href="./shop.do">가습기</a></li>
-							<li><a href="./shop.do">제습기</a></li>
+							<li class="active"><a href="./shop_search.do?searchCondition=total&searchKeyword=공기청정기">공기청정기</a></li>
+							<li><a href="./shop_search.do?searchCondition=total&searchKeyword=가습기">가습기</a></li>
+							<li><a href="./shop_search.do?searchCondition=total&searchKeyword=제습기">제습기</a></li>
 						</ul>
 					</div>
 				</div>

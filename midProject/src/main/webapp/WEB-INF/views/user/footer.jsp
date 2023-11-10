@@ -37,7 +37,7 @@
                         <h5>Site Map</h5>
                         <ul>
                             <li><a href="./mypage.do">마이페이지</a></li>
-                            <li><a href="./shopping-cart.do">장바구니</a></li>
+                            <li><a href="./shopping_cart.do">장바구니</a></li>
                             <li><a href="./shop.do">전체상품보기</a></li>
                         </ul>
                     </div>

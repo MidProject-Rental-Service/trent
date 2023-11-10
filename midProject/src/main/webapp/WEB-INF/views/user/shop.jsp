@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -66,8 +67,8 @@
 	<section class="product-shop spad">
 		<div class="container">
 			<div class="filter-widget">
-				<h6 class="search" style="visibility: hidden">"OOO" 검색결과 ${cnt} 개의 
-					제품이 있습니다</h6>
+				<h6 class="search" style="visibility: hidden">"OOO" 검색결과 ${cnt}
+					개의 제품이 있습니다</h6>
 			</div>
 			<div class="row">
 				<div
@@ -84,28 +85,28 @@
 						<h4 class="fw-title">Brand</h4>
 						<div class="fw-brand-check">
 							<div class="bc-item">
-								<label for="엘지"> LG <input type="checkbox"
-									id="엘지"> <span class="checkmark"></span>
+								<label for="엘지"> LG <input type="checkbox" id="엘지">
+									<span class="checkmark"></span>
 								</label>
 							</div>
 							<div class="bc-item">
-								<label for="삼성"> SAMSUNG <input type="checkbox"
-									id="삼성"> <span class="checkmark"></span>
+								<label for="삼성"> SAMSUNG <input type="checkbox" id="삼성">
+									<span class="checkmark"></span>
 								</label>
 							</div>
 							<div class="bc-item">
-								<label for="샤오미"> XIOMI <input type="checkbox"
-									id="샤오미"> <span class="checkmark"></span>
+								<label for="샤오미"> XIOMI <input type="checkbox" id="샤오미">
+									<span class="checkmark"></span>
 								</label>
 							</div>
 							<div class="bc-item">
-								<label for="다이슨"> DYSON <input type="checkbox"
-									id="다이슨"> <span class="checkmark"></span>
+								<label for="다이슨"> DYSON <input type="checkbox" id="다이슨">
+									<span class="checkmark"></span>
 								</label>
 							</div>
 							<div class="bc-item">
-								<label for="위닉스"> WINIX <input type="checkbox"
-									id="위닉스"> <span class="checkmark"></span>
+								<label for="위닉스"> WINIX <input type="checkbox" id="위닉스">
+									<span class="checkmark"></span>
 								</label>
 							</div>
 							<div class="bc-item">
@@ -145,18 +146,19 @@
 				</div>
 				<div class="col-lg-9 order-1 order-lg-2">
 					<div class="product-show-option">
+					<input type="hidden" id="currentPage" value="1" />
 						<div class="row">
 							<div class="col-lg-7 col-md-7">
-								<div class="select-option">
+								<!-- <div class="select-option">
 									<select class="sorting">
 										<option value="">정렬</option>
 									</select> <select class="p-show">
 										<option value="">모아보기:</option>
 									</select>
-								</div>
+								</div> -->
 							</div>
 							<div class="col-lg-5 col-md-5 text-right">
-								<p>Show 01- 09 Of 36 Product</p>
+								<p>Show 1- ${cnt} Of ${cnt} Product</p>
 							</div>
 						</div>
 					</div>
@@ -167,12 +169,8 @@
 								<div class="col-lg-4 col-sm-6">
 									<div class="product-item">
 										<div class="pi-pic">
-											<a href="product.do?g_id=${list.g_id }">
-											<img src="../img/products/${list.g_rimg1}" alt="">
-												<!-- <div class="sale pp-sale">Sale</div>
-												<div class="icon">
-													<i class="icon_heart_alt"></i>
-												</div> -->
+											<a href="product.do?g_id=${list.g_id }"> <img
+												src="../img/products/${list.g_rimg1}" alt="">
 											</a>
 										</div>
 										<div class="pi-text">
@@ -186,10 +184,16 @@
 									</div>
 								</div>
 							</c:forEach>
-
 						</div>
 					</div>
+
+					<!-- <div class="loading-more"  id="load-more">
+						<i class="icon_loading"></i> <a href="#"> Loading More </a>
+					</div> -->
+
 				</div>
+			</div>
+		</div>
 	</section>
 	<!-- Product Shop Section End -->
 
