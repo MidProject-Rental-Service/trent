@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -206,7 +207,7 @@
                                     <a data-toggle="tab" href="#tab-2" role="tab">DESCRIPTION</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#tab-3" role="tab">REVIEWS (29)</a>
+                                    <a data-toggle="tab" href="#tab-3" role="tab"> REVIEW (${reviewCnt})</a>
                                 </li>
                             </ul>
                         </div>
@@ -293,8 +294,7 @@
 																	</div>
 																	<h5>${review.id}
 																		/ ${review.r_point}
-																		<fmt:formatDate pattern="yyyy-MM-dd"
-																			value="${review.r_regdate}" var="formattedDate" />
+																		<fmt:formatDate pattern="yyyy-MM-dd" value="${review.r_regdate}" var="formattedDate" />
 																		<span>${formattedDate}</span>
 																	</h5>
 																	<div class="at-reply">${review.r_content}</div>
@@ -449,6 +449,7 @@
 <script src="../js/main.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/shopSearch.js"></script>
+<script src="../js/reviewStar.js"></script>
 
 <script type="text/javascript">
 	jQuery.fn.formatNumber = function () {

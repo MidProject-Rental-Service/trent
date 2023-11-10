@@ -71,48 +71,48 @@ public class UserController {
 	}
 
 	@RequestMapping("/loginCheck.do") // 로그인
-	public String loginCheck(UserVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-		// 서비스를 사용하여 로그인 검증
-		vo = userServiceImpl.loginCheck(vo);
-		System.out.println("loginCheck호출 =====> vo: " + vo);
+	   public String loginCheck(UserVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+	      // 서비스를 사용하여 로그인 검증
+	      vo = userServiceImpl.loginCheck(vo);
+	      System.out.println("loginCheck호출 =====> vo: " + vo);
 
-		if (vo != null) { // 로그인 성공
-			// 사용자 정보를 세션에 저장
-			session.setAttribute("loggedInUser", vo);
+	      if (vo != null) { // 로그인 성공
+	         // 사용자 정보를 세션에 저장
+	         session.setAttribute("loggedInUser", vo);
 
-			// 로그인 후 헤더에 장바구니 정보 표시
-			HashMap map = new HashMap();
-			List<ShoppingCartVO> result = new ArrayList<ShoppingCartVO>();
-			map.put("id", vo.getId());
-			result = userServiceImpl.getCartList(map);
+	         // 로그인 후 헤더에 장바구니 정보 표시
+	         HashMap map = new HashMap();
+	         List<ShoppingCartVO> result = new ArrayList<ShoppingCartVO>();
+	         map.put("id", vo.getId());
+	         result = userServiceImpl.getCartList(map);
 
-			int totalCnt = result.size();
+	         int totalCnt = result.size();
 
-			int totalPrice = 0;
-			for (ShoppingCartVO cart : result) {
-				totalPrice += cart.getP_price();
-			}
+	         int totalPrice = 0;
+	         for (ShoppingCartVO cart : result) {
+	            totalPrice += cart.getP_price();
+	         }
 
-			session.setAttribute("cartList", result);
-			session.setAttribute("totalCnt", totalCnt);
-			session.setAttribute("totalPrice", totalPrice);
+	         session.setAttribute("cartList", result);
+	         session.setAttribute("totalCnt", totalCnt);
+	         session.setAttribute("totalPrice", totalPrice);
 
-			// 로그인 성공 시
-			String role = vo.getRole();
-			if ("user".equals(role)) {
-				// 사용자 역할(role)이 null 또는 비어 있으면 일반 사용자로 간주
-				return "redirect:/user/main.do"; // 일반 사용자 페이지로 리디렉션
-			} else if ("admin".equals(role)) {
-				// 사용자 역할이 "admin"인 경우, 관리자로 간주
-				return "redirect:/admin/admin_index.do"; // 관리자 페이지로 리디렉션
-			} else if ("supplier".equals(role)) {
-				// 사용자 역할이 "supplier"인 경우, 공급사로 간주
-				return "redirect:/supplier/supplier_index.do"; // 공급사 페이지로 리디렉션
-			}
-		}
-		// 로그인 실패 시
-		return "user/login_failed";
-	}
+	         // 로그인 성공 시
+	         String role = vo.getRole();
+	         if ("user".equals(role)) {
+	            // 사용자 역할(role)이 null 또는 비어 있으면 일반 사용자로 간주
+	            return "redirect:/user/main.do"; // 일반 사용자 페이지로 리디렉션
+	         } else if ("admin".equals(role)) {
+	            // 사용자 역할이 "admin"인 경우, 관리자로 간주
+	            return "redirect:/admin/admin_index.do"; // 관리자 페이지로 리디렉션
+	         } else if ("supplier".equals(role)) {
+	            // 사용자 역할이 "supplier"인 경우, 공급사로 간주
+	            return "redirect:/supplier/supplier_index.do"; // 공급사 페이지로 리디렉션
+	         }
+	      }
+	      // 로그인 실패 시
+	      return "user/login_failed";
+	   }
 
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
@@ -328,26 +328,31 @@ public class UserController {
 	}
     
     
-    // 상품 상세 페이지로 이동
-    @RequestMapping("/product.do")
-    public String showProductDetail(@RequestParam("g_id") String g_id, Model model) {
-        // 제품 ID를 사용하여 상세 정보를 검색
-        GoodsVO productInfo = goodsServiceImpl.getProductDetail(g_id);
-        List<PriceVO> priceInfoList = goodsServiceImpl.getProductPrice(g_id);
-        PriceVO minPrice = goodsServiceImpl.getMinPrice(g_id);
-        List<PriceVO> supInfo = goodsServiceImpl.getSupplierInfo(g_id);
-        
-        if (productInfo != null) {
-            model.addAttribute("productInfo", productInfo);
-            model.addAttribute("priceInfoList", priceInfoList);
-            model.addAttribute("minPrice", minPrice);
-            model.addAttribute("supInfo", supInfo);
-            
-            return "user/product";
-        } else {
-            return "errorPage"; // 오류 페이지로 리다이렉트 또는 표시
-        }
-    }
+	 	// 상품 상세 페이지로 이동
+	   @RequestMapping("/product.do")
+	   public String showProductDetail(@RequestParam("g_id") String g_id, Model model) {
+	      // 제품 ID를 사용하여 상세 정보를 검색
+	      GoodsVO productInfo = goodsServiceImpl.getProductDetail(g_id);
+	      List<PriceVO> priceInfoList = goodsServiceImpl.getProductPrice(g_id);
+	      PriceVO minPrice = goodsServiceImpl.getMinPrice(g_id);
+	      List<PriceVO> supInfo = goodsServiceImpl.getSupplierInfo(g_id);
+	      List<UserReviewVO> result = userReviewService.reviewGoodsList(g_id);
+
+	      if (productInfo != null) {
+	         int reviewCnt = result.size();
+
+	         model.addAttribute("productInfo", productInfo);
+	         model.addAttribute("priceInfoList", priceInfoList);
+	         model.addAttribute("minPrice", minPrice);
+	         model.addAttribute("supInfo", supInfo);
+	         model.addAttribute("reviewGoodsList", result);
+	         model.addAttribute("reviewCnt", reviewCnt);
+
+	         return "user/product";
+	      } else {
+	         return "errorPage"; // 오류 페이지로 리다이렉트 또는 표시
+	      }
+	   }
     
     // Ajax를 통해 가격 정보를 업데이트하는 메서드를 추가
     @RequestMapping(value = "/updatePrice.do", method = RequestMethod.POST)
