@@ -174,7 +174,8 @@ public class UserController {
 
 		HashMap map = new HashMap();
 		map.put("id", loggedInUserId);
-
+		 
+		 
 		List<ShoppingCartVO> result = userServiceImpl.getCartList(map);
 		int totalCnt = result.size();
 
@@ -186,7 +187,7 @@ public class UserController {
 		m.addAttribute("cartList", result);
 		m.addAttribute("totalCnt", totalCnt);
 		m.addAttribute("totalPrice", totalPrice);
-
+		
 	}
 
 	// 장바구니 삭제
