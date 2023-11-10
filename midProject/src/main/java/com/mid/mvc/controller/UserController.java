@@ -1,7 +1,9 @@
 package com.mid.mvc.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -77,6 +79,23 @@ public class UserController {
 		if (vo != null) { // 로그인 성공
 			// 사용자 정보를 세션에 저장
 			session.setAttribute("loggedInUser", vo);
+
+			// 로그인 후 헤더에 장바구니 정보 표시
+			HashMap map = new HashMap();
+			List<ShoppingCartVO> result = new ArrayList<ShoppingCartVO>();
+			map.put("id", vo.getId());
+			result = userServiceImpl.getCartList(map);
+
+			int totalCnt = result.size();
+
+			int totalPrice = 0;
+			for (ShoppingCartVO cart : result) {
+				totalPrice += cart.getP_price();
+			}
+
+			session.setAttribute("cartList", result);
+			session.setAttribute("totalCnt", totalCnt);
+			session.setAttribute("totalPrice", totalPrice);
 
 			// 로그인 성공 시
 			String role = vo.getRole();
@@ -195,10 +214,10 @@ public class UserController {
 	@ResponseBody
 	public String cartDelete(ShoppingCartVO vo) {
 		System.out.println("===> cartDelete 호출");
-	    int sh_id = vo.getSh_id();
-	    userServiceImpl.cartDelete(vo);
-	    
-	    return "success";
+		int sh_id = vo.getSh_id();
+		userServiceImpl.cartDelete(vo);
+
+		return "success";
 	}
 
 	// 1:1문의 목록
@@ -243,6 +262,31 @@ public class UserController {
 		return "redirect:inquiryList.do";
 	}
 
+	// 마이페이지
+	@RequestMapping("/mypage.do")
+	public void mypage(Model m, HttpSession session) {
+	    UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+	    String loggedInUserId = loggedInUser.getId();
+
+	    HashMap map = new HashMap();
+		map.put("id", loggedInUserId);
+	    List<UserRentalVO> result = userBoardService.getUserRecentList(map);
+	    
+	    int[] cntArray = new int[6]; // b_stat 값이 1부터 5까지이므로 길이 6인 배열을 생성
+
+	    for (UserRentalVO rentalVO : result) {
+	        int bStat = rentalVO.getB_stat();
+	        if (bStat >= 1 && bStat <= 5) {
+	            cntArray[bStat]++;
+	        }
+	    }
+
+	    m.addAttribute("userRecentList", result);
+	    for (int i = 1; i <= 5; i++) {
+	        m.addAttribute("cnt" + i, cntArray[i]);
+	    }
+	}
+
 	// 신청목록
 	@RequestMapping("/applicationList.do")
 	public void rentalList(Model m, HttpSession session, String searchCondition, String searchKeyword,
@@ -264,17 +308,18 @@ public class UserController {
 		m.addAttribute("userRentalList", result);
 	}
 
-	//BEST 상품 전체 검색
-    @RequestMapping("/shop_best.do")
+	// BEST 상품 전체 검색
+	@RequestMapping("/shop_best.do")
 	public void shopBest(GoodsVO vo, Model m) {
     	List<GoodsVO> result = goodsServiceImpl.getMinPriceList(vo);
+		System.out.println("화면에서 넘겨오는 값:" + vo.toString());
 		int cnt = result.size();
 		m.addAttribute("goodsList", result);
 		m.addAttribute("cnt", cnt);
 	}
 
-	//상품 전체 검색
-    @RequestMapping("/shop.do")
+	// 상품 전체 검색
+	@RequestMapping("/shop.do")
 	public void GoodsList(GoodsVO vo, Model m) {
 		List<GoodsVO> result = goodsServiceImpl.getMinPriceList(vo);
 		int cnt = result.size();
@@ -332,9 +377,7 @@ public class UserController {
 
         return "/user/rental";
     }
-    
-    
-    
+
 
 	// 상품 검색 (Header) 검색창
 	@RequestMapping("/shop_search.do")

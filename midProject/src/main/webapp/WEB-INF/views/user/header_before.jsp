@@ -54,57 +54,39 @@
 						</div>
 					</div>
 	
-					<div class="col-lg-3 text-right col-sm">
-						<ul class="nav-right">
-							<li class="login-icon"><a href="join.do" class="login-panel"><i
-									class="fa fa-file-text"></i> Join</a></li>
-	
-							<li class="login-icon"><a href="login.do" class="login-panel"><i
-									class="fa fa-user"></i> Login</a></li>
-	
-							<li class="cart-icon"><a href="./shopping_cart.do"> <i
-									class="icon_bag_alt"></i> <span>3</span>
-							</a>
-								<div class="cart-hover">
-									<div class="select-items">
-										<table>
-											<tbody>
-												<tr>
-													<td class="si-pic"><img
-														src="../img/select-product-1.jpg" alt="" /></td>
-													<td class="si-text">
-														<div class="product-selected">
-															<p>$60.00 x 1</p>
-															<h6>Kabino Bedside Table</h6>
-														</div>
-													</td>
-													<td class="si-close"><i class="ti-close"></i></td>
-												</tr>
-												<tr>
-													<td class="si-pic"><img
-														src="../img/select-product-2.jpg" alt="" /></td>
-													<td class="si-text">
-														<div class="product-selected">
-															<p>$60.00 x 1</p>
-															<h6>Kabino Bedside Table</h6>
-														</div>
-													</td>
-													<td class="si-close"><i class="ti-close"></i></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									<div class="select-total">
-										<span>total:</span>
-										<h5>$120.00</h5>
-									</div>
-									<div class="select-button">
-										<a href="./shopping_cart.do" class="primary-btn view-card">View
-											Cart</a> <a href="./rental.do" class="primary-btn checkout-btn">Rental</a>
-									</div>
-								</div></li>
-						</ul>
-					</div>
+			
+				<div class="col-lg-3 text-right col-sm">
+					<ul class="nav-right">
+						<li class="login-icon"><a href="join.do" class="login-panel"><i
+								class="fa fa-file-text"></i> Join</a></li>
+						<li class="login-icon"><a href="login.do" class="login-panel"><i
+								class="fa fa-user"></i> Login</a></li>
+						<li class="cart-icon"><a href="#"> <i
+								class="icon_bag_alt"></i>
+						</a>
+							<div class="cart-hover">
+								<div class="select-items">
+									<table>
+										<tbody>
+											<tr>
+												<td class="si-pic"></td>
+												<td class="si-text">
+													<div class="product-selected">
+														<h6>로그인후에 이용할 수 있습니다</h6>
+													</div>
+												</td>
+												<td class="si-close"></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="select-total"></div>
+								<div class="select-button">
+									<a href="join.do" class="primary-btn view-card"> Join </a> <a
+										href="./login.do" class="primary-btn checkout-btn">Login</a>
+								</div>
+							</div></li>
+					</ul>
 				</div>
 			</div>
 		</div>

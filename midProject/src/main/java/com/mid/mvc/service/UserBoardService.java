@@ -23,9 +23,12 @@ public interface UserBoardService {
 	//대시보드에서 보이는 사용자 문의 리스트
 	List<UserBoardVO> dashboardUserBoardList(UserBoardVO vo);
 	
-	
+	// 사용자 신청목록
 	List<UserRentalVO> getUserRentalList(HashMap map);
-
+	
+	// 마이페이지 최근 신청 목록
+	List<UserRentalVO> getUserRecentList(HashMap map);
+	
 	//사용자 문의 답변하기
 	void insertAnswer(UserBoardVO vo);
 	

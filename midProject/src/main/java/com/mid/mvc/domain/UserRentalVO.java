@@ -20,12 +20,15 @@ public class UserRentalVO {
 	private int b_price;				// 렌탈비용
 	private int b_card;				// 카드할인가
 	private int b_gift;					// 사은품
-	private String p_name;		// 공급사명
+	
 	private String name;		// 회원명
+	private String s_name;		// 공급사명
+
 	private String id;					// 회원아이디*
 	private String phone;		// 회원전화번호
 	private String g_id;				// 모델명 *
 	private String g_name;		// 제품명
+	
 	private String startDate;
 	private String endDate;
 

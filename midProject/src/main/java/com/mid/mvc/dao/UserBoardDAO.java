@@ -27,4 +27,6 @@ public interface UserBoardDAO {
 	public int getTotal();
 	
 	public List<UserRentalVO> rentalList(HashMap map);
+
+	public List<UserRentalVO> getUserRecentList(HashMap map);
 }

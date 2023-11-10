@@ -78,10 +78,14 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 	}
 
 
-	@Override
 	public List<UserRentalVO> rentalList(HashMap map) {
 		System.out.println("UserBoardDAO rentalList ===> 호출");
 		return sqlSession.selectList("UserBoardMapper.rentalList", map);
+	}
+
+	public List<UserRentalVO> getUserRecentList(HashMap map) {
+		System.out.println("===> sqlSession getUserRecentList() 호출");
+		return sqlSession.selectList("UserBoardMapper.getUserRecentList",map);
 	}
 	
 }

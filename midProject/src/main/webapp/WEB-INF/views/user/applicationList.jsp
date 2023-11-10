@@ -29,6 +29,15 @@
 <link rel="stylesheet" href="../css/datepicker.css" type="text/css" />
 <link rel="stylesheet" href="../css/rent-applicationList-style.css"
 	type="text/css" />
+<style type="text/css">
+
+input#datepicker1.hasDatepicker,
+input#datepicker2.hasDatepicker{
+text-align:center;
+width:90%
+}
+
+</style>
 	
 <!-- Js Plugins -->
 <script src="../js/jquery-3.3.1.min.js"></script>
@@ -112,8 +121,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="breadcrumb-text">
-						<a href="#"><i class="fa fa-home"></i> Home</a> <span>My
-							Page</span>
+						<a href="main.do"><i class="fa fa-home"></i> Home</a><a href="mypage.do"> Mypage</a> <span>신청목록</span>
 					</div>
 				</div>
 			</div>
@@ -198,7 +206,8 @@
 									<tr>
 										<td><img src="../img/products/${userRental.g_rimg2}"
 											alt=""></td>
-										<td>${userRental.g_name}<br/>${userRental.p_name}</td>
+										<td style="white-space: pre-line; font-size:12px;">${userRental.g_name} <br/>
+										 <span style="color: #888686; font-size:14px;">${userRental.s_name}</span></td>
 										<td>${userRental.b_rent }</td>
 										<c:set var="formattedDate" value="${userRental.b_signdate}" />
 										<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
