@@ -20,6 +20,8 @@ public class GoodsVO {
 	private int 			p_price;		// 렌탈비용
 	private String 	s_name;		// 공급사명
 	
+	private int 			MIN_PRICE;
+	
 	private String g_img1;
 	private String g_rimg1;
 	private String g_img2;

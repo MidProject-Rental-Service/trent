@@ -1767,9 +1767,11 @@ select#searchCondition.category-btn{
   position: relative;
 }
 
+
+/* 민호 수정(shop 사이드 메뉴 중 Price '-' 간격 조정)!!!!!!!!!!!!! */
 .filter-widget .filter-range-wrap .range-slider .price-input:after {
   position: absolute;
-  left: 91px;
+  left: 113px;
   top: 13px;
   height: 1px;
   width: 17px;
@@ -4550,8 +4552,10 @@ img.cart-img {
   .product-details {
     width: 900px;
   }
+  
+  /* !!!!!!!!!!!!!!!민호 수정(검색창 검색버튼 간격조정)!!!!!!!!!!!!!!!! */
   .inner-header .advanced-search .input-group button {
-    right: -8px;
+    right: -14px;
   }
 }
 

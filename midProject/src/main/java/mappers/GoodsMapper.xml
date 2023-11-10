@@ -28,7 +28,8 @@
 		SELECT G.*, C.*, P.*
 		FROM GOODS G
 		INNER JOIN CATEGORY C ON C.C_ID = G.C_ID
-		LEFT JOIN price P ON G.g_id = P.g_id
+		LEFT JOIN price P
+		ON G.g_id = P.g_id
 		WHERE P.p_price = (
 		    SELECT MIN(p_price)
 		    FROM price
@@ -214,59 +215,73 @@
 	</delete>
 
 	<!-- 제품상세검색 -->
-	<select id="getCategoryGoodsList" parameterType="HashMap"
-		resultType="GoodsVO">
-		SELECT GOODS.*, CATEGORY.C_NAME, MAKER.M_NAME
-		FROM GOODS
-		INNER JOIN CATEGORY ON GOODS.C_ID = CATEGORY.C_ID
-		INNER JOIN
-		MAKER ON GOODS.M_ID = MAKER.M_ID
-		<where>
+	<select id="getCategoryGoodsList" parameterType="HashMap" resultType="GoodsVO">
+		SELECT G.*, C.C_NAME, M.M_NAME, P.P_PRICE
+		FROM GOODS G
+		INNER JOIN CATEGORY C ON G.C_ID = C.C_ID
+		INNER JOIN MAKER M ON G.M_ID = M.M_ID
+		LEFT JOIN price P ON G.g_id = P.g_id
+		WHERE P.p_price = (
+		    SELECT MIN(P2.P_PRICE)
+		    FROM price P2
+		    WHERE P2.g_id = G.g_id
+		)
 			<if test="c_name != null and !c_name.isEmpty()">
-				AND CATEGORY.C_NAME = #{c_name}
+				AND C.C_NAME = #{c_name}
 			</if>
 			<if test="selectedBrands != null and !selectedBrands.isEmpty()">
-				AND MAKER.M_NAME IN
+				AND M.M_NAME IN
 				<foreach collection="selectedBrands" item="brand" open="("
 					separator="," close=")">
 					#{brand}
 				</foreach>
 			</if>
-			<!-- <if test="minPrice != null and maxPrice != null"> AND PRICE.P_PRICE 
-				BETWEEN #{minPrice} AND #{maxPrice} </if> -->
-		</where>
+			<if test="minPrice != null and maxPrice != null">
+				AND P.p_price BETWEEN #{minPrice} AND #{maxPrice} </if>
 	</select>
 
 	<!-- 제품 검색 Header -->
-<select id="getSearchGoodsList" parameterType="hashmap" resultType="GoodsVO">
-    SELECT DISTINCT G.*, 
-    CASE 
-        WHEN P.P_PRICE IS NOT NULL THEN
-            (SELECT MIN(P2.P_PRICE) FROM PRICE P2 WHERE P2.G_ID = G.G_ID)
-        ELSE NULL
-    END AS MIN_PRICE, 
-    CASE 
-        WHEN P.P_PRICE IS NOT NULL THEN
-            (SELECT S_NAME FROM PRICE P2 WHERE P2.G_ID = G.G_ID AND P2.P_PRICE = (SELECT MIN(P3.P_PRICE) FROM PRICE P3 WHERE P3.G_ID = G.G_ID))
-        ELSE NULL
-    END AS S_NAME,
-    M.M_NAME
-    FROM GOODS G
-    LEFT JOIN PRICE P ON G.G_ID = P.G_ID
-    LEFT JOIN MAKER M ON G.M_ID = M.M_ID
-    LEFT JOIN CATEGORY C ON G.C_ID = C.C_ID
-    WHERE 
-    <choose>
-        <when test="searchCondition == 'total'">
-            C_NAME LIKE '%${searchKeyword}%'
-            OR G_NAME LIKE '%${searchKeyword}%'
-            OR M_NAME LIKE '%${searchKeyword}%' 
-            OR S_NAME LIKE '%${searchKeyword}%'
-        </when>
-        <otherwise>
-            1 = 1 <!-- 항상 true이므로 모든 조건이 적용됩니다. -->
-        </otherwise>
-    </choose>
-</select>
+	<select id="getSearchGoodsList" parameterType="hashmap" resultType="GoodsVO">
+	    SELECT DISTINCT G.*, 
+	    CASE 
+	        WHEN P.P_PRICE IS NOT NULL THEN
+	            (SELECT MIN(P2.P_PRICE) FROM PRICE P2 WHERE P2.G_ID = G.G_ID)
+	        ELSE NULL
+	    END AS MIN_PRICE, 
+	    CASE 
+	        WHEN P.P_PRICE IS NOT NULL THEN
+	            (SELECT S_NAME FROM PRICE P2 WHERE P2.G_ID = G.G_ID AND P2.P_PRICE = (SELECT MIN(P3.P_PRICE) FROM PRICE P3 WHERE P3.G_ID = G.G_ID))
+	        ELSE NULL
+	    END AS S_NAME,
+	    M.M_NAME
+	    FROM GOODS G
+	    LEFT JOIN PRICE P ON G.G_ID = P.G_ID
+	    LEFT JOIN MAKER M ON G.M_ID = M.M_ID
+	    LEFT JOIN CATEGORY C ON G.C_ID = C.C_ID
+	    WHERE 
+	    <choose>
+	        <when test="searchCondition == 'total'">
+	            C_NAME LIKE '%${searchKeyword}%'
+	            OR G_NAME LIKE '%${searchKeyword}%'
+	            OR M_NAME LIKE '%${searchKeyword}%' 
+	            OR S_NAME LIKE '%${searchKeyword}%'
+	        </when>
+	        <when test="searchCondition == 'c_name'">
+	            C_NAME LIKE '%${searchKeyword}%'
+	        </when>
+	        <when test="searchCondition == 'g_name'">
+				G_NAME LIKE '%${searchKeyword}%'
+	        </when>
+	        <when test="searchCondition == 'm_name'">
+	            M_NAME LIKE '%${searchKeyword}%' 
+	        </when>
+	        <when test="searchCondition == 's_name'">
+	            S_NAME LIKE '%${searchKeyword}%'
+	        </when>
+	        <otherwise>
+	            1 = 1 <!-- 항상 true이므로 모든 조건이 적용됩니다. -->
+	        </otherwise>
+	    </choose>
+	</select>
 
 </mapper>
