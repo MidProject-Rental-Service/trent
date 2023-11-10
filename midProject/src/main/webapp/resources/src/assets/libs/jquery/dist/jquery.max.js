@@ -54,6 +54,12 @@ jqueryScript.onload = function() {
 	   alert('공급사등록이 완료되었습니다.');
 	});
 	
+	//공급사가 답변등록하면 이벤트 처리
+	$('#inquiryregister').click(function() {
+	
+	   alert('답변등록이 완료되었습니다.');
+	});	
+	
 	// 주소 값 분리
 	// 페이지가 로드될 때 주소 필드의 내용을 읽어와서 분리
 	var fullAddress = $("#sample6_address").val();

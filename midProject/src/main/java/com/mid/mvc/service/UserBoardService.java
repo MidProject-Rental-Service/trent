@@ -31,4 +31,9 @@ public interface UserBoardService {
 	
 	//사용자 문의 개시글 수
 	public int getTotal();
+	
+	//공급사 페이지에서 렌탈리스트 
+	List<UserRentalVO> rentalList(HashMap map);
+
+	
 }

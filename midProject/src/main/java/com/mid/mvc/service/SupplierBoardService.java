@@ -20,4 +20,12 @@ public interface SupplierBoardService {
 	
 	//공급사문의 답변하기
 	void insertAnswer(SupplierBoardVO vo);
+	
+	//공급사에서 문의하기
+	void inquiryreigster(SupplierBoardVO vo);
+	
+	//공급사페이지에서 자기 문의만 보이기
+	List<SupplierBoardVO> inquiryList(HashMap map);
+	
+	//공급사페이지에서 공급사 문의내용보기
 }

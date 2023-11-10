@@ -34,4 +34,17 @@
 		WHERE sb_id = #{sb_id};
 	</update>
 	
+	<insert id = "inquiryreigster" parameterType="SupplierBoardVO">
+		INSERT INTO 
+		SUPPLIERBOARD(SB_HEAD,SB_TITLE,SB_CONTENT, SB_REGDATE, SB_CNT,ID)
+		VALUES(#{sb_head}, #{sb_title}, #{sb_content},now(), 0,#{id})
+	</insert>
+
+	<select id="inquiryList" parameterType="hashmap" resultType="SupplierBoardVO">
+		SELECT *
+		FROM SUPPLIERBOARD
+		WHERE id = #{id}
+		ORDER BY sb_id DESC;
+	</select>
+
 </mapper>

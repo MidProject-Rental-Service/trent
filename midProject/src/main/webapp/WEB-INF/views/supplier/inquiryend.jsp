@@ -4,6 +4,9 @@
 <%
 	UserVO user = (UserVO) session.getAttribute("loggedInUser");
 %>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 	
 <!DOCTYPE html>
 
@@ -55,66 +58,66 @@
 		<div class="container">
 			<main>
 				<div class="py-5 text-left">
-					<h1>문의 작성</h1>
+					<h1>문의내역</h1>
 					<p class="lead"></p>
 				</div>
-
+				
+				
 				<div class="row g-5">
-					<div class="col-md-12">
-						<form action="inquiryreigster.do" novalidate>
-							<input type="hidden" name ="id" value=<%=user.getId() %>>					
+					<div class="col-md-12">			 
+						<form action="supplyinquiryanswering.do" method='post'
+							enctype="multipart/form-data">
+							<!-- hidden 으로 값주기 -->
+							<input type="hidden" name="sb_id" value="${supplierBoard.sb_id}">
 							<div class="row g-3">
-
-
-
 
 								<div class="row">
 									<div class="col-sm-2">
-										<label for="sb_head" class="form-label">말머리</label> <select
-											class="form-select" name="sb_head">
-											<option value="">말머리</option>
-											<option value="상품수정문의">상품수정문의</option>
-											<option value="배송문의">배송문의</option>
-											<option value="사용자문의">사용자문의</option>
-											<option value="기타문의">기타문의</option>
-										</select>
-									</div>
-								</div>
-	
+										<label  class="form-label">작성일</label> 
+										<fmt:formatDate pattern="yyyy-MM-dd" value="${supplierBoard.sb_regdate}" var="formattedDateString" />
+										 <input type="text" class="form-control" name="g_name" value="${formattedDateString }" readonly>
 								
-								<div class="row">
-									<div class="col-sm-1">
-										<label for="name" class="form-label">업체명</label> <input
-											type="text" class="form-control" name="name" value=<%=user.getName()%>  readonly>
 									</div>
 								</div>
 
 								<div class="row">
-									<div class="col-sm-1">
-										<label for="sb_title" class="form-label">제목</label> <input
-											type="text" class="form-control" name="sb_title">
+									<div class="col-sm-2">
+										<label  class="form-label">문의유형</label> <input
+											type="text" class="form-control" name="g_name" value="${supplierBoard.sb_head }"
+											readonly>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-2">
+										<label for="g_name" class="form-label">문의제목</label> <input
+											type="text" class="form-control"  value="${supplierBoard.sb_title }" readonly>
 									</div>
 								</div>
 
 
 
 								<div class="row">
-									<div class="col-sm-5">
-										<label for="sb_content" class="form-label">내용</label>
-										<textarea class="form-control  custom-textarea" name="sb_content" rows="7"></textarea>
+								    <div class="col-sm-9">
+								        <label  class="form-label">문의내용</label>
+								        <textarea class="form-control" rows="8" readonly>${supplierBoard.sb_content}</textarea>
+								    </div>
+								</div>
+
+
+								<div class="row">
+									<div class="col-sm-9">
+										<label  class="form-label">답변내용</label>
+										<textarea class="form-control"  rows="8" readonly>${supplierBoard.sb_answer}</textarea>
 									</div>
 								</div>
 
-								<hr>
-								<hr>
 								
-								<div class="row text-left">
+								<div class="row text-center">
 									<div class="col-sm-12">
-										<input class="btn btn-primary" type="submit" value="등록하기" id="inquiryregister"/>
-										 <a class="btn btn-danger mx-2" href="inquirymange.do">뒤로가기</a>
+										<a href="inquirymange.do" class="btn btn-danger">뒤로가기</a>
 									</div>
 								</div>
-
 							</div>
 						</form>
 					</div>

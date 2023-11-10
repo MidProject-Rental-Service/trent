@@ -15,7 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.mid.mvc.domain.CardVO;
 import com.mid.mvc.domain.GoodsVO;
 import com.mid.mvc.domain.PriceVO;
+import com.mid.mvc.domain.SupplierBoardVO;
+import com.mid.mvc.domain.UserRentalVO;
+import com.mid.mvc.domain.UserVO;
 import com.mid.mvc.service.GoodsService;
+import com.mid.mvc.service.SupplierBoardService;
+import com.mid.mvc.service.UserBoardService;
 import com.mid.mvc.service.UserService;
 
 @Controller
@@ -27,7 +32,12 @@ public class SupController {
 	
 	@Autowired
 	private GoodsService goodsService;
-
+	
+	@Autowired
+	private SupplierBoardService supplierBoardService;
+	
+	@Autowired
+	private UserBoardService userBoardService;
 	
 	@RequestMapping("/{step}.do")
 	public String viewPage(@PathVariable String step) {
@@ -143,8 +153,49 @@ public class SupController {
         // 로그아웃 후 리다이렉트
         return "redirect:/user/main.do";
     }
+    
+    @RequestMapping("/inquiryreigster.do")
+    public String inquiryreigster(SupplierBoardVO vo) {
+    	supplierBoardService.inquiryreigster(vo);
+    	System.out.println("user.getId() :" + vo.getId());
+    	return "redirect:inquirymange.do";
+    }
+    
+    //공급사 페이지에서 렌탈리스트뽑기
+    @RequestMapping("/rentalmange.do")
+    public void rentalList(Model m, HttpSession session) {
+    	
+    	HashMap map = new HashMap();
+    	UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+    	String loggedInUserName = loggedInUser.getName();      
+    	map.put("name", loggedInUserName);
+    	
+    	List<UserRentalVO> result = userBoardService.rentalList(map);
+    	m.addAttribute("rentList",result);
+    	System.out.println("result : " + result);
 
-	
-	
+    	
+    }
+    
+    @RequestMapping("/inquirymange.do")
+    public void inquiryList(Model m, HttpSession session) {
+    	
+    	UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+    	String loggedInUserId = loggedInUser.getId();
+    	
+    	HashMap map = new HashMap();
+    	map.put("id", loggedInUserId);
+  
+    	List<SupplierBoardVO> result = supplierBoardService.inquiryList(map);
+    	m.addAttribute("inquiryList",result);
+    	System.out.println("result : " + result);
+    }
+
+	  @RequestMapping("/inquiryend.do")
+	  public void getSupplyanswerend(SupplierBoardVO vo, Model m) {
+		  SupplierBoardVO result = supplierBoardService.getSupplierBoard(vo);
+		  m.addAttribute("supplierBoard", result);
+	  }	 	
+ 	
 	
 }
