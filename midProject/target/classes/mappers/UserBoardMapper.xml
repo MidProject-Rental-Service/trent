@@ -62,7 +62,7 @@
 	<select id="getUserRentalList" parameterType="hashmap"
 		resultType="UserRentalVO">
 
-		SELECT BUY.*,GOODS.G_NAME,GOODS.G_RIMG2, u.NAME 
+		SELECT BUY.*,GOODS.G_NAME,GOODS.G_RIMG2
 		FROM BUY
 		INNER JOIN GOODS
 		ON
