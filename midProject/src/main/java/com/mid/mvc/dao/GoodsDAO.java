@@ -43,5 +43,4 @@ public interface GoodsDAO {
 	 
 	 public List<GoodsVO>getSearchGoodsList(HashMap map);
 	 
-	 public PriceVO getRentalInfo(String g_id, String p_rent);
 }

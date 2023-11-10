@@ -105,6 +105,10 @@
 	      $("#sample6_address").val(addressParts[1]);
 	      $("#sample6_detailAddress").val(addressParts[2]);
 	    }
+	    else{ 
+	    	alert("에러가 발생했습니다!");
+	    	history.go(0);
+	    }
 	  });
 	
 	  // 상세주소 입력이 완료되면 주소 정보를 hidden 필드에 저장
@@ -239,8 +243,8 @@
                     <td class="rentalFee">렌탈 요금</td>
                   </tr>
                   <tr>
-                    <td><img src="<c:url value='../resources/img/products/${rentalInfo.g_rimg1}' />"></td>
-                    <td>${rentalInfo.g_id}<br />${rentalInfo.s_name}<br />${rentalInfo.p_rent}</td>
+                    <td><img src="<c:url value='../resources/img/products/${rentalInfo.g_rimg1}' />" style="width: 100px;"></td>
+                    <td>${rentalInfo.g_id}<br/>${rentalInfo.s_name}<br/>${rentalInfo.p_rent}</td>
                     <td>${rentalInfo.p_price}원</td>
                   </tr>
                 </table>

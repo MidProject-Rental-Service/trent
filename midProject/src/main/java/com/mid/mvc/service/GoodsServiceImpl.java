@@ -133,11 +133,11 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsDAO.getSupplierInfo(g_id);
 	}
 
-	
-	public PriceVO getRentalInfo(String g_id, String p_rent) {
-		return goodsDAO.getRentalInfo(g_id, p_rent);
+	// 렌탈 정보
+	public PriceVO getRentalInfo(String g_id, int p_rent, String s_name) {
+		return goodsDAO.getRentalInfo(g_id, p_rent, s_name);
 	}
-	
+
 
 
 }

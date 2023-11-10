@@ -46,12 +46,11 @@
 	</select>
 	
 	<!-- =========== 렌탈정보-하림 ========== -->
-	<select id="getRentalInfo" parameterType="hashmap" resultType="PriceVO">
-		SELECT DISTINCT p.s_name, p.g_id, p.p_rent, p.p_price, g.g_rimg1
-		FROM Price p
-		JOIN Goods g ON p.g_id = g.g_id
-		WHERE p.p_rent = #{p_rent} AND p.g_id = #{g_id}
-		AND p.s_name = #{s_name}
+	<select id="getRentalInfo" parameterType="PriceVO" resultType="PriceVO">
+    SELECT p.p_id, p.s_name, p.p_rent, p.p_price, p.p_card, p.g_id, g.g_rimg1
+    FROM price p
+    JOIN goods g ON p.g_id = g.g_id
+    WHERE p.g_id = #{g_id} AND p.p_rent = #{p_rent} AND p.s_name = #{s_name}
 	</select>
 	
 	<!-- ============================ -->
@@ -93,10 +92,11 @@
 		)
 	</select>
 	
-	<!-- 개월 수에 따른 공급사의 가격 정보 가져오기 -->
+	<!-- 개월 수에 따른 공급사의 가격 정보 가져오기 (최저가부터!! 수정완)-->
 	<select id="getPriceInfo" parameterType="hashmap" resultType="PriceVO">
 		SELECT * FROM price
     	WHERE g_id = #{g_id} AND p_rent = #{selectedMonths}
+    	ORDER BY p_price
 	</select>
 
 <!-- #############

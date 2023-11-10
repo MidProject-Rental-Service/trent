@@ -314,6 +314,25 @@ public class UserController {
         List<PriceVO> updatedPriceInfo = goodsServiceImpl.getPriceInfo(g_id, selectedMonths);
         return updatedPriceInfo;
     }
+    
+    // 하림 !!!!!!!!!!
+    // 렌탈 신청 페이지로 이동
+    @RequestMapping("/rental.do")
+    public String getRentalInfo( String g_id,  Integer p_rent,  String s_name, Model model) {
+        // 받은 데이터 확인
+        System.out.println("g_id: " + g_id);
+        System.out.println("p_rent: " + p_rent);
+        System.out.println("s_name: " + s_name);
+
+        PriceVO rentalInfo = goodsServiceImpl.getRentalInfo(g_id, p_rent, s_name);
+
+        model.addAttribute("rentalInfo", rentalInfo);
+
+        return "/user/rental";
+    }
+    
+    
+    
 
 	// 상품 검색 (Header) 검색창
 	@RequestMapping("/shop_search.do")
@@ -330,17 +349,7 @@ public class UserController {
 		m.addAttribute("goodsList", result);
 
 	}
-	
-	// 렌탈 신청 폼에 정보 가져오기
-	@RequestMapping(value = "/rental", method = RequestMethod.POST)
-	public String getRentalInfo(@RequestParam("g_id") String g_id, @RequestParam("p_rent") String p_rent, Model model) {
-	    // Service를 통해 데이터베이스에서 데이터를 가져옴
-	    PriceVO rentalInfo = goodsServiceImpl.getRentalInfo(g_id, p_rent);
-	    // Model에 데이터를 담아 JSP로 전달
-	    model.addAttribute("rentalInfo", rentalInfo);
 
-	    return "user/rental";
-	}
 
 	// 제품군 검색 (좌측패널)
 	@RequestMapping(value = "/searchCategory", method = RequestMethod.POST)
