@@ -1,8 +1,18 @@
 <%@page import="com.mid.mvc.domain.UserVO"%>
+<%@page import="com.mid.mvc.domain.ShoppingCartVO"%>
+<%@ page import="java.text.DecimalFormat" %>
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.text.DecimalFormat" %>
 <%
 	UserVO user = (UserVO) session.getAttribute("loggedInUser");
+	List<ShoppingCartVO> result = (List) session.getAttribute("cartList");
+	Integer totalCnt = (Integer) session.getAttribute("totalCnt");
+	Integer totalPrice = (Integer) session.getAttribute("totalPrice");
+
 %>
 
 <body>
@@ -68,46 +78,50 @@
 								class="logout-panel"><i
 									class="fa fa-sign-out custom-icon"></i></a></li>
 
+
+						<!-- 장바구니 영역 -->			
 							<li class="cart-icon"><a href="./shopping_cart.do"> <i
-									class="icon_bag_alt"></i> <span>3</span>
+									class="icon_bag_alt"></i> <span><%= totalCnt %></span>
 							</a>
 								<div class="cart-hover">
 									<div class="select-items">
 										<table>
 											<tbody>
+											
+											<c:forEach items="${cartList }" var="cart">
 												<tr>
 													<td class="si-pic"><img
-														src="../img/select-product-1.jpg" alt="" /></td>
+														src="../img/products/${cart.g_rimg1}" alt="" /></td>
 													<td class="si-text">
 														<div class="product-selected">
-															<p>$60.00 x 1</p>
-															<h6>Kabino Bedside Table</h6>
+															<p><script>
+															        var price = ${cart.p_price};
+															        var formattedPrice = new Intl.NumberFormat('ko-KR').format(price);
+															        document.write(formattedPrice);
+															    </script>
+															 </p>
+															<h6>${cart.g_name}</h6>
 														</div>
 													</td>
-													<td class="si-close"><i class="ti-close"></i></td>
+													<td class="si-close"><i class="ti-close" onclick="cartDelete(${cart.sh_id},${cart.p_price})"></i></td>
 												</tr>
-												<tr>
-													<td class="si-pic"><img
-														src="../img/select-product-2.jpg" alt="" /></td>
-													<td class="si-text">
-														<div class="product-selected">
-															<p>$60.00 x 1</p>
-															<h6>Kabino Bedside Table</h6>
-														</div>
-													</td>
-													<td class="si-close"><i class="ti-close"></i></td>
-												</tr>
+												</c:forEach>		
+	
+												
 											</tbody>
 										</table>
 									</div>
+									
 									<div class="select-total">
 										<span>total:</span>
-										<h5>$120.00</h5>
+										<h5><%= totalPrice %></h5>
 									</div>
+									
 									<div class="select-button">
 										<a href="./shopping_cart.do" class="primary-btn view-card">View
 											Cart</a> <a href="./rental.do" class="primary-btn checkout-btn">Rental</a>
 									</div>
+									
 								</div></li>
 						</ul>
 					</div>
@@ -120,9 +134,9 @@
 					<div class="depart-btn">
 						<i class="ti-menu"></i> <span>All departments</span>
 						<ul class="depart-hover">
-							<li class="active"><a href="#">공기청정기</a></li>
-							<li><a href="./shop.do">가습기</a></li>
-							<li><a href="./shop.do">제습기</a></li>
+							<li class="active"><a href="./shop_search.do?searchCondition=total&searchKeyword=공기청정기">공기청정기</a></li>
+							<li><a href="./shop_search.do?searchCondition=total&searchKeyword=가습기">가습기</a></li>
+							<li><a href="./shop_search.do?searchCondition=total&searchKeyword=제습기">제습기</a></li>
 						</ul>
 					</div>
 				</div>
@@ -146,3 +160,9 @@
 	</header>
 	<!-- Header End -->
 </body>
+
+<script src="../js/shoppingCart.js"></script>
+<script>
+
+
+</script>

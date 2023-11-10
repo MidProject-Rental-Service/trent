@@ -1,5 +1,10 @@
+<%@page import="com.mid.mvc.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	UserVO user = (UserVO) session.getAttribute("loggedInUser");
+%>
+	
 <!DOCTYPE html>
 
 <html lang="en">
@@ -13,8 +18,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 
-<link rel="stylesheet"
-	href="../src/assets/css/styles.min.css" />
+<link rel="stylesheet" href="../src/assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -22,9 +26,9 @@
 	<div class="page-wrapper" id="main-wrapper" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed">
-		
-		<jsp:include page="./supplier_header.jsp"/>
-		
+
+		<jsp:include page="./supplier_header.jsp" />
+
 		<!--  Main wrapper -->
 		<div class="body-wrapper">
 			<!--  Header Start -->
@@ -57,7 +61,8 @@
 
 				<div class="row g-5">
 					<div class="col-md-12">
-						<form class="needs-validation" novalidate>
+						<form action="inquiryreigster.do" novalidate>
+							<input type="hidden" name ="id" value=<%=user.getId() %>>					
 							<div class="row g-3">
 
 
@@ -65,52 +70,48 @@
 
 								<div class="row">
 									<div class="col-sm-2">
-										<label for="subject" class="form-label">말머리</label> <select
-											class="form-select" id="subject">
+										<label for="sb_head" class="form-label">말머리</label> <select
+											class="form-select" name="sb_head">
 											<option value="">말머리</option>
-											<option value="subject1">상품수정문의</option>
-											<option value="subject2">배송문의</option>
-											<option value="subject3">사용자문의</option>
+											<option value="상품수정문의">상품수정문의</option>
+											<option value="배송문의">배송문의</option>
+											<option value="사용자문의">사용자문의</option>
+											<option value="기타문의">기타문의</option>
 										</select>
+									</div>
+								</div>
+	
+								
+								<div class="row">
+									<div class="col-sm-1">
+										<label for="name" class="form-label">업체명</label> <input
+											type="text" class="form-control" name="name" value=<%=user.getName()%>  readonly>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-1">
+										<label for="sb_title" class="form-label">제목</label> <input
+											type="text" class="form-control" name="sb_title">
+									</div>
+								</div>
+
+
+
+								<div class="row">
+									<div class="col-sm-5">
+										<label for="sb_content" class="form-label">내용</label>
+										<textarea class="form-control  custom-textarea" name="sb_content" rows="7"></textarea>
 									</div>
 								</div>
 
 								<hr>
-
-								<div class="row">
-									<div class="col-sm-1">
-										<label for="g_id" class="form-label">업체명</label>
-									</div>
-									<div class="col-sm-2">
-										<input type="text" class="form-control" value = "" id="g_id" readonly>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-sm-1">
-										<label for="g_id" class="form-label">제목</label>
-									</div>
-									<div class="col-sm-2">
-										<input type="text" class="form-control" id="g_id">
-									</div>
-								</div>
-
-		
-
-								<div class="row">
-									<div class="col-sm-7">
-										<label for="g_id" class="form-label">내용</label>
-										<textarea class="form-control" id="g_id" rows="6"></textarea>
-									</div>
-								</div>
-
-
-
+								<hr>
+								
 								<div class="row text-left">
 									<div class="col-sm-12">
-										<a class="btn btn-primary mx-2" type="submit">등록하기</a>
-										<a class="btn btn-danger mx-2"
-											href="inquirymange.do">뒤로가기</a>
+										<input class="btn btn-primary" type="submit" value="등록하기" id="inquiryregister"/>
+										 <a class="btn btn-danger mx-2" href="inquirymange.do">뒤로가기</a>
 									</div>
 								</div>
 
@@ -126,16 +127,14 @@
 
 	</div>
 	<!-- div 끝  -->
-	<script
-		src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
+	<script src="../src/assets/libs/jquery/dist/jquery.max.js"></script>
+	<script src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script
 		src="../src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="../src/assets/js/sidebarmenu.js"></script>
 	<script src="../src/assets/js/app.min.js"></script>
-	<script
-		src="../src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-	<script
-		src="../src/assets/libs/simplebar/dist/simplebar.js"></script>
+	<script src="../src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+	<script src="../src/assets/libs/simplebar/dist/simplebar.js"></script>
 	<script src="../src/assets/js/dashboard.js"></script>
 </body>
 </html>

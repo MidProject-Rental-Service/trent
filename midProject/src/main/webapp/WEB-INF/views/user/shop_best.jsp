@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -146,16 +147,16 @@
 					<div class="product-show-option">
 						<div class="row">
 							<div class="col-lg-7 col-md-7">
-								<div class="select-option">
+								<!-- <div class="select-option">
 									<select class="sorting">
 										<option value="">정렬</option>
 									</select> <select class="p-show">
 										<option value="">모아보기:</option>
 									</select>
-								</div>
+								</div> -->
 							</div>
 							<div class="col-lg-5 col-md-5 text-right">
-								<p>Show 01- 09 Of 36 Product</p>
+								<p>Show 1- ${cnt} Of ${cnt} Product</p>
 							</div>
 						</div>
 					</div>
@@ -179,7 +180,8 @@
 												<h5>${list.g_name}</h5>
 											</a>
 											<div class="product-price">
-												<span>$35.00</span> $14.00
+											
+												<span>최저렌탈가</span> 월<fmt:formatNumber type="number" pattern="#,##0" value="${list.p_price }" />원
 
 											</div>
 										</div>

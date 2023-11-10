@@ -20,7 +20,7 @@
 	<!--  리뷰상세보기 -->
    <select id="getUserReview" parameterType="UserReviewVO"
       resultType="UserReviewVO">
-      SELECT REVIEW.*,GOODS.G_NAME,MAKER.M_NAME,BUY.S_NAME
+      SELECT REVIEW.*,GOODS.G_NAME,GOODS.G_RIMG1,MAKER.M_NAME,BUY.S_NAME
       FROM
       REVIEW
       INNER JOIN GOODS
@@ -76,5 +76,11 @@
 	WHERE REVIEW.B_ID = #{b_id}
 	</update>
 
+<!--  상품페이지 리뷰 -->
+<select id="reviewGoodsList" parameterType="String" resultType="UserReviewVO">
+SELECT *
+FROM REVIEW
+WHERE G_ID = #{g_id} AND r_content IS NOT NULL
+</select>
 
 </mapper>

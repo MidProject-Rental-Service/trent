@@ -39,5 +39,10 @@ public class UserReviewServiceImpl implements UserReviewService{
 	public void insertUserReview(UserReviewVO vo) {
 			userReviewDAO.insertUserReview(vo);
 	}
+	// 상품페이지 리뷰
+	public List<UserReviewVO> reviewGoodsList(String g_id) {
+		return	userReviewDAO.reviewGoodsList(g_id);
+		
+	}
 	
 }

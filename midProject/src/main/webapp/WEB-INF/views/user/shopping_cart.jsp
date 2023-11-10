@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.text.DecimalFormat" %>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -99,8 +101,14 @@
 										<td class="cart-pic"><img	class="cart-img" src="../img/products/${cart.g_rimg1}" alt="" /></td>
 										<td class="cart-title">	<h5>${cart.g_name}</h5></td>
 										<td class="p-price">${cart.p_rent}</td>
-										<td class="total-price">${cart.p_price}</td>
-										<td class="close-td"><i class="ti-close" onclick="cartDelete(${cart.sh_id})"></i></td>
+										<td class="total-price">
+									    <script>
+									        var price = ${cart.p_price};
+									        var formattedPrice = new Intl.NumberFormat('ko-KR').format(price);
+									        document.write(formattedPrice);
+									    </script>
+									</td>
+										<td class="close-td"><i class="ti-close" onclick="cartDelete(${cart.sh_id},${cart.p_price})"></i></td>
 									</tr>
 									</c:forEach>					
 								</tbody>
@@ -118,7 +126,16 @@
 								<div class="proceed-checkout">
 									<ul>
 										<li class="subtotal">수량 <span>${totalCnt}</span></li>
-										<li class="cart-total">월 청구요금 <span>${totalPrice}</span></li>
+										<li class="cart-total">월 청구요금 
+									    <span>
+									        <script>
+									            var totalPrice = ${totalPrice};
+									            var formattedTotalPrice = new Intl.NumberFormat('ko-KR').format(totalPrice);
+									            document.write(formattedTotalPrice);
+									        </script>
+									    </span>
+									</li>
+
 									</ul>
 									<a href="rental.do" class="proceed-btn">렌탈신청하기</a>
 								</div>

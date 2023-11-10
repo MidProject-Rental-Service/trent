@@ -6,8 +6,8 @@
 	<!-- 문의글 작성 -->
 	<insert id="insertUserBoard" parameterType="UserBoardVO">
 		INSERT INTO
-		USERBOARD( UB_HEAD,UB_TITLE,UB_CONTENT, UB_REGDATE, UB_CNT,ID)
-		VALUES(#{ub_head}, #{ub_title}, #{ub_content},now(), 0,#{id})
+		USERBOARD( UB_HEAD,UB_TITLE,UB_CONTENT, UB_REGDATE)
+		VALUES(#{ub_head}, #{ub_title}, #{ub_content},now(), 0)
 	</insert>
 
 	<!-- 문의글 불러오기 -->
@@ -46,11 +46,23 @@
 		ORDER BY UB_ID DESC
 	</select>
 	
+	<!-- 마이페이지 최근신청목록  -->
+	<select id="getUserRecentList" parameterType="hashmap"
+		resultType="UserRentalVO">
+  			SELECT BUY.*, GOODS.G_NAME, GOODS.G_RIMG2
+            FROM BUY
+            INNER JOIN GOODS ON BUY.G_ID = GOODS.G_ID
+            WHERE BUY.B_SIGNDATE >= CURRENT_DATE - INTERVAL 30 DAY
+             AND BUY.ID = #{id}
+            ORDER BY BUY.B_ID DESC
+            
+	</select>
+	
 	<!-- 렌탈신청목록 불러오기 -->
 	<select id="getUserRentalList" parameterType="hashmap"
 		resultType="UserRentalVO">
 
-		SELECT BUY.*,GOODS.G_NAME,GOODS.G_RIMG2
+		SELECT BUY.*,GOODS.G_NAME,GOODS.G_RIMG2, u.NAME 
 		FROM BUY
 		INNER JOIN GOODS
 		ON
@@ -102,5 +114,17 @@
     <select id="getTotal" resultType="int">
         select count(*) from USERBOARD;
     </select>	
+
+    <select id="rentalList" parameterType="hashmap" resultType="UserRentalVO">
+		SELECT BUY.*,GOODS.G_NAME,GOODS.G_RIMG2, u.NAME ,u.phone
+		FROM BUY
+		INNER JOIN GOODS
+		ON
+		BUY.G_ID = GOODS.G_ID
+		INNER JOIN `user` u
+		ON
+		buy.id = u.id 
+		WHERE BUY.S_NAME  = #{name};
+    </select>
 
 </mapper>

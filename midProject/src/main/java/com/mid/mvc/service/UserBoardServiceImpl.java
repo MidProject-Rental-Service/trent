@@ -59,4 +59,14 @@ public class UserBoardServiceImpl implements UserBoardService{
 		return userboardDAO.getTotal();
 	}
 
+	//공급사 페이지에 렌탈리스트 보기
+	public List<UserRentalVO> rentalList(HashMap map) {
+		return userboardDAO.rentalList(map);
+	}
+	
+	@Override
+	public List<UserRentalVO> getUserRecentList(HashMap map) {
+		return userboardDAO.getUserRecentList(map);
+	}
+
 }

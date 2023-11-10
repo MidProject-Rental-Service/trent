@@ -16,4 +16,6 @@ public interface UserReviewDAO {
 	public int deleteUserReview(UserReviewVO vo);
 	// 리뷰등록 (구매확정)
 	public void insertUserReview(UserReviewVO vo);
+	// 상품페이지 리뷰
+	public List<UserReviewVO> reviewGoodsList(String g_id);
 }

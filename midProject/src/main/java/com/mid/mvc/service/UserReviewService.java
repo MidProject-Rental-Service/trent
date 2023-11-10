@@ -22,4 +22,8 @@ public interface UserReviewService {
 	
 	// 리뷰 등록 (구매확정)
 	void insertUserReview(UserReviewVO vo);
+	
+	// 상품페이지 리뷰 목록 
+	List<UserReviewVO> reviewGoodsList(String g_id);
+	
 }

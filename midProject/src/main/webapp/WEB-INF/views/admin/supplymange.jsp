@@ -103,8 +103,8 @@
 							<option value="id">아이디</option>
 							<option value="addr">주소</option>
 							<option value="email">이메일</option>
-						</select> <input type="text" name="searchKeyword"> <input
-							type="submit" class="btn btn-primary search-btn " value="검색">
+						</select> <input type="text" name="searchKeyword" class="search_Keyword"> <input
+							type="submit" class="btn btn-primary search-btn search-btn" value="검색">
 					</div>
 				</form>
 				<!-- 검색 폼 끝 -->

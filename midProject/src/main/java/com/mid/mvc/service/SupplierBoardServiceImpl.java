@@ -35,6 +35,17 @@ public class SupplierBoardServiceImpl implements SupplierBoardService{
 		supplierboardDAO.insertAnswer(vo);
 		
 	}
+
+	@Override
+	public void inquiryreigster(SupplierBoardVO vo) {
+		 supplierboardDAO.inquiryreigster(vo);
+		
+	}
+
+	@Override
+	public List<SupplierBoardVO> inquiryList(HashMap map) {
+		return supplierboardDAO.inquiryList(map);
+	}
 	
 
 

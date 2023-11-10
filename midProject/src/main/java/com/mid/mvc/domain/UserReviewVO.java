@@ -21,6 +21,7 @@ public class UserReviewVO {
 	private String id;					// 회원아이디
 	private String g_id;				// 모델명
 	private String g_name;		// 제품명
+	private String g_rimg1;			// 제품사진실제경로
 	private int b_id;						// 주문번호
 	private String m_name;		// 제조사명 
 	private String s_name;		// 공급사명
@@ -45,7 +46,7 @@ public class UserReviewVO {
 
 	        // 실제 파일 저장
 	        // 나중에 웹서버 경로를 찾아서 수정
-	        File f = new File("C:\\Users\\ict0330\\git\\trent\\midProject\\src\\main\\webapp\\resources\\img\\products\\" + r_rimg);
+	        File f = new File("C:\\Users\\ict0330\\git\\trent\\midProject\\src\\main\\webapp\\resources\\img\\review\\" + r_rimg);
 
 	        try {
 	            file1.transferTo(f);

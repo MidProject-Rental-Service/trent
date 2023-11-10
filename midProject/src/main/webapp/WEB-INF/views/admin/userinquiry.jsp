@@ -84,7 +84,7 @@
 
 					</table>
 				</form>
-				<!-- page 이전 1 2 3 4 5 다음 만드세요  -->
+				<!-- page 이전 1 2 3 4 5 다음  -->
 				<div name="paging">
 					<ul class="pagination">
 						<c:if test="${pageMaker.prev }">
@@ -116,8 +116,8 @@
 							<option value="id">아이디</option>
 							<option value="addr">주소</option>
 							<option value="email">이메일</option>
-						</select> <input type="text" name="searchKeyword"> <input
-							type="submit" class="btn btn-primary search-btn " value="검색">
+						</select> <input type="text" name="searchKeyword"  class="search_Keyword"> <input
+							type="submit" class="btn btn-primary search-btn search-btn" value="검색">
 					</div>
 				</form>
 				<!-- 검색 폼 끝 -->

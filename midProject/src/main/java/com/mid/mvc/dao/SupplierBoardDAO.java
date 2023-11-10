@@ -15,4 +15,8 @@ public interface SupplierBoardDAO {
 	public SupplierBoardVO getSupplierBoard(SupplierBoardVO vo);
 	
 	public void insertAnswer(SupplierBoardVO vo);
+	
+	public void inquiryreigster(SupplierBoardVO vo);
+	
+	public List<SupplierBoardVO> inquiryList(HashMap map);
 }

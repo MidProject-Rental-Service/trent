@@ -1249,9 +1249,15 @@ select#searchCondition.category-btn{
   padding: 16px 18px 12px 19px;
 }
 
+/* 하림!!!!!!!!!!!! */
 .product-item .pi-text {
   text-align: center;
   padding-top: 20px;
+  padding-bottom: 10px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .product-item .pi-text .catagory-name {
@@ -1278,10 +1284,9 @@ select#searchCondition.category-btn{
 }
 
 .product-item .pi-text .product-price span {
-  font-size: 14px;
-  font-weight: 400;
-  color: #b2b2b2;
-  text-decoration: line-through;
+  font-size: 15px;
+  font-weight: 600;
+  color: #B93232;
 }
 
 /*---------------------
@@ -1767,9 +1772,11 @@ select#searchCondition.category-btn{
   position: relative;
 }
 
+
+/* 민호 수정(shop 사이드 메뉴 중 Price '-' 간격 조정)!!!!!!!!!!!!! */
 .filter-widget .filter-range-wrap .range-slider .price-input:after {
   position: absolute;
-  left: 91px;
+  left: 113px;
   top: 13px;
   height: 1px;
   width: 17px;
@@ -2806,15 +2813,38 @@ table.sub_price_Table button.btn-card:hover {
   margin-bottom: 20px;
 }
 
+/* 성규*/
+div.co-item{
+    border: solid 1px #bebebe;
+    height:150px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* 성규 */
 .customer-review-option .comment-option .co-item .avatar-pic {
-  float: left;
+  float: right;
   margin-right: 20px;
 }
 
+
+/* 성규 */
 .customer-review-option .comment-option .co-item .avatar-pic img {
-  height: 63px;
-  width: 63px;
-  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  border-radius: 10%;
+  
+}
+
+#myModal {
+  max-width: 600px;
+  max-height: 600px; 
+  display: none; /* 모달을 초기에 숨깁니다. */
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .customer-review-option .comment-option .co-item .avatar-text {
@@ -4550,8 +4580,10 @@ img.cart-img {
   .product-details {
     width: 900px;
   }
+  
+  /* !!!!!!!!!!!!!!!민호 수정(검색창 검색버튼 간격조정)!!!!!!!!!!!!!!!! */
   .inner-header .advanced-search .input-group button {
-    right: -8px;
+    right: -14px;
   }
 }
 

@@ -245,84 +245,82 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="tab-2" role="tabpanel">
+                                
+                                <!-- 성규 -->
+                               	<div class="tab-pane fade" id="tab-2" role="tabpanel">
 									<img src="<c:url value='../resources/img/products/${productInfo.g_rimg4}' />" alt="Product_Detail">
-                                </div>
-                                <div class="tab-pane fade" id="tab-3" role="tabpanel">
-                                    <div class="customer-review-option">
-                                        <h4>2 Comments</h4>
-                                        <div class="comment-option">
-                                            <div class="co-item">
-                                                <div class="avatar-pic">
-                                                    <img src="../img/product-single/avatar-1.png" alt="">
-                                                </div>
-                                                <div class="avatar-text">
-                                                    <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <h5>Brandon Kelley <span>27 Aug 2019</span></h5>
-                                                    <div class="at-reply">Nice !</div>
-                                                </div>
-                                            </div>
-                                            <div class="co-item">
-                                                <div class="avatar-pic">
-                                                    <img src="../img/product-single/avatar-2.png" alt="">
-                                                </div>
-                                                <div class="avatar-text">
-                                                    <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <h5>Roy Banks <span>27 Aug 2019</span></h5>
-                                                    <div class="at-reply">Nice !</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="personal-rating">
-                                            <h6>Your Ratind</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                        </div>
-                                        <div class="leave-comment">
-                                            <h4>Leave A Comment</h4>
-                                            <form action="#" class="comment-form">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <input type="text" placeholder="Name">
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" placeholder="Email">
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <textarea placeholder="Messages"></textarea>
-                                                        <button type="submit" class="site-btn">Send message</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-    </section>
-    <!-- Product Shop Section End -->
+								</div>
+									<div class="tab-pane fade" id="tab-3" role="tabpanel">
+										<div class="customer-review-option">
+											<h4>${reviewCnt}&nbspComments</h4>
+											<div class="comment-option">
+
+												<c:choose>
+													<c:when test="${empty reviewGoodsList}">
+														<h4>작성된 리뷰가 없습니다.</h4>
+													</c:when>
+													<c:otherwise>
+														<c:forEach items="${reviewGoodsList}" var="review">
+															<div class="co-item">
+																<div class="avatar-pic">
+																	<c:choose>
+																		<c:when test="${not empty review.r_rimg}">
+																			<img
+																				src="${pageContext.request.contextPath}/img/review/${review.r_rimg}"
+																				alt=""
+																				onclick="openModal('${pageContext.request.contextPath}/img/review/${review.r_rimg}')">
+																		</c:when>
+																		<c:otherwise>
+																			<img
+																				src="../resources/img/review/imgNone.png"
+																				alt="">
+																		</c:otherwise>
+																	</c:choose>
+																</div>
+																<div class="avatar-text">
+																	<div class="at-rating">
+																		<c:forEach begin="1" end="5" varStatus="loopCounter">
+																			<c:choose>
+																				<c:when
+																					test="${loopCounter.index <= review.r_point}">
+																					<i class="fa fa-star"></i>
+																				</c:when>
+																				<c:otherwise>
+																					<i class="fa fa-star-o"></i>
+																				</c:otherwise>
+																			</c:choose>
+																		</c:forEach>
+																	</div>
+																	<h5>${review.id}
+																		/ ${review.r_point}
+																		<fmt:formatDate pattern="yyyy-MM-dd"
+																			value="${review.r_regdate}" var="formattedDate" />
+																		<span>${formattedDate}</span>
+																	</h5>
+																	<div class="at-reply">${review.r_content}</div>
+																</div>
+															</div>
+														</c:forEach>
+													</c:otherwise>
+												</c:choose>
+
+												<!-- 모달 창 -->
+												<div id="myModal" class="modal">
+													<span class="close" onclick="closeModal()">&times;</span> <img
+														class="modal-content" id="modalImg">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Product Shop Section End -->
 
     <!-- Related Products Section End -->
     <div class="related-products spad">
@@ -534,7 +532,25 @@
 
                         tr.append($('<td>').addClass('sub_Info').html('<div class="join_condition"><div id="join_condition" name="join_condition" rows="2" cols="30" readonly>' + item.p_text + '</div></div><div class="btn_choice_box_con"><button type="button" class="btn-card" onclick="openAffiliateCard()">제휴카드보기&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/></svg></button></div>'));
 
-                        tr.append($('<td>').addClass('sub_Info2').html('<div class="sub_info_box_rental"><table summary="요약" class="info_box"><tbody><tr style="padding: 0px; border: none; margin: 0;"><td class="sub_info_box1">월렌탈요금<br/><a style="color: #1478FF;">월<span style="font-weight: bold;" class="formatted-number">' + formattedPrice + '</span>원</a></td><td class="sub_info_box2">카드할인가<br/><a style="color: #B93232;">월<span style="font-weight: bold;" class="formatted-number">'+ formattedCardPrice +'</span>원</a></td><td class="sub_info_box3">사은품 혜택<br/><a style="color: #000069;"><span style="font-weight: bold;" class="formatted-number">'+ formattedGift +'</span>P</a></td></tr></tbody></table></div><div class="btn_choice_box2"><button type="button" class="btn-cart" onclick="addToCart()">장바구니</button><button type="button" class="btn-rental" onclick="applyForRental()">렌탈신청</button></div>'));
+                        tr.append($('<td>').addClass('sub_Info2').html('<div class="sub_info_box_rental"><table summary="요약" class="info_box"><tbody><tr style="padding: 0px; border: none; margin: 0;"><td class="sub_info_box1">월렌탈요금<br/><a style="color: #1478FF;">월<span style="font-weight: bold;" class="formatted-number">' + formattedPrice + '</span>원</a></td><td class="sub_info_box2">카드할인가<br/><a style="color: #B93232;">월<span style="font-weight: bold;" class="formatted-number">'+ formattedCardPrice +'</span>원</a></td><td class="sub_info_box3">사은품 혜택<br/><a style="color: #000069;"><span style="font-weight: bold;" class="formatted-number">'+ formattedGift +'</span>P</a></td></tr></tbody></table></div><div class="btn_choice_box2"></div>'));
+
+                     	// 장바구니 버튼 동적 생성 및 onclick 속성 추가
+                        var cartButton = $('<button>')
+                            .attr('type', 'button')
+                            .addClass('btn-cart')
+                            .text('장바구니')
+                            .attr('onclick', 'addToCart("' + item.g_id + '", ' + item.p_rent + ', "' + item.s_name + '")');
+                        
+                        tr.find('.btn_choice_box2').append(cartButton);
+                        
+                        // 렌탈 신청 버튼 동적 생성 및 onclick 속성 추가
+                        var rentalButton = $('<button>')
+                            .attr('type', 'button')
+                            .addClass('btn-rental')
+                            .text('렌탈신청')
+                            .attr('onclick', 'applyForRental("' + item.g_id + '", ' + item.p_rent + ', "' + item.s_name + '")');
+
+                        tr.find('.btn_choice_box2').append(rentalButton);
 
                         tbody.append(tr);
                         table.append(tbody);
@@ -550,20 +566,35 @@
             });
         }
         
+     	var isLoggedIn = <%= (loggedInUser != null) %>;
+     	
      	// 장바구니 버튼 클릭 시 이벤트 핸들러
-     	function addToCart() {
-     	    // 여기에 장바구니에 추가하는 로직 추가
-     	    alert("장바구니에 추가되었습니다.");
-     	   window.location.href = '/midProject/user/shopping_cart.do';
+     	function addToCart(g_id, p_rent, s_name) {
+     		 if (isLoggedIn) {
+     			alert("장바구니에 추가되었습니다.");
+     			console.log('장바구니에 추가: g_id=' + g_id + ', p_rent=' + p_rent + ', s_name=' + s_name);
+          	    window.location.href = '/midProject/user/shopping_cart.do';
+      	    } else {
+      	        // 로그인이 안되어 있으면 경고창 표시 후 로그인 페이지로 이동
+      	        alert("로그인이 필요한 서비스입니다.");
+      	        window.location.href = '/midProject/user/login.do';
+      	    }
      	}
 
      	// 렌탈 신청 버튼 클릭 시 이벤트 핸들러
-     	function applyForRental() {
-     		var isLoggedIn = <%= (loggedInUser != null) %>;
-
+     	function applyForRental(g_id, p_rent, s_name) {
      	    if (isLoggedIn) {
-     	        // 로그인이 되어 있으면 렌탈 신청 페이지로 이동
-     	        window.location.href = '/midProject/user/rental.do';
+     	    	// 로그인이 되어 있으면 렌탈 신청 페이지로 이동
+     	    	var rentalInfo = {
+     	               g_id: g_id,
+     	               p_rent: p_rent,
+     	               s_name: s_name
+     	           };
+     	    	
+     	    	console.log('렌탈신청: g_id=' + g_id + ', p_rent=' + p_rent + ', s_name=' + s_name);
+
+     	    	window.location.href = '/midProject/user/rental.do?g_id=' + g_id + '&p_rent=' + p_rent + '&s_name=' + s_name;
+     	    	
      	    } else {
      	        // 로그인이 안되어 있으면 경고창 표시 후 로그인 페이지로 이동
      	        alert("로그인이 필요한 서비스입니다.");
@@ -576,7 +607,6 @@
      	    // 여기에 제휴카드 보기 로직 추가
      	    alert("제휴카드를 확인합니다.");
      	}
-
 
 </script>
 

@@ -105,6 +105,10 @@
 	      $("#sample6_address").val(addressParts[1]);
 	      $("#sample6_detailAddress").val(addressParts[2]);
 	    }
+	    else{ 
+	    	alert("에러가 발생했습니다!");
+	    	history.go(0);
+	    }
 	  });
 	
 	  // 상세주소 입력이 완료되면 주소 정보를 hidden 필드에 저장
@@ -239,20 +243,15 @@
                     <td class="rentalFee">렌탈 요금</td>
                   </tr>
                   <tr>
-                    <td><img src="../img/cart-page/product-1.jpg" alt="" /></td>
-                    <td>상품명<br />공급사<br />약정기간<br />수량</td>
-                    <td>12,000</td>
-                  </tr>
-                  <tr>
-                    <td><img src="../img/cart-page/product-2.jpg" alt="" /></td>
-                    <td>상품명<br />공급사<br />약정기간<br />수량</td>
-                    <td>12,000</td>
+                    <td><img src="<c:url value='../resources/img/products/${rentalInfo.g_rimg1}' />" style="width: 100px;"></td>
+                    <td>${rentalInfo.g_id}<br/>${rentalInfo.s_name}<br/>${rentalInfo.p_rent}</td>
+                    <td>${rentalInfo.p_price}원</td>
                   </tr>
                 </table>
                     <div class="rent-checkout">
                       <ul>
                   
-                        <li class="rent-total">월 청구요금<span>36,000원</span></li>
+                        <li class="rent-total">월 청구요금<span>${rentalInfo.p_price}원</span></li>
                   
                       </ul>
                       <a href="" class="rent-btn">렌탈신청하기</a>

@@ -34,6 +34,16 @@ public class SupplierBoardDAOImpl implements SupplierBoardDAO {
 		int result = sqlSession.update("SupplierBoardMapper.insertAnswer", vo);
 		System.out.println("result 1이면 업데이트 성공 : " + result);
 	}
+
+	public void inquiryreigster(SupplierBoardVO vo) {
+		sqlSession.update("SupplierBoardMapper.inquiryreigster", vo);
+		
+	}
+	
+	public List<SupplierBoardVO> inquiryList(HashMap map) {
+		return sqlSession.selectList("SupplierBoardMapper.inquiryList", map);
+		
+	}
 	
 
 

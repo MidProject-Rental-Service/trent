@@ -31,6 +31,16 @@
 <link rel="stylesheet" href="../css/datepicker.css" type="text/css" />
 <link rel="stylesheet" href="../css/rent-inquiryList-style.css"
 	type="text/css" />
+	
+<style type="text/css">
+
+input#datepicker1.hasDatepicker,
+input#datepicker2.hasDatepicker{
+text-align:center;
+width:90%
+}
+
+</style>
 
 <!-- Js Plugins -->
 <script src="../js/jquery-3.3.1.min.js"></script>
@@ -97,8 +107,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="breadcrumb-text">
-						<a href="#"><i class="fa fa-home"></i> Home</a> <span>My
-							Page</span>
+						<a href="main.do"><i class="fa fa-home"></i> Home</a><a href="mypage.do"> Mypage</a> <span>1:1문의</span>
 					</div>
 				</div>
 			</div>
@@ -173,7 +182,7 @@
 									<th>제목</th>
 									<th>문의상태</th>
 								</tr>
-								<c:forEach items="${userBoardList }" var="userboard">
+								<c:forEach items="${inquiryList }" var="userboard">
 									<tr>
 										<c:set var="formattedDate" value="${userboard.ub_regdate}" />
 										<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"

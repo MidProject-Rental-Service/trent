@@ -76,5 +76,16 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 	    int result = sqlSession.selectOne("UserBoardMapper.getTotal");
 	    return result;
 	}
+
+
+	public List<UserRentalVO> rentalList(HashMap map) {
+		System.out.println("UserBoardDAO rentalList ===> 호출");
+		return sqlSession.selectList("UserBoardMapper.rentalList", map);
+	}
+
+	public List<UserRentalVO> getUserRecentList(HashMap map) {
+		System.out.println("===> sqlSession getUserRecentList() 호출");
+		return sqlSession.selectList("UserBoardMapper.getUserRecentList",map);
+	}
 	
 }

@@ -151,5 +151,19 @@ public class GoodsDAOImpl {
 	public List<PriceVO> getSupplierInfo(String g_id) {
 		return SqlSession.selectList("GoodsMapper.getSupplierInfo", g_id);
 	}
+
+	// 렌탈 정보
+	public PriceVO getRentalInfo(String g_id, int p_rent, String s_name) {
+		System.out.println("=====> getRentalInfo() 호출");
+		System.out.println("======> "+g_id+", " +p_rent+", " +s_name);
+		
+		HashMap map = new HashMap();
+		map.put("g_id", g_id);
+		map.put("p_rent", p_rent);
+		map.put("s_name", s_name);
+		
+		return SqlSession.selectOne("GoodsMapper.getRentalInfo", map);
+	}
+
 }
 

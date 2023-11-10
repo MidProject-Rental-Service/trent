@@ -124,7 +124,7 @@
 						<input name="r_id" type="hidden" value="${userReview.r_id}" />
 							<div id="form-group" class="form-group row">
 								<div class="col-md-3">
-									<img src="../img/cart-page/product-1.jpg" alt="">
+									<img class="review-img" src="../img/products/${userReview.g_rimg1}" alt="">
 								</div>
 								<div class="col-md-3">
 									<select name="r_point" id="r_point" class="form-control">

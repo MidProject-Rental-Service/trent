@@ -1,4 +1,4 @@
-package com.mid.mvc.domain;
+                                                                            package com.mid.mvc.domain;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.mid.mvc.domain.UserVO"%>
+<%@page import="com.mid.mvc.domain.SupplierBoardVO"%>
 <% 
   UserVO user = (UserVO) session.getAttribute("loggedInUser");
 %>    
+
+
+
 
 <!DOCTYPE html>
 <html>

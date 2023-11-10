@@ -51,6 +51,13 @@ public class UserReviewDAOImpl implements UserReviewDAO{
 		sqlSession.update("UserReviewMapper.updateBstat",vo);
 		 
 	}
+	// 상품페이지 리뷰 목록
+	public List<UserReviewVO> reviewGoodsList(String g_id ) {
+		System.out.println("===> sqlSession reviewGoodsList() 호출");
+		System.out.println("===> " + g_id);
+		return sqlSession.selectList("UserReviewMapper.reviewGoodsList",g_id);
+		
+	}
 
 
 	
