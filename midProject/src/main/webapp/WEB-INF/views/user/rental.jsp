@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
   
 <%-- 세션에서 로그인 정보 가져오기 --%>
 <% UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser"); %>
@@ -105,10 +106,6 @@
 	      $("#sample6_address").val(addressParts[1]);
 	      $("#sample6_detailAddress").val(addressParts[2]);
 	    }
-	    else{ 
-	    	alert("에러가 발생했습니다!");
-	    	history.go(0);
-	    }
 	  });
 	
 	  // 상세주소 입력이 완료되면 주소 정보를 hidden 필드에 저장
@@ -149,7 +146,7 @@
   <!--Rent From -->
   <body>
     <section class="rent_spad">
-        <form class="rental-form" action="">
+    <form class="rental-form" action="rental">
       <div class="container">
         <div class="row">
           <div class="col-lg-2">
@@ -191,7 +188,7 @@
                   <tr>
                     <td>주소</td>
                     <td>
-                      <input type="text" id="sample6_postcode" class="postcode" name="postcode" size="5" style="width: 45%;" readonly>
+                      <input type="text" id="sample6_postcode" class="postcode" name="b_addr" size="5" style="width: 45%;" readonly>
 					  <input type="button" onclick="sample6_execDaumPostcode()" class="addr-btn" value="우편번호검색" style="width: 44%" />
 					</td>
                     
@@ -243,15 +240,15 @@
                     <td class="rentalFee">렌탈 요금</td>
                   </tr>
                   <tr>
-                    <td><img src="<c:url value='../resources/img/products/${rentalInfo.g_rimg1}' />" style="width: 100px;"></td>
-                    <td>${rentalInfo.g_id}<br/>${rentalInfo.s_name}<br/>${rentalInfo.p_rent}</td>
-                    <td>${rentalInfo.p_price}원</td>
+                    <td class="productImg"><img src="<c:url value='../resources/img/products/${rentalInfo.g_rimg1}' />" style="width: 100px;"></td>
+                    <td class="rentalInfo"><span>모델명 : ${rentalInfo.g_id}</span><br/><span>공급사명 : ${rentalInfo.s_name}</span><br/><span>약정 기간 : ${rentalInfo.p_rent}개월</span></td>
+                    <td class="rentalFee"><fmt:formatNumber value="${rentalInfo.p_price}" pattern="#,##0"/>원
                   </tr>
                 </table>
                     <div class="rent-checkout">
                       <ul>
                   
-                        <li class="rent-total">월 청구요금<span>${rentalInfo.p_price}원</span></li>
+                        <li class="rent-total">월 청구요금<span><fmt:formatNumber value="${rentalInfo.p_price}" pattern="#,##0"/>원</span></li>
                   
                       </ul>
                       <a href="" class="rent-btn">렌탈신청하기</a>

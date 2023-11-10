@@ -238,6 +238,35 @@
 														<!-- 공급사 가격정보 for문 시작 -->
 														<div class="sub_price_view">
 															<!--  테이블 동적 추가 -->
+															
+															<!-- 제휴카드 정보를 담은 div -->
+															<div id="affiliateCardInfo">
+															    <!-- 여기에 제휴카드 정보를 표시 -->
+															    <p>제휴카드 정보</p>
+															    <ul class="card_box_lg" style="display: none;">
+																	<li><img src="../img/cards/6989c7c7-d978-446c-9a3b-b57a4a9228f2_kb.jpg"></li><hr/>
+																	<li><img src="../img/cards/4bdff3d9-6366-4eb6-aa33-feb9dcf4b68d_lotte.jpg"></li><hr/>
+																	<li><img src="../img/cards/8d266048-1cef-407c-8b42-fb29d29879f7_lotte_SE.jpg"></li><hr/>
+																	<li><img src="../img/cards/e82d0d90-d0ff-4c40-b60a-37330ee8ed04_shinhan.jpg"></li><hr/>
+																	<li><img src="../img/cards/26cc0386-6742-4799-8a52-58e065715469_hana.jpg"></li>
+																</ul>
+																<ul class="card_box_sk" style="display: none;">
+																	<li><img src="../img/cards/395d558a-758e-4697-83db-ecf59eb9ab91_kj.jpg"></li><hr/>
+																	<li><img src="../img/cards/5890805b-0a55-4b74-9019-5f4ad96dbf50_kb.jpg"></li><hr/>
+																	<li><img src="../img/cards/3ba800c1-a84b-4079-9dee-44d3dd26f7d3_lotte_SE.jpg"></li><hr/>
+																	<li><img src="../img/cards/21ea664f-f6ae-43cc-8e6f-19924c3ea2ef_lotte.jpg"></li><hr/>
+																	<li><img src="../img/cards/91cbeca7-dd79-4a9a-b551-2e06ac6dcd99_woori.jpg"></li><hr/>
+																	<li><img src="../img/cards/58de1f76-0e98-468b-a986-2bde79f9fe81_samsung.jpg"></li><hr/>
+																	<li><img src="../img/cards/ac4ad219-2a99-4fe9-9ff6-58c2ddddc2cc_hana.jpg"></li><hr/>
+																	<li><img src="../img/cards/a77af796-d6e4-415d-b7db-308c6ce7b828_hd.jpg"></li>
+																</ul>
+																<ul class="card_box_bs" style="display: none;">
+																	<li><img src="../img/cards/58ba25b6-f58e-47e1-a787-215c33fc53f6_lotte.jpg"></li><hr/>
+																	<li><img src="../img/cards/60cf3f6c-b873-4e13-ac6d-d6df08404f80_woori.jpg"></li><hr/>
+																	<li><img src="../img/cards/ebfd63e0-2384-4c44-ab85-9a5ee330a764_hana.jpg"></li>
+																</ul>
+															</div>
+															
 														</div>
 
 														<!-- 가격비교 탭 끝 -->
@@ -569,7 +598,7 @@
         
      	var isLoggedIn = <%= (loggedInUser != null) %>;
      	
-     	// 장바구니 버튼 클릭 시 이벤트 핸들러
+     	// 장바구니 버튼 클릭 시
      	function addToCart(g_id, p_rent, s_name) {
      		 if (isLoggedIn) {
      			alert("장바구니에 추가되었습니다.");
@@ -582,7 +611,7 @@
       	    }
      	}
 
-     	// 렌탈 신청 버튼 클릭 시 이벤트 핸들러
+     	// 렌탈 신청 버튼 클릭 시
      	function applyForRental(g_id, p_rent, s_name) {
      	    if (isLoggedIn) {
      	    	// 로그인이 되어 있으면 렌탈 신청 페이지로 이동
@@ -603,11 +632,28 @@
      	    }
      	}
 
-     	// 제휴카드 보기 버튼 클릭 시 이벤트 핸들러
+     	// 제휴카드 보기 버튼 클릭 시
      	function openAffiliateCard() {
      	    // 여기에 제휴카드 보기 로직 추가
      	    alert("제휴카드를 확인합니다.");
      	}
+     	
+     	
+     	// 예시: 공급사 이름에 따라 해당하는 ul을 보여주는 함수
+     	function showAffiliateCardList(s_name) {
+     	    // 모든 ul을 숨김
+     	    $('#affiliateCardInfo ul').hide();
+
+     	    // s_name에 따라 해당하는 ul을 보여줌
+     	    $('#affiliateCardInfo ul.card_box_' + s_name).show();
+     	}
+
+     	// 예시: 클릭 이벤트에 함수 연결
+     	$('.btn-card').on('click', function() {
+     	    // 클릭한 공급사의 이름을 가져와서 해당하는 ul을 보여줌
+     	    var s_name = $(this).data('s_name');
+     	    showAffiliateCardList(s_name);
+     	});
 
 </script>
 

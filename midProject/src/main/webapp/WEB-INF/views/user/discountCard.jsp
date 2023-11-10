@@ -95,6 +95,7 @@
 								<li><img src="../img/cards/58de1f76-0e98-468b-a986-2bde79f9fe81_samsung.jpg"></li><hr/>
 								<li><img src="../img/cards/ac4ad219-2a99-4fe9-9ff6-58c2ddddc2cc_hana.jpg"></li><hr/>
 								<li><img src="../img/cards/a77af796-d6e4-415d-b7db-308c6ce7b828_hd.jpg"></li>
+							</ul>
 						</article>
 					</form>
 				</div>
@@ -114,6 +115,7 @@
 								<li><img src="../img/cards/58ba25b6-f58e-47e1-a787-215c33fc53f6_lotte.jpg"></li><hr/>
 								<li><img src="../img/cards/60cf3f6c-b873-4e13-ac6d-d6df08404f80_woori.jpg"></li><hr/>
 								<li><img src="../img/cards/ebfd63e0-2384-4c44-ab85-9a5ee330a764_hana.jpg"></li>
+							</ul>
 						</article>
 					</form>
 				</div>
