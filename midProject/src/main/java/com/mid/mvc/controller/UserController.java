@@ -1,7 +1,9 @@
 package com.mid.mvc.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -76,6 +78,23 @@ public class UserController {
 		if (vo != null) { // 로그인 성공
 			// 사용자 정보를 세션에 저장
 			session.setAttribute("loggedInUser", vo);
+
+			// 로그인 후 헤더에 장바구니 정보 표시
+			HashMap map = new HashMap();
+			List<ShoppingCartVO> result = new ArrayList<ShoppingCartVO>();
+			map.put("id", vo.getId());
+			result = userServiceImpl.getCartList(map);
+
+			int totalCnt = result.size();
+
+			int totalPrice = 0;
+			for (ShoppingCartVO cart : result) {
+				totalPrice += cart.getP_price();
+			}
+
+			session.setAttribute("cartList", result);
+			session.setAttribute("totalCnt", totalCnt);
+			session.setAttribute("totalPrice", totalPrice);
 
 			// 로그인 성공 시
 			String role = vo.getRole();
@@ -174,8 +193,7 @@ public class UserController {
 
 		HashMap map = new HashMap();
 		map.put("id", loggedInUserId);
-		 
-		 
+
 		List<ShoppingCartVO> result = userServiceImpl.getCartList(map);
 		int totalCnt = result.size();
 
@@ -187,7 +205,7 @@ public class UserController {
 		m.addAttribute("cartList", result);
 		m.addAttribute("totalCnt", totalCnt);
 		m.addAttribute("totalPrice", totalPrice);
-		
+
 	}
 
 	// 장바구니 삭제
@@ -195,10 +213,10 @@ public class UserController {
 	@ResponseBody
 	public String cartDelete(ShoppingCartVO vo) {
 		System.out.println("===> cartDelete 호출");
-	    int sh_id = vo.getSh_id();
-	    userServiceImpl.cartDelete(vo);
-	    
-	    return "success";
+		int sh_id = vo.getSh_id();
+		userServiceImpl.cartDelete(vo);
+
+		return "success";
 	}
 
 	// 1:1문의 목록
@@ -243,6 +261,31 @@ public class UserController {
 		return "redirect:inquiryList.do";
 	}
 
+	// 마이페이지
+	@RequestMapping("/mypage.do")
+	public void mypage(Model m, HttpSession session) {
+	    UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+	    String loggedInUserId = loggedInUser.getId();
+
+	    HashMap map = new HashMap();
+		map.put("id", loggedInUserId);
+	    List<UserRentalVO> result = userBoardService.getUserRecentList(map);
+	    
+	    int[] cntArray = new int[6]; // b_stat 값이 1부터 5까지이므로 길이 6인 배열을 생성
+
+	    for (UserRentalVO rentalVO : result) {
+	        int bStat = rentalVO.getB_stat();
+	        if (bStat >= 1 && bStat <= 5) {
+	            cntArray[bStat]++;
+	        }
+	    }
+
+	    m.addAttribute("userRecentList", result);
+	    for (int i = 1; i <= 5; i++) {
+	        m.addAttribute("cnt" + i, cntArray[i]);
+	    }
+	}
+
 	// 신청목록
 	@RequestMapping("/applicationList.do")
 	public void rentalList(Model m, HttpSession session, String searchCondition, String searchKeyword,
@@ -264,67 +307,62 @@ public class UserController {
 		m.addAttribute("userRentalList", result);
 	}
 
-	//BEST 상품 전체 검색
-    @RequestMapping("/shop_best.do")
+	// BEST 상품 전체 검색
+	@RequestMapping("/shop_best.do")
 	public void shopBest(GoodsVO vo, Model m) {
-    	System.out.println("화면에서 넘겨오는 값:" + vo.toString());
-    	HashMap map = new HashMap();
+		System.out.println("화면에서 넘겨오는 값:" + vo.toString());
+		HashMap map = new HashMap();
 		List<GoodsVO> result = goodsServiceImpl.getGoodsList(map);
 		int cnt = result.size();
 		m.addAttribute("goodsList", result);
 	}
-	
-	//상품 전체 검색
-    @RequestMapping("/shop.do")
+
+	// 상품 전체 검색
+	@RequestMapping("/shop.do")
 	public void GoodsList(GoodsVO vo, Model m) {
 		List<GoodsVO> result = goodsServiceImpl.getMinPriceList(vo);
 		m.addAttribute("goodsList", result);
 	}
-    
-    // 상품 상세 페이지로 이동
-    @RequestMapping("/product.do")
-    public String showProductDetail(@RequestParam("g_id") String g_id, Model model) {
-        // 제품 ID를 사용하여 상세 정보를 검색
-        GoodsVO productInfo = goodsServiceImpl.getProductDetail(g_id);
-        List<PriceVO> priceInfoList = goodsServiceImpl.getProductPrice(g_id);
-        PriceVO minPrice = goodsServiceImpl.getMinPrice(g_id);
-        List<PriceVO> supInfo = goodsServiceImpl.getSupplierInfo(g_id);
-        List<UserReviewVO> result = userReviewService.reviewGoodsList(g_id);
-        
-        
-        if (productInfo != null) {
-        	int reviewCnt = result.size();
 
-            model.addAttribute("productInfo", productInfo);
-            model.addAttribute("priceInfoList", priceInfoList);
-            model.addAttribute("minPrice", minPrice);
-            model.addAttribute("supInfo", supInfo);
-         	model.addAttribute("reviewGoodsList", result);
-        	model.addAttribute("reviewCnt", reviewCnt);
-        	
-            return "user/product";
-        } else {
-            return "errorPage"; // 오류 페이지로 리다이렉트 또는 표시
-        }
-    }
-    
+	// 상품 상세 페이지로 이동
+	@RequestMapping("/product.do")
+	public String showProductDetail(@RequestParam("g_id") String g_id, Model model) {
+		// 제품 ID를 사용하여 상세 정보를 검색
+		GoodsVO productInfo = goodsServiceImpl.getProductDetail(g_id);
+		List<PriceVO> priceInfoList = goodsServiceImpl.getProductPrice(g_id);
+		PriceVO minPrice = goodsServiceImpl.getMinPrice(g_id);
+		List<PriceVO> supInfo = goodsServiceImpl.getSupplierInfo(g_id);
+		List<UserReviewVO> result = userReviewService.reviewGoodsList(g_id);
 
-    
-    // Ajax를 통해 가격 정보를 업데이트하는 메서드를 추가
-    @RequestMapping(value = "/updatePrice.do", method = RequestMethod.POST)
-    @ResponseBody
-    public List<PriceVO> updatePrice(@RequestBody PriceVO vo) {
-        // 클라이언트에서 전송한 PriceVO 객체 사용
-        String g_id = vo.getG_id();
-        int selectedMonths = vo.getP_rent();
-        
-        // 나머지 로직
-        List<PriceVO> updatedPriceInfo = goodsServiceImpl.getPriceInfo(g_id, selectedMonths);
-        return updatedPriceInfo;
-    }
+		if (productInfo != null) {
+			int reviewCnt = result.size();
 
-    
-    
+			model.addAttribute("productInfo", productInfo);
+			model.addAttribute("priceInfoList", priceInfoList);
+			model.addAttribute("minPrice", minPrice);
+			model.addAttribute("supInfo", supInfo);
+			model.addAttribute("reviewGoodsList", result);
+			model.addAttribute("reviewCnt", reviewCnt);
+
+			return "user/product";
+		} else {
+			return "errorPage"; // 오류 페이지로 리다이렉트 또는 표시
+		}
+	}
+
+	// Ajax를 통해 가격 정보를 업데이트하는 메서드를 추가
+	@RequestMapping(value = "/updatePrice.do", method = RequestMethod.POST)
+	@ResponseBody
+	public List<PriceVO> updatePrice(@RequestBody PriceVO vo) {
+		// 클라이언트에서 전송한 PriceVO 객체 사용
+		String g_id = vo.getG_id();
+		int selectedMonths = vo.getP_rent();
+
+		// 나머지 로직
+		List<PriceVO> updatedPriceInfo = goodsServiceImpl.getPriceInfo(g_id, selectedMonths);
+		return updatedPriceInfo;
+	}
+
 	// 상품 검색 (Header) 검색창
 	@RequestMapping("/shop_search.do")
 	public void searchGoodsList(GoodsVO vo, Model m, String searchCondition, String searchKeyword) {

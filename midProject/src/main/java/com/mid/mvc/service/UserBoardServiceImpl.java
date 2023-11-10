@@ -59,4 +59,9 @@ public class UserBoardServiceImpl implements UserBoardService{
 		return userboardDAO.getTotal();
 	}
 
+	@Override
+	public List<UserRentalVO> getUserRecentList(HashMap map) {
+		return userboardDAO.getUserRecentList(map);
+	}
+
 }
