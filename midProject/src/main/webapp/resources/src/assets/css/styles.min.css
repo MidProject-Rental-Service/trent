@@ -18322,3 +18322,40 @@ a.btn.btn-primary {
 .pagination_button {
     margin-right: 20px; /* 버튼 사이의 간격을 조절할 수 있는 값 */
 }
+
+/* 검색창 */
+
+#searchCondition{
+	width: 10%;
+}
+
+.search_Keyword {
+    width: 80%;
+    text-align: center;
+}
+
+.search-btn {
+    width: 10%;
+}
+
+.custom-textarea{
+	width : 700px;
+}
+
+tr #listName {
+    /* 글자 길이가 15자 이상이면 넘친 부분을 숨기고 생략 부호를 표시 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 30ch; /* 최대 길이를 설정하세요 */
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%
+}
+
+
+

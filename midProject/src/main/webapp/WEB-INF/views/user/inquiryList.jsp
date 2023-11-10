@@ -173,7 +173,7 @@
 									<th>제목</th>
 									<th>문의상태</th>
 								</tr>
-								<c:forEach items="${userBoardList }" var="userboard">
+								<c:forEach items="${inquiryList }" var="userboard">
 									<tr>
 										<c:set var="formattedDate" value="${userboard.ub_regdate}" />
 										<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
