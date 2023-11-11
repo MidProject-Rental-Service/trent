@@ -1,6 +1,19 @@
 <%@page import="com.mid.mvc.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+   
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+	    $('.nav-menu ul li').click(function () {
+	        // 현재 active 클래스를 가진 메뉴에서 클래스 제거
+	        $('.nav-menu ul li.active').removeClass('active');
+	
+	        // 클릭한 메뉴에게 active 클래스 부여
+	        $(this).addClass('active');
+	    });
+	});
+</script>
 
 <!-- Page Preloder -->
 <div id="preloder">
