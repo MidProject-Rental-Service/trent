@@ -10,6 +10,7 @@ import com.mid.mvc.dao.UserDAO;
 import com.mid.mvc.domain.CardVO;
 import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.ShoppingCartVO;
+import com.mid.mvc.domain.UserRentalVO;
 import com.mid.mvc.domain.UserVO;
 
 @Service
@@ -75,6 +76,16 @@ public class UserServiceImpl implements UserService {
 	// 장바구니 삭제
 	public int cartDelete(ShoppingCartVO vo) {
 		return userDAOImpl.cartDelete(vo);
+	}
+
+	// 렌탈 신청
+	public int applicationRental(UserRentalVO vo) {
+		return userDAOImpl.applicationRental(vo);
+	}
+
+	// 장바구니 담기
+	public void insertCart(HashMap map) {
+		userDAOImpl.insertCart(map);
 	}
 
 }

@@ -129,11 +129,11 @@
 								<div class="col-md-3">
 									<select name="r_point" id="r_point" class="form-control">
 										<option value="">평점선택</option>
-										<option value="5">5</option>
-										<option value="4">4</option>
-										<option value="3">3</option>
-										<option value="2">2</option>
-										<option value="1">1</option>
+										<option value="5" ${userReview.r_point == 5 ? 'selected' : ''}>5</option>
+									    <option value="4" ${userReview.r_point == 4 ? 'selected' : ''}>4</option>
+									    <option value="3" ${userReview.r_point == 3 ? 'selected' : ''}>3</option>
+									    <option value="2" ${userReview.r_point == 2 ? 'selected' : ''}>2</option>
+									    <option value="1" ${userReview.r_point == 1 ? 'selected' : ''}>1</option>
 									</select>
 								</div>
 								<div class="col-md-6">
@@ -162,7 +162,7 @@
 								</div>
 								
 								<div class="col-md-6 text-right">
-									<button type="button" class="btn btn-primary cancle-btn" onclick="backToList()">취소</button>
+									<button type="button" class="btn btn-primary cancle-btn" onclick="backToList()">뒤로가기</button>
 									<button type="submit" class="btn btn-primary complete-btn" >완료</button>
 								</div>
 							</div>

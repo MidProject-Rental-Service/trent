@@ -46,14 +46,7 @@
 		WHERE g_id = #{g_id}
 	</select>
 	
-	<!-- =========== 렌탈정보-하림 ========== -->
-	<select id="getRentalInfo" parameterType="PriceVO" resultType="PriceVO">
-    SELECT p.p_id, p.s_name, p.p_rent, p.p_price, p.p_card, p.g_id, g.g_rimg1
-    FROM price p
-    JOIN goods g ON p.g_id = g.g_id
-    WHERE p.g_id = #{g_id} AND p.p_rent = #{p_rent} AND p.s_name = #{s_name}
-	</select>
-	
+
 	<!-- ============================ -->
 	<!-- 이 제품의 공급사들 출력  -->
 	<select id="getSupplierInfo" parameterType="String" resultType="PriceVO">
@@ -92,6 +85,15 @@
 		    WHERE g_id = #{g_id}
 		)
 	</select>
+	
+		<!-- =========== 렌탈정보-하림 ========== -->
+	<select id="getRentalInfo" parameterType="PriceVO" resultType="PriceVO">
+    SELECT p.p_id, p.s_name, p.p_rent, p.p_price, p.p_card, p.g_id, g.g_rimg1
+    FROM price p
+    JOIN goods g ON p.g_id = g.g_id
+    WHERE p.g_id = #{g_id} AND p.p_rent = #{p_rent} AND p.s_name = #{s_name}
+	</select>
+	
 	
 	<!-- 개월 수에 따른 공급사의 가격 정보 가져오기 (최저가부터!! 수정완)-->
 	<select id="getPriceInfo" parameterType="hashmap" resultType="PriceVO">

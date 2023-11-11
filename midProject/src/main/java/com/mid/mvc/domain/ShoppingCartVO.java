@@ -29,6 +29,8 @@ public class ShoppingCartVO {
 	// price 테이블
 	private int p_price;					// 렌탈비용	*
 	private int p_rent;						// 약정기간	*
+	private int p_card;					// 카드할인가
+	private int p_gift;						// 사은품
 	private String s_name;			// 공급사명	*
 	
 	// user 테이블

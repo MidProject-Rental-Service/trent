@@ -27,18 +27,50 @@
 		WHERE id = #{id}
 	</update>
     
-	<!-- 쇼핑카트 출력 -->
+	<!-- 장바구니 출력 -->
 	<select id="getCartList" parameterType="hashmap" resultType="ShoppingCartVO">
 		SELECT * 
 	    FROM SHOPPINGCART 
 	    WHERE ID = #{id}
 	</select>	
 	
-	<!--  쇼핑카트 삭제 -->
+	<!-- 장바구니 입력 -->
+	<insert id="insertCart" parameterType="hashmap">
+	INSERT INTO SHOPPINGCART (ID, G_ID, G_NAME, G_RIMG1,P_RENT, P_PRICE, S_NAME)
+	VALUES (
+    #{id},
+    #{g_id},
+    (SELECT G_NAME FROM GOODS WHERE G_ID = #{g_id} LIMIT 1),
+    (SELECT G_RIMG1 FROM GOODS WHERE G_ID = #{g_id} LIMIT 1),
+    #{p_rent},
+    (SELECT P_PRICE FROM PRICE WHERE G_ID = #{g_id} LIMIT 1),
+    #{s_name}
+);
+	
+	</insert>
+	
+	<!--  장바구니 삭제 -->
 	<delete id="cartDelete" parameterType="ShoppingCartVO">
 		DELETE 
 		FROM SHOPPINGCART
 		WHERE SH_ID = #{sh_id}
+	</delete>
+	
+
+	<!-- 렌탈 신청 입력 -->
+	<insert id="applicationRental" parameterType="UserRentalVO">
+	INSERT 
+	INTO BUY( B_SIGNDATE, B_STAT, B_RENT, B_PRICE,
+	         			B_CARD, B_GIFT, S_NAME, ID, G_ID,ADDR,B_REQUIREMENTS )
+	VALUES (    NOW(),  1, #{b_rent}, #{b_price},
+	        			#{b_card}, #{b_gift}, #{s_name}, #{id}, #{g_id},#{addr},#{b_requirements} );
+	</insert>
+	
+	<!-- 렌탈신청 후 장바구니 비우기 -->
+	<delete id="deleteShoppingCart" parameterType="UserRentalVO">
+	DELETE 
+    FROM SHOPPINGCART 
+    WHERE ID = #{id}
 	</delete>
 	
 	<!--  회원정보 리스트 출력 -->

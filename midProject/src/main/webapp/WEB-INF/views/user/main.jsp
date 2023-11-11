@@ -54,7 +54,7 @@
 									휴대폰의 앱이 스스로 업데이트하듯 23년형 360˚공기청정기 플러스는
 									새로운 기능을 더하고 내게 맞춰 변화하는 업그레이드를 제공합니다.
 							</p>
-                            <a href="./product.do?g_id=AS183DWFC" class="primary-btn">렌탈 신청하기</a>
+                            <a href="./product.do?g_id=AS183DWFC" class="primary-btn">제품 보러가기</a>
                         </div>
                     </div>
                     <div class="off-card">
@@ -70,7 +70,7 @@
                             <h1>올바른 가습기 스테인리스 4.0L</h1>
                             <p>쉽고 위생적인 관리가 가능한 올케어 시스템
                                 </p>
-                            <a href="./product.do?g_id=WL3E400-KNK" class="primary-btn">렌탈 신청하기</a>
+                            <a href="./product.do?g_id=WL3E400-KNK" class="primary-btn">제품 보러가기</a>
                         </div>
                     </div>
                     <div class="off-card">
@@ -208,12 +208,12 @@
                     실내 공기질이 좋아지면 스스로 팬을 꺼서 에너지가 최대 32 %까지 절감됩니다.
                      팬이 꺼져도 센서는 작동하기 때문에 공기질이 나빠지면 알아서 다시 작동하니 걱정하지 마세요.</p>
                     <div class="product-price">
-                        <span>월14,100원</span>
-                        월 0원
+                        <span>월19,900원</span>
+                        월 14,100원
                     </div>
                 </div>
 
-                <a href="./product.do?g_id=AX053B810HND" class="primary-btn">렌탈 신청하기</a>
+                <a href="./product.do?g_id=AX053B810HND" class="primary-btn">제품 보러가기</a>
             </div>
         </div>
     </section>

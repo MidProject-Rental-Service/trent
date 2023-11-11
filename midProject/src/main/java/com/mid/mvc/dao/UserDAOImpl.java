@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.mid.mvc.domain.CardVO;
 import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.ShoppingCartVO;
+import com.mid.mvc.domain.UserRentalVO;
 import com.mid.mvc.domain.UserVO;
 
 @Repository
@@ -88,11 +89,27 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectList("UserMapper.getCartList",map);
 	}
 	
+	// 장바구니 추가
+	public void insertCart(HashMap map) {
+		System.out.println("===> sqlSession insertCart() 호출");
+		System.out.println("===> " + map);
+		sqlSession.insert("UserMapper.insertCart",map);
+		
+	}
+	
+	// 장바구니 삭제 
 	public int cartDelete(ShoppingCartVO vo) {
 		System.out.println("===> sqlSession cartDelete() 호출");
 		System.out.println("===> " + vo);
 		int result = sqlSession.delete("UserMapper.cartDelete",vo);
 		return result;
+	}
+
+	// 렌탈 신청하기
+	public int applicationRental(UserRentalVO vo ) {
+		System.out.println("===> sqlSession applicationRental() 호출");
+		sqlSession.delete("UserMapper.deleteShoppingCart",vo);
+		return sqlSession.insert("UserMapper.applicationRental",vo);
 	}
 
 

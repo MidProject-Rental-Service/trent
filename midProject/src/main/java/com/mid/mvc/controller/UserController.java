@@ -94,7 +94,7 @@ public class UserController {
 	            totalPrice += cart.getP_price();
 	         }
 
-	         session.setAttribute("cartList", result);
+	         session.setAttribute("headerCartList", result);
 	         session.setAttribute("totalCnt", totalCnt);
 	         session.setAttribute("totalPrice", totalPrice);
 
@@ -237,8 +237,7 @@ public class UserController {
 	// --------------------------------------------------------------------------------------------------------------------------------
 	// 1:1문의 목록
 	@RequestMapping("/inquiryList.do")
-	public void inquiryList(Model m, HttpSession session, String searchCondition, String searchKeyword,
-			String datepicker1, String datepicker2) {
+	public void inquiryList(Model m, HttpSession session, String searchCondition, String searchKeyword, String datepicker1, String datepicker2) {
 		
 		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
 		String loggedInUserId = loggedInUser.getId();
@@ -280,13 +279,25 @@ public class UserController {
 	// --------------------------------------------------------------------------------------------------------------------------------
 	// 장바구니
 	@RequestMapping("/shopping_cart.do")
-	public void shoppingCart(Model m, HttpSession session) {
+	public void shoppingCart(Model m, HttpSession session,String g_id,  Integer p_rent,  String s_name) {
 		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
 		String loggedInUserId = loggedInUser.getId();
-
 		HashMap map = new HashMap();
 		map.put("id", loggedInUserId);
-
+		System.out.println("===> shoppingCart 컨트롤러 호출");
+		System.out.println("===> " + "g_id: " + g_id + "p_rent: " + p_rent + "s_name: " + s_name);
+		
+		
+	    // g_id, p_rent, s_name이 null이 아닌 경우 insertCart 실행
+	    if (g_id != null && p_rent != null && s_name != null) {
+	    	map.put("g_id",g_id);
+	    	map.put("p_rent",p_rent);
+	    	map.put("s_name",s_name);
+	    	
+	        userServiceImpl.insertCart(map);
+	    }
+		
+		
 		List<ShoppingCartVO> result = userServiceImpl.getCartList(map);
 		int totalCnt = result.size();
 
@@ -298,17 +309,43 @@ public class UserController {
 		m.addAttribute("cartList", result);
 		m.addAttribute("totalCnt", totalCnt);
 		m.addAttribute("totalPrice", totalPrice);
+		
+	    session.setAttribute("headerCartList", result);
+        session.setAttribute("totalCnt", totalCnt);
+        session.setAttribute("totalPrice", totalPrice);
 
 	}
 
 	// 장바구니 삭제
 	@RequestMapping(value = "/cartDelete.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String cartDelete(ShoppingCartVO vo) {
-		System.out.println("===> cartDelete 호출");
+	public String cartDelete(ShoppingCartVO vo,HttpSession session) {
+		System.out.println("===> cartDelete 컨트롤러 호출");
+		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+		String loggedInUserId = loggedInUser.getId();
+		
 		int sh_id = vo.getSh_id();
 		userServiceImpl.cartDelete(vo);
+		session.removeAttribute("headerCartList");
+		session.removeAttribute("totalCnt");
+		session.removeAttribute("totalPrice");
+		
+		HashMap map = new HashMap();
+		map.put("id", loggedInUserId);
+		List<ShoppingCartVO> result = userServiceImpl.getCartList(map);
+		System.out.println("===> cartDelete in getCartList ");
+		int totalCnt = result.size();
 
+		int totalPrice = 0;
+		for (ShoppingCartVO cart : result) {
+			totalPrice += cart.getP_price();
+		}
+		
+	
+	    session.setAttribute("headerCartList", result);
+        session.setAttribute("totalCnt", totalCnt);
+        session.setAttribute("totalPrice", totalPrice);
+        
 		return "success";
 	}
 
@@ -411,7 +448,7 @@ public class UserController {
 		return goodsServiceImpl.getCategoryGoodsList(c_name, selectedBrands, minPrice, maxPrice);
 	}
 
-	// --------------------------------------------------------------------------------------------------------------------------------
+ // --------------------------------------------------------------------------------------------------------------------------------
     
     // 하림 !!!!!!!!!!
     // 렌탈 신청 페이지로 이동
@@ -428,33 +465,6 @@ public class UserController {
 
         return "/user/rental";
     }
-
-    // 장바구니에서 렌탈 신청 페이지로 이동
-    @RequestMapping("/cart-rental.do")
-    public void getCartRentalInfo( Model m,HttpSession session,ShoppingCartVO vo) {
-        // 받은 데이터 확인
-        System.out.println("====> getCartRentalInfo  컨트롤러 호출 " );
-
-    	UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
-		String loggedInUserId = loggedInUser.getId();
-
-		HashMap map = new HashMap();
-		map.put("id", loggedInUserId);
-
-		List<ShoppingCartVO> result = userServiceImpl.getCartList(map);
-		int totalCnt = result.size();
-
-		int totalPrice = 0;
-		for (ShoppingCartVO cart : result) {
-			totalPrice += cart.getP_price();
-		}
-
-		m.addAttribute("cartList", result);
-		m.addAttribute("totalCnt", totalCnt);
-		m.addAttribute("totalPrice", totalPrice);
-
-    }
-    
     
     // 하림 !!!!!! 공급사 카드 정보 불러오기
     @RequestMapping("/getCardListBySupplier.do")
@@ -464,6 +474,86 @@ public class UserController {
         model.addAttribute("cardList", cardList);
         
         return cardList;
+    }
+
+    // 장바구니에서 렌탈 신청 페이지로 이동
+    @RequestMapping("/cart-rental.do")
+    public void getCartRentalInfo( Model m,HttpSession session,ShoppingCartVO vo) {
+        // 받은 데이터 확인
+        System.out.println("====> getCartRentalInfo  컨트롤러 호출 " );
+
+       UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+      String loggedInUserId = loggedInUser.getId();
+
+      HashMap map = new HashMap();
+      map.put("id", loggedInUserId);
+
+      List<ShoppingCartVO> result = userServiceImpl.getCartList(map);
+      int totalCnt = result.size();
+
+      int totalPrice = 0;
+      for (ShoppingCartVO cart : result) {
+         totalPrice += cart.getP_price();
+      }
+      m.addAttribute("cartList", result);
+      m.addAttribute("totalCnt", totalCnt);
+      m.addAttribute("totalPrice", totalPrice);
+    }
+
+   
+   // 렌탈 신청하기 
+    @RequestMapping("/applicationRental.do")
+    public String applicationRental(HttpSession session, @RequestParam("b_rent") String[] bRent,
+                                    @RequestParam("b_price") String[] bPrice, @RequestParam("b_card") String[] bCard,
+                                    @RequestParam("b_gift") String[] bGift, @RequestParam("s_name") String[] sName,
+                                    @RequestParam("g_id") String[] gId, @RequestParam("addr") String aDdr, @RequestParam("b_requirements") String bRequirements) {
+       
+       System.out.println("==>" + bRent.length);
+       System.out.println("==>" + bPrice.length);
+       System.out.println("==>" + bCard.length);
+       System.out.println("==>" + bGift.length);
+       System.out.println("==>" + sName.length);
+       System.out.println("==>" + gId.length);
+       System.out.println("==>" + aDdr);
+       System.out.println("==>" + bRequirements);
+       
+        UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+        String loggedInUserId = loggedInUser.getId();
+        
+        
+        List<UserRentalVO> userRentalList = new ArrayList<>();
+        
+        
+        // 배열의 길이가 동일한지 확인
+        if (bRent.length == bPrice.length && bPrice.length == bCard.length
+                && bCard.length == bGift.length && bGift.length == sName.length
+                && sName.length == gId.length)  {
+
+            for (int i = 0; i < bRent.length; i++) {
+               UserRentalVO vo = new UserRentalVO();
+               vo.setId(loggedInUserId);
+               
+                vo.setB_rent(Integer.parseInt(bRent[i]));
+                vo.setB_price(Integer.parseInt(bPrice[i]));
+                vo.setB_card(Integer.parseInt(bCard[i]));
+                vo.setB_gift(Integer.parseInt(bGift[i]));
+                vo.setS_name(sName[i]);
+                vo.setG_id(gId[i]);
+                vo.setAddr(aDdr);
+                vo.setB_requirements(bRequirements);
+               
+               
+                userRentalList.add(vo);
+                System.out.println(vo.toString());
+          
+                userServiceImpl.applicationRental(vo);
+                System.out.println("applicationRental: " + userRentalList);
+            } // end for For
+        } else {
+           System.out.println("출력오류");
+        }
+
+        return "redirect:applicationList.do";
     }
 
 }

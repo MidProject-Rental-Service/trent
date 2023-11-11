@@ -32,10 +32,9 @@
 <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="../css/style.css" type="text/css">
 <style type="text/css">
-tbody.recent-table tr td{
-text-align: center;
+tbody.recent-table tr td {
+	text-align: center;
 }
-
 </style>
 <!-- Js Plugins -->
 <script src="../js/jquery-3.3.1.min.js"></script>
@@ -139,11 +138,33 @@ text-align: center;
 											<c:if test="${loop.index < 7}">
 												<tr>
 													<c:set var="formattedDate" value="${userRecent.b_signdate}" />
-													<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
-														var="formattedDateString" />
+													<fmt:formatDate pattern="yyyy-MM-dd"
+														value="${formattedDate}" var="formattedDateString" />
 													<td>${formattedDateString}</td>
 													<td>${userRecent.g_name}</td>
-													<td>${userRecent.b_stat}</td>
+													<c:choose>
+														<c:when test="${userRecent.b_stat == 0}">
+															<td>취소</td>
+														</c:when>
+														<c:when test="${userRecent.b_stat == 1}">
+															<td>렌탈신청</td>
+														</c:when>
+														<c:when test="${userRecent.b_stat == 2}">
+															<td>해피콜진행</td>
+														</c:when>
+														<c:when test="${userRecent.b_stat == 3}">
+															<td>주문확정</td>
+														</c:when>
+														<c:when test="${userRecent.b_stat == 4}">
+															<td>배송/설치중</td>
+														</c:when>
+														<c:when test="${userRecent.b_stat == 5}">
+															<td>설치완료</td>
+														</c:when>
+														<c:when test="${userRecent.b_stat == 6}">
+															<td>구매확정완료</td>
+														</c:when>
+													</c:choose>
 													<td>${userRecent.b_price}</td>
 												</tr>
 											</c:if>

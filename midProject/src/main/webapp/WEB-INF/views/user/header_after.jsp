@@ -12,7 +12,6 @@
 	List<ShoppingCartVO> result = (List) session.getAttribute("cartList");
 	Integer totalCnt = (Integer) session.getAttribute("totalCnt");
 	Integer totalPrice = (Integer) session.getAttribute("totalPrice");
-
 %>
 
 <body>
@@ -81,24 +80,23 @@
 
 						<!-- 장바구니 영역 -->			
 							<li class="cart-icon"><a href="./shopping_cart.do"> <i
-									class="icon_bag_alt"></i> <span><%= totalCnt %></span>
+									class="icon_bag_alt"></i> <span id="totalCnt"><%= totalCnt %></span>
 							</a>
-								<div class="cart-hover">
+								<div id="cart-container" class="cart-hover">
 									<div class="select-items">
 										<table>
 											<tbody>
 											
-											<c:forEach items="${cartList }" var="cart">
-												<tr>
-													<td class="si-pic"><img
-														src="../img/products/${cart.g_rimg1}" alt="" /></td>
+											<c:forEach items="${headerCartList }" var="cart">
+												<tr id="hproduct_${cart.sh_id}">
+													<td class="si-pic"><img	src="../img/products/${cart.g_rimg1}" alt="" /></td>
 													<td class="si-text">
 														<div class="product-selected">
-															<p><script>
+															<p>월<script>
 															        var price = ${cart.p_price};
 															        var formattedPrice = new Intl.NumberFormat('ko-KR').format(price);
 															        document.write(formattedPrice);
-															    </script>
+															    </script>원
 															 </p>
 															<h6>${cart.g_name}</h6>
 														</div>
@@ -114,12 +112,16 @@
 									
 									<div class="select-total">
 										<span>total:</span>
-										<h5><%= totalPrice %></h5>
+										<h5>월<script>
+									            var totalPrice = <%= totalPrice %>
+									            var formattedTotalPrice = new Intl.NumberFormat('ko-KR').format(totalPrice);
+									            document.write(formattedTotalPrice);
+									        </script>원</h5>
 									</div>
 									
 									<div class="select-button">
 										<a href="./shopping_cart.do" class="primary-btn view-card">View
-											Cart</a> <a href="./rental.do" class="primary-btn checkout-btn">Rental</a>
+											Cart</a> <a href="./cart-rental.do" class="primary-btn checkout-btn">Rental</a>
 									</div>
 									
 								</div></li>
@@ -150,7 +152,7 @@
 							<ul class="dropdown">
 								<li><a href="./mypage.do">마이페이지</a></li>
 								<li><a href="./shopping_cart.do">장바구니</a></li>
-								<li><a href="./rental.do">렌탈신청</a></li>
+								<li><a href="./cart-rental.do">렌탈신청</a></li>
 							</ul></li>
 					</ul>
 				</nav>
@@ -161,7 +163,7 @@
 	<!-- Header End -->
 </body>
 
-<script src="../js/shoppingCart.js"></script>
+<script src="../js/headerShoppingCart.js"></script>
 <script>
 
 

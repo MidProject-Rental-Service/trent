@@ -6,6 +6,7 @@ import java.util.List;
 import com.mid.mvc.domain.CardVO;
 import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.ShoppingCartVO;
+import com.mid.mvc.domain.UserRentalVO;
 import com.mid.mvc.domain.UserVO;
 
 public interface UserService {
@@ -34,7 +35,9 @@ public interface UserService {
 	
 	int cartDelete(ShoppingCartVO vo);
 
-		 		
-	
-	
+	public int applicationRental(UserRentalVO vo);
+
+	public void insertCart(HashMap map);
+
+
 }

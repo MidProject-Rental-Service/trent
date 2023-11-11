@@ -231,6 +231,7 @@ width:90%
 											</c:when>
 												<c:when test="${userRental.b_stat == 5}">
 												<td>설치완료
+												
 												<input type="submit" name="confirm-btn" class="btn btn-warning correct-btn"
 														value="구매확정" 	>
 												</td>
