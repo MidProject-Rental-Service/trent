@@ -4,7 +4,12 @@ function formatPrice(price) {
 
 function goBack(event) {
     event.preventDefault();
-    window.history.back();
+    
+	location.href = document.referrer;
+	
+
+	    
+    
 }
 
 function cartDelete(sh_id, price) {
