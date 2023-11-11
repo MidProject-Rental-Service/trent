@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mid.mvc.domain.CardVO;
 import com.mid.mvc.domain.GoodsVO;
 import com.mid.mvc.domain.PriceVO;
 import com.mid.mvc.domain.ShoppingCartVO;
@@ -451,8 +452,18 @@ public class UserController {
 		m.addAttribute("cartList", result);
 		m.addAttribute("totalCnt", totalCnt);
 		m.addAttribute("totalPrice", totalPrice);
-  
-     
+
+    }
+    
+    
+    // 하림 !!!!!! 공급사 카드 정보 불러오기
+    @RequestMapping("/getCardListBySupplier.do")
+    @ResponseBody
+    public List<CardVO> getCardListBySupplier(String id, Model model) {
+        List<CardVO> cardList = goodsServiceImpl.getCardListById(id);
+        model.addAttribute("cardList", cardList);
+        
+        return cardList;
     }
 
 }

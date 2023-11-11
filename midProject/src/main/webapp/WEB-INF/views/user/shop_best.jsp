@@ -54,7 +54,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="breadcrumb-text">
-						<a href="./main.do"><i class="fa fa-home"></i> Home</a> <span>전체렌탈상품</span>
+						<a href="./main.do"><i class="fa fa-home"></i> Home</a> <span>BEST 상품</span>
 					</div>
 				</div>
 			</div>

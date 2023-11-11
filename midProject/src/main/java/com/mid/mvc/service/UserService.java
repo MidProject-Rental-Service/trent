@@ -3,6 +3,7 @@ package com.mid.mvc.service;
 import java.util.HashMap;
 import java.util.List;
 
+import com.mid.mvc.domain.CardVO;
 import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.ShoppingCartVO;
 import com.mid.mvc.domain.UserVO;
@@ -32,6 +33,7 @@ public interface UserService {
 	List<ShoppingCartVO> getCartList(HashMap map);
 	
 	int cartDelete(ShoppingCartVO vo);
+
 		 		
 	
 	

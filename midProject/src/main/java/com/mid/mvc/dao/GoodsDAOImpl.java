@@ -165,5 +165,12 @@ public class GoodsDAOImpl {
 		return SqlSession.selectOne("GoodsMapper.getRentalInfo", map);
 	}
 
+	// 카드 정보
+	public List<CardVO> getCardListById(String id) {
+		System.out.println("=====> getCardListById() 호출");
+		System.out.println("=====> id: " +id);
+		return SqlSession.selectList("GoodsMapper.getCardListById", id);
+	}
+
 }
 

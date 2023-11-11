@@ -138,6 +138,11 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsDAO.getRentalInfo(g_id, p_rent, s_name);
 	}
 
+	// 카드 정보
+	public List<CardVO> getCardListById(String id) {
+		return goodsDAO.getCardListById(id);
+	}
+
 
 
 }

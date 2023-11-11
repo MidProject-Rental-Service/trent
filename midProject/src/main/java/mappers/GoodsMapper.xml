@@ -161,6 +161,12 @@
 		]]>
 	</select>
 	
+	<select id="getCardListById" parameterType="String" resultType="CardVO">
+		SELECT  *  FROM CARD
+		WHERE id = #{id}
+		ORDER BY c_num;
+	</select>
+	
 	<!-- 카드 상세 보기 -->
 	<select id="getCardById" parameterType="CardVO" resultType="CardVO">
 		SELECT * FROM card

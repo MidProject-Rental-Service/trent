@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mid.mvc.dao.UserDAO;
+import com.mid.mvc.domain.CardVO;
 import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.ShoppingCartVO;
 import com.mid.mvc.domain.UserVO;
@@ -75,4 +76,5 @@ public class UserServiceImpl implements UserService {
 	public int cartDelete(ShoppingCartVO vo) {
 		return userDAOImpl.cartDelete(vo);
 	}
+
 }

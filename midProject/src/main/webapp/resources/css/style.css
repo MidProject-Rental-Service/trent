@@ -2408,6 +2408,20 @@ select#searchCondition.category-btn{
 /* 하림!!!!!! */
 
 /* 동적 테이블 스타일 지정 */
+
+.sub_content {
+    padding: 20px; /* 원하는 패딩 값으로 조절하세요 */
+    border-radius: 10px;
+    border: 1px solid #EEEEEE;
+    margin-top: 15px;
+}
+
+.sub_content img {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+
 table.sub_price_Table div#join_condition {
     white-space: pre-line;
     font-size: small;
@@ -2594,7 +2608,6 @@ table.sub_price_Table button.btn-card:hover {
 .price_detail .btn_choice_box1 .rentalPeriod:hover {border-color: #96C7ED !important; background-color: #96C7ED !important;opacity: .8;color: #fff !important}
 .price_detail .btn_choice_box1 .rentalPeriod:hover a {color: #fff !important; background-color: #96C7ED !important;}
 .price_detail .btn_choice_box1 .rentalPeriod:hover p {color: #fff !important;}
-
 
 
 /* 가격비교 탭 내용*/

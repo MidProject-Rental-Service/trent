@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mid.mvc.domain.CardVO;
 import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.ShoppingCartVO;
 import com.mid.mvc.domain.UserVO;
@@ -93,5 +94,6 @@ public class UserDAOImpl implements UserDAO {
 		int result = sqlSession.delete("UserMapper.cartDelete",vo);
 		return result;
 	}
+
 
 }

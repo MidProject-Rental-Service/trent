@@ -240,33 +240,7 @@
 															<!--  테이블 동적 추가 -->
 															
 															<!-- 제휴카드 정보를 담은 div -->
-															<div id="affiliateCardInfo">
-															    <!-- 여기에 제휴카드 정보를 표시 -->
-															    <p>제휴카드 정보</p>
-															    <ul class="card_box_lg" style="display: none;">
-																	<li><img src="../img/cards/6989c7c7-d978-446c-9a3b-b57a4a9228f2_kb.jpg"></li><hr/>
-																	<li><img src="../img/cards/4bdff3d9-6366-4eb6-aa33-feb9dcf4b68d_lotte.jpg"></li><hr/>
-																	<li><img src="../img/cards/8d266048-1cef-407c-8b42-fb29d29879f7_lotte_SE.jpg"></li><hr/>
-																	<li><img src="../img/cards/e82d0d90-d0ff-4c40-b60a-37330ee8ed04_shinhan.jpg"></li><hr/>
-																	<li><img src="../img/cards/26cc0386-6742-4799-8a52-58e065715469_hana.jpg"></li>
-																</ul>
-																<ul class="card_box_sk" style="display: none;">
-																	<li><img src="../img/cards/395d558a-758e-4697-83db-ecf59eb9ab91_kj.jpg"></li><hr/>
-																	<li><img src="../img/cards/5890805b-0a55-4b74-9019-5f4ad96dbf50_kb.jpg"></li><hr/>
-																	<li><img src="../img/cards/3ba800c1-a84b-4079-9dee-44d3dd26f7d3_lotte_SE.jpg"></li><hr/>
-																	<li><img src="../img/cards/21ea664f-f6ae-43cc-8e6f-19924c3ea2ef_lotte.jpg"></li><hr/>
-																	<li><img src="../img/cards/91cbeca7-dd79-4a9a-b551-2e06ac6dcd99_woori.jpg"></li><hr/>
-																	<li><img src="../img/cards/58de1f76-0e98-468b-a986-2bde79f9fe81_samsung.jpg"></li><hr/>
-																	<li><img src="../img/cards/ac4ad219-2a99-4fe9-9ff6-58c2ddddc2cc_hana.jpg"></li><hr/>
-																	<li><img src="../img/cards/a77af796-d6e4-415d-b7db-308c6ce7b828_hd.jpg"></li>
-																</ul>
-																<ul class="card_box_bs" style="display: none;">
-																	<li><img src="../img/cards/58ba25b6-f58e-47e1-a787-215c33fc53f6_lotte.jpg"></li><hr/>
-																	<li><img src="../img/cards/60cf3f6c-b873-4e13-ac6d-d6df08404f80_woori.jpg"></li><hr/>
-																	<li><img src="../img/cards/ebfd63e0-2384-4c44-ab85-9a5ee330a764_hana.jpg"></li>
-																</ul>
-															</div>
-															
+
 														</div>
 
 														<!-- 가격비교 탭 끝 -->
@@ -560,7 +534,7 @@
                         var formattedCardPrice = item.p_card.toLocaleString('en');
                         var formattedGift = item.p_gift.toLocaleString('en');
 
-                        tr.append($('<td>').addClass('sub_Info').html('<div class="join_condition"><div id="join_condition" name="join_condition" rows="2" cols="30" readonly>' + item.p_text + '</div></div><div class="btn_choice_box_con"><button type="button" class="btn-card" onclick="openAffiliateCard()">제휴카드보기&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/></svg></button></div>'));
+                        tr.append($('<td>').addClass('sub_Info').html('<div class="join_condition"><div id="join_condition" name="join_condition" rows="2" cols="30" readonly>' + item.p_text + '</div></div><div class="btn_choice_box_con"><button type="button" class="btn-card" data-id="'+ item.id +'">제휴카드보기&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/></svg></button></div>'));
 
                         tr.append($('<td>').addClass('sub_Info2').html('<div class="sub_info_box_rental"><table summary="요약" class="info_box"><tbody><tr style="padding: 0px; border: none; margin: 0;"><td class="sub_info_box1">월렌탈요금<br/><a style="color: #1478FF;">월<span style="font-weight: bold;" class="formatted-number">' + formattedPrice + '</span>원</a></td><td class="sub_info_box2">카드할인가<br/><a style="color: #B93232;">월<span style="font-weight: bold;" class="formatted-number">'+ formattedCardPrice +'</span>원</a></td><td class="sub_info_box3">사은품 혜택<br/><a style="color: #000069;"><span style="font-weight: bold;" class="formatted-number">'+ formattedGift +'</span>P</a></td></tr></tbody></table></div><div class="btn_choice_box2"></div>'));
 
@@ -631,29 +605,68 @@
      	        window.location.href = '/midProject/user/login.do';
      	    }
      	}
+		
+     	$(document).on('click', '.btn-card', function () {
+     	    // 클릭된 버튼의 data-id 값을 가져옴
+     	    var id = $(this).data('id');
 
-     	// 제휴카드 보기 버튼 클릭 시
-     	function openAffiliateCard() {
-     	    // 여기에 제휴카드 보기 로직 추가
-     	    alert("제휴카드를 확인합니다.");
-     	}
-     	
-     	
-     	// 예시: 공급사 이름에 따라 해당하는 ul을 보여주는 함수
-     	function showAffiliateCardList(s_name) {
-     	    // 모든 ul을 숨김
-     	    $('#affiliateCardInfo ul').hide();
+     	    // 이미지를 동적으로 추가할 위치인 tbody에 접근
+     	    var tbody = $(this).closest('tbody');
 
-     	    // s_name에 따라 해당하는 ul을 보여줌
-     	    $('#affiliateCardInfo ul.card_box_' + s_name).show();
-     	}
+     	    // 이미지를 동적으로 추가하는 부분
+     	    var existingTr = tbody.find('.sub'); // 기존의 tr 찾기
+     	    var newTr;
 
-     	// 예시: 클릭 이벤트에 함수 연결
-     	$('.btn-card').on('click', function() {
-     	    // 클릭한 공급사의 이름을 가져와서 해당하는 ul을 보여줌
-     	    var s_name = $(this).data('s_name');
-     	    showAffiliateCardList(s_name);
+     	    if (existingTr.length > 0) {
+     	        // 기존의 tr이 있다면 그것을 사용
+     	        newTr = existingTr;
+     	    } else {
+     	        // 기존의 tr이 없다면 새로 생성
+     	        newTr = $('<tr>').addClass('sub');
+     	        var td = $('<td>').attr('colspan', '3');
+     	        newTr.append(td);
+     	    }
+
+     	    var subPriceViewContent = $('<div>').addClass('sub_content').slideUp(); // 숨겨진 상태로 생성
+
+     	    // 기존의 이미지가 있다면 숨기고 삭제
+     	    existingTr.find('.sub_content').slideUp(function () {
+     	        existingTr.remove(); // 숨기고 나서 삭제
+     	    });
+
+     	    // ajax 요청
+     	    $.ajax({
+     	        type: "GET",
+     	        url: "/midProject/user/getCardListBySupplier.do",
+     	        data: { id: id },
+     	        dataType: "json",
+     	        success: function (data) {
+     	            console.log("Received data:", data);
+
+     	            // 받아온 데이터(data)를 이용하여 이미지 동적으로 추가
+     	            for (var i = 0; i < data.length; i++) {
+     	                var cardImgPath = "../resources/img/cards/" + data[i].c_rimg1;
+     	                var imgElement = $('<img>').attr('src', cardImgPath);
+     	                subPriceViewContent.append(imgElement);
+     	            }
+
+     	            // 새로운 tr에 sub_price_view_content 추가
+     	            newTr.find('td').html(subPriceViewContent);
+
+     	            // 새로운 tr을 tbody에 추가
+     	            tbody.append(newTr);
+
+     	            // 이미지를 보여줌
+     	            subPriceViewContent.slideDown();
+     	        },
+     	        error: function (error) {
+     	            console.error("Error fetching data:", error);
+     	        }
+     	    });
      	});
+
+
+
 
 </script>
 

@@ -62,6 +62,8 @@ public interface GoodsService {
 	// 렌탈정보
 	PriceVO getRentalInfo(String g_id, int p_rent, String s_name);
 
+	List<CardVO> getCardListById(String id);
+
 
 
 }

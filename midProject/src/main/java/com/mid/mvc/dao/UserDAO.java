@@ -3,6 +3,7 @@ package com.mid.mvc.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.mid.mvc.domain.CardVO;
 import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.ShoppingCartVO;
 import com.mid.mvc.domain.UserVO;
@@ -32,4 +33,5 @@ public interface UserDAO {
 	public List<ShoppingCartVO> getCartList(HashMap map);
 	  
 	int cartDelete(ShoppingCartVO vo);
+
 }

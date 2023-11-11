@@ -97,5 +97,6 @@
 		SET pwd ='${pwd}', name ='${name}', phone ='${phone}', addr='${addr}', email='${email}'
 		WHERE id = #{id}
 	</update>
+
 	
 </mapper>
