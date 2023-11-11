@@ -231,6 +231,8 @@
 													    </c:forEach>
 													</div> <!-- 약정선택 탭 끝 -->
 
+
+
 	                                                <!-- 가격비교 탭 시작 -->
 														<h5>
 															가격비교<span>렌탈 공급사별 가입조건, 결제방법, 제휴카드 혜택 등 비교 후 선택하세요</span>
@@ -574,7 +576,7 @@
      		 if (isLoggedIn) {
      			alert("장바구니에 추가되었습니다.");
      			console.log('장바구니에 추가: g_id=' + g_id + ', p_rent=' + p_rent + ', s_name=' + s_name);
-          	    window.location.href = '/midProject/user/shopping_cart.do';
+          	    window.location.href = '/midProject/user/shopping_cart.do?g_id='+g_id + '&p_rent=' + p_rent + '&s_name=' + s_name;
       	    } else {
       	        // 로그인이 안되어 있으면 경고창 표시 후 로그인 페이지로 이동
       	        alert("로그인이 필요한 서비스입니다.");

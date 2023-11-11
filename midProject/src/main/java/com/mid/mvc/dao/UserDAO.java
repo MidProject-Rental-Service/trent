@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.ShoppingCartVO;
+import com.mid.mvc.domain.UserRentalVO;
 import com.mid.mvc.domain.UserVO;
 
 public interface UserDAO {
@@ -32,4 +33,8 @@ public interface UserDAO {
 	public List<ShoppingCartVO> getCartList(HashMap map);
 	  
 	int cartDelete(ShoppingCartVO vo);
+
+	public int applicationRental(UserRentalVO vo);
+
+	public void insertCart(HashMap map);
 }

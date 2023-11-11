@@ -170,17 +170,21 @@
 	height: 3%;
 	width: 21%;
 	color: #fff;
-	background-color: #2b36a0;
-	border: #2b36a0;; &: hover { background : #2b36a0;
-	color: #fff;
-}
+	background-color: #001F5F;
+	border: #001F5F; 
+ &:hover {
+    background: #96C7ED;
+    color: #fff;
+  }
 
 }
 .correct-btn {
 	padding-left:10px;
 	color: #fff;
-	background-color: #2b36a0;
-	border: #2b36a0;; &: hover { background : #2b36a0;
-	color: #fff;
-}
+	background-color: #001F5F;
+	border: #001F5F; 
+	 &:hover {
+    background: #96C7ED;
+    color: #fff;
+  }
 }

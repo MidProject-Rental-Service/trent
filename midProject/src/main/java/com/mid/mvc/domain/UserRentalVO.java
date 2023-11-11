@@ -20,6 +20,8 @@ public class UserRentalVO {
 	private int b_price;				// 렌탈비용
 	private int b_card;				// 카드할인가
 	private int b_gift;					// 사은품
+	private String b_requirements; // 요청사항
+	private String addr;			// 렌탈신청주소
 	
 	private String name;		// 회원명
 	private String s_name;		// 공급사명

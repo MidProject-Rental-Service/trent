@@ -1,4 +1,4 @@
-.review-write-spad {
+/* .review-write-spad { */
   padding-top: 10px;
   padding-bottom: 50px;
 }
@@ -112,10 +112,10 @@
   height: 40px;
   width: 100px;
   padding: 5px;
-  background-color: #e7ab3c;
-  border: #e7ab3c;
+  background-color: #001F5F;
+  border: #001F5F;
   &:hover {
-    background: #e7ab3c;
+    background: #96C7ED;
     color: #fff;
   }
 }

@@ -27,21 +27,9 @@
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css" />
     <link rel="stylesheet" href="../css/style.css" type="text/css" />
     
-      <!-- Js Plugins -->
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/jquery.countdown.min.js"></script>
-    <script src="../js/jquery.nice-select.min.js"></script>
-    <script src="../js/jquery.zoom.min.js"></script>
-    <script src="../js/jquery.dd.min.js"></script>
-    <script src="../js/jquery.slicknav.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/main.js"></script>
-    <script type="text/javascript">
-    
-    </script>
-    
+
+
+
   </head>
 
 <body>
@@ -99,14 +87,14 @@
 									<c:forEach items="${cartList }" var="cart">				
 									<tr id="product_${cart.sh_id}">
 										<td class="cart-pic"><img	class="cart-img" src="../img/products/${cart.g_rimg1}" alt="" /></td>
-										<td class="cart-title">	<h5>${cart.g_name}</h5></td>
-										<td class="p-price">${cart.p_rent}</td>
+										<td class="cart-title" style="text-align:center;">	<h5>${cart.g_name}</h5><br/><span style="color: #848282;">${cart.s_name }</span></td>
+										<td class="p-price">${cart.p_rent}개월</td>
 										<td class="total-price">
-									    <script>
+									    월 <script>
 									        var price = ${cart.p_price};
 									        var formattedPrice = new Intl.NumberFormat('ko-KR').format(price);
 									        document.write(formattedPrice);
-									    </script>
+									    </script>원
 									</td>
 										<td class="close-td"><i class="ti-close" onclick="cartDelete(${cart.sh_id},${cart.p_price})"></i></td>
 									</tr>
@@ -127,17 +115,17 @@
 									<ul>
 										<li class="subtotal">수량 <span>${totalCnt}</span></li>
 										<li class="cart-total">월 청구요금 
-									    <span>
+									    <span>월
 									        <script>
 									            var totalPrice = ${totalPrice};
 									            var formattedTotalPrice = new Intl.NumberFormat('ko-KR').format(totalPrice);
 									            document.write(formattedTotalPrice);
-									        </script>
+									        </script>원
 									    </span>
 									</li>
 
 									</ul>
-									<a href="rental.do" class="proceed-btn">렌탈신청하기</a>
+									<a href="cart-rental.do" class="proceed-btn">렌탈신청하기</a>
 								</div>
 							</div>
 						</div>
@@ -151,7 +139,7 @@
 
 	<jsp:include page="./footer.jsp" />
 
-	<!-- Js Plugins -->
+    	<!-- Js Plugins -->
 	<script src="../js/jquery-3.3.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/jquery-ui.min.js"></script>
@@ -163,6 +151,7 @@
 	<script src="../js/owl.carousel.min.js"></script>
 	<script src="../js/main.js"></script>
 	<script src="../js/shoppingCart.js"></script>
+
 
 
 
