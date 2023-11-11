@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mid.mvc.domain.CardVO;
 import com.mid.mvc.domain.GoodsVO;
@@ -196,6 +197,26 @@ public class SupController {
 		  SupplierBoardVO result = supplierBoardService.getSupplierBoard(vo);
 		  m.addAttribute("supplierBoard", result);
 	  }	 	
- 	
+ 
+
+		/*
+		 * @RequestMapping("/rentalmanging.do") public String
+		 * rentalmanging(@RequestParam List<String> b_id, @RequestParam List<Integer>
+		 * b_stat) { System.out.println("vo.id입니다 :" + b_id);
+		 * System.out.println("vo.stat입니다 :" + b_stat);
+		 * 
+		 * 
+		 * return "redirect:rentalmange.do"; }
+		 */
 	
+	  @RequestMapping("/rentalmanging.do")
+	  public String rentalmanging(@RequestParam List<String> b_id, @RequestParam List<Integer> b_stat, @RequestParam List<Integer> b_rent) {
+		  	
+	        for (int i = 0; i < b_id.size(); i++) {
+	        	userBoardService.updateStat(b_stat.get(i), b_id.get(i), b_rent.get(i));
+	        }
+		  
+		  
+		  return "redirect:rentalmange.do";
+	  }	 	  
 }

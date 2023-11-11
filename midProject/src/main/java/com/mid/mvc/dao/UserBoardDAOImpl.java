@@ -87,5 +87,18 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 		System.out.println("===> sqlSession getUserRecentList() 호출");
 		return sqlSession.selectList("UserBoardMapper.getUserRecentList",map);
 	}
+
+
+	@Override
+	public void updateStat(int b_stat, String b_id, int b_rent) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("b_stat", b_stat);
+		map.put("b_id", b_id);
+		map.put("b_rent", b_rent);
+		System.out.println("map호출 : " + map);
+		sqlSession.update("UserBoardMapper.updateStat", map);
+		
+		
+	}
 	
 }

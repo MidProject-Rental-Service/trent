@@ -24,7 +24,14 @@ jqueryScript.onload = function() {
     });
     }
 
-
+    document.getElementById("mySelect").addEventListener("change", function() {
+        var selectedValue = this.value;
+        console.log("console.log : selectedValue " + selectedValue);
+        document.getElementById("selectedOption").value = selectedValue;
+    });
+    
+    
+    
 
 	// 답변하기 버튼 클릭 이벤트 처리
 	$('#answer').click(function() {

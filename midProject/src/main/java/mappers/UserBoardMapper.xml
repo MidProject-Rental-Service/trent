@@ -124,7 +124,36 @@
 		INNER JOIN `user` u
 		ON
 		buy.id = u.id 
-		WHERE BUY.S_NAME  = #{name};
+		WHERE BUY.S_NAME  = #{name}
+		AND BUY.b_stat != 0
+		ORDER BY BUY.b_id DESC;
     </select>
+
+	<update id="updateStat" parameterType="hashmap">
+	<![CDATA[
+	    UPDATE buy
+	    SET
+	        b_stat =
+	            CASE
+	                WHEN #{b_stat, jdbcType=INTEGER} >= 1 AND #{b_stat, jdbcType=INTEGER} <= 4 THEN #{b_stat, jdbcType=INTEGER}
+	                WHEN #{b_stat, jdbcType=INTEGER} = 5 AND B_STARTDATE IS NULL THEN 5
+	                ELSE b_stat
+	            END,
+	        B_STARTDATE =
+	            CASE
+	                WHEN #{b_stat, jdbcType=INTEGER} = 5 AND B_STARTDATE IS NULL THEN NOW()
+	                ELSE B_STARTDATE
+	            END,
+	        B_ENDDATE =
+	            CASE
+	                WHEN #{b_stat, jdbcType=INTEGER} = 5 AND B_ENDDATE IS NULL  THEN DATE_ADD(NOW(), INTERVAL #{b_rent, jdbcType=INTEGER} MONTH)
+	                ELSE B_ENDDATE
+	            END
+	    WHERE B_ID = #{b_id, jdbcType=VARCHAR};
+    ]]>
+	</update>
+
+	
+	
 
 </mapper>

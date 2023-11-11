@@ -64,13 +64,13 @@
 			</div>
 
 			<section id="container">
-				<form role="form" action="rentalmange.do" method="get">
+				<form role="form" action="rentalmanging.do" method="post">
 
 					<input type="hidden">
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>Ck</th>
+								<th>No</th>
 								<th>렌탈 신청일</th>
 								<th>제품 코드</th>
 								<th>제품명</th>
@@ -86,6 +86,7 @@
 						<c:forEach items="${rentList}" var="list">
 							<tr>
 								<td><c:out value="${list.b_id}" /></td>
+								<input type="hidden" name="b_id" value="${list.b_id}" />
 								<c:set var="formattedDate" value="${list.b_signdate}" />
 								<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
 									var="b_signdate" />
@@ -95,22 +96,26 @@
 								<td><c:out value="${list.name}" /></td>
 								<td><c:out value="${list.phone}" /></td>
 								<td><c:out value="${list.b_rent}" /></td>
-								<td><select name="dropdown">
-										<option value="0"
-											<c:if test="${list.b_stat eq '0'}">selected</c:if>>취소</option>
-										<option value="1"
-											<c:if test="${list.b_stat eq '1'}">selected</c:if>>렌탈신청</option>
-										<option value="2"
-											<c:if test="${list.b_stat eq '2'}">selected</c:if>>해피콜진행</option>
-										<option value="3"
-											<c:if test="${list.b_stat eq '3'}">selected</c:if>>주문확정</option>
-										<option value="4"
-											<c:if test="${list.b_stat eq '4'}">selected</c:if>>배송/설치중</option>
-										<option value="5"
-											<c:if test="${list.b_stat eq '5'}">selected</c:if>>설치완료</option>
-								</select></td>
+								<input type="hidden" name="b_rent" value="${list.b_rent}" />
+
+								<td>
+								    
+								            <select name="b_stat">
+								                <option value="0" <c:if test="${list.b_stat eq '0'}">selected</c:if>>취소</option>
+								                <option value="1" <c:if test="${list.b_stat eq '1'}">selected</c:if>>렌탈신청</option>
+								                <option value="2" <c:if test="${list.b_stat eq '2'}">selected</c:if>>해피콜진행</option>
+								                <option value="3" <c:if test="${list.b_stat eq '3'}">selected</c:if>>주문확정</option>
+								                <option value="4" <c:if test="${list.b_stat eq '4'}">selected</c:if>>배송/설치중</option>
+								                <option value="5" <c:if test="${list.b_stat eq '5'}">selected</c:if>>설치완료</option>
+								                <option value="6" <c:if test="${list.b_stat eq '6'}" >selected</c:if>>구매확정</option>
+								            </select>
+
+								</td>
 
 
+
+								
+								
 								<c:set var="formattedDate" value="${list.b_startdate}" />
 								<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
 									var="b_startdate" />
@@ -126,7 +131,7 @@
 					</table>
 					<div class="button-container">
 						<input class="btn btn-primary" type="submit" value="등록하기"
-							id="rentalupdate" />
+							id="rentalmanging.do" />
 					</div>
 
 				</form>
@@ -173,6 +178,12 @@
 			</section>
 		</div>
 	</div>
+
+
+
+
+
+
 	<script src="../src/assets/libs/jquery/dist/jquery.max.js"></script>
 	<script src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script

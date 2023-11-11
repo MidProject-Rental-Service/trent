@@ -29,4 +29,6 @@ public interface UserBoardDAO {
 	public List<UserRentalVO> rentalList(HashMap map);
 
 	public List<UserRentalVO> getUserRecentList(HashMap map);
+	
+	public void updateStat(int b_stat, String b_id, int b_rent);
 }

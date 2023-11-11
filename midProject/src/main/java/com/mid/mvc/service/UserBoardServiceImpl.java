@@ -69,4 +69,12 @@ public class UserBoardServiceImpl implements UserBoardService{
 		return userboardDAO.getUserRecentList(map);
 	}
 
+	@Override
+	public void updateStat(int b_stat, String b_id, int b_rent) {
+		System.out.println("b_id : " +b_id);
+		System.out.println("b_stat : " +b_stat);
+		userboardDAO.updateStat(b_stat,b_id,b_rent);
+		
+	}
+
 }

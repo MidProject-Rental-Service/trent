@@ -37,6 +37,8 @@ public interface UserBoardService {
 	
 	//공급사 페이지에서 렌탈리스트 
 	List<UserRentalVO> rentalList(HashMap map);
+	
+	public void updateStat( int b_stat, String b_id, int b_rent);
 
 	
 }
