@@ -112,10 +112,10 @@
   height: 40px;
   width: 100px;
   padding: 5px;
-  background-color: #e7ab3c;
-  border: #e7ab3c;
+  background-color: #001f5f;
+  border: #001f5f;
   &:hover {
-    background: #e7ab3c;
+    background: #001f5f;
     color: #fff;
   }
 }
@@ -124,7 +124,7 @@ input[type="file"]::file-selector-button {
   width: 100px;
   height: 40px;
   color: #fff;
-  background: #e7ab3c;
+  background: #001f5f;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 5px;
   cursor: pointer;

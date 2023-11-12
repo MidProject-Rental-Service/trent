@@ -172,8 +172,8 @@
 										<option value="name">공급사명</option>
 										<option value="b_rent">약정기간</option>
 										<option value=b_signdate>신청일자</option>
-									</select> <input type="text" name="searchKeyword"> <input
-										type="submit" class="btn btn-warning search-btn " value="검색">
+									</select> <input type="text" name="searchKeyword">
+									<input	type="submit" class="btn btn-warning search-btn " value="검색">
 								</div>
 							</div>
 						</form>
@@ -181,60 +181,59 @@
 
 
 					<div class="application-list">
-						<form class="application-form" action="buyConfirm.do" >
-							<table class="application-list">
-								<tr>
-									<th>제품사진</th>
-									<th>제품명/공급사</th>
-									<th>약정기간</th>
-									<th>신청일자</th>
-									<th>신청상태</th>
-								</tr>
-								<!-- 아래로 추가되는 부분-->
-								<c:forEach items="${userRentalList }" var="userRental">
-								<input type="hidden" name="b_id" value="${userRental.b_id}">
-								<input type="hidden" name="g_id" value="${userRental.g_id}">
-								<input type="hidden" name="id" value="${userRental.id}">
-									<tr>
-										<td><img src="../img/products/${userRental.g_rimg2}"
-											alt=""></td>
-										<td>${userRental.g_name}<br/>${userRental.p_name}</td>
-										<td>${userRental.b_rent }</td>
-										<c:set var="formattedDate" value="${userRental.b_signdate}" />
-										<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
-											var="formattedDateString" />
-										<td>${formattedDateString}</td>
-										<c:choose>
-											<c:when test="${userRental.b_stat == 0}">
-												<td>취소</td>
-											</c:when>
-											<c:when test="${userRental.b_stat == 1}">
-												<td>렌탈신청</td>
-											</c:when>
-											<c:when test="${userRental.b_stat == 2}">
-												<td>해피콜진행</td>
-											</c:when>
-												<c:when test="${userRental.b_stat == 3}">
-												<td>주문확정</td>
-											</c:when>
-												<c:when test="${userRental.b_stat == 4}">
-												<td>배송/설치중</td>
-											</c:when>
-												<c:when test="${userRental.b_stat == 5}">
-												<td>설치완료
-												<input type="submit" name="confirm-btn" class="btn btn-warning correct-btn"
-														value="구매확정" 	>
-												</td>
-											</c:when>
-											<c:when test="${userRental.b_stat == 6}">
-												<td>구매확정완료</td>
-											</c:when>
-										</c:choose>
-									</tr>
-								</c:forEach> 
-							</table>
-						</form>
+					    <table class="application-list">
+					        <tr>
+					            <th>제품사진</th>
+					            <th>제품명/공급사</th>
+					            <th>약정기간</th>
+					            <th>신청일자</th>
+					            <th>신청상태</th>
+					        </tr>
+					        <!-- 아래로 추가되는 부분-->
+					        <c:forEach items="${userRentalList}" var="userRental">
+					            <form class="application-form" action="buyConfirm.do" >
+					                <input type="hidden" name="b_id" value="${userRental.b_id}">
+					                <input type="hidden" name="g_id" value="${userRental.g_id}">
+					                <input type="hidden" name="id" value="${userRental.id}">
+					                <tr>
+					                    <td><img src="../img/products/${userRental.g_rimg2}" alt=""></td>
+					                    <td>${userRental.g_name}<br/>${userRental.p_name}</td>
+					                    <td>${userRental.b_rent }</td>
+					                    <c:set var="formattedDate" value="${userRental.b_signdate}" />
+					                    <fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}" var="formattedDateString" />
+					                    <td>${formattedDateString}</td>
+					                    <td>
+					                        <c:choose>
+					                            <c:when test="${userRental.b_stat == 0}">
+					                                취소
+					                            </c:when>
+					                            <c:when test="${userRental.b_stat == 1}">
+					                                렌탈신청
+					                            </c:when>
+					                            <c:when test="${userRental.b_stat == 2}">
+					                                해피콜진행
+					                            </c:when>
+					                            <c:when test="${userRental.b_stat == 3}">
+					                                주문확정
+					                            </c:when>
+					                            <c:when test="${userRental.b_stat == 4}">
+					                                배송/설치중
+					                            </c:when>
+					                            <c:when test="${userRental.b_stat == 5}">
+					                                설치완료
+					                                <input type="submit" name="confirm-btn" class="btn btn-warning correct-btn" value="구매확정">
+					                            </c:when>
+					                            <c:when test="${userRental.b_stat == 6}">
+					                                구매확정완료
+					                            </c:when>
+					                        </c:choose>
+					                    </td>
+					                </tr>
+					            </form>
+					        </c:forEach>
+					    </table>
 					</div>
+
 				</div>
 			</div>
 		</div>

@@ -135,10 +135,10 @@
   height: 3%;
   width: 21%;
   color: #fff;
-  background-color: #e7ab3c;
-  border: #e7ab3c;
+  background-color: #001f5f;
+  border: #001f5f;
   &:hover {
-    background: #e7ab3c;
+    background: #001f5f;
     color: #fff;
   }
 }
@@ -147,10 +147,10 @@
   width: 100px;
   padding: 5px;
   color: #fff;
-  background-color: #e7ab3c;
-  border: #e7ab3c;
+  background-color: #001f5f;
+  border: #001f5f;
   &:hover {
-    background: #e7ab3c;
+    background: #001f5f;
     color: #fff;
   }
 }
