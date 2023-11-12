@@ -74,7 +74,7 @@
 						<li><a href="./shop.do">전체렌탈상품</a></li>
 						<li><a href="./shop_best.do">BEST 상품</a>
 						<li><a href="./discountCard.do">할인카드</a></li>
-						<li><a href="#">Pages</a>
+						<li  class="active"><a href="#">Pages</a>
 							<ul class="dropdown">
 								<c:if test="<%= loggedInUser != null %>">
 								    <li><a href="./mypage.do">마이페이지</a></li>
