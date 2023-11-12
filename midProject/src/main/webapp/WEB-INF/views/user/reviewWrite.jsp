@@ -50,7 +50,17 @@
 	function saveReview() {
 		window.location.href = 'reviewManagement.do';
 	}
-
+	
+	function validate() {
+	    var selectedValue = document.getElementById("r_point").value;
+	    if (selectedValue === "") {
+	        alert("평점을 선택해주세요.");
+	        return false; // 폼이 제출되지 않도록 함
+	    }
+	    return true; // 폼이 정상적으로 제출되도록 함
+	}
+	
+	
 	</script>
 	
 </head>
@@ -158,7 +168,7 @@
 						<h4>리뷰작성</h4>
 					</div>
 					<div class="review-write">
-						<form class="review-write-form" action="saveUserReview.do" method="post" enctype="multipart/form-data" >
+						<form class="review-write-form" action="saveUserReview.do" method="post" enctype="multipart/form-data" onsubmit="return validate()" >
 						<input name="r_id" type="hidden" value="${userReview.r_id}" />
 							<div id="form-group" class="form-group row">
 								<div class="col-md-3">

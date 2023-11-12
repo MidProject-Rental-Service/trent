@@ -240,9 +240,11 @@
                   </tr>
                   <c:forEach items="${cartList }" var="cart">			
                   <tr>
-                    <td><img src="<c:url value='../resources/img/products/${cart.g_rimg1}' />" style="width: 100px;"></td>
-                    <td>${cart.g_id}<br/>${cart.s_name}<br/>${cart.p_rent}개월</td>
-                    <td><script>
+                    <td  class="productImg"><img src="<c:url value='../resources/img/products/${cart.g_rimg1}' />" style="width: 100px;"></td>
+                    <td class="rentalInfo"><span>모델명 : ${cart.g_id}</span><br/>
+                    		<span>공급사명 : ${cart.s_name}</span><br/>
+                    		<span>약정 기간 : ${cart.p_rent}개월</span></td>
+                    <td class="rentalFee"><script>
 									        var price = ${cart.p_price};
 									        var formattedPrice = new Intl.NumberFormat('ko-KR').format(price);
 									        document.write(formattedPrice);

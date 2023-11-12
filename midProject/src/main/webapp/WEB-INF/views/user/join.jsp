@@ -239,7 +239,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
                         <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>Join</span>
+                        <span>회원가입</span>
                     </div>
                 </div>
             </div>

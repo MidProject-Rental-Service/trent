@@ -45,7 +45,16 @@
 	function backToList() {
 		window.location.href = 'inquiryList.do';
 	}
-
+	
+	function validate() {
+	    var selectedValue = document.getElementById("heder-list").value;
+	    if (selectedValue === "") {
+	        alert("말머리를 선택해주세요.");
+	        return false; // 폼이 제출되지 않도록 함
+	    }
+	    return true; // 폼이 정상적으로 제출되도록 함
+	}
+	
 </script>
 
 </head>
@@ -151,7 +160,7 @@
 					</div>
 					<div class="inquiry-write">
 						<form class="inquiry-write-form" action="saveUserBoard.do"
-							method="post">
+							method="post" onsubmit="return validate()">
 							<div id="form-group" class="form-group row">
 								<div class="col-md-6">
 									<div class="form-group">
