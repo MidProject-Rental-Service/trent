@@ -97,8 +97,8 @@
   width: 100px;
   padding: 5px;
   color: #fff;
-  background-color: #001F5F;
-  border: #001F5F;
+  background-color: #001f5f;
+  border: #001f5f;
   &:hover {
     background: #001f5f;
     color: #fff;
@@ -109,8 +109,8 @@
   width: 100px;
   padding: 5px;
   color: #fff;
-  background-color: #001F5F;
-  border: #001F5F;
+  background-color: #001f5f;
+  border: #001f5f;
   &:hover {
     background: #001f5f;
     color: #fff;
@@ -120,9 +120,10 @@
 .delete-btn {
   height: 40px;
   width: 100px;
+
   color: #fff;
-  background-color: #001F5F;
-  border: #001F5F;
+  background-color: #001f5f;
+  border: #001f5f;
   &:hover {
     background: #001f5f;
     color: #fff;

@@ -205,7 +205,7 @@ width:90%
 					                <input type="hidden" name="id" value="${userRental.id}">
 					                <tr>
 					                    <td><img src="../img/products/${userRental.g_rimg2}" alt=""></td>
-					                    <td>${userRental.g_name}<br/>${userRental.p_name}</td>
+					                    <td>${userRental.g_name}<br/>${userRental.s_name}</td>
 					                    <td>${userRental.b_rent }</td>
 					                    <c:set var="formattedDate" value="${userRental.b_signdate}" />
 					                    <fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}" var="formattedDateString" />

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .review-write-spad {
   padding-top: 10px;
   padding-bottom: 50px;
@@ -82,7 +83,7 @@
   margin-bottom: 20px;
 }
 
-#answer-content[readonly] {
+#answer-content[readonly],#content[readonly] {
   background-color: #fff;
 }
 
