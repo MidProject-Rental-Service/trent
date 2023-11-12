@@ -38,6 +38,53 @@
 		ORDER BY G.g_id;
 	</select>
 	
+	<!-- BEST 제품 목록 띄우기 -->
+	<select id="getBest3List" resultType="GoodsVO">
+		SELECT G.g_id,
+       G.g_name,
+       G.g_rimg1,
+       MIN(P.P_PRICE) AS min_price,
+       COUNT(B.g_id) AS order_count
+		FROM goods G
+		LEFT JOIN buy B ON G.g_id = B.g_id
+		LEFT JOIN CATEGORY C ON G.C_ID = C.C_ID
+		LEFT JOIN MAKER M ON G.M_ID = M.M_ID
+		LEFT JOIN price P ON G.g_id = P.g_id
+		GROUP BY G.g_id, G.g_name, G.g_rimg1
+		ORDER BY order_count DESC
+		LIMIT 3;
+	</select>
+	
+	<!-- BEST 제품 목록 띄우기 -->
+	<select id="getBestList" resultType="GoodsVO">
+		SELECT G.g_id,
+       G.g_name,
+       G.g_rimg1,
+       MIN(P.P_PRICE) AS min_price,
+       COUNT(B.g_id) AS order_count
+		FROM goods G
+		LEFT JOIN buy B ON G.g_id = B.g_id
+		LEFT JOIN CATEGORY C ON G.C_ID = C.C_ID
+		LEFT JOIN MAKER M ON G.M_ID = M.M_ID
+		LEFT JOIN price P ON G.g_id = P.g_id
+		WHERE G.g_id NOT IN (
+		    SELECT subquery.g_id
+		    FROM (
+		        SELECT G.g_id
+		        FROM goods G
+		        LEFT JOIN buy B ON G.g_id = B.g_id
+		        LEFT JOIN CATEGORY C ON G.C_ID = C.C_ID
+		        LEFT JOIN MAKER M ON G.M_ID = M.M_ID
+		        LEFT JOIN price P ON G.g_id = P.g_id
+		        GROUP BY G.g_id
+		        ORDER BY COUNT(B.g_id) DESC
+		        LIMIT 3
+		    ) subquery
+		)
+		GROUP BY G.g_id, G.g_name, G.g_rimg1
+		ORDER BY order_count DESC;
+	</select>
+	
 
 	<!-- 제품 상세 보기 -->
 	<select id="getGoodsById" parameterType="GoodsVO"

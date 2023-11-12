@@ -28,6 +28,16 @@ public class GoodsDAOImpl {
 		return SqlSession.selectList("GoodsMapper.getGoodsList", map);
 	}
 	
+	// Best 제품 리스트
+		public List<GoodsVO> getBest3List(GoodsVO vo) {
+			return SqlSession.selectList("GoodsMapper.getBest3List", vo);
+		}
+	
+	// Best 제품 리스트
+	public List<GoodsVO> getBestList(GoodsVO vo) {
+		return SqlSession.selectList("GoodsMapper.getBestList", vo);
+	}
+	
 	// shop에서 보여지는 가격 정보 리스트
 	public List<GoodsVO> getMinPriceList(GoodsVO vo) {
 		return SqlSession.selectList("GoodsMapper.getMinPriceList", vo);

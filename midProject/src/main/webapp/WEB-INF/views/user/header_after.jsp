@@ -114,35 +114,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="nav-item">
-			<div class="container">
-				<div class="nav-depart">
-					<div class="depart-btn">
-						<i class="ti-menu"></i> <span>All departments</span>
-						<ul class="depart-hover">
-							<li class="active"><a href="./shop_search.do?searchCondition=total&searchKeyword=공기청정기">공기청정기</a></li>
-							<li><a href="./shop_search.do?searchCondition=total&searchKeyword=가습기">가습기</a></li>
-							<li><a href="./shop_search.do?searchCondition=total&searchKeyword=제습기">제습기</a></li>
-						</ul>
-					</div>
-				</div>
-				<nav class="nav-menu mobile-menu">
-					<ul>
-						<li class="active"><a href="./main.do">Home</a></li>
-						<li><a href="./shop.do">전체렌탈상품</a></li>
-						<li><a href="./shop_best.do">BEST 상품</a>
-						<li><a href="./discountCard.do">할인카드</a></li>
-						<li><a href="#">Pages</a>
-							<ul class="dropdown">
-								<li><a href="./mypage.do">마이페이지</a></li>
-								<li><a href="./shopping_cart.do">장바구니</a></li>
-								<li><a href="./rental.do">렌탈신청</a></li>
-							</ul></li>
-					</ul>
-				</nav>
-				<div id="mobile-menu-wrap"></div>
-			</div>
-		</div>
 	</header>
 	<!-- Header End -->
 </body>

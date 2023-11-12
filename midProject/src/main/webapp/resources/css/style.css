@@ -4199,6 +4199,32 @@ img.cart-img {
 }
 
 /*---------------------
+  TOP Scroll Section
+-----------------------*/
+
+#scrollTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    cursor: pointer;
+    background-color: #001f5f;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+  }
+
+  #scrollTopBtn i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 50%;
+  }
+
+/*---------------------
   Faq Section
 -----------------------*/
 

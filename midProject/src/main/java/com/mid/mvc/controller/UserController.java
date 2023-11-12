@@ -266,9 +266,11 @@ public class UserController {
 	//BEST 상품 전체 검색
     @RequestMapping("/shop_best.do")
 	public void shopBest(GoodsVO vo, Model m) {
-    	List<GoodsVO> result = goodsServiceImpl.getMinPriceList(vo);
-		int cnt = result.size();
-		m.addAttribute("goodsList", result);
+    	List<GoodsVO> result = goodsServiceImpl.getBest3List(vo);
+    	List<GoodsVO> result2 = goodsServiceImpl.getBestList(vo);
+		int cnt = result.size()+result2.size();
+		m.addAttribute("bestList", result);
+		m.addAttribute("goodsList", result2);
 		m.addAttribute("cnt", cnt);
 	}
 
