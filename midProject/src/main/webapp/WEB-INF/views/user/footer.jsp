@@ -1,5 +1,11 @@
+<%@page import="com.mid.mvc.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+	<%
+		UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+	%>
 
     <!-- Footer Section Begin -->
     <footer class="footer-section">
@@ -36,9 +42,14 @@
                     <div class="footer-widget">
                         <h5>Site Map</h5>
                         <ul>
-                            <li><a href="./mypage.do">마이페이지</a></li>
-                            <li><a href="./shopping_cart.do">장바구니</a></li>
-                            <li><a href="./shop.do">전체상품보기</a></li>
+                            	<c:if test="<%= loggedInUser != null %>">
+								    <li><a href="./mypage.do">마이페이지</a></li>
+									<li><a href="./shopping_cart.do">장바구니</a></li>
+									<li><a href="./shop.do">전체상품보기</a></li>
+								</c:if>
+                            	<c:if test="<%= loggedInUser == null %>">
+                            		<li><a href="./shop.do">전체상품보기</a></li>
+                            	</c:if>
                         </ul>
                     </div>
                 </div>
@@ -47,8 +58,6 @@
                         <a href="./main.do"><img src="../img/footer-logo.png" alt=""></a>
                     </div>
                 </div>
-
-
             </div>
         </div>
         <div class="copyright-reserved">
