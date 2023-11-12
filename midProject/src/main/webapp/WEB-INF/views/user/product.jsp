@@ -176,16 +176,16 @@
                             <div class="product-thumbs">
                                 <div class="product-thumbs-track ps-slider owl-carousel">
                                     <!-- 이미지 -->
-                                    <div class="pt active" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />">
-                                   		<img src="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />" alt="Product_Main_Thumbnail">
+                                    <div class="pt active" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg1}' />">
+                                   		<img src="<c:url value='../resources/img/products/${productInfo.g_rimg1}' />" alt="Product_Main_Thumbnail">
                                     </div>
                                     
                                     <div class="pt" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />">
                                     	<img src="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />" alt="Product_Main_Thumbnail">
                                     </div>
                                     
-                                    <div class="pt" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />">
-                                    	<img src="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />" alt="Product_Main_Thumbnail">
+                                    <div class="pt" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg1}' />">
+                                    	<img src="<c:url value='../resources/img/products/${productInfo.g_rimg1}' />" alt="Product_Main_Thumbnail">
                                     </div>
                                     
                                     <div class="pt" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />">
@@ -477,6 +477,9 @@
             </div>
         </div>
     </div>
+    <button id="scrollTopBtn" onclick="scrollToTop()" title="Go to top">
+    	<i class="fa fa-arrow-up"></i>
+  	</button>
     <!-- Related Products Section End -->
     
 <!-- Js Plugins -->
@@ -705,9 +708,24 @@
      	    });
      	});
 
+     	 // 스크롤이 일정 부분 이상 내려갔을 때 버튼을 보이게 하기
+        window.onscroll = function () {
+          scrollFunction();
+        };
 
+        function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("scrollTopBtn").style.display = "block";
+          } else {
+            document.getElementById("scrollTopBtn").style.display = "none";
+          }
+        }
 
-
+        // 최상단으로 스크롤하는 함수
+        function scrollToTop() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        }
 </script>
 
 <jsp:include page="footer.jsp" />
