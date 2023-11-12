@@ -112,9 +112,24 @@
 	    	history.go(0);
 	    }
 	  });
+	  
+	</script>
+	
+	<script type="text/javascript">
+		function checkAndSubmit() {
+	        // 장바구니에 물건이 있는지 확인
+	        var totalPrice = ${totalPrice}; // 장바구니에 있는 총 상품 수량
+	        if (totalPrice > 0) {
+	            // 장바구니가 비어있지 않으면 렌탈 신청 페이지로 이동
+	            window.location.href = "cart-rental.do";
+	        } else {
+	            // 장바구니가 비어있으면 알림창 띄우기
+	            alert("장바구니가 비어있습니다.");
+	        }
+	    }
+	</script>
 	
 
-	</script>
   </head>
 
 	
@@ -268,7 +283,7 @@
                   
                       </ul>
                       <!-- <a href="" class="rent-btn">렌탈신청하기</a> -->
-                      <input type="submit" class="rent-btn" value="렌탈신청하기">
+                      <input type="submit" class="rent-btn" onclick="checkAndSubmit()" value="렌탈신청하기">
                     </div>
               </div>
             </div>
