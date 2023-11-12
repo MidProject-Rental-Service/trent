@@ -27,6 +27,16 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsDAO.getMinPriceList(vo);
 	}
 	
+	// BEST3 제품
+		public List<GoodsVO> getBest3List(GoodsVO vo) {
+			return goodsDAO.getBest3List(vo);
+		}
+	
+	// BEST 제품 목록 띄우기
+	public List<GoodsVO> getBestList(GoodsVO vo) {
+		return goodsDAO.getBestList(vo);
+	}
+	
 	// 제품 상세보기
 	public GoodsVO getGoodsById(GoodsVO vo) {
 		return goodsDAO.getGoodsById(vo);

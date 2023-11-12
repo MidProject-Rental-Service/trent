@@ -100,7 +100,7 @@
   background-color: #001F5F;
   border: #001F5F;
   &:hover {
-    background: #96C7ED;
+    background: #001f5f;
     color: #fff;
   }
 }
@@ -112,7 +112,7 @@
   background-color: #001F5F;
   border: #001F5F;
   &:hover {
-    background: #96C7ED;
+    background: #001f5f;
     color: #fff;
   }
 }
@@ -120,12 +120,11 @@
 .delete-btn {
   height: 40px;
   width: 100px;
-
   color: #fff;
   background-color: #001F5F;
   border: #001F5F;
   &:hover {
-    background: #96C7ED;
+    background: #001f5f;
     color: #fff;
   }
 }

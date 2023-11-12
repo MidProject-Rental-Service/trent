@@ -2,6 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<%@ page import="java.util.List"%>
+<%@ page import="com.mid.mvc.domain.GoodsVO"%>
+
+<%
+	List<GoodsVO> goodsList = (List<GoodsVO>) request.getAttribute("goodsList");
+%>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -47,6 +55,66 @@
 	<c:if test="<%=loggedInUser == null%>">
 		<%@ include file="header_before.jsp"%>
 	</c:if>
+	
+	<!-- Scroll to Top Script -->
+  <script>
+    // 스크롤이 일정 부분 이상 내려갔을 때 버튼을 보이게 하기
+    window.onscroll = function () {
+      scrollFunction();
+    };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("scrollTopBtn").style.display = "block";
+      } else {
+        document.getElementById("scrollTopBtn").style.display = "none";
+      }
+    }
+
+    // 최상단으로 스크롤하는 함수
+    function scrollToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+	
+	<%-- nav bar --%>
+	<div class="nav-item">
+			<div class="container">
+				<div class="nav-depart">
+					<div class="depart-btn">
+						<i class="ti-menu"></i> <span>All departments</span>
+						<ul class="depart-hover">
+							<li class="active"><a href="./shop_search.do?searchCondition=total&searchKeyword=공기청정기">공기청정기</a></li>
+							<li><a href="./shop_search.do?searchCondition=total&searchKeyword=가습기">가습기</a></li>
+							<li><a href="./shop_search.do?searchCondition=total&searchKeyword=제습기">제습기</a></li>
+						</ul>
+					</div>
+				</div>
+				<nav class="nav-menu mobile-menu">
+					<ul>
+						<li><a href="./main.do">Home</a></li>
+						<li><a href="./shop.do">전체렌탈상품</a></li>
+						<li class="active"><a href="./shop_best.do">BEST 상품</a>
+						<li><a href="./discountCard.do">할인카드</a></li>
+						<li><a href="#">Pages</a>
+							<ul class="dropdown">
+								<c:if test="<%= loggedInUser != null %>">
+								    <li><a href="./mypage.do">마이페이지</a></li>
+									<li><a href="./shopping_cart.do">장바구니</a></li>
+									<li><a href="./rental.do">렌탈신청</a></li>
+								</c:if>
+								<c:if test="<%= loggedInUser == null %>">
+								    <li><a href="./join.do">회원가입</a></li>
+									<li><a href="./login.do">로그인</a></li>
+								</c:if>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+				<div id="mobile-menu-wrap"></div>
+			</div>
+		</div>
 
 	<!-- Breadcrumb Section Begin -->
 	<div class="breacrumb-section">
@@ -147,13 +215,6 @@
 					<div class="product-show-option">
 						<div class="row">
 							<div class="col-lg-7 col-md-7">
-								<!-- <div class="select-option">
-									<select class="sorting">
-										<option value="">정렬</option>
-									</select> <select class="p-show">
-										<option value="">모아보기:</option>
-									</select>
-								</div> -->
 							</div>
 							<div class="col-lg-5 col-md-5 text-right">
 								<p>Show 1- ${cnt} Of ${cnt} Product</p>
@@ -163,16 +224,13 @@
 					<div class="product-list">
 						<div class="row">
 
-							<c:forEach items="${goodsList}" var="list">
+							<c:forEach items="${bestList}" var="list">
 								<div class="col-lg-4 col-sm-6">
 									<div class="product-item">
 										<div class="pi-pic">
 											<a href="product.do?g_id=${list.g_id }">
 											<img src="../img/products/${list.g_rimg1}" alt="">
 												<div class="sale pp-sale">BEST</div>
-												<!-- <div class="icon">
-													<i class="icon_heart_alt"></i>
-												</div> -->
 											</a>
 										</div>
 										<div class="pi-text">
@@ -180,9 +238,29 @@
 												<h5>${list.g_name}</h5>
 											</a>
 											<div class="product-price">
-											
-												<span>최저렌탈가</span> 월<fmt:formatNumber type="number" pattern="#,##0" value="${list.p_price }" />원
-
+												<span>최저렌탈가</span> 월
+												<fmt:formatNumber type="number" pattern="#,##0" value="${list.MIN_PRICE}" /> 원
+											</div>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+							
+							<c:forEach items="${goodsList}" var="list2">
+								<div class="col-lg-4 col-sm-6">
+									<div class="product-item">
+										<div class="pi-pic">
+											<a href="product.do?g_id=${list2.g_id }">
+											<img src="../img/products/${list2.g_rimg1}" alt="">
+											</a>
+										</div>
+										<div class="pi-text">
+											<a href="product.do?g_id=${list2.g_id }">
+												<h5>${list2.g_name}</h5>
+											</a>
+											<div class="product-price">
+												<span>최저렌탈가</span> 월
+												<fmt:formatNumber type="number" pattern="#,##0" value="${list2.MIN_PRICE}" /> 원
 											</div>
 										</div>
 									</div>
@@ -194,6 +272,11 @@
 				</div>
 	</section>
 	<!-- Product Shop Section End -->
+	
+	<button id="scrollTopBtn" onclick="scrollToTop()" title="Go to top">
+    	<i class="fa fa-arrow-up"></i>
+  	</button>
+	
 
 	<!-- Js Plugins -->
 	<script src="../js/jquery-3.3.1.min.js"></script>

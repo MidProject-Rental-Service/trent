@@ -13,6 +13,10 @@ public interface GoodsDAO {
 	
 	public List<GoodsVO> getGoodsList(HashMap map);
 	
+	public List<GoodsVO> getBest3List(GoodsVO vo);
+	
+	public List<GoodsVO> getBestList(GoodsVO vo);
+	
 	public List<GoodsVO> getMinPriceList(GoodsVO vo);
 
 	public GoodsVO getGoodsById(GoodsVO vo);

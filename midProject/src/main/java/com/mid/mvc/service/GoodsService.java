@@ -12,6 +12,10 @@ public interface GoodsService {
 	void productRegister(GoodsVO vo);
 	
 	List<GoodsVO> getGoodsList(HashMap map);
+	
+	List<GoodsVO> getBest3List(GoodsVO vo);
+	
+	List<GoodsVO> getBestList(GoodsVO vo);
 
 	// 관리자 
 	GoodsVO getGoodsById(GoodsVO vo);

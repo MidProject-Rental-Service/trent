@@ -1,28 +1,5 @@
 <%@page import="com.mid.mvc.domain.UserVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-   
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script type="text/javascript">
-//현재 페이지의 JavaScript 코드
-$(document).ready(function () {
-  // 클릭 이벤트를 통해 active 클래스를 조작
-  $('.nav-menu li a').click(function (event) {
-    // 기존 동작(링크 이동) 막기
-    event.preventDefault();
-
-    // 기존에 active 클래스가 설정된 항목에서 클래스 제거
-    $('.nav-menu li.active').removeClass('active');
-    
-    // 현재 클릭한 항목에 active 클래스 추가
-    $(this).closest('li').addClass('active');
-
-    // 클릭한 링크의 href 속성 값을 읽어와 페이지 이동
-    window.location.href = $(this).attr('href');
-  });
-});
-
-</script>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
 <!-- Page Preloder -->
 <div id="preloder">
@@ -110,34 +87,6 @@ $(document).ready(function () {
                </ul>
             </div>
          </div>
-      </div>
-   </div>
-   <div class="nav-item">
-      <div class="container">
-         <div class="nav-depart">
-            <div class="depart-btn">
-               <i class="ti-menu"></i> <span>All departments</span>
-               <ul class="depart-hover">
-                  <li class="active"><a href="#">공기청정기</a></li>
-                  <li><a href="./shop.do">가습기</a></li>
-                  <li><a href="./shop.do">제습기</a></li>
-               </ul>
-            </div>
-         </div>
-         <nav class="nav-menu mobile-menu">
-            <ul>
-               <li class="active"><a href="./main.do">Home</a></li>
-               <li><a href="./shop.do">전체렌탈상품</a></li>
-               <li><a href="./shop_best.do">BEST 상품</a>
-               <li><a href="./discountCard.do">할인카드</a></li>
-               <li><a href="#">Pages</a>
-                  <ul class="dropdown">
-                     <li><a href="./join.do">회원가입</a></li>
-                     <li><a href="./login.do">로그인</a></li>
-                  </ul></li>
-            </ul>
-         </nav>
-         <div id="mobile-menu-wrap"></div>
       </div>
    </div>
 </header>
