@@ -501,7 +501,7 @@ public class UserController {
     }
 
    
-   // 렌탈 신청하기 
+   // 렌탈 신청하기 (장바구니에서)
     @RequestMapping("/applicationRental.do")
     public String applicationRental(HttpSession session, @RequestParam("b_rent") String[] bRent,
                                     @RequestParam("b_price") String[] bPrice, @RequestParam("b_card") String[] bCard,
@@ -555,5 +555,6 @@ public class UserController {
 
         return "redirect:applicationList.do";
     }
+
 
 }

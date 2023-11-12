@@ -6,8 +6,8 @@
 	<!-- 문의글 작성 -->
 	<insert id="insertUserBoard" parameterType="UserBoardVO">
 		INSERT INTO
-		USERBOARD( UB_HEAD,UB_TITLE,UB_CONTENT, UB_REGDATE)
-		VALUES(#{ub_head}, #{ub_title}, #{ub_content},now(), 0)
+		USERBOARD( UB_HEAD,UB_TITLE,UB_CONTENT, UB_REGDATE, UB_CNT, ID)
+		VALUES(#{ub_head}, #{ub_title}, #{ub_content},now(), 0, #{id})
 	</insert>
 
 	<!-- 문의글 불러오기 -->
@@ -21,8 +21,7 @@
 	</select>
 
 	<!-- 문의 목록 불러오기 -->
-	<select id="getUserBoardList" parameterType="hashmap"
-		resultType="UserBoardVO">
+	<select id="getUserBoardList" parameterType="hashmap" resultType="UserBoardVO">
 		SELECT *
 		FROM USERBOARD
 		WHERE ID = #{id}

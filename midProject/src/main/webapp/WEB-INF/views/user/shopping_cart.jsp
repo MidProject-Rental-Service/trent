@@ -125,7 +125,7 @@
 									</li>
 
 									</ul>
-									<a href="cart-rental.do" class="proceed-btn">렌탈신청하기</a>
+									<a href="#" class="proceed-btn" onclick="checkAndSubmit()">렌탈신청하기</a>
 								</div>
 							</div>
 						</div>
@@ -151,9 +151,19 @@
 	<script src="../js/owl.carousel.min.js"></script>
 	<script src="../js/main.js"></script>
 	<script src="../js/shoppingCart.js"></script>
-
-
-
+	<script>
+    function checkAndSubmit() {
+        // 장바구니에 물건이 있는지 확인
+        var totalCnt = ${totalCnt}; // 장바구니에 있는 총 상품 수량
+        if (totalCnt > 0) {
+            // 장바구니가 비어있지 않으면 렌탈 신청 페이지로 이동
+            window.location.href = "cart-rental.do";
+        } else {
+            // 장바구니가 비어있으면 알림창 띄우기
+            alert("장바구니가 비어있습니다.");
+        }
+    }
+</script>
 
 </body>
 </html>

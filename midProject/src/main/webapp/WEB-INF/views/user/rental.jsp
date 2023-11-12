@@ -146,7 +146,7 @@
   <!--Rent From -->
   <body>
     <section class="rent_spad">
-    <form class="rental-form" action="rental">
+    <form class="rental-form" action="applicationRental.do" method="post">
       <div class="container">
         <div class="row">
           <div class="col-lg-2">
@@ -188,7 +188,7 @@
                   <tr>
                     <td>주소</td>
                     <td>
-                      <input type="text" id="sample6_postcode" class="postcode" name="b_addr" size="5" style="width: 45%;" readonly>
+                      <input type="text" id="sample6_postcode" class="postcode" name="addr" size="5" style="width: 45%;" readonly>
 					  <input type="button" onclick="sample6_execDaumPostcode()" class="addr-btn" value="우편번호검색" style="width: 44%" />
 					</td>
                     
@@ -196,14 +196,14 @@
                   <tr>
                     <td></td>
                     <td>
-                      <input type="text" id="sample6_address" name="address" size="50" placeholder="주소" value="<%= loggedInUser.getAddr() %>" readonly>
+                      <input type="text" id="sample6_address" name="addr" size="50" placeholder="주소" value="<%= loggedInUser.getAddr() %>" readonly>
                     </td>
                   </tr>
                   <tr>
                     <td></td>
                     <td >
-                       <input type="text" id="sample6_detailAddress" name="detailaddr" size="50" placeholder="상세주소">
-                       <input type="text" id="sample6_extraAddress" name="addr" style="display:none;">
+                       <input type="text" id="sample6_detailAddress" name="addr" size="50" placeholder="상세주소">
+                       <input type="text" id="sample6_extraAddress" style="display:none;">
                     </td>
                   </tr>
                   <tr>
@@ -213,7 +213,7 @@
                   <tr>
                     <td>요청사항</td>
                     <td >
-                      <input type="text"  />
+                      <input type="text" name="b_requirements"  />
                     </td>
                   </tr>
                   <tr>
@@ -244,6 +244,14 @@
                     <td class="rentalInfo"><span>모델명 : ${rentalInfo.g_id}</span><br/><span>공급사명 : ${rentalInfo.s_name}</span><br/><span>약정 기간 : ${rentalInfo.p_rent}개월</span></td>
                     <td class="rentalFee"><fmt:formatNumber value="${rentalInfo.p_price}" pattern="#,##0"/>원
                   </tr>
+                  
+                  <input type=hidden name=b_rent value="${rentalInfo.p_rent }">
+                  <input type=hidden name=b_price value="${rentalInfo.p_price }">
+                  <input type=hidden name=b_card value="${rentalInfo.p_card }">
+                  <input type=hidden name=b_gift value="${rentalInfo.p_gift }">
+                  <input type=hidden name=s_name value="${rentalInfo.s_name }">
+                  <input type=hidden name=id value="${rentalInfo.id }">
+                  <input type=hidden name=g_id value="${rentalInfo.g_id }">
                 </table>
                     <div class="rent-checkout">
                       <ul>
@@ -251,7 +259,7 @@
                         <li class="rent-total">월 청구요금<span><fmt:formatNumber value="${rentalInfo.p_price}" pattern="#,##0"/>원</span></li>
                   
                       </ul>
-                      <a href="" class="rent-btn">렌탈신청하기</a>
+                      <input type="submit" class="rent-btn" value="렌탈신청하기">
                     </div>
               </div>
             </div>

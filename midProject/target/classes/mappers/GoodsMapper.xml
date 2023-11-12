@@ -88,7 +88,7 @@
 	
 		<!-- =========== 렌탈정보-하림 ========== -->
 	<select id="getRentalInfo" parameterType="PriceVO" resultType="PriceVO">
-    SELECT p.p_id, p.s_name, p.p_rent, p.p_price, p.p_card, p.g_id, g.g_rimg1
+    SELECT p.p_id, p.s_name, p.p_rent, p.p_price, p.p_card, p.p_gift, p.s_name, p.id, p.g_id, g.g_rimg1
     FROM price p
     JOIN goods g ON p.g_id = g.g_id
     WHERE p.g_id = #{g_id} AND p.p_rent = #{p_rent} AND p.s_name = #{s_name}

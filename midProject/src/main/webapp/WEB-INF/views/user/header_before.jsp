@@ -4,15 +4,24 @@
    
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function () {
-	    $('.nav-menu ul li').click(function () {
-	        // 현재 active 클래스를 가진 메뉴에서 클래스 제거
-	        $('.nav-menu ul li.active').removeClass('active');
-	
-	        // 클릭한 메뉴에게 active 클래스 부여
-	        $(this).addClass('active');
-	    });
-	});
+//현재 페이지의 JavaScript 코드
+$(document).ready(function () {
+  // 클릭 이벤트를 통해 active 클래스를 조작
+  $('.nav-menu li a').click(function (event) {
+    // 기존 동작(링크 이동) 막기
+    event.preventDefault();
+
+    // 기존에 active 클래스가 설정된 항목에서 클래스 제거
+    $('.nav-menu li.active').removeClass('active');
+    
+    // 현재 클릭한 항목에 active 클래스 추가
+    $(this).closest('li').addClass('active');
+
+    // 클릭한 링크의 href 속성 값을 읽어와 페이지 이동
+    window.location.href = $(this).attr('href');
+  });
+});
+
 </script>
 
 <!-- Page Preloder -->
