@@ -132,8 +132,8 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="breadcrumb-text product-more">
-            <a href="./rental.do"><i class="fa fa-home"></i> Home</a>
-            <a href="./shop.do">Shop</a>
+            <a href="./main.do"><i class="fa fa-home"></i> Home</a>
+            <a href="./shop.do">전체렌탈제품</a>
             <span>렌탈신청</span>
           </div>
         </div>

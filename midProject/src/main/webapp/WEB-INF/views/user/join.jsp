@@ -217,8 +217,8 @@
 				<nav class="nav-menu mobile-menu">
 					<ul>
 						<li><a href="./main.do">Home</a></li>
-						<li><a href="./shop.do">전체렌탈상품</a></li>
-						<li><a href="./shop_best.do">BEST 상품</a>
+						<li><a href="./shop.do">전체렌탈제품</a></li>
+						<li><a href="./shop_best.do">BEST 제품</a>
 						<li><a href="./discountCard.do">할인카드</a></li>
 						<li><a href="#">Pages</a>
 							<ul class="dropdown">
@@ -238,7 +238,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
+                        <a href="./main.do"><i class="fa fa-home"></i> Home</a>
                         <span>회원가입</span>
                     </div>
                 </div>
