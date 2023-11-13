@@ -156,26 +156,50 @@ public class UserController {
 	    }
 	}
 	// --------------------------------------------------------------------------------------------------------------------------------
-	// 신청목록
-		@RequestMapping("/applicationList.do")
-		public void rentalList(Model m, HttpSession session, String searchCondition, String searchKeyword,
-				String datepicker1, String datepicker2) {
+	 // 신청목록
+    @RequestMapping("/applicationList.do")
+    public void rentalList(Model m, HttpSession session, String searchCondition, String searchKeyword,
+          String datepicker1, String datepicker2) {
 
-			UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
-			String loggedInUserId = loggedInUser.getId();
+       UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+       String loggedInUserId = loggedInUser.getId();
+       
+       // 헤더 장바구니 세션 초기화
+       session.removeAttribute("headerCartList");
+       session.removeAttribute("totalCnt");
+       session.removeAttribute("totalPrice");
+       
+       HashMap map = new HashMap();
+       map.put("id", loggedInUserId);
+       map.put("searchCondition", searchCondition);
+       map.put("searchKeyword", searchKeyword);
+       map.put("startDate", datepicker1);
+       map.put("endDate", datepicker2);
 
-			HashMap map = new HashMap();
-			map.put("id", loggedInUserId);
-			map.put("searchCondition", searchCondition);
-			map.put("searchKeyword", searchKeyword);
-			map.put("startDate", datepicker1);
-			map.put("endDate", datepicker2);
+       // userBoardService.getUserRentalList(map);
+       List<UserRentalVO> result = userBoardService.getUserRentalList(map);
 
-			// userBoardService.getUserRentalList(map);
-			List<UserRentalVO> result = userBoardService.getUserRentalList(map);
+       m.addAttribute("userRentalList", result);
+       
 
-			m.addAttribute("userRentalList", result);
-		}
+       
+       HashMap map2 = new HashMap();
+       List<ShoppingCartVO> result2 = userServiceImpl.getCartList(map2);
+       int totalCnt = result2.size();
+
+       int totalPrice = 0;
+       for (ShoppingCartVO cart : result2) {
+          totalPrice += cart.getP_price();
+       }
+
+       
+        session.setAttribute("headerCartList", result2);
+         session.setAttribute("totalCnt", totalCnt);
+         session.setAttribute("totalPrice", totalPrice);
+       
+       
+    }
+
 	
 	// --------------------------------------------------------------------------------------------------------------------------------
 	// 구매확정

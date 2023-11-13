@@ -2480,7 +2480,7 @@ table.sub_price_Table button.btn-card:hover {
   font-weight: 700;
   color: #b2b2b2;
   text-transform: uppercase;
-  padding: 18px 82px;
+  padding: 18px 85px;
   position: relative;
   border-top: 1px solid #ebebeb;
   border-left: 1px solid #ebebeb;
@@ -2489,6 +2489,7 @@ table.sub_price_Table button.btn-card:hover {
 
 .tab-item ul li a.active {
   color: #252525;
+  padding: 18px 85px;
 }
 
 .tab-item ul li a.active:before {
@@ -4789,7 +4790,7 @@ img.cart-img {
     text-align: left;
   }
   .tab-item ul li a {
-    padding: 18px 61px;
+    padding: 18px 77px;
     margin-bottom: 10px;
   }
   .cart-table {
