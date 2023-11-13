@@ -14,42 +14,6 @@
 		#{g_rimg2}, #{g_img3}, #{ g_rimg3}, #{g_img4}, #{ g_rimg4})
 	</insert>
 
-
-	<!-- 제품 목록 띄우기 -->
-	<select id="getGoodsList" resultType="GoodsVO">
-	    <![CDATA[
-	        SELECT B.*, C.c_name as category_name
-	        FROM (
-	            SELECT ROW_NUMBER() OVER (ORDER BY g_id) AS RN, A.*
-	            FROM (
-	                SELECT goods.*, category.c_name
-	                FROM GOODS 
-	                INNER JOIN CATEGORY ON goods.c_id = category.c_id 
-	                WHERE 
-	    ]]>
-		<choose>
-			<when test="searchCondition == 'g_name'">
-				g_name LIKE '%${searchKeyword}%'
-			</when>
-			<when test="searchCondition == 'g_id'">
-				g_id LIKE '%${searchKeyword}%'
-			</when>
-			<when test="searchCondition == 'c_name'">
-				category.c_name LIKE '%${searchKeyword}%'
-			</when>
-			<otherwise>
-				1 = 1 <!-- 항상 true이므로 모든 조건이 적용됩니다. -->
-			</otherwise>
-		</choose>
-	    <![CDATA[	        
-	                ) A
-	            ) AS B 
-	            INNER JOIN CATEGORY AS C ON B.c_id = C.c_id
-	            WHERE RN > (#{pageNum}-1) * #{amount} AND RN <= #{pageNum} * #{amount};
-	    ]]>
-	</select>
-
-
 	<!-- 제품 갯수 구하기 -->
 	<select id="getTotal" resultType="int">
 		SELECT count(*) as total
@@ -72,125 +36,7 @@
 		</choose>
 	</select>
 
-
-	<!-- 최저 렌탈 정보 갖고오기(전체리스트) -->
-	<select id="getMinPriceList" parameterType="GoodsVO"
-		resultType="PriceVO">
-		SELECT G.*, C.*, P.*
-		FROM GOODS G
-		INNER JOIN CATEGORY C ON
-		C.C_ID = G.C_ID
-		LEFT JOIN price P
-		ON G.g_id = P.g_id
-		WHERE P.p_price = (
-		SELECT MIN(p_price)
-		FROM price
-		WHERE g_id = G.g_id
-		)
-		ORDER BY G.g_id;
-	</select>
-
-
-	<!-- 제품 상세 보기 -->
-	<select id="getGoodsById" parameterType="GoodsVO"
-		resultType="GoodsVO">
-		SELECT * FROM goods
-		WHERE g_id = #{g_id}
-	</select>
-
-	<!-- =========== 렌탈정보-하림 ========== -->
-	<select id="getRentalInfo" parameterType="PriceVO"
-		resultType="PriceVO">
-		SELECT p.p_id, p.s_name, p.p_rent, p.p_price, p.p_card, p.g_id, g.g_rimg1
-		FROM price p
-		JOIN goods g ON p.g_id = g.g_id
-		WHERE p.g_id = #{g_id} AND p.p_rent = #{p_rent} AND p.s_name = #{s_name}
-	</select>
-
-	<!-- ============================ -->
-	<!-- 이 제품의 공급사들 출력 -->
-	<select id="getSupplierInfo" parameterType="String"
-		resultType="PriceVO">
-		SELECT DISTINCT s_name
-		FROM price
-		WHERE g_id = #{g_id}
-	</select>
-
-
-	<!-- user 페이지에서 제품 상세 페이지 보기 -->
-	<select id="getProductDetail" parameterType="String"
-		resultType="GoodsVO">
-		SELECT * FROM goods
-		WHERE g_id = #{g_id}
-	</select>
-
-	<!-- price 정보(최소가격) 갖고오기 -->
-	<select id="getProductPrice" parameterType="String"
-		resultType="PriceVO">
-		SELECT p.*
-		FROM price p
-		JOIN (
-		SELECT p_rent, MIN(p_price) AS min_price
-		FROM price
-		WHERE g_id = #{g_id}
-		GROUP BY p_rent
-		) min_prices
-		ON p.p_rent = min_prices.p_rent AND p.p_price =
-		min_prices.min_price
-		WHERE p.g_id = #{g_id}
-	</select>
-
-	<!-- 최저 렌탈 정보 갖고오기 -->
-	<select id="getMinPrice" parameterType="String"
-		resultType="PriceVO">
-		SELECT * FROM price
-		WHERE g_id = #{g_id} AND p_price = (
-		SELECT MIN(p_price)
-		FROM price
-		WHERE g_id = #{g_id}
-		)
-	</select>
-
-	<!-- 개월 수에 따른 공급사의 가격 정보 가져오기 (최저가부터!! 수정완) -->
-	<select id="getPriceInfo" parameterType="hashmap"
-		resultType="PriceVO">
-		SELECT * FROM price
-		WHERE g_id = #{g_id} AND p_rent = #{selectedMonths}
-		ORDER BY p_price
-	</select>
-
-	<!-- ############# # 가격 관련 매퍼 # ############ -->
-
-	<!-- 가격 목록 띄우기 -->
-	<select id="getPriceList" resultType="PriceVO">
-	    SELECT price.*
-	    FROM (
-	        SELECT ROW_NUMBER() OVER (ORDER BY p_id) AS RN, price.*,  goods.G_RIMG1 
-	        FROM price
-	        INNER JOIN goods ON price.g_id = goods.g_id
-	        WHERE id = #{id}
-	        <choose>
-	            <when test="searchCondition == 'g_id'">
-	                AND goods.g_id LIKE '%${searchKeyword}%'
-	            </when>
-	            <when test="searchCondition == 'p_rent'">
-	                AND p_rent LIKE '%${searchKeyword}%'
-	            </when>
-	            <when test="searchCondition == 'p_price'">
-	                AND p_price LIKE '%${searchKeyword}%'
-	            </when>
-	            <otherwise>
-	                AND 1 = 1
-	            </otherwise>
-	        </choose>
-	    ) AS price
-	    <![CDATA[
-	    WHERE RN > (#{pageNum}-1) * #{amount} AND RN <= #{pageNum} * #{amount}
-	    ]]>
-	</select>
-
-
-	<!-- 가격 목록 count -->
+<!-- 가격 목록 count -->
 	<select id="getPriceTotal" resultType="int">
 		SELECT COUNT(*) as total
 		FROM price 
@@ -211,16 +57,160 @@
 			</otherwise>
 		</choose>
 	</select>
+	<!-- 제품 목록 띄우기 -->
+	<select id="getGoodsList" resultType="GoodsVO">
+		SELECT *
+		FROM GOODS G
+		INNER JOIN CATEGORY C
+		ON C.C_ID = G.C_ID
+	</select>
+	
+	<!-- 최저 렌탈 정보 갖고오기(전체리스트) -->
+	<select id="getMinPriceList" parameterType="GoodsVO" resultType="PriceVO">
+		SELECT G.*, C.*, P.*
+		FROM GOODS G
+		INNER JOIN CATEGORY C ON C.C_ID = G.C_ID
+		LEFT JOIN price P
+		ON G.g_id = P.g_id
+		WHERE P.p_price = (
+		    SELECT MIN(p_price)
+		    FROM price
+		    WHERE g_id = G.g_id
+		)
+		ORDER BY G.g_id;
+	</select>
+	
+	<!-- BEST 제품 목록 띄우기 -->
+	<select id="getBest3List" resultType="GoodsVO">
+		SELECT G.g_id,
+       G.g_name,
+       G.g_rimg1,
+       MIN(P.P_PRICE) AS min_price,
+       COUNT(B.g_id) AS order_count
+		FROM goods G
+		LEFT JOIN buy B ON G.g_id = B.g_id
+		LEFT JOIN CATEGORY C ON G.C_ID = C.C_ID
+		LEFT JOIN MAKER M ON G.M_ID = M.M_ID
+		LEFT JOIN price P ON G.g_id = P.g_id
+		GROUP BY G.g_id, G.g_name, G.g_rimg1
+		ORDER BY order_count DESC
+		LIMIT 3;
+	</select>
+	
+	<!-- BEST 제품 목록 띄우기 -->
+	<select id="getBestList" resultType="GoodsVO">
+		SELECT G.g_id,
+       G.g_name,
+       G.g_rimg1,
+       MIN(P.P_PRICE) AS min_price,
+       COUNT(B.g_id) AS order_count
+		FROM goods G
+		LEFT JOIN buy B ON G.g_id = B.g_id
+		LEFT JOIN CATEGORY C ON G.C_ID = C.C_ID
+		LEFT JOIN MAKER M ON G.M_ID = M.M_ID
+		LEFT JOIN price P ON G.g_id = P.g_id
+		WHERE G.g_id NOT IN (
+		    SELECT subquery.g_id
+		    FROM (
+		        SELECT G.g_id
+		        FROM goods G
+		        LEFT JOIN buy B ON G.g_id = B.g_id
+		        LEFT JOIN CATEGORY C ON G.C_ID = C.C_ID
+		        LEFT JOIN MAKER M ON G.M_ID = M.M_ID
+		        LEFT JOIN price P ON G.g_id = P.g_id
+		        GROUP BY G.g_id
+		        ORDER BY COUNT(B.g_id) DESC
+		        LIMIT 3
+		    ) subquery
+		)
+		GROUP BY G.g_id, G.g_name, G.g_rimg1
+		ORDER BY order_count DESC;
+	</select>
+	
 
+	<!-- 제품 상세 보기 -->
+	<select id="getGoodsById" parameterType="GoodsVO"
+		resultType="GoodsVO">
+		SELECT * FROM goods
+		WHERE g_id = #{g_id}
+	</select>
+	
 
+	<!-- ============================ -->
+	<!-- 이 제품의 공급사들 출력  -->
+	<select id="getSupplierInfo" parameterType="String" resultType="PriceVO">
+		SELECT DISTINCT s_name
+		FROM price
+		WHERE g_id = #{g_id}
+	</select>
+	
+	
+	<!-- user 페이지에서 제품 상세 페이지 보기 -->
+	<select id="getProductDetail" parameterType="String" resultType="GoodsVO">
+		SELECT * FROM goods
+		WHERE g_id = #{g_id}
+	</select>
+	
+	<!-- price 정보(최소가격) 갖고오기 -->
+	<select id="getProductPrice" parameterType="String" resultType="PriceVO">
+		SELECT p.* 
+		FROM price p
+		JOIN (
+		    SELECT p_rent, MIN(p_price) AS min_price
+		    FROM price
+		    WHERE g_id = #{g_id}
+		    GROUP BY p_rent
+		) min_prices
+		ON p.p_rent = min_prices.p_rent AND p.p_price = min_prices.min_price
+		WHERE p.g_id = #{g_id}
+	</select>
+	
+	<!-- 최저 렌탈 정보 갖고오기 -->
+	<select id="getMinPrice" parameterType="String" resultType="PriceVO">
+		SELECT * FROM price
+		WHERE g_id = #{g_id} AND p_price = (
+		    SELECT MIN(p_price)
+		    FROM price
+		    WHERE g_id = #{g_id}
+		)
+	</select>
+	
+		<!-- =========== 렌탈정보-하림 ========== -->
+	<select id="getRentalInfo" parameterType="PriceVO" resultType="PriceVO">
+    SELECT p.p_id, p.s_name, p.p_rent, p.p_price, p.p_card, p.p_gift, p.s_name, p.id, p.g_id, g.g_rimg1
+    FROM price p
+    JOIN goods g ON p.g_id = g.g_id
+    WHERE p.g_id = #{g_id} AND p.p_rent = #{p_rent} AND p.s_name = #{s_name}
+	</select>
+	
+	
+	<!-- 개월 수에 따른 공급사의 가격 정보 가져오기 (최저가부터!! 수정완)-->
+	<select id="getPriceInfo" parameterType="hashmap" resultType="PriceVO">
+		SELECT * FROM price
+    	WHERE g_id = #{g_id} AND p_rent = #{selectedMonths}
+    	ORDER BY p_price
+	</select>
 
+<!-- #############
+		#     가격 관련 매퍼     #
+		############ -->
+
+	<!-- 가격 목록 띄우기 -->
+	<select id="getPriceList" resultType="PriceVO">
+		<![CDATA[
+		SELECT  *  FROM PRICE P
+		INNER JOIN GOODS G
+		ON P.G_ID = G.G_ID
+		WHERE id = #{id};
+		]]>
+	</select>
+	
 	<!-- 가격 상세 보기 -->
-	<select id="getPriceById" parameterType="PriceVO"
-		resultType="PriceVO">
+	<select id="getPriceById" parameterType="PriceVO" resultType="PriceVO">
 		SELECT * FROM price
 		WHERE p_id = #{p_id}
 	</select>
-
+	
 	<!-- 가격 등록 -->
 	<insert id="insertPrice" parameterType="PriceVO">
 		INSERT INTO price ( p_id,
@@ -228,13 +218,11 @@
 		VALUES(#{p_id}, #{s_name}, #{p_rent}, #{p_price}, #{ p_card},
 		#{p_gift}, #{p_text}, #{g_id}, #{id} )
 	</insert>
-
+	
 	<!-- 가격 수정 -->
 	<update id="updatePrice" parameterType="PriceVO">
 		UPDATE price SET
-		p_price =
-		#{p_price}, p_card = #{ p_card}, p_gift = #{p_gift}, p_text =
-		#{p_text}
+		p_price = #{p_price}, p_card = #{ p_card}, p_gift = #{p_gift}, p_text = #{p_text}
 		WHERE
 		P_ID = #{p_id}
 	</update>
@@ -242,19 +230,19 @@
 	<!-- 가격 삭제 -->
 	<delete id="deletePrice" parameterType="PriceVO">
 		DELETE FROM price
-		WHERE
-		p_id = #{p_id}
+		WHERE p_id = #{p_id}
 	</delete>
 
-	<!-- ############# # 카드 관련 매퍼 # ############ -->
+<!-- #############
+		#     카드 관련 매퍼     #
+		############ -->
 
-	<!-- 카드 등록 -->
+	<!--  카드 등록 -->
 	<insert id="insertCard" parameterType="CardVO">
-		INSERT INTO card ( c_img1,
-		c_rimg1, id )
+		INSERT INTO card ( c_img1, c_rimg1, id ) 
 		VALUES( #{c_img1}, #{c_rimg1}, #{id} )
 	</insert>
-
+	
 	<!-- 카드 목록 띄우기 -->
 	<select id="getCardList" resultType="CardVO">
 		<![CDATA[
@@ -263,33 +251,37 @@
 		ORDER BY c_num ASC;
 		]]>
 	</select>
-
+	
+	<select id="getCardListById" parameterType="String" resultType="CardVO">
+		SELECT  *  FROM CARD
+		WHERE id = #{id}
+		ORDER BY c_num;
+	</select>
+	
 	<!-- 카드 상세 보기 -->
-	<select id="getCardById" parameterType="CardVO"
-		resultType="CardVO">
+	<select id="getCardById" parameterType="CardVO" resultType="CardVO">
 		SELECT * FROM card
 		WHERE c_num = #{c_num}
 	</select>
-
+	
 	<!-- 카드 수정 -->
 	<update id="updateCard" parameterType="CardVO">
 		UPDATE card
 		SET
-		<if test="c_img1 != null">
-			c_img1 = #{c_img1}
-			, c_rimg1 = #{c_rimg1}
-		</if>
+	        <if test="c_img1 != null">
+	            c_img1 = #{c_img1}
+	            , c_rimg1 = #{c_rimg1}
+	        </if>
 		WHERE
 		c_num = #{c_num}
 	</update>
-
+	
 	<!-- 카드 삭제 -->
 	<delete id="deleteCard" parameterType="CardVO">
 		DELETE FROM card
-		WHERE
-		c_num = #{c_num}
+		WHERE c_num = #{c_num}
 	</delete>
-
+	
 
 	<!-- 제품 수정 -->
 	<update id="updateGoods" parameterType="GoodsVO">
@@ -329,78 +321,73 @@
 	</delete>
 
 	<!-- 제품상세검색 -->
-	<select id="getCategoryGoodsList" parameterType="HashMap"
-		resultType="GoodsVO">
+	<select id="getCategoryGoodsList" parameterType="HashMap" resultType="GoodsVO">
 		SELECT G.*, C.C_NAME, M.M_NAME, P.P_PRICE
 		FROM GOODS G
-		INNER JOIN
-		CATEGORY C ON G.C_ID = C.C_ID
+		INNER JOIN CATEGORY C ON G.C_ID = C.C_ID
 		INNER JOIN MAKER M ON G.M_ID = M.M_ID
 		LEFT JOIN price P ON G.g_id = P.g_id
 		WHERE P.p_price = (
-		SELECT MIN(P2.P_PRICE)
-		FROM price P2
-		WHERE P2.g_id = G.g_id
+		    SELECT MIN(P2.P_PRICE)
+		    FROM price P2
+		    WHERE P2.g_id = G.g_id
 		)
-		<if test="c_name != null and !c_name.isEmpty()">
-			AND C.C_NAME = #{c_name}
-		</if>
-		<if test="selectedBrands != null and !selectedBrands.isEmpty()">
-			AND M.M_NAME IN
-			<foreach collection="selectedBrands" item="brand" open="("
-				separator="," close=")">
-				#{brand}
-			</foreach>
-		</if>
-		<if test="minPrice != null and maxPrice != null">
-			AND P.p_price BETWEEN #{minPrice} AND #{maxPrice}
-		</if>
+			<if test="c_name != null and !c_name.isEmpty()">
+				AND C.C_NAME = #{c_name}
+			</if>
+			<if test="selectedBrands != null and !selectedBrands.isEmpty()">
+				AND M.M_NAME IN
+				<foreach collection="selectedBrands" item="brand" open="("
+					separator="," close=")">
+					#{brand}
+				</foreach>
+			</if>
+			<if test="minPrice != null and maxPrice != null">
+				AND P.p_price BETWEEN #{minPrice} AND #{maxPrice} </if>
 	</select>
 
 	<!-- 제품 검색 Header -->
-	<select id="getSearchGoodsList" parameterType="hashmap"
-		resultType="GoodsVO">
-		SELECT DISTINCT G.*,
-		CASE
-		WHEN P.P_PRICE IS NOT NULL THEN
-		(SELECT MIN(P2.P_PRICE) FROM PRICE P2 WHERE P2.G_ID = G.G_ID)
-		ELSE NULL
-		END AS MIN_PRICE,
-		CASE
-		WHEN P.P_PRICE IS NOT NULL THEN
-		(SELECT S_NAME FROM PRICE P2 WHERE P2.G_ID = G.G_ID AND P2.P_PRICE = (SELECT
-		MIN(P3.P_PRICE) FROM PRICE P3 WHERE P3.G_ID = G.G_ID))
-		ELSE NULL
-		END AS S_NAME,
-		M.M_NAME
-		FROM GOODS G
-		LEFT JOIN PRICE P ON G.G_ID = P.G_ID
-		LEFT JOIN MAKER M ON G.M_ID = M.M_ID
-		LEFT JOIN CATEGORY C ON G.C_ID = C.C_ID
-		WHERE
-		<choose>
-			<when test="searchCondition == 'total'">
-				C_NAME LIKE '%${searchKeyword}%'
-				OR G_NAME LIKE '%${searchKeyword}%'
-				OR M_NAME LIKE '%${searchKeyword}%'
-				OR S_NAME LIKE '%${searchKeyword}%'
-			</when>
-			<when test="searchCondition == 'c_name'">
-				C_NAME LIKE '%${searchKeyword}%'
-			</when>
-			<when test="searchCondition == 'g_name'">
+	<select id="getSearchGoodsList" parameterType="hashmap" resultType="GoodsVO">
+	    SELECT DISTINCT G.*, 
+	    CASE 
+	        WHEN P.P_PRICE IS NOT NULL THEN
+	            (SELECT MIN(P2.P_PRICE) FROM PRICE P2 WHERE P2.G_ID = G.G_ID)
+	        ELSE NULL
+	    END AS MIN_PRICE, 
+	    CASE 
+	        WHEN P.P_PRICE IS NOT NULL THEN
+	            (SELECT S_NAME FROM PRICE P2 WHERE P2.G_ID = G.G_ID AND P2.P_PRICE = (SELECT MIN(P3.P_PRICE) FROM PRICE P3 WHERE P3.G_ID = G.G_ID))
+	        ELSE NULL
+	    END AS S_NAME,
+	    M.M_NAME
+	    FROM GOODS G
+	    LEFT JOIN PRICE P ON G.G_ID = P.G_ID
+	    LEFT JOIN MAKER M ON G.M_ID = M.M_ID
+	    LEFT JOIN CATEGORY C ON G.C_ID = C.C_ID
+	    WHERE 
+	    <choose>
+	        <when test="searchCondition == 'total'">
+	            C_NAME LIKE '%${searchKeyword}%'
+	            OR G_NAME LIKE '%${searchKeyword}%'
+	            OR M_NAME LIKE '%${searchKeyword}%' 
+	            OR S_NAME LIKE '%${searchKeyword}%'
+	        </when>
+	        <when test="searchCondition == 'c_name'">
+	            C_NAME LIKE '%${searchKeyword}%'
+	        </when>
+	        <when test="searchCondition == 'g_name'">
 				G_NAME LIKE '%${searchKeyword}%'
-			</when>
-			<when test="searchCondition == 'm_name'">
-				M_NAME LIKE '%${searchKeyword}%'
-			</when>
-			<when test="searchCondition == 's_name'">
-				S_NAME LIKE '%${searchKeyword}%'
-			</when>
-			<otherwise>
-				1 = 1 <!-- 항상 true이므로 모든 조건이 적용됩니다. -->
-			</otherwise>
-		</choose>
+	        </when>
+	        <when test="searchCondition == 'm_name'">
+	            M_NAME LIKE '%${searchKeyword}%' 
+	        </when>
+	        <when test="searchCondition == 's_name'">
+	            S_NAME LIKE '%${searchKeyword}%'
+	        </when>
+	        <otherwise>
+	            1 = 1 <!-- 항상 true이므로 모든 조건이 적용됩니다. -->
+	        </otherwise>
+	    </choose>
 	</select>
 
 </mapper>

@@ -41,4 +41,7 @@ public interface UserDAO {
 
 	public void insertCart(HashMap map);
 
+	public int applicationCartRental(UserRentalVO vo);
+
+
 }

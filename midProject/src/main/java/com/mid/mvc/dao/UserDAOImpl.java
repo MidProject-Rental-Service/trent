@@ -107,9 +107,15 @@ public class UserDAOImpl implements UserDAO {
 	// 렌탈 신청하기
 	public int applicationRental(UserRentalVO vo ) {
 		System.out.println("===> sqlSession applicationRental() 호출");
-		sqlSession.delete("UserMapper.deleteShoppingCart",vo);
 		return sqlSession.insert("UserMapper.applicationRental",vo);
 	}
 
+
+	 // 렌탈 신청하기 (장바구니)
+	   public int applicationCartRental(UserRentalVO vo) {
+	      System.out.println("===> sqlSession applicationRental() 호출");
+	      sqlSession.delete("UserMapper.deleteShoppingCart",vo);
+	      return sqlSession.insert("UserMapper.applicationRental",vo);
+	   }
 
 }

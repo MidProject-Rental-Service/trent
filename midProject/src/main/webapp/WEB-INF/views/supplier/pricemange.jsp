@@ -109,6 +109,7 @@
 
 				<!-- 검색폼 시작 (name값이랑 value값은 변경금지!!) -->
 				<form action="pricemange.do" method="post">
+				<input type="hidden" name="id" value="${pageVO.cri.id }">
 				    <div class="search-wrap" style="display: flex; align-items: center;"> <!-- 인라인 스타일 추가 -->
 				        <select class="form-control search-select" name="searchCondition"  > <!-- 인라인 스타일 추가 -->
 				            <option value="g_id" ${pageVO.cri.searchCondition eq 'g_id' ? 'selected' : '' }>모델명</option>

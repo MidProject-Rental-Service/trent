@@ -41,5 +41,7 @@ public interface UserService {
 
 	public void insertCart(HashMap map);
 
+	public int applicationCartRental(UserRentalVO vo);
+
 
 }

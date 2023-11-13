@@ -91,4 +91,8 @@ public class UserServiceImpl implements UserService {
 		userDAOImpl.insertCart(map);
 	}
 
+	// 렌탈 신청 (장바구니)
+	   public int applicationCartRental(UserRentalVO vo) {
+	      return userDAOImpl.applicationCartRental(vo);
+	   }
 }
