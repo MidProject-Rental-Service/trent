@@ -176,27 +176,23 @@ public class UserController {
        map.put("startDate", datepicker1);
        map.put("endDate", datepicker2);
 
-       // userBoardService.getUserRentalList(map);
+       HashMap map2 = new HashMap();
+       map2.put("id", loggedInUserId);
+       List<ShoppingCartVO> result2 = userServiceImpl.getCartList(map2);
+       int totalCnt = result2.size();
+       
+       int totalPrice = 0;
+       for (ShoppingCartVO cart : result2) {
+    	   totalPrice += cart.getP_price();
+       }
+       System.out.println("===> 신청목록" + "result2: "+result2+"totalCnt: "+totalCnt+"totalPrice: "+totalPrice);
+       session.setAttribute("headerCartList", result2);
+       session.setAttribute("totalCnt", totalCnt);
+       session.setAttribute("totalPrice", totalPrice);
+
        List<UserRentalVO> result = userBoardService.getUserRentalList(map);
 
        m.addAttribute("userRentalList", result);
-       
-
-       
-       HashMap map2 = new HashMap();
-       List<ShoppingCartVO> result2 = userServiceImpl.getCartList(map2);
-       int totalCnt = result2.size();
-
-       int totalPrice = 0;
-       for (ShoppingCartVO cart : result2) {
-          totalPrice += cart.getP_price();
-       }
-
-       
-        session.setAttribute("headerCartList", result2);
-         session.setAttribute("totalCnt", totalCnt);
-         session.setAttribute("totalPrice", totalPrice);
-       
        
     }
 
@@ -527,21 +523,60 @@ public class UserController {
 
    
    // 렌탈 신청하기 (장바구니에서)
+    @RequestMapping("/applicationCartRental.do")
+    public String applicationCartRental(HttpSession session, @RequestParam("b_rent") String[] bRent,
+                                    @RequestParam("b_price") String[] bPrice, @RequestParam("b_card") String[] bCard,
+                                    @RequestParam("b_gift") String[] bGift, @RequestParam("s_name") String[] sName,
+                                    @RequestParam("g_id") String[] gId, @RequestParam("addr") String aDdr, @RequestParam("b_requirements") String bRequirements) {
+
+    	System.out.println("====> applicationCartRental  컨트롤러 호출 " );
+        UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
+        String loggedInUserId = loggedInUser.getId();
+        
+        
+        List<UserRentalVO> userRentalList = new ArrayList<>();
+        
+        
+        // 배열의 길이가 동일한지 확인
+        if (bRent.length == bPrice.length && bPrice.length == bCard.length
+                && bCard.length == bGift.length && bGift.length == sName.length
+                && sName.length == gId.length)  {
+
+            for (int i = 0; i < bRent.length; i++) {
+               UserRentalVO vo = new UserRentalVO();
+               vo.setId(loggedInUserId);
+               
+                vo.setB_rent(Integer.parseInt(bRent[i]));
+                vo.setB_price(Integer.parseInt(bPrice[i]));
+                vo.setB_card(Integer.parseInt(bCard[i]));
+                vo.setB_gift(Integer.parseInt(bGift[i]));
+                vo.setS_name(sName[i]);
+                vo.setG_id(gId[i]);
+                vo.setAddr(aDdr);
+                vo.setB_requirements(bRequirements);
+               
+               
+                userRentalList.add(vo);
+                System.out.println(vo.toString());
+          
+                userServiceImpl.applicationCartRental(vo);
+                System.out.println("applicationRental: " + userRentalList);
+            } // end for For
+        } else {
+           System.out.println("출력오류");
+        }
+
+        return "redirect:applicationList.do";
+    }
+
+    // 렌탈 신청하기 
     @RequestMapping("/applicationRental.do")
     public String applicationRental(HttpSession session, @RequestParam("b_rent") String[] bRent,
                                     @RequestParam("b_price") String[] bPrice, @RequestParam("b_card") String[] bCard,
                                     @RequestParam("b_gift") String[] bGift, @RequestParam("s_name") String[] sName,
                                     @RequestParam("g_id") String[] gId, @RequestParam("addr") String aDdr, @RequestParam("b_requirements") String bRequirements) {
-       
-       System.out.println("==>" + bRent.length);
-       System.out.println("==>" + bPrice.length);
-       System.out.println("==>" + bCard.length);
-       System.out.println("==>" + bGift.length);
-       System.out.println("==>" + sName.length);
-       System.out.println("==>" + gId.length);
-       System.out.println("==>" + aDdr);
-       System.out.println("==>" + bRequirements);
-       
+
+    	System.out.println("====> applicationRental  컨트롤러 호출 " );
         UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
         String loggedInUserId = loggedInUser.getId();
         

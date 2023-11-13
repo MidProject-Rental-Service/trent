@@ -85,6 +85,10 @@ public class UserServiceImpl implements UserService {
 	public int applicationRental(UserRentalVO vo) {
 		return userDAOImpl.applicationRental(vo);
 	}
+	// 렌탈 신청 (장바구니)
+	public int applicationCartRental(UserRentalVO vo) {
+		return userDAOImpl.applicationCartRental(vo);
+	}
 
 	// 장바구니 담기
 	public void insertCart(HashMap map) {

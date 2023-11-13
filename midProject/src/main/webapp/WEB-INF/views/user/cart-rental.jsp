@@ -159,7 +159,7 @@
   <!--Rent From -->
   <body>
     <section class="rent_spad">
-        <form class="rental-form" action="applicationRental.do" method="post">
+        <form class="rental-form" action="applicationCartRental.do" method="post">
         
       <div class="container">
         <div class="row">

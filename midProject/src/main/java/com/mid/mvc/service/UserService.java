@@ -39,7 +39,10 @@ public interface UserService {
 
 	public int applicationRental(UserRentalVO vo);
 
+	public int applicationCartRental(UserRentalVO vo);
+	
 	public void insertCart(HashMap map);
+
 
 
 }
