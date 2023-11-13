@@ -94,15 +94,15 @@
 				<nav class="nav-menu mobile-menu">
 					<ul>
 						<li><a href="./main.do">Home</a></li>
-						<li><a href="./shop.do">전체렌탈상품</a></li>
-						<li class="active"><a href="./shop_best.do">BEST 상품</a>
+						<li><a href="./shop.do">전체렌탈제품</a></li>
+						<li class="active"><a href="./shop_best.do">BEST 제품</a>
 						<li><a href="./discountCard.do">할인카드</a></li>
 						<li><a href="#">Pages</a>
 							<ul class="dropdown">
 								<c:if test="<%= loggedInUser != null %>">
 								    <li><a href="./mypage.do">마이페이지</a></li>
 									<li><a href="./shopping_cart.do">장바구니</a></li>
-									<li><a href="./rental.do">렌탈신청</a></li>
+									<li><a href="./cart-rental.do">렌탈신청</a></li>
 								</c:if>
 								<c:if test="<%= loggedInUser == null %>">
 								    <li><a href="./join.do">회원가입</a></li>
@@ -122,7 +122,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="breadcrumb-text">
-						<a href="./main.do"><i class="fa fa-home"></i> Home</a> <span>BEST 상품</span>
+						<a href="./main.do"><i class="fa fa-home"></i> Home</a> <span>BEST 제품</span>
 					</div>
 				</div>
 			</div>

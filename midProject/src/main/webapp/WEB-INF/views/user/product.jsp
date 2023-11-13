@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/product-description-style.css" type="text/css">
 
 </head>
 
@@ -39,6 +40,44 @@
 	<c:if test="<%= loggedInUser == null %>">
 	    <%@ include file="header_before.jsp" %>
 	</c:if>
+	
+	<%-- nav bar --%>
+	<div class="nav-item">
+			<div class="container">
+				<div class="nav-depart">
+					<div class="depart-btn">
+						<i class="ti-menu"></i> <span>All departments</span>
+						<ul class="depart-hover">
+							<li class="active"><a href="./shop_search.do?searchCondition=total&searchKeyword=공기청정기">공기청정기</a></li>
+							<li><a href="./shop_search.do?searchCondition=total&searchKeyword=가습기">가습기</a></li>
+							<li><a href="./shop_search.do?searchCondition=total&searchKeyword=제습기">제습기</a></li>
+						</ul>
+					</div>
+				</div>
+				<nav class="nav-menu mobile-menu">
+					<ul>
+						<li><a href="./main.do">Home</a></li>
+						<li><a href="./shop.do">전체렌탈제품</a></li>
+						<li><a href="./shop_best.do">BEST 제품</a>
+						<li><a href="./discountCard.do">할인카드</a></li>
+						<li><a href="#">Pages</a>
+							<ul class="dropdown">
+								<c:if test="<%= loggedInUser != null %>">
+								    <li><a href="./mypage.do">마이페이지</a></li>
+									<li><a href="./shopping_cart.do">장바구니</a></li>
+									<li><a href="./cart-rental.do">렌탈신청</a></li>
+								</c:if>
+								<c:if test="<%= loggedInUser == null %>">
+								    <li><a href="./join.do">회원가입</a></li>
+									<li><a href="./login.do">로그인</a></li>
+								</c:if>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+				<div id="mobile-menu-wrap"></div>
+			</div>
+		</div>
 
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
@@ -47,8 +86,8 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <a href="./main.do"><i class="fa fa-home"></i> Home</a>
-                        <a href="./shop.do">Shop</a>
-                        <span>Detail</span>
+                        <a href="./shop.do">전체렌탈제품</a>
+                        <span>제품상세</span>
                     </div>
                 </div>
             </div>
@@ -252,10 +291,20 @@
                                     </div>
                                 </div>
                                 
-                                <!-- 성규 -->
+                                <!--  제품상세설명 이미지 -->
                                	<div class="tab-pane fade" id="tab-2" role="tabpanel">
-									<img src="<c:url value='../resources/img/products/${productInfo.g_rimg4}' />" alt="Product_Detail">
-								</div>
+                               	<h4>신청안내<span>렌탈 신청시 진행절차를 확인하세요</span></h4>
+                               	<img src="../resources/img/products/rentInfo.png"/>
+                               	<h4>가입혜택<span>t'Rent의 특별한 혜택을 확인하세요</span></h4>
+                               	<img src="../resources/img/products/rentInfo-2.png"/>
+                               	<h4>제품설명<span>상품에 대한 상세 정보를 확인하세요</span></h4>
+								<img src="<c:url value='../resources/img/products/${productInfo.g_rimg4}' />" alt="Product_Detail">
+                               	</div>
+                               	
+                         
+								
+								
+								<!-- 리뷰 성규 -->
 									<div class="tab-pane fade" id="tab-3" role="tabpanel">
 										<div class="customer-review-option">
 											<h4>${reviewCnt}&nbspComments</h4>
@@ -263,7 +312,14 @@
 
 												<c:choose>
 													<c:when test="${empty reviewGoodsList}">
-														<h4>작성된 리뷰가 없습니다.</h4>
+														<div class="none-review" style="    border: 1px solid #cecece;
+																													    border-radius: 10px;
+																													    padding: 5%;
+																													    text-align: center;
+																													    padding-top: 10%;">
+														<h4>작성된 리뷰가 없습니다</h4>
+														</div>
+														
 													</c:when>
 													<c:otherwise>
 														<c:forEach items="${reviewGoodsList}" var="review">
@@ -331,7 +387,7 @@
     <button id="scrollTopBtn" onclick="scrollToTop()" title="Go to top">
     	<i class="fa fa-arrow-up"></i>
   	</button>
-    
+
     
 <!-- Js Plugins -->
 <script src="../js/jquery-3.3.1.min.js"></script>

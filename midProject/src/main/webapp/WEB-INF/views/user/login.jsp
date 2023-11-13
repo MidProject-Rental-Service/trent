@@ -44,6 +44,37 @@
 
 <body>
 	<jsp:include page="header_before.jsp" />
+	
+	<%-- nav bar --%>
+	<div class="nav-item">
+			<div class="container">
+				<div class="nav-depart">
+					<div class="depart-btn">
+						<i class="ti-menu"></i> <span>All departments</span>
+						<ul class="depart-hover">
+							<li class="active"><a href="./shop_search.do?searchCondition=total&searchKeyword=공기청정기">공기청정기</a></li>
+							<li><a href="./shop_search.do?searchCondition=total&searchKeyword=가습기">가습기</a></li>
+							<li><a href="./shop_search.do?searchCondition=total&searchKeyword=제습기">제습기</a></li>
+						</ul>
+					</div>
+				</div>
+				<nav class="nav-menu mobile-menu">
+					<ul>
+						<li><a href="./main.do">Home</a></li>
+						<li><a href="./shop.do">전체렌탈상품</a></li>
+						<li><a href="./shop_best.do">BEST 상품</a>
+						<li><a href="./discountCard.do">할인카드</a></li>
+						<li><a href="#">Pages</a>
+							<ul class="dropdown">
+								    <li><a href="./join.do">회원가입</a></li>
+									<li><a href="./login.do">로그인</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+				<div id="mobile-menu-wrap"></div>
+			</div>
+		</div>
 
 	<!-- Breadcrumb Section Begin -->
 	<div class="breacrumb-section">
@@ -51,7 +82,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="breadcrumb-text">
-						<a href="#"><i class="fa fa-home"></i> Home</a> <span>Login</span>
+						<a href="./main.do"><i class="fa fa-home"></i> Home</a> <span>로그인</span>
 					</div>
 				</div>
 			</div>
