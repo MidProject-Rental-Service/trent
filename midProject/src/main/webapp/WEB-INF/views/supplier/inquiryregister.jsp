@@ -12,7 +12,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modernize Free</title>
+<title>공급사 관리자 문의 </title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -61,7 +61,7 @@
 
 				<div class="row g-5">
 					<div class="col-md-12">
-						<form action="inquiryreigster.do" novalidate>
+						<form action="inquiryreigster.do" onsubmit="return validate()">
 							<input type="hidden" name ="id" value=<%=user.getId() %>>					
 							<div class="row g-3">
 
@@ -71,7 +71,7 @@
 								<div class="row">
 									<div class="col-sm-2">
 										<label for="sb_head" class="form-label">말머리</label> <select
-											class="form-select" name="sb_head">
+											class="form-select" name="sb_head" id="header-list">
 											<option value="">말머리</option>
 											<option value="상품수정문의">상품수정문의</option>
 											<option value="배송문의">배송문의</option>
@@ -136,5 +136,15 @@
 	<script src="../src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
 	<script src="../src/assets/libs/simplebar/dist/simplebar.js"></script>
 	<script src="../src/assets/js/dashboard.js"></script>
+	<script type="text/javascript">
+	function validate() {
+	    var selectedValue = document.getElementById("header-list").value;
+	    if (selectedValue === "") {
+	        alert("말머리를 선택해주세요.");
+	        return false; // 폼이 제출되지 않도록 함
+	    }
+	    return true; // 폼이 정상적으로 제출되도록 함
+	}
+	</script>
 </body>
 </html>
