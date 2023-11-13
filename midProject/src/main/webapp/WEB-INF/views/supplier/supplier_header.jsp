@@ -78,14 +78,12 @@
 						</a></li>
 
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="./rentalmange.do" aria-expanded="false"> <span> <i
-									class="ti ti-file-description"></i>
+							href="./rentalmange.do?id=<%= user.getId() %>" aria-expanded="false"> <span> <i class="ti ti-file-description"></i>
 							</span> <span class="hide-menu">렌탈상태관리</span>
 						</a></li>
 
 						<li class="sidebar-item"><a class="sidebar-link"
-							href="./inquirymange.do" aria-expanded="false"> <span> <i
-									class="ti ti-package"></i>
+							href="./inquirymange.do?id=<%= user.getId() %>" aria-expanded="false"> <span> <i class="ti ti-package"></i>
 							</span> <span class="hide-menu">1:1문의</span>
 						</a></li>
 						

@@ -14,7 +14,9 @@ public interface UserBoardDAO {
 	public List<UserBoardVO> getUserBoardList(HashMap map) ;
 	
 	//관리자 페이지에서 문의리스트
-	public List<UserBoardVO> admingetUserBoardList(HashMap map, Criteria cri) ;
+	public List<UserBoardVO> admingetUserBoardList(Criteria cri) ;
+	
+	public int getTotalUserinquiry(Criteria cri);
 	
 	public UserBoardVO getUserBoard(UserBoardVO vo);
 
@@ -29,4 +31,6 @@ public interface UserBoardDAO {
 	public List<UserRentalVO> rentalList(HashMap map);
 
 	public List<UserRentalVO> getUserRecentList(HashMap map);
+	
+	public void updateStat(int b_stat, String b_id, int b_rent);
 }

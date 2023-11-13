@@ -25,8 +25,13 @@ public class UserBoardServiceImpl implements UserBoardService{
 	}
 	
 	//관리자페이지 사용자 문의 리스트
-	public List<UserBoardVO> admingetUserBoardList(HashMap map, Criteria cri) {
-		return userboardDAO.admingetUserBoardList(map, cri);
+	public List<UserBoardVO> admingetUserBoardList(Criteria cri) {
+		return userboardDAO.admingetUserBoardList(cri);
+	}
+	
+	//유저문의 개시글 count
+	public int getTotalUserinquiry(Criteria cri) {
+		return userboardDAO.getTotalUserinquiry(cri);
 	}
 	
 
@@ -67,6 +72,14 @@ public class UserBoardServiceImpl implements UserBoardService{
 	@Override
 	public List<UserRentalVO> getUserRecentList(HashMap map) {
 		return userboardDAO.getUserRecentList(map);
+	}
+
+	@Override
+	public void updateStat(int b_stat, String b_id, int b_rent) {
+		System.out.println("b_id : " +b_id);
+		System.out.println("b_stat : " +b_stat);
+		userboardDAO.updateStat(b_stat,b_id,b_rent);
+		
 	}
 
 }
