@@ -58,9 +58,7 @@
 
 						<c:forEach items="${priceList}" var="list">
 							<tr>
-								<td><img
-									src="<c:url value='../resources/img/products/${list.g_rimg1}' />"
-									width="100" /></td>
+								<td><img src="<c:url value='../resources/img/products/${list.g_rimg1}' />" width="100" /></td>
 								<td style="vertical-align: middle"><c:out
 										value="${list.g_id}" /></td>
 								<td style="vertical-align: middle"><a
