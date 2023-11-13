@@ -18319,9 +18319,14 @@ a.btn.btn-primary {
     justify-content: center;
 }
 
-.pagination_button {
-    margin-right: 20px; /* 버튼 사이의 간격을 조절할 수 있는 값 */
+
+
+.pagination li {
+   margin-right: 25px;
+   display: inline-block;
 }
+
+
 
 /* 검색창 */
 
@@ -18356,6 +18361,32 @@ tr #listName {
     align-items: center;
     width: 100%
 }
+
+.button-container {
+    text-align: right;
+}
+
+    .search-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px; /* 필요에 따라 여유 공간을 조절합니다. */
+    }
+
+    .form-control.search-select {
+        width: 80px; /* 가로 길이 조절 */
+        margin-right: 5px;
+    }
+
+    .form-control.search-input {
+        width: 300px; /* 가로 길이 조절 */
+        margin-right: 5px;
+    }
+
+    .btn.search-btn {
+        /* 필요에 따라 버튼 스타일을 추가합니다. */
+    }
+
 
 
 

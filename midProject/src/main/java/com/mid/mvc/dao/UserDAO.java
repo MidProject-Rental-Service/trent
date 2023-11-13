@@ -19,9 +19,9 @@ public interface UserDAO {
 	
 	public void updateUser(UserVO vo);
 
-	public List<UserVO> getUserList(HashMap map);	
+	public List<UserVO> getUserList(Criteria cri);	
 	
-	public List<UserVO> getSupplyList(HashMap map);	
+	public List<UserVO> getSupplyList(Criteria cri);	
 	
 	public void insertSupply(UserVO vo);
 	
@@ -29,7 +29,9 @@ public interface UserDAO {
 	
 	public void userUpdate(UserVO vo);
 	
-	public int getTotal();
+	public int getTotalUser(Criteria cri);
+	
+	public int getTotalSupply(Criteria cri);
 
 	public List<ShoppingCartVO> getCartList(HashMap map);
 	  

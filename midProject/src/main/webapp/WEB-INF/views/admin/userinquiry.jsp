@@ -85,40 +85,47 @@
 					</table>
 				</form>
 				<!-- page 이전 1 2 3 4 5 다음  -->
-				<div name="paging">
-					<ul class="pagination">
-						<c:if test="${pageMaker.prev }">
-							<li class="pagination_button"><a
-								href="${pageMaker.startPage - 1 }">Previous</a></li>
+				<form action = "userinquiry.do" name = "pageForm" method="post">
+					<ul class="pagination pagination-sm">
+						<c:if test="${pageVO.prev }">
+							<li><a href="#" data-pagenum='${pageVO.startPage-1}'>이전</a></li>
 						</c:if>
 
-						<c:forEach var="num" begin="${pageMaker.startPage }"
-							end="${pageMaker.endPage }">
-							<li class="pagination_button"><a href="${num }">${num }</a>
+						<c:forEach var="num" begin="${pageVO.startPage }" end="${pageVO.endPage }">
+							<li class="${pageVO.pageNum eq num ? 'active' : ''}">
+								<a href="#" data-pagenum='${num }'>${num }</a>
 							</li>
 						</c:forEach>
 
-						<c:if test="${pageMaker.next }">
-							<li class="pagination_button"><a
-								href="${pageMaker.endPage + 1 }">Next</a></li>
+						<c:if test="${pageVO.next }">
+							<li><a href="#" data-pagenum='${pageVO.endPage +1}'>다음</a></li>
 						</c:if>
 					</ul>
-				</div>
-
+					
+					  <input type="hidden" name="pageNum" value="${pageVO.cri.pageNum }">
+					  <input type="hidden" name="amount" value="${pageVO.cri.amount }">
+					  <input type="hidden" name="searchCondition" value="${pageVO.cri.searchCondition }">
+					  <input type="hidden" name="searchKeyword" value="${pageVO.cri.searchKeyword }">
+					
+					
+				</form>
+				
+				
 
 				<!-- 검색폼 시작 (name값이랑 value값은 변경금지!!) -->
-				<form action="usermange.do">
-					<div class="search row">
-						<select name="searchCondition" id="searchCondition"
-							class="search-date-bar">
-							<option value="name">이름</option>
-							<option value="phone">휴대폰번호</option>
-							<option value="id">아이디</option>
-							<option value="addr">주소</option>
-							<option value="email">이메일</option>
-						</select> <input type="text" name="searchKeyword"  class="search_Keyword"> <input
-							type="submit" class="btn btn-primary search-btn search-btn" value="검색">
-					</div>
+				<form action="userinquiry.do" method="post">
+				    <div class="search-wrap" style="display: flex; align-items: center;"> <!-- 인라인 스타일 추가 -->
+				        <select class="form-control search-select" name="searchCondition"  > <!-- 인라인 스타일 추가 -->
+				            <option value="ub_title" ${pageVO.cri.searchCondition eq 'ub_title' ? 'selected' : '' }>문의제목</option>
+				            <option value="id" ${pageVO.cri.searchCondition eq 'id' ? 'selected' : '' }>아이디</option>
+				            <option value="ub_regdate" ${pageVO.cri.searchCondition eq 'ub_regdate' ? 'selected' : '' }>등록일</option>
+				        </select>
+				        <input type="text" class="form-control search-input" name="searchKeyword" value=${pageVO.cri.searchKeyword} > <!-- 인라인 스타일 추가 -->
+				        <button type="submit" class="btn btn-primary search-btn">검색</button>
+				    </div>
+				
+				    <input type="hidden" name="pageNum" value="1">
+				    <input type="hidden" name="amount" value="5">
 				</form>
 				<!-- 검색 폼 끝 -->
 			</section>

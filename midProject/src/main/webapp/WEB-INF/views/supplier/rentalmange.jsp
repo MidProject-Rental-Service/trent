@@ -64,13 +64,13 @@
 			</div>
 
 			<section id="container">
-				<form role="form" action="rentalmange.do" method="get">
+				<form role="form" action="rentalmanging.do" method="get">
 
 					<input type="hidden">
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>Ck</th>
+								<th>No</th>
 								<th>렌탈 신청일</th>
 								<th>제품 코드</th>
 								<th>제품명</th>
@@ -86,6 +86,7 @@
 						<c:forEach items="${rentList}" var="list">
 							<tr>
 								<td><c:out value="${list.b_id}" /></td>
+								<input type="hidden" name="b_id" value="${list.b_id}" />
 								<c:set var="formattedDate" value="${list.b_signdate}" />
 								<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
 									var="b_signdate" />
@@ -95,22 +96,21 @@
 								<td><c:out value="${list.name}" /></td>
 								<td><c:out value="${list.phone}" /></td>
 								<td><c:out value="${list.b_rent}" /></td>
-								<td><select name="dropdown">
-										<option value="0"
-											<c:if test="${list.b_stat eq '0'}">selected</c:if>>취소</option>
-										<option value="1"
-											<c:if test="${list.b_stat eq '1'}">selected</c:if>>렌탈신청</option>
-										<option value="2"
-											<c:if test="${list.b_stat eq '2'}">selected</c:if>>해피콜진행</option>
-										<option value="3"
-											<c:if test="${list.b_stat eq '3'}">selected</c:if>>주문확정</option>
-										<option value="4"
-											<c:if test="${list.b_stat eq '4'}">selected</c:if>>배송/설치중</option>
-										<option value="5"
-											<c:if test="${list.b_stat eq '5'}">selected</c:if>>설치완료</option>
-								</select></td>
+								<input type="hidden" name="b_rent" value="${list.b_rent}" />
 
+								<td>
+								    
+								            <select name="b_stat">
+								                <option value="0" <c:if test="${list.b_stat eq '0'}">selected</c:if>>취소</option>
+								                <option value="1" <c:if test="${list.b_stat eq '1'}">selected</c:if>>렌탈신청</option>
+								                <option value="2" <c:if test="${list.b_stat eq '2'}">selected</c:if>>해피콜진행</option>
+								                <option value="3" <c:if test="${list.b_stat eq '3'}">selected</c:if>>주문확정</option>
+								                <option value="4" <c:if test="${list.b_stat eq '4'}">selected</c:if>>배송/설치중</option>
+								                <option value="5" <c:if test="${list.b_stat eq '5'}">selected</c:if>>설치완료</option>
+								                <option value="6" <c:if test="${list.b_stat eq '6'}" >selected</c:if>>구매확정</option>
+								            </select>
 
+								</td>			
 								<c:set var="formattedDate" value="${list.b_startdate}" />
 								<fmt:formatDate pattern="yyyy-MM-dd" value="${formattedDate}"
 									var="b_startdate" />
@@ -126,53 +126,24 @@
 					</table>
 					<div class="button-container">
 						<input class="btn btn-primary" type="submit" value="등록하기"
-							id="rentalupdate" />
+							id="rentalmanging.do" />
 					</div>
 
 				</form>
 
 
 				<!-- page 이전 1 2 3 4 5 다음  -->
-				<div name="paging">
-					<ul class="pagination">
-						<c:if test="${pageMaker.prev }">
-							<li class="pagination_button"><a
-								href="${pageMaker.startPage - 1 }">Previous</a></li>
-						</c:if>
 
-						<c:forEach var="num" begin="${pageMaker.startPage }"
-							end="${pageMaker.endPage }">
-							<li class="pagination_button"><a href="${num }">${num }</a>
-							</li>
-						</c:forEach>
-
-						<c:if test="${pageMaker.next }">
-							<li class="pagination_button"><a
-								href="${pageMaker.endPage + 1 }">Next</a></li>
-						</c:if>
-					</ul>
-				</div>
-
-
-				<!-- 검색폼 시작 (name값이랑 value값은 변경금지!!) -->
-				<form action="usermange.do">
-					<div class="search row">
-						<select name="searchCondition" id="searchCondition"
-							class="search-date-bar">
-							<option value="name">이름</option>
-							<option value="phone">휴대폰번호</option>
-							<option value="id">아이디</option>
-							<option value="addr">주소</option>
-							<option value="email">이메일</option>
-						</select> <input type="text" name="searchKeyword" class="search_Keyword">
-						<input type="submit" class="btn btn-primary search-btn search-btn"
-							value="검색">
-					</div>
-				</form>
 				<!-- 검색 폼 끝 -->
 			</section>
 		</div>
 	</div>
+
+
+
+
+
+
 	<script src="../src/assets/libs/jquery/dist/jquery.max.js"></script>
 	<script src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script

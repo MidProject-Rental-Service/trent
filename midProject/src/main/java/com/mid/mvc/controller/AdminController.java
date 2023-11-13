@@ -72,38 +72,27 @@ public class AdminController {
 	
 	//사용자 전체 검색 --
 	@RequestMapping("/usermange.do")
-	public void userList(UserVO vo, Model model, Criteria cri, String searchCondition, String searchKeyword) {
-		HashMap map = new HashMap();
+	public void userList( Model model, Criteria cri) {
 
-		cri.setStartNum((cri.getPageNum() - 1) * cri.getAmount());
+		PageVO pageVO = new PageVO(cri, userService.getTotalUser(cri));
+		List<UserVO> result = userService.getUserList(cri);
 		
-		
- 		map.put("searchCondition", searchCondition);
- 		map.put("searchKeyword", searchKeyword);
- 		map.put("criteria", cri);
-		
-		List<UserVO> result = userService.getUserList(map);
-		int total = userService.getTotal();
-
 		model.addAttribute("userList",result);
-		model.addAttribute("pageMaker", new PageVO(cri, total));
-	
-		
-		System.out.println("Amount : " + cri.getAmount());
-		System.out.println("StartNum : " + cri.getStartNum());
-		System.out.println("PageNum : " + cri.getPageNum());
+		model.addAttribute("pageVO", pageVO); 
+
 	
 	}
 
 	//공급사 전체 검색  --
 	@RequestMapping("/supplymange.do")
-	public void supplyList(UserVO vo, Model model ,String searchCondition, String searchKeyword) {
-		System.out.println("===> supply호출");
-		HashMap map = new HashMap();
-		map.put("searchCondition", searchCondition);
-		map.put("searchKeyword", searchKeyword);
-		List<UserVO> result = userService.getSupplyList(map);
+	public void supplyList(Criteria cri, Model model ) {
+
+		PageVO pageVO = new PageVO(cri, userService.getTotalSupply(cri));
+		List<UserVO> result = userService.getSupplyList(cri);
+
+		model.addAttribute("pageVO", pageVO); 
 		model.addAttribute("supplyList",result);
+
 	}
 
 	//상품등록
@@ -116,14 +105,17 @@ public class AdminController {
 
 	//상품 전체 검색 -- 
 	@RequestMapping("/productmange.do")
-	public void GoodsList(GoodsVO vo, Model model,String searchCondition, String searchKeyword) { 
-		System.out.println("===> GoodsList-controller호출"); 
-		HashMap map = new HashMap();
-		map.put("searchCondition", searchCondition);
-		map.put("searchKeyword", searchKeyword);
-		List<GoodsVO> result = goodsService.getGoodsList(map); 
+	public void GoodsList( Criteria cri, Model model) { 
+		
+		PageVO pageVO = new PageVO(cri, goodsService.getTotal(cri));
+	
+		List<GoodsVO> result = goodsService.getGoodsList(cri); 
+		
+		System.out.println("searchKeyword : " + cri.getSearchKeyword());
+		System.out.println("result :" + result);
+		model.addAttribute("pageVO", pageVO); 
 		model.addAttribute("goodsList",result); 
-//		System.out.println("result :" + result);
+		
 	}	
 	
 	//상품 상세페이지 (내용 띄우기)
@@ -176,24 +168,22 @@ public class AdminController {
 	  //관리자 페이지에서 더보기 누르면 사용자 공급사 문의 전체 검색
 	  @RequestMapping("/userinquiry.do")
 	  public void adminUserBoardList(Model m, Criteria cri) {
-		  HashMap map = new HashMap();
-	      List<UserBoardVO>result = userBoardService.admingetUserBoardList(map, cri);
-	      int total = userBoardService.getTotal();
+		  
+		  PageVO pageVO = new PageVO(cri, userBoardService.getTotalUserinquiry(cri));
+	      List<UserBoardVO>result = userBoardService.admingetUserBoardList(cri);
 	      
-	      System.out.println(result);
-	      m.addAttribute("userBoardList",result);		  		  
-	      m.addAttribute("pageMaker", new PageVO(cri, total));		  		  
+	      m.addAttribute("pageVO", pageVO);	
+	      m.addAttribute("userBoardList",result);		  		     	  		  
 	  }
 	  
 
 	  //관리자 페이지에서 공급사문의 더보기 누르면 공급사 -- 
 	  @RequestMapping("/supplyinquiry.do")
-	  public void admingetSupplierBoardList(Model m,String searchCondition, String searchKeyword) {
-		  HashMap map = new HashMap();
-			map.put("searchCondition", searchCondition);
-			map.put("searchKeyword", searchKeyword);
-	      List<SupplierBoardVO>result = supplierBoardServcie.admingetSupplierBoardList(map);
-	      System.out.println("admingetSupplierBoardList: " + result);
+	  public void admingetSupplierBoardList(Model m, Criteria cri) {
+		  PageVO pageVO = new PageVO(cri, supplierBoardServcie.getTotalSupplyinquiry(cri));
+	      List<SupplierBoardVO>result = supplierBoardServcie.admingetSupplierBoardList(cri);
+
+	      m.addAttribute("pageVO", pageVO);			  		  
 	      m.addAttribute("admingetSupplierBoardList",result);		  		  
 	  }	  
 

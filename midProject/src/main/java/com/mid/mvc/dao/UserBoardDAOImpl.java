@@ -43,15 +43,14 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 	}
 	
 	//관리자 페이지에서 사용자 문의리스트
-	public List<UserBoardVO> admingetUserBoardList(HashMap map, Criteria cri) {
-		cri.setStartNum((cri.getPageNum() - 1) * cri.getAmount());
-		map.put("criteria", cri);
-		System.out.println("===> sqlSession getUserBoardList() 호출");
-		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
-		return sqlSession.selectList("UserBoardMapper.admingetUserBoardList",map);
+	public List<UserBoardVO> admingetUserBoardList(Criteria cri) {
+		return sqlSession.selectList("UserBoardMapper.admingetUserBoardList", cri);
 	}
 	
-
+	@Override
+	public int getTotalUserinquiry(Criteria cri) {
+		return sqlSession.selectOne("UserBoardMapper.getTotalUserinquiry", cri);
+	}
 	
 	public List<UserBoardVO> dashboardUserBoardList(UserBoardVO vo) {
 		return sqlSession.selectList("UserBoardMapper.dashboardUserBoardList", vo);
@@ -87,5 +86,21 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 		System.out.println("===> sqlSession getUserRecentList() 호출");
 		return sqlSession.selectList("UserBoardMapper.getUserRecentList",map);
 	}
+
+
+	@Override
+	public void updateStat(int b_stat, String b_id, int b_rent) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("b_stat", b_stat);
+		map.put("b_id", b_id);
+		map.put("b_rent", b_rent);
+		System.out.println("map호출 : " + map);
+		sqlSession.update("UserBoardMapper.updateStat", map);
+		
+		
+	}
+
+
+
 	
 }

@@ -11,9 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mid.mvc.domain.CardVO;
+import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.GoodsVO;
+import com.mid.mvc.domain.PageVO;
 import com.mid.mvc.domain.PriceVO;
 import com.mid.mvc.domain.SupplierBoardVO;
 import com.mid.mvc.domain.UserRentalVO;
@@ -47,10 +50,12 @@ public class SupController {
 	
 	//상품 전체 검색
 	@RequestMapping("/productmange.do")
-	public void GoodsList(GoodsVO vo, Model model) { 
-		HashMap map = new HashMap();
-		List<GoodsVO> result = goodsService.getGoodsList(map); 
-		model.addAttribute("goodsList",result);
+	public void GoodsList(Criteria cri, Model model) { 
+		PageVO pageVO = new PageVO(cri, goodsService.getTotal(cri));
+		List<GoodsVO> result = goodsService.getGoodsList(cri);
+		
+		model.addAttribute("pageVO", pageVO); 
+		model.addAttribute("goodsList",result); 
 	}
 	
 /*
@@ -60,10 +65,12 @@ public class SupController {
 */	
 	   
 	//가격정보 전체 검색
-		@RequestMapping("/pricemange.do")
-		public void getPriceList(PriceVO vo, Model model) { 
-			List<PriceVO> result = goodsService.getPriceList(vo); 
-			model.addAttribute("priceList",result);
+	@RequestMapping("/pricemange.do")
+	public void getPriceList(Criteria cri, Model model) { 
+		PageVO pageVO = new PageVO(cri, goodsService.getPriceTotal(cri));
+		List<PriceVO> result = goodsService.getPriceList(cri); 
+		model.addAttribute("pageVO", pageVO); 
+		model.addAttribute("priceList",result);
 	}
 	
 	//가격 정보 등록 (페이지 띄우기)
@@ -196,6 +203,26 @@ public class SupController {
 		  SupplierBoardVO result = supplierBoardService.getSupplierBoard(vo);
 		  m.addAttribute("supplierBoard", result);
 	  }	 	
- 	
+ 
+
+		/*
+		 * @RequestMapping("/rentalmanging.do") public String
+		 * rentalmanging(@RequestParam List<String> b_id, @RequestParam List<Integer>
+		 * b_stat) { System.out.println("vo.id입니다 :" + b_id);
+		 * System.out.println("vo.stat입니다 :" + b_stat);
+		 * 
+		 * 
+		 * return "redirect:rentalmange.do"; }
+		 */
 	
+	  @RequestMapping("/rentalmanging.do")
+	  public String rentalmanging(@RequestParam List<String> b_id, @RequestParam List<Integer> b_stat, @RequestParam List<Integer> b_rent) {
+		  	
+	        for (int i = 0; i < b_id.size(); i++) {
+	        	userBoardService.updateStat(b_stat.get(i), b_id.get(i), b_rent.get(i));
+	        }
+		  
+		  
+		  return "redirect:rentalmange.do";
+	  }	 	  
 }
