@@ -16,12 +16,61 @@
 
 
 	<!-- 제품 목록 띄우기 -->
-	<select id="getGoodsList" resultType="GoodsVO">
-		SELECT *
-		FROM GOODS G
-		INNER JOIN CATEGORY C
-		ON C.C_ID = G.C_ID
+	<select id="getGoodsList"  resultType="GoodsVO">
+	    <![CDATA[
+	        SELECT B.*, C.c_name as category_name
+	        FROM (
+	            SELECT ROW_NUMBER() OVER (ORDER BY g_id) AS RN, A.*
+	            FROM (
+	                SELECT goods.*, category.c_name
+	                FROM GOODS 
+	                INNER JOIN CATEGORY ON goods.c_id = category.c_id 
+	                WHERE 
+	    ]]>
+	                    <choose>
+	                        <when test="searchCondition == 'g_name'">
+	                            g_name LIKE '%${searchKeyword}%'
+	                        </when>
+	                        <when test="searchCondition == 'g_id'">
+	                            g_id LIKE '%${searchKeyword}%'
+	                        </when>
+	                        <when test="searchCondition == 'c_name'">
+	                            category.c_name LIKE '%${searchKeyword}%'
+	                        </when>
+	                        <otherwise>
+	                            1 = 1 <!-- 항상 true이므로 모든 조건이 적용됩니다. -->
+	                        </otherwise>
+	                    </choose>
+	    <![CDATA[	        
+	                ) A
+	            ) AS B 
+	            INNER JOIN CATEGORY AS C ON B.c_id = C.c_id
+	            WHERE RN > (#{pageNum}-1) * #{amount} AND RN <= #{pageNum} * #{amount};
+	    ]]>
 	</select>
+
+	
+	<!-- 제품 갯수 구하기 -->
+	<select id="getTotal" resultType="int">
+	    SELECT count(*) as total
+	    FROM goods
+	    WHERE 
+	    <choose>
+	        <when test="searchCondition == 'g_name'">
+	            g_name LIKE '%${searchKeyword}%'
+	        </when>
+	        <when test="searchCondition == 'g_id'">
+	            g_id LIKE '%${searchKeyword}%'
+	        </when>
+	        <when test="searchCondition == 'c_name'">
+	            c_id IN (SELECT c_id FROM category WHERE c_name LIKE '%${searchKeyword}%')
+	        </when>
+	        <otherwise>
+	            1 = 1 <!-- 항상 true이므로 모든 조건이 적용됩니다. -->
+	        </otherwise>
+	    </choose>
+	</select>
+
 	
 	<!-- 최저 렌탈 정보 갖고오기(전체리스트) -->
 	<select id="getMinPriceList" parameterType="GoodsVO" resultType="PriceVO">
@@ -106,13 +155,54 @@
 
 	<!-- 가격 목록 띄우기 -->
 	<select id="getPriceList" resultType="PriceVO">
-		<![CDATA[
-		SELECT  *  FROM PRICE P
-		INNER JOIN GOODS G
-		ON P.G_ID = G.G_ID
-		WHERE id = #{id};
-		]]>
+	    SELECT price.*
+	    FROM (
+	        SELECT ROW_NUMBER() OVER (ORDER BY p_id) AS RN, p.*
+	        FROM price p
+	        INNER JOIN goods g ON p.g_id = g.g_id
+	        WHERE id = #{id}
+	        <choose>
+	            <when test="searchCondition == 'g_id'">
+	                AND g.g_id LIKE CONCAT('%', #{searchKeyword}, '%')
+	            </when>
+	            <when test="searchCondition == 'p_rent'">
+	                AND p.p_rent LIKE CONCAT('%', #{searchKeyword}, '%')
+	            </when>
+	            <when test="searchCondition == 'p_price'">
+	                AND p.p_price LIKE CONCAT('%', #{searchKeyword}, '%')
+	            </when>
+	            <otherwise>
+	                AND 1 = 1
+	            </otherwise>
+	        </choose>
+	    ) AS price
+	    <![CDATA[
+	    WHERE RN > (#{pageNum}-1) * #{amount} AND RN <= #{pageNum} * #{amount};
+	    ]]>
 	</select>
+	
+	<!-- 가격 목록 count -->
+	<select id="getPriceTotal" resultType="int">
+	  SELECT COUNT(*) as total
+	    FROM price p
+	    INNER JOIN goods g ON p.g_id = g.g_id
+	    WHERE id = #{id}
+	    <choose>
+        <when test="searchCondition == 'g_id'">
+            AND g.g_id LIKE CONCAT('%', #{searchKeyword}, '%')
+        </when>
+        <when test="searchCondition == 'p_rent'">
+            AND p.p_rent LIKE CONCAT('%', #{searchKeyword}, '%')
+        </when>
+        <when test="searchCondition == 'p_price'">
+            AND p.p_price LIKE CONCAT('%', #{searchKeyword}, '%')
+        </when>
+        <otherwise>
+            AND 1 = 1
+        </otherwise>
+   	 </choose>
+	</select>
+	
 	
 	<!-- 가격 상세 보기 -->
 	<select id="getPriceById" parameterType="PriceVO" resultType="PriceVO">

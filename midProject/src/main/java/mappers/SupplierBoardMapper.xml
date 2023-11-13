@@ -13,12 +13,58 @@
 	</select>
 	
 	<select id="admingetSupplierBoardList" resultType="SupplierBoardVO">
-		SELECT s.* , u2.NAME 
-		FROM SUPPLIERBOARD S 
-		INNER JOIN `user` u2 
-		ON s.ID =u2.ID WHERE u2.`role` ="supplier"
-		ORDER BY s.SB_ID DESC;
-	</select>		
+	    SELECT *
+	    FROM (
+	        SELECT ROW_NUMBER() OVER (ORDER BY sb_regdate) AS RN, s.*, u2.NAME AS name
+	        FROM SUPPLIERBOARD s
+	        INNER JOIN `user` u2 ON s.ID = u2.ID
+	        WHERE u2.`role` = "supplier"
+	        AND (
+	            <choose>
+	                <when test="searchCondition == 'sb_title'">
+	                    sb_title LIKE '%${searchKeyword}%'
+	                </when>
+	                <when test="searchCondition == 'name'">
+	                    u2.name LIKE '%${searchKeyword}%'
+	                </when>
+	                <when test="searchCondition == 'sb_regdate'">
+	                    sb_regdate LIKE '%${searchKeyword}%'
+	                </when>
+	                <otherwise>
+	                    1 = 1 
+	                </otherwise>
+	            </choose>
+	        )
+	    ) AS B
+	    <![CDATA[
+	    WHERE RN > (#{pageNum}-1) * #{amount} AND RN <= #{pageNum} * #{amount};
+	    ]]>
+	</select>
+
+	
+	<select id="getTotalSupplyinquiry" resultType="int">
+	    SELECT COUNT(*) as total
+	    FROM SUPPLIERBOARD s
+	    INNER JOIN `user` u2 ON s.ID = u2.ID
+	    WHERE u2.`role` = "supplier"
+	    AND (
+	        <choose>
+	            <when test="searchCondition == 'sb_title'">
+	                s.sb_title LIKE '%${searchKeyword}%'
+	            </when>
+	            <when test="searchCondition == 'name'">
+	                u2.name LIKE '%${searchKeyword}%'
+	            </when>
+	            <when test="searchCondition == 'sb_regdate'">
+	                s.sb_regdate LIKE '%${searchKeyword}%'
+	            </when>
+	            <otherwise>
+	                1 = 1
+	            </otherwise>
+	        </choose>
+	    );
+	</select>	
+		
 
 	<select id="getSupplierBoard" resultType="SupplierBoardVO">
 		SELECT s.*, u.NAME ,u.PHONE 

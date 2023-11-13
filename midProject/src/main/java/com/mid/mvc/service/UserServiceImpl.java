@@ -38,13 +38,12 @@ public class UserServiceImpl implements UserService {
 		userDAOImpl.updateUser(vo);
 	}
 	
-	public List<UserVO> getUserList(HashMap map){
-		return userDAOImpl.getUserList(map);
+	public List<UserVO> getUserList(Criteria cri){
+		return userDAOImpl.getUserList(cri);
 	}
 	
-	public List<UserVO> getSupplyList(HashMap map){
-		System.out.println("UserServiceImpl");
-		return userDAOImpl.getSupplyList(map);
+	public List<UserVO> getSupplyList(Criteria cri){
+		return userDAOImpl.getSupplyList(cri);
 	}
 	
 	public void insertSupply(UserVO vo) {
@@ -62,8 +61,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int getTotal() {
-		return userDAOImpl.getTotal();
+	public int getTotalUser(Criteria cri) {
+		return userDAOImpl.getTotalUser(cri);
+	}
+	
+	public int getTotalSupply(Criteria cri) {
+		return userDAOImpl.getTotalSupply(cri);
 	}
 
 	// 장바구니 

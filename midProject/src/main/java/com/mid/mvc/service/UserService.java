@@ -17,9 +17,9 @@ public interface UserService {
 	
 	public void updateUser(UserVO vo);
 
-	List<UserVO> getUserList(HashMap map);
+	List<UserVO> getUserList(Criteria cri);
 
-	List<UserVO> getSupplyList(HashMap map);
+	List<UserVO> getSupplyList(Criteria cri);
 	
 	void insertSupply(UserVO vo);
 	
@@ -27,7 +27,9 @@ public interface UserService {
 	
 	void userModify(UserVO vo);
 	
-	public int getTotal();
+	public int getTotalUser(Criteria cri);
+	
+	public int getTotalSupply(Criteria cri);
 	
 	List<ShoppingCartVO> getCartList(HashMap map);
 	

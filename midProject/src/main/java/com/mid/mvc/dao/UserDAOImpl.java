@@ -49,16 +49,12 @@ public class UserDAOImpl implements UserDAO {
 		
 	}
 
-	public List<UserVO> getUserList(HashMap map){
-		System.out.println("Map : " + map);
-		System.out.println("====> Mybatis로 getBoardList() 기능 처리");
-		return sqlSession.selectList("UserMapper.getUserList", map);
+	public List<UserVO> getUserList(Criteria cri){
+		return sqlSession.selectList("UserMapper.getUserList", cri);
 	}
 	
-	public List<UserVO> getSupplyList(HashMap map){
-		System.out.println("===> sqlSession getSupplyList");
-		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
-		return sqlSession.selectList("UserMapper.getSupplyList", map);
+	public List<UserVO> getSupplyList(Criteria cri){
+		return sqlSession.selectList("UserMapper.getSupplyList", cri);
 	}
 	
 	public void insertSupply(UserVO vo) {
@@ -75,10 +71,13 @@ public class UserDAOImpl implements UserDAO {
 		System.out.println("1나오면 성공 : " + result);
 	}
 
-	public int getTotal() {
-	    int result = sqlSession.selectOne("UserMapper.getTotal");
-	    return result;
+	public int getTotalUser(Criteria cri) {
+	    return sqlSession.selectOne("UserMapper.getTotalUser" ,cri);
 	}
+	
+	public int getTotalSupply(Criteria cri) {
+	    return sqlSession.selectOne("UserMapper.getTotalSupply" ,cri);
+	}	
 
 	// 장바구니 
 	public List<ShoppingCartVO> getCartList(HashMap map) {

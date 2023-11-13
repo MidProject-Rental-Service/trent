@@ -105,14 +105,52 @@
 	</update>
 	
 	<select id="admingetUserBoardList" resultType="UserBoardVO">
-		SELECT *
-		FROM USERBOARD 
-		ORDER BY UB_ID DESC
-		LIMIT #{criteria.amount} OFFSET #{criteria.startNum};
+	 
+	        SELECT *
+	        FROM (   SELECT ROW_NUMBER() OVER (ORDER BY ub_regdate ) AS RN, A.*
+	            FROM (  SELECT *
+			FROM USERBOARD
+	                	WHERE 
+	                    <choose>
+	                        <when test="searchCondition == 'ub_title'">
+	                            ub_title LIKE '%${searchKeyword}%'
+	                        </when>
+	                        <when test="searchCondition == 'id'">
+	                            id LIKE '%${searchKeyword}%'
+	                        </when>
+	                        <when test="searchCondition == 'ub_regdate'">
+	                           ub_regdate LIKE '%${searchKeyword}%'
+	                        </when>
+	                        <otherwise>
+	                            1 = 1 
+	                        </otherwise>
+	                    </choose>
+	   	        
+	                ) A
+	            ) AS B 
+	    <![CDATA[
+	            WHERE RN > (#{pageNum}-1) * #{amount} AND RN <= #{pageNum} * #{amount};
+	    ]]>
 	</select>	
 	
-    <select id="getTotal" resultType="int">
-        select count(*) from USERBOARD;
+    <select id="getTotalUserinquiry" resultType="int">
+        SELECT count(*) as total
+	    FROM USERBOARD
+	    WHERE 
+              <choose>
+                  <when test="searchCondition == 'ub_title'">
+                      ub_title LIKE '%${searchKeyword}%'
+                  </when>
+                  <when test="searchCondition == 'id'">
+                      id LIKE '%${searchKeyword}%'
+                  </when>
+                  <when test="searchCondition == 'ub_regdate'">
+                     ub_regdate LIKE '%${searchKeyword}%'
+                  </when>
+                  <otherwise>
+                      1 = 1 
+                  </otherwise>
+              </choose>	    
     </select>	
 
     <select id="rentalList" parameterType="hashmap" resultType="UserRentalVO">

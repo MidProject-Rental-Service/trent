@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mid.mvc.domain.CardVO;
+import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.GoodsVO;
 import com.mid.mvc.domain.PriceVO;
 
@@ -22,10 +23,12 @@ public class GoodsDAOImpl {
 	}
 
 	// 상품 전체 검색
-	public List<GoodsVO> getGoodsList(HashMap map){
-		System.out.println("====>  sqlSession getGoodsList ");
-		System.out.println("===> " + map.get("searchCondition") +" / " +map.get("searchKeyword"));
-		return SqlSession.selectList("GoodsMapper.getGoodsList", map);
+	public List<GoodsVO> getGoodsList(Criteria cri){
+		return SqlSession.selectList("GoodsMapper.getGoodsList", cri);
+	}
+	
+	public int getTotal(Criteria cri) {
+		return SqlSession.selectOne("GoodsMapper.getTotal", cri);
 	}
 	
 	// shop에서 보여지는 가격 정보 리스트
@@ -51,10 +54,14 @@ public class GoodsDAOImpl {
 	}
 	
 	// 상품 전체 검색
-	public List<PriceVO> getPriceList(PriceVO vo){
-		System.out.println(vo.toString());
-		return SqlSession.selectList("GoodsMapper.getPriceList", vo);
+	public List<PriceVO> getPriceList(Criteria cri){
+		return SqlSession.selectList("GoodsMapper.getPriceList", cri);
 	}
+	
+	public int getPriceTotal(Criteria cri) {
+		return SqlSession.selectOne("GoodsMapper.getPriceTotal", cri);
+	}
+	
 	
 	public PriceVO getPriceById(PriceVO vo) {
 		System.out.println("====> getPriceById 호출");
@@ -165,5 +172,7 @@ public class GoodsDAOImpl {
 		return SqlSession.selectOne("GoodsMapper.getRentalInfo", map);
 	}
 
+	
+	
 }
 

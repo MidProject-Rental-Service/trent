@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.SupplierBoardVO;
 import com.mid.mvc.domain.UserBoardVO;
 
@@ -22,8 +23,13 @@ public class SupplierBoardDAOImpl implements SupplierBoardDAO {
 	}
 	
 	//관리자 페이지에서 문의리스트
-	public List<SupplierBoardVO> admingetSupplierBoardList(HashMap map) {
-		return sqlSession.selectList("SupplierBoardMapper.admingetSupplierBoardList",map);
+	public List<SupplierBoardVO> admingetSupplierBoardList(Criteria cri) {
+		return sqlSession.selectList("SupplierBoardMapper.admingetSupplierBoardList",cri);
+	}	
+	
+	//관리자 페이지에 관리자 문의리스트 count
+	public int getTotalSupplyinquiry(Criteria cri) {
+		return sqlSession.selectOne("SupplierBoardMapper.getTotalSupplyinquiry", cri);
 	}	
 	
 	public SupplierBoardVO getSupplierBoard(SupplierBoardVO vo) {

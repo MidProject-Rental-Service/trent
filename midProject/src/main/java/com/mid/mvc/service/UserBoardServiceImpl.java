@@ -25,8 +25,13 @@ public class UserBoardServiceImpl implements UserBoardService{
 	}
 	
 	//관리자페이지 사용자 문의 리스트
-	public List<UserBoardVO> admingetUserBoardList(HashMap map, Criteria cri) {
-		return userboardDAO.admingetUserBoardList(map, cri);
+	public List<UserBoardVO> admingetUserBoardList(Criteria cri) {
+		return userboardDAO.admingetUserBoardList(cri);
+	}
+	
+	//유저문의 개시글 count
+	public int getTotalUserinquiry(Criteria cri) {
+		return userboardDAO.getTotalUserinquiry(cri);
 	}
 	
 

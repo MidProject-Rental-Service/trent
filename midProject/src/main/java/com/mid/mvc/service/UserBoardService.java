@@ -16,7 +16,10 @@ public interface UserBoardService {
 	List<UserBoardVO> getUserBoardList(HashMap map);
 	
 	//관리자 페이지에서  사용자 문의 리스트
-	List<UserBoardVO> admingetUserBoardList(HashMap map, Criteria cri);
+	List<UserBoardVO> admingetUserBoardList(Criteria cri);
+	
+	//관리자 페이지에서  사용자 문의 리스트 count
+	public int getTotalUserinquiry(Criteria cri);
 	
 	void insertUserBoard(UserBoardVO vo);
 	

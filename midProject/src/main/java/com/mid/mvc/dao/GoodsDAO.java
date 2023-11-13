@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.mid.mvc.domain.CardVO;
+import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.GoodsVO;
 import com.mid.mvc.domain.PriceVO;
 
@@ -11,7 +12,11 @@ public interface GoodsDAO {
 	
 	public void productRegister(GoodsVO vo);
 	
-	public List<GoodsVO> getGoodsList(HashMap map);
+	public List<GoodsVO> getGoodsList(Criteria cri);
+	
+	public int getTotal(Criteria cri);
+	
+	public int getPriceTotal(Criteria cri);
 	
 	public List<GoodsVO> getMinPriceList(GoodsVO vo);
 
@@ -19,7 +24,7 @@ public interface GoodsDAO {
 	
 	public GoodsVO getProductDetail(String g_id);
 
-	public List<PriceVO> getPriceList(PriceVO vo);
+	public List<PriceVO> getPriceList(Criteria cri);
 	
 	public PriceVO getPriceById(PriceVO vo);
 	
