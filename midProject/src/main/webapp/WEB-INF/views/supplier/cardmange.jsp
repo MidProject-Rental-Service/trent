@@ -61,44 +61,6 @@
 
 					</table>
 				</form>
-				<!-- page 이전 1 2 3 4 5 다음  -->
-				<div name="paging">
-					<ul class="pagination">
-						<c:if test="${pageMaker.prev }">
-							<li class="pagination_button"><a
-								href="${pageMaker.startPage - 1 }">Previous</a></li>
-						</c:if>
-
-						<c:forEach var="num" begin="${pageMaker.startPage }"
-							end="${pageMaker.endPage }">
-							<li class="pagination_button"><a href="${num }">${num }</a>
-							</li>
-						</c:forEach>
-
-						<c:if test="${pageMaker.next }">
-							<li class="pagination_button"><a
-								href="${pageMaker.endPage + 1 }">Next</a></li>
-						</c:if>
-					</ul>
-				</div>
-
-
-				<!-- 검색폼 시작 (name값이랑 value값은 변경금지!!) -->
-				<form action="usermange.do">
-					<div class="search row">
-						<select name="searchCondition" id="searchCondition"
-							class="search-date-bar">
-							<option value="name">이름</option>
-							<option value="phone">휴대폰번호</option>
-							<option value="id">아이디</option>
-							<option value="addr">주소</option>
-							<option value="email">이메일</option>
-						</select> <input type="text" name="searchKeyword" class="search_Keyword">
-						<input type="submit" class="btn btn-primary search-btn search-btn"
-							value="검색">
-					</div>
-				</form>
-				<!-- 검색 폼 끝 -->
 			</section>
 		</div>
 	</div>
