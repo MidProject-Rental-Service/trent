@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/product-description-style.css" type="text/css">
 
 </head>
 
@@ -56,15 +57,15 @@
 				<nav class="nav-menu mobile-menu">
 					<ul>
 						<li><a href="./main.do">Home</a></li>
-						<li><a href="./shop.do">전체렌탈상품</a></li>
-						<li><a href="./shop_best.do">BEST 상품</a>
+						<li><a href="./shop.do">전체렌탈제품</a></li>
+						<li><a href="./shop_best.do">BEST 제품</a>
 						<li><a href="./discountCard.do">할인카드</a></li>
 						<li><a href="#">Pages</a>
 							<ul class="dropdown">
 								<c:if test="<%= loggedInUser != null %>">
 								    <li><a href="./mypage.do">마이페이지</a></li>
 									<li><a href="./shopping_cart.do">장바구니</a></li>
-									<li><a href="./rental.do">렌탈신청</a></li>
+									<li><a href="./cart-rental.do">렌탈신청</a></li>
 								</c:if>
 								<c:if test="<%= loggedInUser == null %>">
 								    <li><a href="./join.do">회원가입</a></li>
@@ -85,8 +86,8 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <a href="./main.do"><i class="fa fa-home"></i> Home</a>
-                        <a href="./shop.do">Shop</a>
-                        <span>Detail</span>
+                        <a href="./shop.do">전체렌탈제품</a>
+                        <span>제품상세</span>
                     </div>
                 </div>
             </div>
@@ -176,16 +177,16 @@
                             <div class="product-thumbs">
                                 <div class="product-thumbs-track ps-slider owl-carousel">
                                     <!-- 이미지 -->
-                                    <div class="pt active" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg1}' />">
-                                   		<img src="<c:url value='../resources/img/products/${productInfo.g_rimg1}' />" alt="Product_Main_Thumbnail">
+                                    <div class="pt active" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />">
+                                   		<img src="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />" alt="Product_Main_Thumbnail">
                                     </div>
                                     
                                     <div class="pt" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />">
                                     	<img src="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />" alt="Product_Main_Thumbnail">
                                     </div>
                                     
-                                    <div class="pt" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg1}' />">
-                                    	<img src="<c:url value='../resources/img/products/${productInfo.g_rimg1}' />" alt="Product_Main_Thumbnail">
+                                    <div class="pt" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />">
+                                    	<img src="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />" alt="Product_Main_Thumbnail">
                                     </div>
                                     
                                     <div class="pt" data-imgbigurl="<c:url value='../resources/img/products/${productInfo.g_rimg3}' />">
@@ -290,10 +291,20 @@
                                     </div>
                                 </div>
                                 
-                                <!-- 성규 -->
+                                <!--  제품상세설명 이미지 -->
                                	<div class="tab-pane fade" id="tab-2" role="tabpanel">
-									<img src="<c:url value='../resources/img/products/${productInfo.g_rimg4}' />" alt="Product_Detail">
-								</div>
+                               	<h4>신청안내<span>렌탈 신청시 진행절차를 확인하세요</span></h4>
+                               	<img src="../resources/img/products/rentInfo.png"/>
+                               	<h4>가입혜택<span>t'Rent의 특별한 혜택을 확인하세요</span></h4>
+                               	<img src="../resources/img/products/rentInfo-2.png"/>
+                               	<h4>제품설명<span>상품에 대한 상세 정보를 확인하세요</span></h4>
+								<img src="<c:url value='../resources/img/products/${productInfo.g_rimg4}' />" alt="Product_Detail">
+                               	</div>
+                               	
+                         
+								
+								
+								<!-- 리뷰 성규 -->
 									<div class="tab-pane fade" id="tab-3" role="tabpanel">
 										<div class="customer-review-option">
 											<h4>${reviewCnt}&nbspComments</h4>
@@ -301,7 +312,14 @@
 
 												<c:choose>
 													<c:when test="${empty reviewGoodsList}">
-														<h4>작성된 리뷰가 없습니다.</h4>
+														<div class="none-review" style="    border: 1px solid #cecece;
+																													    border-radius: 10px;
+																													    padding: 5%;
+																													    text-align: center;
+																													    padding-top: 10%;">
+														<h4>작성된 리뷰가 없습니다</h4>
+														</div>
+														
 													</c:when>
 													<c:otherwise>
 														<c:forEach items="${reviewGoodsList}" var="review">
@@ -365,122 +383,11 @@
 	</section>
 	<!-- Product Shop Section End -->
 
-    <!-- Related Products Section End -->
-    <div class="related-products spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Related Products</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="../img/products/women-1.jpg" alt="">
-                            <div class="sale">Sale</div>
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Coat</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="../img/products/women-2.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Shoes</div>
-                            <a href="#">
-                                <h5>Guangzhou sweater</h5>
-                            </a>
-                            <div class="product-price">
-                                $13.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="../img/products/women-3.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="../img/products/women-4.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Converse Shoes</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <button id="scrollTopBtn" onclick="scrollToTop()" title="Go to top">
     	<i class="fa fa-arrow-up"></i>
   	</button>
-    <!-- Related Products Section End -->
+
     
 <!-- Js Plugins -->
 <script src="../js/jquery-3.3.1.min.js"></script>
@@ -496,6 +403,28 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/shopSearch.js"></script>
 <script src="../js/reviewStar.js"></script>
+
+<!-- Scroll to Top Script -->
+  <script>
+    // 스크롤이 일정 부분 이상 내려갔을 때 버튼을 보이게 하기
+    window.onscroll = function () {
+      scrollFunction();
+    };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("scrollTopBtn").style.display = "block";
+      } else {
+        document.getElementById("scrollTopBtn").style.display = "none";
+      }
+    }
+
+    // 최상단으로 스크롤하는 함수
+    function scrollToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
 
 <script type="text/javascript">
 	jQuery.fn.formatNumber = function () {
@@ -708,24 +637,9 @@
      	    });
      	});
 
-     	 // 스크롤이 일정 부분 이상 내려갔을 때 버튼을 보이게 하기
-        window.onscroll = function () {
-          scrollFunction();
-        };
 
-        function scrollFunction() {
-          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            document.getElementById("scrollTopBtn").style.display = "block";
-          } else {
-            document.getElementById("scrollTopBtn").style.display = "none";
-          }
-        }
 
-        // 최상단으로 스크롤하는 함수
-        function scrollToTop() {
-          document.body.scrollTop = 0;
-          document.documentElement.scrollTop = 0;
-        }
+
 </script>
 
 <jsp:include page="footer.jsp" />
