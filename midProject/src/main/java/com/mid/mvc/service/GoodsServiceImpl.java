@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mid.mvc.dao.GoodsDAOImpl;
 import com.mid.mvc.domain.CardVO;
+import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.GoodsVO;
 import com.mid.mvc.domain.PriceVO;
 
@@ -18,9 +19,14 @@ public class GoodsServiceImpl implements GoodsService{
 	private GoodsDAOImpl goodsDAO;
 	
 	
-	// 제품 목록 띄우기
-	public List<GoodsVO> getGoodsList(HashMap map) {
-		return goodsDAO.getGoodsList(map);
+	//제품목록띠우기
+	public List<GoodsVO> getGoodsList(Criteria cri) {
+		return goodsDAO.getGoodsList(cri);
+	}
+	
+	//제품갯수새기
+	public int getTotal(Criteria cri) {
+		return goodsDAO.getTotal(cri);
 	}
 	
 	public List<GoodsVO> getMinPriceList(GoodsVO vo ) {
@@ -59,8 +65,13 @@ public class GoodsServiceImpl implements GoodsService{
 	}
 	
 	// 가격 목록 띄우기
-	public List<PriceVO> getPriceList(PriceVO vo) {
-		return goodsDAO.getPriceList(vo);
+	public List<PriceVO> getPriceList(Criteria cri) {
+		return goodsDAO.getPriceList(cri);
+	}
+	
+	// 가격 목록 숫자count
+	public int getPriceTotal(Criteria cri) {
+		return goodsDAO.getPriceTotal(cri);
 	}
 	
 	// 가격 등록
@@ -152,6 +163,10 @@ public class GoodsServiceImpl implements GoodsService{
 	public List<CardVO> getCardListById(String id) {
 		return goodsDAO.getCardListById(id);
 	}
+
+
+
+
 
 
 

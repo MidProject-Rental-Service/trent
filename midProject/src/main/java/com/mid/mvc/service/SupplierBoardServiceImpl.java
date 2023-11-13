@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mid.mvc.dao.SupplierBoardDAO;
+import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.SupplierBoardVO;
 import com.mid.mvc.domain.UserBoardVO;
 
@@ -21,10 +22,14 @@ public class SupplierBoardServiceImpl implements SupplierBoardService{
 		return supplierboardDAO.dashboardSupplierBoardList(vo);
 	}
 
-	public List<SupplierBoardVO> admingetSupplierBoardList(HashMap map) {
-		return supplierboardDAO.admingetSupplierBoardList(map);
+	public List<SupplierBoardVO> admingetSupplierBoardList(Criteria cri) {
+		return supplierboardDAO.admingetSupplierBoardList(cri);
 	}
 
+	//유저문의 개시글 count
+	public int getTotalSupplyinquiry(Criteria cri) {
+		return supplierboardDAO.getTotalSupplyinquiry(cri);
+	}	
 
 	public SupplierBoardVO getSupplierBoard(SupplierBoardVO vo) {
 		return supplierboardDAO.getSupplierBoard(vo);

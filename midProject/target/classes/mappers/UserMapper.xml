@@ -74,33 +74,68 @@
 	</delete>
 	
 	<!--  회원정보 리스트 출력 -->
-    <select id="getUserList" parameterType="hashMap" resultType="UserVO">
-	    SELECT * FROM user 
-	    WHERE role = 'USER'
-		 <choose>
-		    <when test="searchCondition == 'name'">
-		        AND name LIKE CONCAT('%', #{searchKeyword}, '%')
-		    </when>
-		    <when test="searchCondition == 'phone'">
-		        AND phone LIKE CONCAT('%', #{searchKeyword}, '%')
-		    </when>
-		    <when test="searchCondition == 'id'">
-		        AND id LIKE CONCAT('%', #{searchKeyword}, '%')
-		    </when>
-		    <when test="searchCondition == 'addr'">
-		        AND addr LIKE CONCAT('%', #{searchKeyword}, '%')
-		    </when>
-		    <when test="searchCondition == 'email'">
-		        AND email LIKE CONCAT('%', #{searchKeyword}, '%')
-		    </when>
-		</choose>
-		LIMIT #{criteria.amount} OFFSET #{criteria.startNum}
+	<select id="getUserList" resultType="UserVO">
+	    SELECT userWithRowNumber.*
+	    FROM (
+	        SELECT ROW_NUMBER() OVER (ORDER BY id) AS RN, user.*
+	        FROM user 
+	        WHERE role = 'USER'
+	        <choose>
+	            <when test="searchCondition == 'name'">
+	                AND name LIKE CONCAT('%', #{searchKeyword}, '%')
+	            </when>
+	            <when test="searchCondition == 'phone'">
+	                AND phone LIKE CONCAT('%', #{searchKeyword}, '%')
+	            </when>
+	            <when test="searchCondition == 'id'">
+	                AND id LIKE CONCAT('%', #{searchKeyword}, '%')
+	            </when>
+	            <when test="searchCondition == 'addr'">
+	                AND addr LIKE CONCAT('%', #{searchKeyword}, '%')
+	            </when>
+	            <when test="searchCondition == 'email'">
+	                AND email LIKE CONCAT('%', #{searchKeyword}, '%')
+	            </when>
+	            <otherwise>
+	                AND 1 = 1
+	            </otherwise>
+	        </choose>
+	    ) AS userWithRowNumber
+	    <![CDATA[
+	    WHERE RN > (#{pageNum}-1) * #{amount} AND RN <= #{pageNum} * #{amount};
+	    ]]>
 	</select>
+
+
+
+
 	
     <!-- 게시물 총 개수 -->
-    <select id="getTotal" resultType="int">
-        select count(*) from user WHERE role ="USER"
-    </select>	
+	<select id="getTotalUser" resultType="int">
+	    SELECT COUNT(*) as total
+	    FROM user
+	    WHERE role = "USER"
+	    <choose>
+	        <when test="searchCondition == 'name'">
+	            AND name LIKE CONCAT('%', #{searchKeyword}, '%')
+	        </when>
+	        <when test="searchCondition == 'phone'">
+	            AND phone LIKE CONCAT('%', #{searchKeyword}, '%')
+	        </when>
+	        <when test="searchCondition == 'id'">
+	            AND id LIKE CONCAT('%', #{searchKeyword}, '%')
+	        </when>
+	        <when test="searchCondition == 'addr'">
+	            AND addr LIKE CONCAT('%', #{searchKeyword}, '%')
+	        </when>
+	        <when test="searchCondition == 'email'">
+	            AND email LIKE CONCAT('%', #{searchKeyword}, '%')
+	        </when>
+	        <otherwise>
+	            AND 1 = 1
+	        </otherwise>
+	    </choose>
+	</select>	
 	
 	<!--  공급사 추가 -->
 	<insert id="insertSupply" parameterType="UserVO">	
@@ -110,10 +145,63 @@
 	
 	<!--  공급사 리스트 출력 -->
 	<select id="getSupplyList" resultType="UserVO">
-		<![CDATA[
-		SELECT * FROM user WHERE role = "supplier" ORDER BY id DESC;
-		]]>
+	    SELECT userWithRowNumber.*
+	    FROM (
+	        SELECT ROW_NUMBER() OVER (ORDER BY id) AS RN, user.*
+	        FROM user 
+	        WHERE role = 'supplier'
+	        <choose>
+	            <when test="searchCondition == 'name'">
+	                AND name LIKE CONCAT('%', #{searchKeyword}, '%')
+	            </when>
+	            <when test="searchCondition == 'phone'">
+	                AND phone LIKE CONCAT('%', #{searchKeyword}, '%')
+	            </when>
+	            <when test="searchCondition == 'id'">
+	                AND id LIKE CONCAT('%', #{searchKeyword}, '%')
+	            </when>
+	            <when test="searchCondition == 'addr'">
+	                AND addr LIKE CONCAT('%', #{searchKeyword}, '%')
+	            </when>
+	            <when test="searchCondition == 'email'">
+	                AND email LIKE CONCAT('%', #{searchKeyword}, '%')
+	            </when>
+	            <otherwise>
+	                AND 1 = 1
+	            </otherwise>
+	        </choose>
+	    ) AS userWithRowNumber
+	    <![CDATA[
+	    WHERE RN > (#{pageNum}-1) * #{amount} AND RN <= #{pageNum} * #{amount};
+	    ]]>
 	</select>
+	
+	<!-- 관리자페이지 공급사 count -->
+	<select id="getTotalSupply" resultType="int">
+	    SELECT COUNT(*) as total
+	    FROM user
+	    WHERE role = "supplier"
+	    <choose>
+	        <when test="searchCondition == 'name'">
+	            AND name LIKE CONCAT('%', #{searchKeyword}, '%')
+	        </when>
+	        <when test="searchCondition == 'phone'">
+	            AND phone LIKE CONCAT('%', #{searchKeyword}, '%')
+	        </when>
+	        <when test="searchCondition == 'id'">
+	            AND id LIKE CONCAT('%', #{searchKeyword}, '%')
+	        </when>
+	        <when test="searchCondition == 'addr'">
+	            AND addr LIKE CONCAT('%', #{searchKeyword}, '%')
+	        </when>
+	        <when test="searchCondition == 'email'">
+	            AND email LIKE CONCAT('%', #{searchKeyword}, '%')
+	        </when>
+	        <otherwise>
+	            AND 1 = 1
+	        </otherwise>
+	    </choose>
+	</select>		
 	
 	<!-- 관리자 페이지 사용자 정보 상세보기 -->
 	<select id="userDetail" resultType="UserVO">

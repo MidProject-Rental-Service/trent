@@ -21,6 +21,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="../src/assets/css/styles.min.css" />
+<script src="../src/assets/libs/jquery/dist/jquery.max.js"></script>
 <script src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 <script
 	src="../src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -117,43 +118,7 @@
 					</table>
 				</form>
 				<!-- page 이전 1 2 3 4 5 다음 만드세요  -->
-				<div name="paging">
-					<ul class="pagination">
-						<c:if test="${pageMaker.prev }">
-							<li class="pagination_button"><a
-								href="${pageMaker.startPage - 1 }">Previous</a></li>
-						</c:if>
 
-						<c:forEach var="num" begin="${pageMaker.startPage }"
-							end="${pageMaker.endPage }">
-							<li class="pagination_button"><a href="${num }">${num }</a>
-							</li>
-						</c:forEach>
-
-						<c:if test="${pageMaker.next }">
-							<li class="pagination_button"><a
-								href="${pageMaker.endPage + 1 }">Next</a></li>
-						</c:if>
-					</ul>
-				</div>
-
-
-				<!-- 검색폼 시작 (name값이랑 value값은 변경금지!!) -->
-				<form action="usermange.do" id="searchForm">
-					<div class="search row">
-						<select name="searchCondition" id="searchCondition"
-							class="search-date-bar">
-							<option class="u" value="name">이름</option>
-							<option class="u" value="phone">휴대폰번호</option>
-							<option class="u" value="id">아이디</option>
-							<option class="u" value="addr">주소</option>
-							<option class="u" value="email">이메일</option>
-						</select> <input type="text" name="searchKeyword" class="search_Keyword">
-						<input type="submit"
-							class="btn btn-primary search-btn search-btn " value="검색">
-
-					</div>
-				</form>
 			</section>
 		</div>
 	</div>

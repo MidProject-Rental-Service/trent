@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.mid.mvc.domain.CardVO;
+import com.mid.mvc.domain.Criteria;
 import com.mid.mvc.domain.GoodsVO;
 import com.mid.mvc.domain.PriceVO;
 
@@ -11,11 +12,15 @@ public interface GoodsService {
 	
 	void productRegister(GoodsVO vo);
 	
-	List<GoodsVO> getGoodsList(HashMap map);
-	
+
 	List<GoodsVO> getBest3List(GoodsVO vo);
 	
 	List<GoodsVO> getBestList(GoodsVO vo);
+
+	List<GoodsVO> getGoodsList(Criteria cri);
+	
+	//goods 총갯수 구하기
+	public int getTotal(Criteria cri);
 
 	// 관리자 
 	GoodsVO getGoodsById(GoodsVO vo);
@@ -24,7 +29,9 @@ public interface GoodsService {
 
 	void deleteGoods(GoodsVO vo);
 	
-	List<PriceVO> getPriceList(PriceVO vo);
+	List<PriceVO> getPriceList(Criteria cri);
+	
+	public int getPriceTotal(Criteria cri);
 	
 	PriceVO getPriceById(PriceVO vo);
 	
