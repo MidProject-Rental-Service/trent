@@ -18374,7 +18374,7 @@ tr #listName {
     }
 
     .form-control.search-select {
-        width: 80px; /* 가로 길이 조절 */
+        width: 100px; /* 가로 길이 조절 */
         margin-right: 5px;
     }
 
