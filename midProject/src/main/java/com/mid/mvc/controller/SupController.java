@@ -71,6 +71,7 @@ public class SupController {
 		List<PriceVO> result = goodsService.getPriceList(cri); 
 		model.addAttribute("pageVO", pageVO); 
 		model.addAttribute("priceList",result);
+		System.out.println("result :" + result);
 	}
 	
 	//가격 정보 등록 (페이지 띄우기)
