@@ -48,9 +48,13 @@ public class SupplierBoardServiceImpl implements SupplierBoardService{
 	}
 
 	@Override
-	public List<SupplierBoardVO> inquiryList(HashMap map) {
-		return supplierboardDAO.inquiryList(map);
+	public List<SupplierBoardVO> inquiryList(Criteria cri) {
+		return supplierboardDAO.inquiryList(cri);
 	}
+	
+	public int getTotalinquiry(Criteria cri) {
+		return supplierboardDAO.getTotalinquiry(cri);
+	}	
 	
 
 

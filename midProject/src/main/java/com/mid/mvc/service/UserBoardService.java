@@ -39,7 +39,10 @@ public interface UserBoardService {
 	public int getTotal();
 	
 	//공급사 페이지에서 렌탈리스트 
-	List<UserRentalVO> rentalList(HashMap map);
+	List<UserRentalVO> rentalList(Criteria cri);
+	
+	//공급사 페이지에서 렌탈리스트 count
+	public int getTotalRental(Criteria cri);
 	
 	public void updateStat( int b_stat, String b_id, int b_rent);
 

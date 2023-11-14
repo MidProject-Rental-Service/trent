@@ -29,7 +29,10 @@ public interface SupplierBoardService {
 	void inquiryreigster(SupplierBoardVO vo);
 	
 	//공급사페이지에서 자기 문의만 보이기
-	List<SupplierBoardVO> inquiryList(HashMap map);
+	List<SupplierBoardVO> inquiryList(Criteria cri);
+	
+	//공급사페이지에서 자기 문의만 보이는 것 count
+	public int getTotalinquiry(Criteria cri);
 	
 
 }

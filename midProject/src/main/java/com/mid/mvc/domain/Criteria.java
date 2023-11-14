@@ -7,8 +7,7 @@ public class Criteria {
 	private int pageNum;
 	private int amount;
 	private int startNum;
-	private String id;
-	
+	private String id;	
 	//검색에 사용
 	private String searchCondition;
 	private String searchKeyword;
