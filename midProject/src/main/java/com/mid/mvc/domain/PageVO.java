@@ -53,6 +53,8 @@ public class PageVO {
 		this.next = this.endPage < realEnd;
 		
 		
+		
+		
 	}
 
 	

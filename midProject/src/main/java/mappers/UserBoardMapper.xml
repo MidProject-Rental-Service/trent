@@ -152,19 +152,75 @@
               </choose>	    
     </select>	
 
-    <select id="rentalList" parameterType="hashmap" resultType="UserRentalVO">
-		SELECT BUY.*,GOODS.G_NAME,GOODS.G_RIMG2, u.NAME ,u.phone
-		FROM BUY
-		INNER JOIN GOODS
-		ON
-		BUY.G_ID = GOODS.G_ID
-		INNER JOIN `user` u
-		ON
-		buy.id = u.id 
-		WHERE BUY.S_NAME  = #{name}
-		AND BUY.b_stat != 0
-		ORDER BY BUY.b_id DESC;
-    </select>
+
+    
+    <select id="rentalList" resultType="UserRentalVO">
+		   
+	    <![CDATA[
+	    SELECT *
+	    FROM (
+	         SELECT BUY.*,g_name ,u.name, u.phone, ROW_NUMBER() OVER (ORDER BY BUY.b_id) AS RN
+	        FROM BUY
+	        INNER JOIN GOODS ON BUY.G_ID = GOODS.G_ID
+	        INNER JOIN `user` u ON BUY.id = u.id
+	        INNER JOIN `user` s ON buy.S_NAME = s.NAME
+	        WHERE s.ID LIKE '%${id}%'
+	        AND BUY.b_stat != 0
+	    ]]>
+	  
+	        <choose>
+	            <when test="searchCondition == 'g_id'">
+	                AND GOODS.g_id LIKE '%${searchKeyword}%'
+	            </when>
+	            <when test="searchCondition == 'g_name'">
+	                AND GOODS.g_name LIKE '%${searchKeyword}%'
+	            </when>
+	            <when test="searchCondition == 'phone'">
+	                AND u.phone LIKE '%${searchKeyword}%'
+	            </when>
+	            <when test="searchCondition == 'name'">
+	                AND u.name LIKE '%${searchKeyword}%'
+	            </when>
+	            <otherwise>
+	                AND 1 = 1
+	            </otherwise>
+	        </choose>
+	    
+	    <![CDATA[
+	    ) AS price
+	    WHERE RN > (#{pageNum}-1) * #{amount} AND RN <= #{pageNum} * #{amount}
+	    ]]>
+	</select>
+	    
+	<select id="getTotalRental" resultType="int">
+	    <![CDATA[
+	    SELECT count(*) as total 
+	    FROM BUY 
+	    INNER JOIN GOODS ON BUY.G_ID = GOODS.G_ID
+	    INNER JOIN `user` u ON BUY.id = u.id
+	    INNER JOIN `user` s ON buy.S_NAME = s.NAME 
+	    WHERE BUY.b_stat != 0
+	    AND s.ID LIKE #{id}
+	    ]]>
+	    <choose>
+	        <when test="searchCondition == 'g_id'">
+	            AND GOODS.g_id LIKE '%${searchKeyword}%'
+	        </when>
+	        <when test="searchCondition == 'g_name'">
+	            AND GOODS.g_name LIKE '%${searchKeyword}%'
+	        </when>
+	        <when test="searchCondition == 'phone'">
+	            AND u.phone LIKE '%${searchKeyword}%'
+	        </when>
+	        <when test="searchCondition == 'name'">
+	            AND u.name LIKE '%${searchKeyword}%'
+	        </when>
+	        <otherwise>
+	            AND 1 = 1 
+	        </otherwise>
+	    </choose>
+	</select>
+	  
 
 	<update id="updateStat" parameterType="hashmap">
 	<![CDATA[

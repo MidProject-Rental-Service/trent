@@ -21,5 +21,7 @@ public interface SupplierBoardDAO {
 	
 	public void inquiryreigster(SupplierBoardVO vo);
 	
-	public List<SupplierBoardVO> inquiryList(HashMap map);
+	public List<SupplierBoardVO> inquiryList(Criteria cri);
+	
+	public int getTotalinquiry(Criteria cri);
 }

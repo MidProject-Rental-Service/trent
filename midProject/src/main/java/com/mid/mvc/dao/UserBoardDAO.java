@@ -28,7 +28,9 @@ public interface UserBoardDAO {
 	
 	public int getTotal();
 	
-	public List<UserRentalVO> rentalList(HashMap map);
+	public List<UserRentalVO> rentalList(Criteria cri);
+	
+	public int getTotalRental(Criteria cri);
 
 	public List<UserRentalVO> getUserRecentList(HashMap map);
 	

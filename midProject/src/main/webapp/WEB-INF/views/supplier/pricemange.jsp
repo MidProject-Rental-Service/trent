@@ -79,7 +79,7 @@
 
 				</form>
 				<!-- page 이전 1 2 3 4 5 다음  -->
-				<form action = "pricemange.do" name = "pageForm" method="post">
+				<form action = "pricemange.do" name = "pageForm" method="get">
 					<ul class="pagination pagination-sm">
 						<c:if test="${pageVO.prev }">
 							<li><a href="#" data-pagenum='${pageVO.startPage-1}'>이전</a></li>
@@ -122,6 +122,7 @@
 				
 				    <input type="hidden" name="pageNum" value="1">
 				    <input type="hidden" name="amount" value="5">
+				    <input type="hidden" name="id" value="${pageVO.cri.id }">
 				</form>
 				<!-- 검색 폼 끝 -->
 

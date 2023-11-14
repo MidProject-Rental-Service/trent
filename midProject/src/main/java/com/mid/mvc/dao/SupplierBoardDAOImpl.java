@@ -46,11 +46,13 @@ public class SupplierBoardDAOImpl implements SupplierBoardDAO {
 		
 	}
 	
-	public List<SupplierBoardVO> inquiryList(HashMap map) {
-		return sqlSession.selectList("SupplierBoardMapper.inquiryList", map);
+	public List<SupplierBoardVO> inquiryList(Criteria cri) {
+		return sqlSession.selectList("SupplierBoardMapper.inquiryList", cri);
 		
 	}
 	
-
+	public int getTotalinquiry(Criteria cri) {
+		return sqlSession.selectOne("SupplierBoardMapper.getTotalinquiry", cri);
+	}	
 
 }

@@ -9,9 +9,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mid.mvc.domain.CardVO;
 import com.mid.mvc.domain.Criteria;
@@ -51,6 +53,8 @@ public class SupController {
 	//상품 전체 검색
 	@RequestMapping("/productmange.do")
 	public void GoodsList(Criteria cri, Model model) { 
+		System.out.println("controlltostring :" + cri.getSearchCondition());
+		System.out.println("controlltostring :" + cri.getSearchKeyword());
 		PageVO pageVO = new PageVO(cri, goodsService.getTotal(cri));
 		List<GoodsVO> result = goodsService.getGoodsList(cri);
 		
@@ -66,12 +70,11 @@ public class SupController {
 	   
 	//가격정보 전체 검색
 	@RequestMapping("/pricemange.do")
-	public void getPriceList(Criteria cri, Model model) { 
+	public void getPriceList(Criteria cri, Model model) { 		
 		PageVO pageVO = new PageVO(cri, goodsService.getPriceTotal(cri));
 		List<PriceVO> result = goodsService.getPriceList(cri); 
 		model.addAttribute("pageVO", pageVO); 
 		model.addAttribute("priceList",result);
-		System.out.println("result :" + result);
 	}
 	
 	//가격 정보 등록 (페이지 띄우기)
@@ -171,32 +174,56 @@ public class SupController {
     
     //공급사 페이지에서 렌탈리스트뽑기
     @RequestMapping("/rentalmange.do")
-    public void rentalList(Model m, HttpSession session) {
+    public void rentalList(@ModelAttribute("cri") Criteria cri, Model model) {
     	
-    	HashMap map = new HashMap();
-    	UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
-    	String loggedInUserName = loggedInUser.getName();      
-    	map.put("name", loggedInUserName);
+    	System.out.println("Cri.tostring : "  + cri.toString());
+    	System.out.println("Cri.id : "  + cri.getId());
+    	System.out.println("Cri.startnum : "  + cri.getStartNum());
+    	System.out.println("Cri.SearchCondition : "  + cri.getSearchCondition());
+    	System.out.println("Cri.SearchKeyword : "  + cri.getSearchKeyword());
     	
-    	List<UserRentalVO> result = userBoardService.rentalList(map);
-    	m.addAttribute("rentList",result);
-    	System.out.println("result : " + result);
+    	int total = userBoardService.getTotalRental(cri);
+    	System.out.println("total :" + total);
+    	PageVO pageVO = new PageVO(cri, total );
+	
+    	List<UserRentalVO> result = userBoardService.rentalList(cri);
 
-    	
+    	model.addAttribute("pageVO", pageVO); 
+    	model.addAttribute("rentList",result);
+ 	
     }
     
+	  @RequestMapping("/rentalmanging.do")
+	  public String rentalmanging(@RequestParam List<String> b_id, @RequestParam List<Integer> b_stat, @RequestParam List<Integer> b_rent, Criteria cri, RedirectAttributes redirectAttributes) {
+		  	
+	        for (int i = 0; i < b_id.size(); i++) {
+	        	userBoardService.updateStat(b_stat.get(i), b_id.get(i), b_rent.get(i));
+	        }
+		  
+	    	System.out.println("manging.Cri.tostring : "  + cri.toString());
+	    	System.out.println("manging.Cri.id : "  + cri.getId());
+	    	System.out.println("manging.Cri.startnum : "  + cri.getStartNum());
+	    	
+	    	redirectAttributes.addAttribute("searchCondition", cri.getSearchCondition());
+	    	redirectAttributes.addAttribute("searchKeyword", cri.getSearchKeyword());
+	        redirectAttributes.addAttribute("pageNum", cri.getPageNum());
+	        redirectAttributes.addAttribute("amount", cri.getAmount());
+	        redirectAttributes.addAttribute("id", cri.getId());
+	        
+		  return "redirect:rentalmange.do";
+	  }	     
+    
+    
+    
+    
     @RequestMapping("/inquirymange.do")
-    public void inquiryList(Model m, HttpSession session) {
+    public void inquiryList(Criteria cri , Model model) {
     	
-    	UserVO loggedInUser = (UserVO) session.getAttribute("loggedInUser");
-    	String loggedInUserId = loggedInUser.getId();
-    	
-    	HashMap map = new HashMap();
-    	map.put("id", loggedInUserId);
-  
-    	List<SupplierBoardVO> result = supplierBoardService.inquiryList(map);
-    	m.addAttribute("inquiryList",result);
-    	System.out.println("result : " + result);
+    	PageVO pageVO = new PageVO(cri, supplierBoardService.getTotalinquiry(cri));
+    	List<SupplierBoardVO> result = supplierBoardService.inquiryList(cri);
+    	model.addAttribute("pageVO", pageVO); 
+    	model.addAttribute("inquiryList",result);
+
     }
 
 	  @RequestMapping("/inquiryend.do")
@@ -206,24 +233,6 @@ public class SupController {
 	  }	 	
  
 
-		/*
-		 * @RequestMapping("/rentalmanging.do") public String
-		 * rentalmanging(@RequestParam List<String> b_id, @RequestParam List<Integer>
-		 * b_stat) { System.out.println("vo.id입니다 :" + b_id);
-		 * System.out.println("vo.stat입니다 :" + b_stat);
-		 * 
-		 * 
-		 * return "redirect:rentalmange.do"; }
-		 */
 	
-	  @RequestMapping("/rentalmanging.do")
-	  public String rentalmanging(@RequestParam List<String> b_id, @RequestParam List<Integer> b_stat, @RequestParam List<Integer> b_rent) {
-		  	
-	        for (int i = 0; i < b_id.size(); i++) {
-	        	userBoardService.updateStat(b_stat.get(i), b_id.get(i), b_rent.get(i));
-	        }
-		  
-		  
-		  return "redirect:rentalmange.do";
-	  }	 	  
+	  
 }

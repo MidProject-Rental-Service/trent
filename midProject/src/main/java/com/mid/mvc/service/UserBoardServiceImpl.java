@@ -65,8 +65,13 @@ public class UserBoardServiceImpl implements UserBoardService{
 	}
 
 	//공급사 페이지에 렌탈리스트 보기
-	public List<UserRentalVO> rentalList(HashMap map) {
-		return userboardDAO.rentalList(map);
+	public List<UserRentalVO> rentalList(Criteria cri) {
+		return userboardDAO.rentalList(cri);
+	}
+	
+	//공급사 페이지에 렌탈리스트 count
+	public int getTotalRental(Criteria cri) {
+		return userboardDAO.getTotalRental(cri);
 	}
 	
 	@Override
@@ -76,10 +81,10 @@ public class UserBoardServiceImpl implements UserBoardService{
 
 	@Override
 	public void updateStat(int b_stat, String b_id, int b_rent) {
-		System.out.println("b_id : " +b_id);
-		System.out.println("b_stat : " +b_stat);
 		userboardDAO.updateStat(b_stat,b_id,b_rent);
 		
 	}
+
+
 
 }

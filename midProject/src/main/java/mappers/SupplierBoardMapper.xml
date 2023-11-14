@@ -86,11 +86,57 @@
 		VALUES(#{sb_head}, #{sb_title}, #{sb_content},now(), 0,#{id})
 	</insert>
 
-	<select id="inquiryList" parameterType="hashmap" resultType="SupplierBoardVO">
+	<select id="inquiryList" resultType="SupplierBoardVO">
 		SELECT *
-		FROM SUPPLIERBOARD
-		WHERE id = #{id}
+		FROM (
+		    SELECT *,
+		           ROW_NUMBER() OVER (ORDER BY sb_id DESC) AS RN
+		    FROM SUPPLIERBOARD
+		    WHERE id = #{id}
+		      AND (
+		          <choose>
+		              <when test="searchCondition == 'sb_title'">
+		                  SUPPLIERBOARD.sb_title LIKE '%${searchKeyword}%'
+		              </when>
+		              <when test="searchCondition == 'sb_head'">
+		                  SUPPLIERBOARD.sb_head LIKE '%${searchKeyword}%'
+		              </when>
+		              <when test="searchCondition == 'sb_regdate'">
+		                  SUPPLIERBOARD.sb_regdate LIKE '%${searchKeyword}%'
+		              </when>
+		              <otherwise>
+		                  1 = 1
+		              </otherwise>
+		          </choose>
+		      )
+		) AS TEMP
+		<![CDATA[
+		WHERE RN > (#{pageNum}-1) * #{amount} AND RN <= #{pageNum} * #{amount}
 		ORDER BY sb_id DESC;
+		]]>
 	</select>
+	
+	<select id="getTotalinquiry" resultType="int">
+	    SELECT count(*)
+		    FROM SUPPLIERBOARD
+		    WHERE id = #{id}
+		      AND (
+		          <choose>
+		              <when test="searchCondition == 'sb_title'">
+		                  SUPPLIERBOARD.sb_title LIKE '%${searchKeyword}%'
+		              </when>
+		              <when test="searchCondition == 'sb_head'">
+		                  SUPPLIERBOARD.sb_head LIKE '%${searchKeyword}%'
+		              </when>
+		              <when test="searchCondition == 'sb_regdate'">
+		                  SUPPLIERBOARD.sb_regdate LIKE '%${searchKeyword}%'
+		              </when>
+		              <otherwise>
+		                  1 = 1
+		              </otherwise>
+		          </choose>
+		      );
+	</select>		
+	
 
 </mapper>

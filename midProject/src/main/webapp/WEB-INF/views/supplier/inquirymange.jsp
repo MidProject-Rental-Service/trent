@@ -21,7 +21,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="../src/assets/css/styles.min.css" />
-<script src="../src/assets/libs/jquery/dist/jquery.max.js"></script>
+
 <script src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 <script
 	src="../src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -117,11 +117,56 @@
 
 					</table>
 				</form>
-				<!-- page 이전 1 2 3 4 5 다음 만드세요  -->
+				<!-- page 이전 1 2 3 4 5 다음  -->
+				<form action = "inquirymange.do" name = "pageForm" method="post">
+					<ul class="pagination pagination-sm">
+						<c:if test="${pageVO.prev }">
+							<li><a href="#" data-pagenum='${pageVO.startPage-1}'>이전</a></li>
+						</c:if>
+
+						<c:forEach var="num" begin="${pageVO.startPage }" end="${pageVO.endPage }">
+							<li class="${pageVO.pageNum eq num ? 'active' : ''}">
+								<a href="#" data-pagenum='${num }'>${num }</a>
+							</li>
+						</c:forEach>
+
+						<c:if test="${pageVO.next }">
+							<li><a href="#" data-pagenum='${pageVO.endPage +1}'>다음</a></li>
+						</c:if>
+					</ul>
+
+				 	  <input type="hidden" name="id" value="${pageVO.cri.id }">
+					  <input type="hidden" name="pageNum" value="${pageVO.cri.pageNum }">
+					  <input type="hidden" name="amount" value="${pageVO.cri.amount }">
+					  <input type="hidden" name="searchCondition" value="${pageVO.cri.searchCondition }">
+					  <input type="hidden" name="searchKeyword" value="${pageVO.cri.searchKeyword }">
+					
+					
+				</form>
+				
+				
+
+				<!-- 검색폼 시작 (name값이랑 value값은 변경금지!!) -->
+				<form action="inquirymange.do" method="post">
+				    <div class="search-wrap" style="display: flex; align-items: center;"> <!-- 인라인 스타일 추가 -->
+				        <select class="form-control search-select" name="searchCondition"  > <!-- 인라인 스타일 추가 -->
+				            <option value="sb_title" ${pageVO.cri.searchCondition eq 'sb_title' ? 'selected' : '' }>문의제목</option>
+				            <option value="sb_head" ${pageVO.cri.searchCondition eq 'id' ? 'selected' : '' }>말머리</option>
+				            <option value="sb_regdate" ${pageVO.cri.searchCondition eq 'sb_regdate' ? 'selected' : '' }>등록일</option>
+				        </select>
+				        <input type="text" class="form-control search-input" name="searchKeyword" value=${pageVO.cri.searchKeyword} > <!-- 인라인 스타일 추가 -->
+				        <button type="submit" class="btn btn-primary search-btn">검색</button>
+				    </div>
+					
+					  <input type="hidden" name="pageNum" value="1">
+					  <input type="hidden" name="amount" value="5">				
+					  <input type="hidden" name="id" value="${pageVO.cri.id }">
+				</form>
+				<!-- 검색 폼 끝 -->
 
 			</section>
 		</div>
 	</div>
-
+<script src="../src/assets/libs/jquery/dist/jquery.max.js"></script>
 </body>
 </html>

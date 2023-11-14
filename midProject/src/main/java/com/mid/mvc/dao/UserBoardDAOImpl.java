@@ -77,10 +77,15 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 	}
 
 
-	public List<UserRentalVO> rentalList(HashMap map) {
-		System.out.println("UserBoardDAO rentalList ===> 호출");
-		return sqlSession.selectList("UserBoardMapper.rentalList", map);
+	public List<UserRentalVO> rentalList(Criteria cri) {
+		return sqlSession.selectList("UserBoardMapper.rentalList", cri);
 	}
+	
+
+	public int getTotalRental(Criteria cri) {
+		return sqlSession.selectOne("UserBoardMapper.getTotalRental", cri);
+	}
+	
 
 	public List<UserRentalVO> getUserRecentList(HashMap map) {
 		System.out.println("===> sqlSession getUserRecentList() 호출");
@@ -94,11 +99,14 @@ public class UserBoardDAOImpl implements UserBoardDAO{
 		map.put("b_stat", b_stat);
 		map.put("b_id", b_id);
 		map.put("b_rent", b_rent);
-		System.out.println("map호출 : " + map);
 		sqlSession.update("UserBoardMapper.updateStat", map);
 		
 		
+		
 	}
+
+
+
 
 
 

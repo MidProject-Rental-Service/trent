@@ -65,6 +65,9 @@ public class GoodsDAOImpl {
 	
 	// 상품 전체 검색
 	public List<PriceVO> getPriceList(Criteria cri){
+		System.out.println("cri.tostring "+ cri.toString());
+		System.out.println("cri.getSearchCondition "+ cri.getSearchCondition());
+		System.out.println("cri.getSearchKeyword "+ cri.getSearchKeyword());
 		return SqlSession.selectList("GoodsMapper.getPriceList", cri);
 	}
 	

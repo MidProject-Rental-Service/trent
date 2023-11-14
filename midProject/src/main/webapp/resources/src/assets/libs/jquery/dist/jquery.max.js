@@ -6,7 +6,7 @@ document.head.appendChild(jqueryScript);
 jqueryScript.onload = function() {
 	
 
-		//	페이지 처리
+	//	페이지 처리
 	//  모든 a버튼을 눌렀을 때 a가 가지고 있는 pageNum값을 가지고 form태그로 이동하도록 처리
 	//  동적쿼리 이용해서 sql문 변경
 	//  화면에 검색키워드가 미리 남겨지도록 처리.
@@ -31,6 +31,9 @@ jqueryScript.onload = function() {
 	      // console.log(history.state);
 	    }
 	  }
+
+
+
 
 
 	{
