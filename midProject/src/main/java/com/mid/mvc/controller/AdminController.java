@@ -250,7 +250,6 @@ public class AdminController {
 	  public String userMangeModify(UserVO vo, Model m) {
 		  System.out.println("id : " + vo.getId());
 		  userService.userModify(vo);
-		  System.out.println(vo.toString());
 		  return "redirect:usermangemodify.do?id=" + vo.getId();
 	  }
 	

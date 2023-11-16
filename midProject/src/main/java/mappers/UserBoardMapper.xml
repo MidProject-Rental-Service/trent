@@ -106,7 +106,7 @@
 	<select id="admingetUserBoardList" resultType="UserBoardVO">
 	 
 	        SELECT *
-	        FROM (   SELECT ROW_NUMBER() OVER (ORDER BY ub_regdate ) AS RN, A.*
+	        FROM (   SELECT ROW_NUMBER() OVER (ORDER BY ub_regdate DESC ) AS RN, A.*
 	            FROM (  SELECT *
 			FROM USERBOARD
 	                	WHERE 
@@ -159,7 +159,7 @@
 	    <![CDATA[
 	    SELECT *
 	    FROM (
-	         SELECT BUY.*,g_name ,u.name, u.phone, ROW_NUMBER() OVER (ORDER BY BUY.b_id) AS RN
+	         SELECT BUY.*,g_name ,u.name, u.phone, ROW_NUMBER() OVER (ORDER BY BUY.b_id DESC) AS RN
 	        FROM BUY
 	        INNER JOIN GOODS ON BUY.G_ID = GOODS.G_ID
 	        INNER JOIN `user` u ON BUY.id = u.id
@@ -185,10 +185,11 @@
 	                AND 1 = 1
 	            </otherwise>
 	        </choose>
+
 	    
 	    <![CDATA[
-	    ) AS price
-	    WHERE RN > (#{pageNum}-1) * #{amount} AND RN <= #{pageNum} * #{amount}
+	    ) AS price 
+	    WHERE RN > (#{pageNum}-1) * #{amount} AND RN <= #{pageNum} * #{amount} 
 	    ]]>
 	</select>
 	    
@@ -228,7 +229,7 @@
 	    SET
 	        b_stat =
 	            CASE
-	                WHEN #{b_stat, jdbcType=INTEGER} >= 1 AND #{b_stat, jdbcType=INTEGER} <= 4 THEN #{b_stat, jdbcType=INTEGER}
+	                WHEN #{b_stat, jdbcType=INTEGER} >= 1 AND #{b_stat, jdbcType=INTEGER} <= 4 AND B_STARTDATE IS NULL  THEN #{b_stat, jdbcType=INTEGER} 
 	                WHEN #{b_stat, jdbcType=INTEGER} = 5 AND B_STARTDATE IS NULL THEN 5
 	                ELSE b_stat
 	            END,

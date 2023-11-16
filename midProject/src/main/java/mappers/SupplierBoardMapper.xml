@@ -15,7 +15,7 @@
 	<select id="admingetSupplierBoardList" resultType="SupplierBoardVO">
 	    SELECT *
 	    FROM (
-	        SELECT ROW_NUMBER() OVER (ORDER BY sb_regdate) AS RN, s.*, u2.NAME AS name
+	        SELECT ROW_NUMBER() OVER (ORDER BY sb_regdate DESC) AS RN, s.*, u2.NAME AS name
 	        FROM SUPPLIERBOARD s
 	        INNER JOIN `user` u2 ON s.ID = u2.ID
 	        WHERE u2.`role` = "supplier"

@@ -98,7 +98,7 @@
 		
 		  // 페이지 로드 시 주소 정보를 각 필드에 표시
 		  $(document).ready(function() {
-		    var fullAddress = "<%= loggedInUser.getAddr() %>";
+		    var fullAddress = "${user.addr }";
 		    if (fullAddress) {
 		      var addressParts = fullAddress.split(",");
 		      $("#sample6_postcode").val(addressParts[0]);

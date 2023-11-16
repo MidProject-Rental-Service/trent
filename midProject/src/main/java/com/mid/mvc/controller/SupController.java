@@ -166,9 +166,10 @@ public class SupController {
     }
     
     @RequestMapping("/inquiryreigster.do")
-    public String inquiryreigster(SupplierBoardVO vo) {
+    public String inquiryreigster(SupplierBoardVO vo, Criteria cri, RedirectAttributes redirectAttributes) {
     	supplierBoardService.inquiryreigster(vo);
-    	System.out.println("user.getId() :" + vo.getId());
+    	redirectAttributes.addAttribute("id", cri.getId());
+    	System.out.println("inquiryreigster.do.Criteria :" + cri.getId());
     	return "redirect:inquirymange.do";
     }
     
@@ -176,14 +177,8 @@ public class SupController {
     @RequestMapping("/rentalmange.do")
     public void rentalList(@ModelAttribute("cri") Criteria cri, Model model) {
     	
-    	System.out.println("Cri.tostring : "  + cri.toString());
-    	System.out.println("Cri.id : "  + cri.getId());
-    	System.out.println("Cri.startnum : "  + cri.getStartNum());
-    	System.out.println("Cri.SearchCondition : "  + cri.getSearchCondition());
-    	System.out.println("Cri.SearchKeyword : "  + cri.getSearchKeyword());
-    	
     	int total = userBoardService.getTotalRental(cri);
-    	System.out.println("total :" + total);
+
     	PageVO pageVO = new PageVO(cri, total );
 	
     	List<UserRentalVO> result = userBoardService.rentalList(cri);
@@ -199,10 +194,7 @@ public class SupController {
 	        for (int i = 0; i < b_id.size(); i++) {
 	        	userBoardService.updateStat(b_stat.get(i), b_id.get(i), b_rent.get(i));
 	        }
-		  
-	    	System.out.println("manging.Cri.tostring : "  + cri.toString());
-	    	System.out.println("manging.Cri.id : "  + cri.getId());
-	    	System.out.println("manging.Cri.startnum : "  + cri.getStartNum());
+
 	    	
 	    	redirectAttributes.addAttribute("searchCondition", cri.getSearchCondition());
 	    	redirectAttributes.addAttribute("searchKeyword", cri.getSearchKeyword());
@@ -216,15 +208,17 @@ public class SupController {
     
     
     
-    @RequestMapping("/inquirymange.do")
-    public void inquiryList(Criteria cri , Model model) {
-    	
-    	PageVO pageVO = new PageVO(cri, supplierBoardService.getTotalinquiry(cri));
-    	List<SupplierBoardVO> result = supplierBoardService.inquiryList(cri);
-    	model.addAttribute("pageVO", pageVO); 
-    	model.addAttribute("inquiryList",result);
+	    @RequestMapping("/inquirymange.do")
+	    public void inquiryList(@ModelAttribute("cri") Criteria cri , Model model) {
+	    	
+	    	System.out.println("inquirymange.do.cri.getID :" + cri.getId());
+	    	PageVO pageVO = new PageVO(cri, supplierBoardService.getTotalinquiry(cri));
+	    	List<SupplierBoardVO> result = supplierBoardService.inquiryList(cri);
+	    	model.addAttribute("pageVO", pageVO); 
+	    	model.addAttribute("inquiryList",result);
+	    	
 
-    }
+	    }
 
 	  @RequestMapping("/inquiryend.do")
 	  public void getSupplyanswerend(SupplierBoardVO vo, Model m) {

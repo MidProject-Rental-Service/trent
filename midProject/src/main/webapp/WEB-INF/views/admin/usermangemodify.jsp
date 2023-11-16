@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -13,9 +12,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 
-<link rel="stylesheet"
-	href="../src/assets/css/styles.min.css" />
-
+<link rel="stylesheet" href="../src/assets/css/styles.min.css" />
 
 
 
@@ -41,7 +38,7 @@
 
 				<div class="row g-5">
 					<div class="col-md-12">
-						<form action="usermangemodifing.do" method='post' novalidate>
+						<form action="usermangemodifing.do" method='post'  onsubmit="return submitForm();">
 							<!-- hidden 으로 값주기 -->
 							<input type="hidden" name="id" value="${user.id}">
 							<div class="row g-3">
@@ -80,10 +77,11 @@
 									<div class="col-sm-3 offset-sm-4">
 										<label for="addr" class="form-label">주소</label> 
 										<input type="button" onclick="sample6_execDaumPostcode()"  value="우편번호검색" onclick="checkPost()">
-		                                <input type="text" id="sample6_postcode" class="form-control" name="postcode" size="2" >							
-										<input type="text" id="sample6_address" class="form-control" name="addr" size="50" placeholder="주소" value="${user.addr }" ><br/>
-										<input type="text" id="sample6_detailAddress" class="form-control" name="addr" size="50" placeholder="상세주소">
-										<input type="text" id="sample6_extraAddress" class="form-control" style="display:none;">
+		                                <input type="text" id="sample6_postcode" class="form-control" name="postcode" placeholder="우편번호" size="2" >							
+										<input type="text" id="sample6_address" class="form-control" name="address" size="50" placeholder="주소" value="${user.addr }" ><br/>
+										<input type="text" id="sample6_detailAddress" class="form-control" name="detailaddr" size="50" placeholder="상세주소">
+										<input type="text" id="sample6_extraAddress" class="form-control" name="addr" style="display:none;">		
+										<input type="hidden"  id="addr2" name="addr2" value="${user.addr}">							
 										<div class="invalid-feedback"></div>
 									</div>
 								</div>
@@ -112,13 +110,30 @@
 
 	</div>
 	<!-- div 끝  -->
+	
+<!--  	<script>
+    // 페이지 로드 시 주소 정보를 각 필드에 표시
+    window.onload = function () {
+        var fullAddress = "${user.addr}";
+        alert(fullAddress);
+        
+        if (fullAddress) {
+            var addressParts = fullAddress.split(',');
+            document.getElementById("sample6_postcode").value = addressParts[0].trim();
+            document.getElementById("sample6_address").value = addressParts[1].trim();
+            document.getElementById("sample6_detailAddress").value = addressParts[2].trim();
+        }
+    };
+	</script>  -->
+	
+
+	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>  
 	
-	<script
-		src="../src/assets/libs/jquery/dist/jquery.max.js"></script>
 
-	<script
-		src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
+	<script src="../src/assets/libs/jquery/dist/jquery.max.js"></script>
+
+	<script src="../src/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script
 		src="../src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="../src/assets/js/sidebarmenu.js"></script>

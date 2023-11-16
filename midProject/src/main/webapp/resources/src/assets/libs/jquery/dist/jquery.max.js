@@ -4,8 +4,10 @@ jqueryScript.type = 'text/javascript';
 document.head.appendChild(jqueryScript);
 
 jqueryScript.onload = function() {
-	
 
+
+
+	
 	//	페이지 처리
 	//  모든 a버튼을 눌렀을 때 a가 가지고 있는 pageNum값을 가지고 form태그로 이동하도록 처리
 	//  동적쿼리 이용해서 sql문 변경
@@ -37,7 +39,6 @@ jqueryScript.onload = function() {
 
 
 	{
-    console.log("ee");
     var listForm = $("#listForm");
 
     $(".pagination_button").on("click", function(e) {
@@ -96,18 +97,8 @@ jqueryScript.onload = function() {
 	   alert('답변등록이 완료되었습니다.');
 	});	
 	
-	// 주소 값 분리
-	// 페이지가 로드될 때 주소 필드의 내용을 읽어와서 분리
-	var fullAddress = $("#sample6_address").val();
-	var parts = fullAddress.split(',');
-	
-	// 주소 입력 필드에 주소 설정
-	$("#sample6_address").val(parts[0]);
-	    
-	// 상세주소 입력 필드에 상세주소 설정 (필요에 따라 조건 검사)
-	if (parts.length >= 1) {
-	    $("#sample6_detailAddress").val(parts[1]);
-	}
+
+
 
 	
 	
@@ -186,15 +177,38 @@ jqueryScript.onload = function() {
 	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
 	            document.getElementById('sample6_postcode').value = data.zonecode;
 	            document.getElementById("sample6_address").value = addr;
+	            
+	            document.getElementById("sample6_detailAddress").value = "";
 	            // 커서를 상세주소 필드로 이동한다.
 	            document.getElementById("sample6_detailAddress").focus();
 	        }
 	    }).open();
 	}
+	
+window.onload = function () {
+var fullAddress = document.getElementById("addr2").value;
 
 
+if (fullAddress) {
+    var addressParts = fullAddress.split(',');
+    document.getElementById("sample6_postcode").value = addressParts[0].trim();
+    document.getElementById("sample6_address").value = addressParts[1].trim();
+    document.getElementById("sample6_detailAddress").value = addressParts[2].trim();
+}
 
 
+};
 
+function submitForm() {
+	
+    var postcode = document.getElementById("sample6_postcode").value;
+    var address = document.getElementById("sample6_address").value;
+    var detailaddr = document.getElementById("sample6_detailAddress").value;
 
+    var fullAddress = postcode + "," + address + "," + detailaddr;
+	
 
+    document.getElementById("sample6_extraAddress").value = fullAddress;
+    
+    return true;
+}	

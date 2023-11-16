@@ -70,7 +70,7 @@ public class UserDAOImpl implements UserDAO {
 
 	public void userUpdate(UserVO vo) {
 		int result = sqlSession.update("UserMapper.userModify", vo);
-		System.out.println("1나오면 성공 : " + result);
+		System.out.println("vo.getaddr : "  + vo.getAddr());
 	}
 
 	public int getTotalUser(Criteria cri) {
