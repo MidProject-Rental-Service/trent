@@ -122,7 +122,6 @@
 				
 				    <input type="hidden" name="pageNum" value="1">
 				    <input type="hidden" name="amount" value="5">
-				    <input type="hidden" name="id" value="${pageVO.cri.id }">
 				</form>
 				<!-- 검색 폼 끝 -->
 
